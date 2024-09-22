@@ -491,6 +491,19 @@ end
 
 --#endregion
 
+--#region Tip
+
+--#region 设置
+
+function Wnd:SetTip(_TipInfo)
+    local WND_H = (type(self) == "number" and self or self:GetHandle())
+    return GUI:WndSetTipInfo(WND_H, _TipInfo)
+end
+
+--#endregion
+
+--#endregion
+
 --#endregion
 
 --#region Wnd Setter,Getter
@@ -654,7 +667,7 @@ end
 function Wnd:CreateMainWnd(Parent, Name, ImgID, PosX, PosY)
     local wnd = Wnd.new { Parent = Parent, Name = Name, ImgID = ImgID, PosX = PosX or 0, PosY = PosY or 0 }
     wnd.IsESC = true
-    wnd.MoveWithLBM = true
+    -- wnd.MoveWithLBM = true
     if ImgID ~= nil then
         wnd:SetWndSize(CL:GetTextureWidth(ImgID), CL:GetTextureHeight(ImgID))
     end
@@ -1052,6 +1065,9 @@ end
 ---@field TextColor (string|int)?
 ---@field IsCenter bool?
 ---@field IsGray bool?
+---@field Rotate int?
+---@field IsActiveBtn bool?
+---@field IsActivePageBtn bool?
 ---@field DrawCenter bool?
 ---@field new fun(arg:ButtonNewArg) :Button
 Button = NewClass("Button", Wnd)
@@ -1074,6 +1090,16 @@ local ButtonPropSetList_t = InitSetter_t({
     end,
     ["TextColor"] = function(self, _Color)
         return GUI:WndSetTextColorM(self.Handle, TransColor(_Color))
+    end,
+    ["Rotate"] = function(self, _Roation)
+        GUI:ButtonSetDrawCenter(self.Handle, true)
+        return GUI:ButtonSetRotate(self.Handle, true, _Roation)
+    end,
+    ["IsActiveBtn"] = function(self, _Flag)
+        return GUI:ButtonSetIsActiveBtn(self.Handle, _Flag)
+    end,
+    ["IsActivePageBtn"] = function(self, _Flag)
+        return GUI:ButtonSetIsActivePageBtn(self.Handle, _Flag)
     end
 })
 
@@ -1136,6 +1162,16 @@ function Button:SetScale(...)
         _YS = select(2, ...) or 10000
     end
     return GUI:ButtonSetScale(self.Handle, _XS, _YS)
+end
+
+--- 设置按钮各个状态图片相对于主图片的ID偏移
+---@param _NormalIndex int32
+---@param _MouseOnIndex int32
+---@param _MouseDownIndex int32
+---@param _DisableIndex int32
+---@return nil
+function Button:SetImageIndex(_NormalIndex, _MouseOnIndex, _MouseDownIndex, _DisableIndex)
+    return GUI:ButtonSetImageIndex(self.Handle, _NormalIndex, _MouseOnIndex, _MouseDownIndex, _DisableIndex)
 end
 
 --#endregion
@@ -1260,6 +1296,8 @@ ItemCtrl:SetGetter(ItemCtrlPropGetList_t)
 
 --#region ItemCtrl Method
 
+--#region 填充物品框
+
 ---根据物品索引名填充物品框
 ---@param _KeyName string
 ---@param _Count number?
@@ -1323,6 +1361,15 @@ function ItemCtrl:SetGUIDataByItemID(_ItemId, _Count, _IsBind)
     GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_ISSHOWBIND)
     return true
 end
+
+--- 根据JSON字符串填充物品框物品
+---@param _JsonString string
+---@return nil
+function ItemCtrl:SetJson(_JsonString)
+    return GUI:ItemCtrlSetJson(self.Handle, _JsonString)
+end
+
+--#endregion
 
 ---获取物品框内物品自定义整型变量
 ---@param self ItemCtrl | int
