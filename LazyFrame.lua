@@ -667,7 +667,7 @@ end
 function Wnd:CreateMainWnd(Parent, Name, ImgID, PosX, PosY)
     local wnd = Wnd.new { Parent = Parent, Name = Name, ImgID = ImgID, PosX = PosX or 0, PosY = PosY or 0 }
     wnd.IsESC = true
-    -- wnd.MoveWithLBM = true
+    wnd.MoveWithLBM = true
     if ImgID ~= nil then
         wnd:SetWndSize(CL:GetTextureWidth(ImgID), CL:GetTextureHeight(ImgID))
     end
