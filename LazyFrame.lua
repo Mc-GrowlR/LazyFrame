@@ -271,6 +271,10 @@ function Wnd:SetSize(arg)
     return GUI:WndSetSizeM(WND_H, arg.SizeX or 0, arg.SizeY or 0)
 end
 
+---改变窗口大小
+---@param SizeX int
+---@param SizeY int
+---@return nil
 function Wnd:SetWndSize(SizeX, SizeY)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
     return GUI:WndSetSizeM(WND_H, SizeX or 0, SizeY or 0)
@@ -911,6 +915,7 @@ end
 ---@field ImgID int?
 ---@field FitSize bool?
 ---@field new fun(arg:ImageNewArg) :Image
+---@field private ArouImgList int[]
 Image = NewClass("Image", Wnd)
 
 --#region Image Setter, Getter
@@ -943,12 +948,6 @@ local ImagePropSetList_t = InitSetter_t({
 
 local ImagePropGetList_t = InitGetterFromSetter(ImagePropSetList_t)
 
--- SetClassSetter(Image, ImagePropSetList_t)
--- SetClassGetter(Image, ImagePropGetList_t)
-
--- Image.__get__ = ImagePropGetList_t
--- Image.__set__ = ImagePropSetList_t
-
 Image:SetSetter(ImagePropSetList_t)
 Image:SetGetter(ImagePropGetList_t)
 
@@ -976,6 +975,7 @@ Image.onCreate = function(self, arg)
     if arg.SizeX ~= nil then self.SizeX = arg.SizeX end
     if arg.SizeY ~= nil then self.SizeY = arg.SizeY end
     self.Type = 1
+    self.ArouImgList = { 0, 2, 6, 8, 4, 1, 7, 3, 5 }
 end
 
 ---创建图片控件
@@ -993,14 +993,44 @@ end
 
 --#region Image Method
 
----设置九宫格图片
----@param num int
-function Image:SetAroundImageEx(num)
-    local IMAGE_H = (type(self) == "number" and self or self:GetHandle())
-    local ImageID = num
-    GUI:ImageSetAroundImageEx(IMAGE_H, ImageID, ImageID + 2, ImageID + 6, ImageID + 8, ImageID + 4, ImageID + 1,
-        ImageID + 7, ImageID + 3, ImageID + 5, false)
+--#region 九宫格
+
+---改变九宫图片的次序
+---@param arg int[]
+function Image:ChangeArouImgList(arg)
+    if #arg ~= 9 then
+        return
+    end
+    for index, value in ipairs(arg) do
+        if type(value) ~= "number" then
+            return
+        end
+    end
+    self.ArouImgList = arg
 end
+
+---设置九宫格图片
+---@param self int | Image
+---@param ImgID int
+function Image:SetAroundImageEx(ImgID)
+    local type_s = type(self)
+    local IMAGE_H = (type_s == "number" and self or self:GetHandle())
+    local t = (type_s == "number" and { 0, 2, 6, 8, 4, 1, 7, 3, 5 } or self.ArouImgList)
+    local ImageID = ImgID
+    return GUI:ImageSetAroundImageEx(IMAGE_H,
+        ImageID + t[1],
+        ImageID + t[2],
+        ImageID + t[3],
+        ImageID + t[4],
+        ImageID + t[5],
+        ImageID + t[6],
+        ImageID + t[7],
+        ImageID + t[8],
+        ImageID + t[9],
+        false)
+end
+
+--#endregion
 
 --- 设置图片控件的缩放和旋转
 ---@param _ScaleX int
@@ -1180,6 +1210,7 @@ end
 
 --#region ItemCtrl
 
+--#region ItemCtrlDefine
 
 ---@class ItemCtrlNewArg
 ---@field Parent Parent
@@ -1203,6 +1234,17 @@ end
 ---@field ImgID int?
 ---@field new fun(arg:ItemCtrlNewArg) :ItemCtrl
 ItemCtrl = NewClass("ItemCtrl", Wnd)
+
+--#endregion
+
+--#region 物品移入触发函数
+
+function NpcTalkItemInFunc(this, GUIData, DragIn, GUID, ItemId, KeyName, ItemPos, IsBound, Count)
+    dbg("ceui ")
+    return true
+end
+
+--#endregion
 
 --#region ItemCtrl New
 
@@ -1475,7 +1517,6 @@ RichEdit:SetGetter(RichEditPropGetList_t)
 ---@param arg RichEditCreateArg
 RichEdit.onCreate = function(self, arg)
     local Name = arg.Name or "default"
-    -- local ImgID = arg.ImgID or 0
     local Parent = 0
     if type(arg.Parent) == "table" then
         Parent = arg.Parent:GetHandle() --[[@as int]]
