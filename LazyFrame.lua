@@ -699,6 +699,7 @@ end
 ---@field FontSize int?
 ---@field IsDrawSelectBg bool?
 ---@field MultiLine bool?
+---@field OffSet int? # 编辑框行高
 ---@field new fun(arg:EditCreateArg) : Edit
 Edit = NewClass("Edit", Wnd) --[[@as Edit]]
 
@@ -842,6 +843,9 @@ local EditPropSetList_t = InitSetter_t({
     end,
     ["MultiLine"] = function(self, _MultiLine)
         return GUI:EditSetMultiLineEdit(self.Handle, _MultiLine)
+    end,
+    ["OffSet"] = function(self, _Offset)
+        return GUI:EditSetOffSet(self.Handle, _Offset)
     end
 })
 
@@ -1012,7 +1016,7 @@ end
 ---设置九宫格图片
 ---@param self int | Image
 ---@param ImgID int
-function Image:SetAroundImageEx(ImgID)
+function Image.SetAroundImageEx(self, ImgID)
     local type_s = type(self)
     local IMAGE_H = (type_s == "number" and self or self:GetHandle())
     local t = (type_s == "number" and { 0, 2, 6, 8, 4, 1, 7, 3, 5 } or self.ArouImgList)
@@ -1072,6 +1076,19 @@ end
 ---@return nil
 function Image:SetCenter(_AnchorPosX, _AnchorPosY)
     return GUI:ImageSetCenter(self.Handle, 1, _AnchorPosX, _AnchorPosY)
+end
+
+---设置成图片控件绘制区域
+---@param _StartX float
+---@param _EndX float
+---@param _StartY float
+---@param _EndY float
+function Image:SetDrawRect(_StartX, _EndX, _StartY, _EndY)
+    return GUI:ImageSetDrawRect(self.Handle, _StartX, _EndX, _StartY, _EndY)
+end
+
+function Image:SetProp(arg)
+
 end
 
 --#endregion
@@ -1413,6 +1430,8 @@ end
 
 --#endregion
 
+--#region 获取物品框内物品信息
+
 ---获取物品框内物品自定义整型变量
 ---@param self ItemCtrl | int
 ---@param PropName string
@@ -1449,7 +1468,47 @@ function ItemCtrl.GetItemStrFromItemCtr(self, PropName)
     return ""
 end
 
+--#region GUIData 及其属性
+
+---获取物品框中对应物品的索引名
+---@return string
+function ItemCtrl:GetItemKeyName()
+    return RDItemCtrlGetGUIDataKeyName(self:GetHandle(), nil)
+end
+
+--- 获取物品框中物品的属性值
+---@param _PropType GUIDataPropType
+---@return any
+function ItemCtrl:GetGUIDataProp(_PropType)
+    GUI:ItemCtrlGetGUIDataPropByType(self:GetHandle(), _PropType)
+    return LuaRet
+end
+
 --#endregion
+
+--#region 添加物品移入判断函数
+
+function ItemCtrl:PushBackItemWindow(_FuncName)
+    if type(_FuncName) ~= "string" then return end
+    return Sys_PushBackItemWindow(self:GetHandle(), _FuncName)
+end
+
+--#endregion
+
+--#endregion
+
+---批量更改窗体属性
+---@param arg ItemCtrl
+function ItemCtrl:SetProp(arg)
+    if type(self) ~= "table" then return end
+
+    local __set__ = self.__set__
+    for k, v in pairs(arg) do
+        if __set__[k] then
+            self[k] = v
+        end
+    end
+end
 
 --#endregion
 
@@ -1501,9 +1560,6 @@ local RichEditPropSetList_t = InitSetter_t({
 })
 
 local RichEditPropGetList_t = InitGetterFromSetter(RichEditPropSetList_t)
-
--- SetClassSetter(RichEdit, RichEditPropSetList_t)
--- SetClassGetter(RichEdit, RichEditPropGetList_t)
 
 RichEdit:SetSetter(RichEditPropSetList_t)
 RichEdit:SetGetter(RichEditPropGetList_t)

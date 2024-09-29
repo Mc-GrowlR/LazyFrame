@@ -96,7 +96,7 @@ end
 function NewTip.AddWndTip(_WindowHandle, wParam, x, y, cParam)
     local function split_by_newline(str)
         local lines = {}
-        for line in str:gmatch("[^\r\n]+") do
+        for line in str:gmatch("[^\\n]+") do
             table.insert(lines, line)
         end
         return lines
@@ -119,7 +119,6 @@ function NewTip.AddWndTip(_WindowHandle, wParam, x, y, cParam)
     local DecParam = deserialize(cParam)
     local PosX = 0
     local PosY = 0
-    dbg("Type ;" .. type(DecParam))
     if type(DecParam) == "table" then
         Info_s = DecParam.info
         PosX = DecParam.PosX
@@ -135,6 +134,8 @@ function NewTip.AddWndTip(_WindowHandle, wParam, x, y, cParam)
 
 
     local longest, sizeLines = find_longest_string(Info_s:gsub("#.-#", ""))
+
+    CL:Log("longest: " .. longest .. " sizeLines " .. sizeLines)
 
 
     ---@type int @´°¿Ú¾ä±ú

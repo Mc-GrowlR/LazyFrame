@@ -1,0 +1,332 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.w3school.com.cn"
+  xmlns="http://www.w3school.com.cn"
+  elementFormDefault="qualified">
+
+  <xs:element name="form">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" maxOccurs="unbounded" processContents="lax"></xs:any>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="wnd" type="Wnd"> </xs:element>
+
+  <xs:complexType name="Wnd">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" processContents="lax"></xs:any>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" />
+    <xs:attribute name="x" type="xs:integer" />
+    <xs:attribute name="y" type="xs:integer" />
+    <xs:attribute name="w" type="xs:integer" />
+    <xs:attribute name="h" type="xs:integer" />
+    <xs:attribute name="parent" type="xs:string" />
+    <xs:attribute name="esc_close" type="xs:boolean" />
+    <xs:attribute name="drag" type="xs:boolean" />
+    <xs:attribute name="revmsg" type="xs:boolean" />
+    <xs:attribute name="enable" type="xs:boolean" />
+    <xs:attribute name="visible" type="xs:boolean" />
+    <xs:attribute name="param" type="xs:integer" />
+    <xs:attribute name="tip" type="xs:string" />
+    <xs:attribute name="tipex" type="xs:string" />
+    <xs:attribute name="scroll" type="xs:boolean" />
+    <xs:attribute name="scrollpos">
+      <xs:simpleType>
+        <xs:restriction base="xs:integer">
+          <xs:minInclusive value="0"></xs:minInclusive>
+          <xs:maxInclusive value="100"></xs:maxInclusive>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="is_vert" type="xs:boolean" />
+    <xs:attribute name="OnInit" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          创建好此窗口的初始化事件，回调函数原型func(this,param)--this:窗口句柄param:form文件字符串参数(由GenForm传入,比如：GenForm("精炼系统#1#2")此时param值为"1#2")。 </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnLButtonDown" type="xs:string">
+      <xs:annotation>
+        <xs:documentation> 鼠标左键点下事件，回调函数原型func(this,param,x,y)--this:窗口句柄param:可不关心x:x坐标y:y坐标</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnLButtonUp" type="xs:string">
+      <xs:annotation>
+        <xs:documentation> 鼠标左键点下事件，回调函数原型func(this,param,x,y)--this:窗口句柄param:可不关心x:x坐标y:y坐标 </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnLButtonClick" type="xs:string">
+      <xs:annotation>
+        <xs:documentation> 鼠标左键点击事件，回调函数原型func(this,param,x,y)--this:窗口句柄param:可不关心x:x坐标y:y坐标 </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnLButtonDbClick" type="xs:string">
+      <xs:annotation>
+        <xs:documentation> 鼠标左键双击事件，回调函数原型func(this,param,x,y)--this:窗口句柄param:可不关心x:x坐标y:y坐标 </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnRButtonDown" type="xs:string">
+      <xs:annotation>
+        <xs:documentation> 鼠标右键点下事件，回调函数原型func(this,param,x,y)--this:窗口句柄param:可不关心x:x坐标y:y坐标 </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnRButtonUp" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>鼠标右键弹起事件，回调函数原型func(this,param,x,y)--this:窗口句柄param:可不关心x:x坐标y:y坐标</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnRButtonClick" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>鼠标右键点击事件，回调函数原型func(this,param,x,y)--this:窗口句柄param:可不关心x:x坐标y:y坐标</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnRButtonDbClick" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>鼠标右键双击事件，回调函数原型func(this,param,x,y)--this:窗口句柄param:可不关心x:x坐标y:y坐标</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnMouseMove" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>鼠标移动事件，回调函数原型func(this,param,x,y)--this:窗口句柄param:可不关心x:x坐标y:y坐标</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnMouseWheel" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>鼠标滑轮滑动事件，回调函数原型func(this,param)--this:窗口句柄param:小于0向上滚动否则向下滚动</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnKeyDown" type="xs:string"></xs:attribute>
+    <xs:attribute name="OnKeyUp" type="xs:string"></xs:attribute>
+    <xs:attribute name="OnMouseIn" type="xs:string"></xs:attribute>
+    <xs:attribute name="OnMouseOut" type="xs:string"></xs:attribute>
+    <xs:attribute name="OnVisible" type="xs:string"></xs:attribute>
+    <xs:attribute name="OnEnable" type="xs:string"></xs:attribute>
+    <xs:attribute name="OnActive" type="xs:string"></xs:attribute>
+    <xs:attribute name="OnMove" type="xs:string"></xs:attribute>
+    <xs:attribute name="OnSizeChange" type="xs:string"></xs:attribute>
+    <xs:attribute name="OnClose" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>窗口关闭事件，回调函数原型func(this)--this:窗口句柄</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnDestroy" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>窗口销毁事件，一个窗口被关闭，OnClose不一定会触发，但OnDestroy肯定会触发，回调函数原型func(this)--this:窗口句柄 </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OnTipsInit" type="xs:string"></xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="dialog">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Wnd">
+          <xs:attribute name="image" type="xs:string"></xs:attribute>
+          <xs:attribute name="color" type="xs:string"></xs:attribute>
+          <xs:attribute name="fitsize" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="close" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="title" type="xs:string"></xs:attribute>
+          <xs:attribute name="title_color" type="xs:string"></xs:attribute>
+          <xs:attribute name="center" type="xs:string"></xs:attribute>
+          <xs:attribute name="savepos" type="xs:string"></xs:attribute>
+          <xs:attribute name="magic" type="xs:string"></xs:attribute>
+          <xs:attribute name="npc" type="xs:string"></xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+      <!-- <xs:extension base="personinfo"></xs:extension> -->
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="button">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Wnd">
+          <xs:attribute name="image" type="xs:string"></xs:attribute>
+          <xs:attribute name="text" type="xs:string"></xs:attribute>
+          <xs:attribute name="text_color" type="xs:string"></xs:attribute>
+          <xs:attribute name="page_btn" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="shine" type="xs:boolean"></xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="check">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Wnd">
+          <xs:attribute name="image" type="xs:string"></xs:attribute>
+          <xs:attribute name="text" type="xs:string"></xs:attribute>
+          <xs:attribute name="text_color" type="xs:string"></xs:attribute>
+          <xs:attribute name="checked" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="auto_change" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="OnCheckChange" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>选中状态发生变化事件，回调函数原型func(this)--this:窗口句柄</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="image">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Wnd">
+          <xs:attribute name="type">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="normal"></xs:enumeration>
+                <xs:enumeration value="around"></xs:enumeration>
+                <xs:enumeration value="animate"></xs:enumeration>
+                <xs:enumeration value="flat"></xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="image">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="\d{10}"></xs:pattern>
+                <xs:pattern value="^(\d{10},){8}\d{10}$"></xs:pattern>
+                <xs:pattern value="\d{10},\d*"></xs:pattern>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="image_color" type="xs:string"></xs:attribute>
+          <xs:attribute name="fitsize" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="check_point">
+            <xs:simpleType>
+              <xs:restriction base="xs:integer">
+                <xs:enumeration value="1"></xs:enumeration>
+                <xs:enumeration value="2"></xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="gray" type="xs:boolean"></xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="edit">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Wnd">
+          <xs:attribute name="text" type="xs:string"></xs:attribute>
+          <xs:attribute name="text_color" type="xs:string"></xs:attribute>
+          <xs:attribute name="type">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="number"></xs:enumeration>
+                <xs:enumeration value="normal"></xs:enumeration>
+                <xs:enumeration value="password"></xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="canedit" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="font" type="xs:string"></xs:attribute>
+          <xs:attribute name="limit" type="xs:integer"></xs:attribute>
+          <xs:attribute name="align">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="center"></xs:enumeration>
+                <xs:enumeration value="align"></xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="OnEditKeyEnter" type="xs:string"></xs:attribute>
+          <xs:attribute name="OnEditStrChange" type="xs:string"></xs:attribute>
+          <xs:attribute name="OnEditLBtnDown" type="xs:string"></xs:attribute>
+          <xs:attribute name="OnEditMouseIn" type="xs:string"></xs:attribute>
+          <xs:attribute name="OnEditMouseOut" type="xs:string"></xs:attribute>
+          <xs:attribute name="OnEditKeyDown" type="xs:string"></xs:attribute>
+          <xs:attribute name="OnEditKeyUp" type="xs:string"></xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="richedit">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Wnd">
+          <xs:attribute name="text" type="xs:string"></xs:attribute>
+          <xs:attribute name="text_color" type="xs:string"></xs:attribute>
+          <xs:attribute name="canedit" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="font" type="xs:string"></xs:attribute>
+          <xs:attribute name="align">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="align"></xs:enumeration>
+                <xs:enumeration value="left"></xs:enumeration>
+                <xs:enumeration value="centerall"></xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="static">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Wnd">
+          <xs:attribute name="text" type="xs:string"></xs:attribute>
+          <xs:attribute name="text_color" type="xs:string"></xs:attribute>
+          <xs:attribute name="font" type="xs:string"></xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="itemctrl">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Wnd">
+          <xs:attribute name="auto_manage" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="rbtn_use" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="invalid" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="count" type="xs:integer"></xs:attribute>
+          <xs:attribute name="is_bound" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="init_item">
+            <xs:simpleType>
+              <xs:union memberTypes="xs:integer xs:string"></xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="use_back" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="big_icon" type="xs:boolean"></xs:attribute>
+          <xs:attribute name="offx" type="xs:integer"></xs:attribute>
+          <xs:attribute name="offy" type="xs:integer"></xs:attribute>
+          <xs:attribute name="OnItemMoveIn" type="xs:string"></xs:attribute>
+          <xs:attribute name="OnItemCtrlDbClick" type="xs:string"></xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="combobox">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="Wnd">
+          <xs:attribute name="image" type="xs:integer"></xs:attribute>
+          <xs:attribute name="fill_image" type="xs:integer"></xs:attribute>
+          <xs:attribute name="text" type="xs:string"></xs:attribute>
+          <xs:attribute name="text_color" type="xs:string"></xs:attribute>
+          <xs:attribute name="length" type="xs:string"></xs:attribute>
+          <xs:attribute name="content" type="xs:string"></xs:attribute>
+          <xs:attribute name="OnComboStrChange" type="xs:string"></xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="script" type="xs:string"> </xs:element>
+
+  <xs:element name="text" type="xs:string"></xs:element>
+
+</xs:schema>
