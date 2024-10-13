@@ -149,7 +149,7 @@ function NewImg2(Parent, Name, Img, PosX, PosY, SizeX, SizeY)
     return Img1
 end
 
---
+-- 新建黑白相间列表
 function NewImg3(Parent, Name, PosX, PosY, Num)
     local wnd1 = Wnd:Create(Parent, Name, 0, PosX, PosY)
     for i = 1, Num do
@@ -177,6 +177,26 @@ function NewImg5(Parent, Name, Img, PosX, PosY)
     local Img3Sub2     = Image:New { Parent = RightImgBack, Name = "333", ImgID = Img, PosX = 111, PosY = 19 }
     Img3Sub2.IsCenter  = true
     local Img3Sub3     = Image:New { Parent = RightImgBack, Name = "444", ImgID = 1650000221, PosX = 136 + 7, PosY = 14 }
+    Img3Sub3:SetTransfrom(8000, 8000, 0)
+    local Img3Sub4 = Image:New { Parent = RightImgBack, Name = "555", ImgID = 1650000221, PosX = 6 + 7, PosY = 14 }
+    Img3Sub4:SetTransfrom(8000, 8000, 0)
+    Img3Sub4:SetFlip(true, false)
+    local Img1Sub5 = Image:New { Parent = RightImgBack, Name = "666" }
+    local Img1Sub6 = Image:New { Parent = RightImgBack, Name = "777", ImgID = 1650000342, PosX = 0, PosY = 32 }
+    Img1Sub6:SetTransfrom(9000, 10000, 0)
+
+    return RightImgBack
+end
+
+--- 新建右侧背景
+function NewImg6(Parent, Name, Img, PosX, PosY, RectEndX, RectEndY)
+    local RightImgBack = Image:New { Parent = Parent, Name = "TitleAndBack" .. ((Name ~= "" or Name ~= nil) and Name or ""), PosX = PosX, PosY = PosY, ImgID = 1660300001 }
+    RightImgBack:SetDrawRect(0, RectEndX or 1, 0, RectEndY or 1)
+    local Img3Sub1    = Image:New { Parent = RightImgBack, Name = "111", ImgID = 1650000214, PosY = 5 }
+    local Img3Sub2    = Image:New { Parent = RightImgBack, Name = "222", ImgID = 1650000218, }
+    local Img3Sub2    = Image:New { Parent = RightImgBack, Name = "333", ImgID = Img, PosX = 111, PosY = 19 }
+    Img3Sub2.IsCenter = true
+    local Img3Sub3    = Image:New { Parent = RightImgBack, Name = "444", ImgID = 1650000221, PosX = 136 + 7, PosY = 14 }
     Img3Sub3:SetTransfrom(8000, 8000, 0)
     local Img3Sub4 = Image:New { Parent = RightImgBack, Name = "555", ImgID = 1650000221, PosX = 6 + 7, PosY = 14 }
     Img3Sub4:SetTransfrom(8000, 8000, 0)

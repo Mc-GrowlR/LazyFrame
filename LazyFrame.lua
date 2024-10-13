@@ -216,6 +216,21 @@ end
 
 --#endregion
 
+--#region 字符串
+
+function StrSplit(inputstr, sep)
+    if sep == nil then
+        sep = "%s" -- 默认为任意空白字符
+    end
+    local t = {}
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+        table.insert(t, str)
+    end
+    return t
+end
+
+--#endregion
+
 --#endregion
 
 --#region Wnd
@@ -898,7 +913,6 @@ end
 --#endregion
 
 --#region Image
--- Image = setmetatable({}, Wnd)
 
 ---@class ImageNewArg
 ---@field Parent Parent
@@ -1087,8 +1101,17 @@ function Image:SetDrawRect(_StartX, _EndX, _StartY, _EndY)
     return GUI:ImageSetDrawRect(self.Handle, _StartX, _EndX, _StartY, _EndY)
 end
 
+---设置图片类
+---@param arg table
 function Image:SetProp(arg)
-
+    local __set__ = Image.__set__
+    local t
+    for key, value in pairs(arg) do
+        t = __set__[key]
+        if t ~= nil then
+            t(self, value)
+        end
+    end
 end
 
 --#endregion
@@ -1116,6 +1139,7 @@ end
 ---@field IsActiveBtn bool?
 ---@field IsActivePageBtn bool?
 ---@field DrawCenter bool?
+---@field ImgID int?
 ---@field new fun(arg:ButtonNewArg) :Button
 Button = NewClass("Button", Wnd)
 
@@ -1127,6 +1151,7 @@ local ButtonPropSetList_t = InitSetter_t({
     ---@param _DrawCenter boolean
     ---@return nil
     ["DrawCenter"] = function(self, _DrawCenter)
+        CL:Log("设置按钮")
         return GUI:ButtonSetDrawCenter(self.Handle, _DrawCenter)
     end,
     ["Text"] = function(self, _Text)
@@ -1147,6 +1172,9 @@ local ButtonPropSetList_t = InitSetter_t({
     end,
     ["IsActivePageBtn"] = function(self, _Flag)
         return GUI:ButtonSetIsActivePageBtn(self.Handle, _Flag)
+    end,
+    ["ImgID"] = function(self, _ImageID)
+        return GUI:WndSetImageID(self.Handle, _ImageID)
     end
 })
 
@@ -1355,6 +1383,14 @@ ItemCtrl:SetGetter(ItemCtrlPropGetList_t)
 
 --#region ItemCtrl Method
 
+--#region 清空物品框
+
+function ItemCtrl:Clear()
+    return GUI:ItemCtrlClearItemData(self:GetHandle())
+end
+
+--#endregion
+
 --#region 填充物品框
 
 ---根据物品索引名填充物品框
@@ -1370,6 +1406,9 @@ function ItemCtrl:SetGUIDataByItemKeyName(_KeyName, _Count, _IsBind)
         _IsBind = false
     end
     local _flag = true
+    if _KeyName == "" then
+        return false
+    end
     -- if CL:GetClientType() == 0 then
     --     _flag = RDItemCtrlSetGUIDataPropByKeyName(self.Handle, nil, _KeyName, _Count or 1, _IsBind)
     -- end
@@ -1488,6 +1527,9 @@ end
 
 --#region 添加物品移入判断函数
 
+---添加物品移入判断函数
+---@param _FuncName string
+---@return nil
 function ItemCtrl:PushBackItemWindow(_FuncName)
     if type(_FuncName) ~= "string" then return end
     return Sys_PushBackItemWindow(self:GetHandle(), _FuncName)
