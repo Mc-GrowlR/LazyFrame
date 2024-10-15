@@ -2215,3 +2215,23 @@ function GUI:ItemCtrlSetJson(_HandleID, _JsonString) end
 ---@param _HandleID int # 指定编辑框控件的句柄
 ---@param _Offset int # 行间距，单位为（`px`）
 function GUI:EditSetOffSet(_HandleID, _Offset) end
+
+--- 设置窗口为弹出菜单
+---@param _HandleID int #指定窗体控件的句柄
+function GUI:WndSetPopupMenu(_HandleID) end
+
+--- 设置图片控件颜色
+---@param _HandleID int # 指定图片控件的句柄
+---@param _ImageColor uint # 指定图片控件的颜色
+function GUI:ImageSetColor(_HandleID, _ImageColor) end
+
+--- 设置组合框中编辑框的大小
+---@param _HandleID int
+---@param _Width int
+---@param _Height int
+function GUI:ComboBoxSetEditSize(_HandleID, _Width, _Height) end
+
+--- 设置组合框控件固定的下拉背景高度
+---@param _HandleID int
+---@param _Length int # 单位为像素
+function GUI:ComboBoxSetFixListLength(_HandleID, _Length) end

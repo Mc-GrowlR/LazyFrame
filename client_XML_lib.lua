@@ -4,230 +4,230 @@
 ---@class Xml
 Xml = {}
 
----¹¹ÔìLuaXml¶ÔÏó
+---æ„é€ LuaXmlå¯¹è±¡
 ---@return Xml
 function LuaXml() end
 
----¼ÓÔØXml¶ÔÏó
----@param _Path string #XMLµÄ¾ø¶ÔÂ·¾¶
+---åŠ è½½Xmlå¯¹è±¡
+---@param _Path string #XMLçš„ç»å¯¹è·¯å¾„
 function Xml:LoadXml(_Path) end
 
----Çå¿ÕÒÑ¼ÓÔØµÄÄÚÈİ
+---æ¸…ç©ºå·²åŠ è½½çš„å†…å®¹
 function Xml:Clear() end
 
---#region »ñÈ¡
+--#region è·å–
 
---#region »ñÈ¡½Úµã
+--#region è·å–èŠ‚ç‚¹
 
----»ñÈ¡¸ù½ÚµãÃèÊö
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»Ø¸ù½ÚµãÃèÊö£¨ÕûĞÍ£©£»ÈôÎÄ¼şÎ´¼ÓÔØ»òº¯ÊıÖ´ĞĞ´íÎó£¬Ôò·µ»Ø0¡£
+---è·å–æ ¹èŠ‚ç‚¹æè¿°
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æ ¹èŠ‚ç‚¹æè¿°ï¼ˆæ•´å‹ï¼‰ï¼›è‹¥æ–‡ä»¶æœªåŠ è½½æˆ–å‡½æ•°æ‰§è¡Œé”™è¯¯ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:Root() end
 
----»ñÈ¡µÚÒ»¸ö×Ó½Úµã
----@param _Element uint # ½ÚµãÃèÊö
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨²ÎÊıµÄµÚÒ»¸ö×Ó½ÚµãÃèÊö£¨ÕûĞÍ£©£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø0¡£
+---è·å–ç¬¬ä¸€ä¸ªå­èŠ‚ç‚¹
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šå‚æ•°çš„ç¬¬ä¸€ä¸ªå­èŠ‚ç‚¹æè¿°ï¼ˆæ•´å‹ï¼‰ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:FirstChild(_Element) end
 
----»ñÈ¡µÚÒ»¸öÖ¸¶¨½ÚÃûµÄ×Ó½Úµã
----@param _Element uint #½ÚµãÃèÊö
----@param _Name string # ½ÚÃû
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨²ÎÊıµÄµÚÒ»¸ö×Ó½ÚµãÃèÊö£¨ÕûĞÍ£©£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø0¡£
+---è·å–ç¬¬ä¸€ä¸ªæŒ‡å®šèŠ‚åçš„å­èŠ‚ç‚¹
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@param _Name string # èŠ‚å
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šå‚æ•°çš„ç¬¬ä¸€ä¸ªå­èŠ‚ç‚¹æè¿°ï¼ˆæ•´å‹ï¼‰ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:FirstChildByName(_Element, _Name) end
 
----»ñÈ¡ÏÂÒ»¸öÖ¸¶¨½ÚÃûµÄĞÖµÜ½Úµã
----@param _Element uint #½ÚµãÃèÊö
----@param _Name string # ½Úµã
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨²ÎÊıµÄÏÂÒ»¸ö·ûºÏÌõ¼şµÄĞÖµÜ½ÚµãÃèÊö£¨ÕûĞÍ£©£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø0¡£
+---è·å–ä¸‹ä¸€ä¸ªæŒ‡å®šèŠ‚åçš„å…„å¼ŸèŠ‚ç‚¹
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@param _Name string # èŠ‚ç‚¹
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šå‚æ•°çš„ä¸‹ä¸€ä¸ªç¬¦åˆæ¡ä»¶çš„å…„å¼ŸèŠ‚ç‚¹æè¿°ï¼ˆæ•´å‹ï¼‰ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:NextSiblingByName(_Element, _Name) end
 
----»ñÈ¡ÉÏÒ»¸öÖ¸¶¨½ÚÃûµÄĞÖµÜ½Úµã
----@param _Element uint #½ÚµãÃèÊö
----@param _Name string # ½Úµã
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨²ÎÊıµÄÏÂÒ»¸ö·ûºÏÌõ¼şµÄĞÖµÜ½ÚµãÃèÊö£¨ÕûĞÍ£©£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø0¡£
+---è·å–ä¸Šä¸€ä¸ªæŒ‡å®šèŠ‚åçš„å…„å¼ŸèŠ‚ç‚¹
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@param _Name string # èŠ‚ç‚¹
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šå‚æ•°çš„ä¸‹ä¸€ä¸ªç¬¦åˆæ¡ä»¶çš„å…„å¼ŸèŠ‚ç‚¹æè¿°ï¼ˆæ•´å‹ï¼‰ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:PrevSiblingByName(_Element, _Name) end
 
----»ñÈ¡ÏÂÒ»¸öĞÖµÜ½Úµã
----@param _Element uint # ½ÚµãÃèÊö
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨²ÎÊıµÄµÚÒ»¸ö×Ó½ÚµãÃèÊö£¨ÕûĞÍ£©£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø0¡£
+---è·å–ä¸‹ä¸€ä¸ªå…„å¼ŸèŠ‚ç‚¹
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šå‚æ•°çš„ç¬¬ä¸€ä¸ªå­èŠ‚ç‚¹æè¿°ï¼ˆæ•´å‹ï¼‰ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:NextSibling(_Element) end
 
----»ñÈ¡ÉÏÒ»¸öĞÖµÜ½Úµã
----@param _Element uint # ½ÚµãÃèÊö
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨²ÎÊıµÄµÚÒ»¸ö×Ó½ÚµãÃèÊö£¨ÕûĞÍ£©£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø0¡£
+---è·å–ä¸Šä¸€ä¸ªå…„å¼ŸèŠ‚ç‚¹
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šå‚æ•°çš„ç¬¬ä¸€ä¸ªå­èŠ‚ç‚¹æè¿°ï¼ˆæ•´å‹ï¼‰ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:PrevSibling(_Element) end
 
----»ñÈ¡¸¸½Úµã
----@param _Element uint #½ÚµãÃèÊö
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨²ÎÊıµÄ¸¸½ÚµãÃèÊö£¨ÕûĞÍ£©£»ÈôÖ´ĞĞÊ§°Ü·µ»Ø0¡£
+---è·å–çˆ¶èŠ‚ç‚¹
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šå‚æ•°çš„çˆ¶èŠ‚ç‚¹æè¿°ï¼ˆæ•´å‹ï¼‰ï¼›è‹¥æ‰§è¡Œå¤±è´¥è¿”å›0ã€‚
 function Xml:Parent(_Element) end
 
----»ñÈ¡XMLÖĞÄ³½ÚµãµÄÃû³Æ
----@param _Element uint # ½ÚµãÃèÊö
----@return string # ¸Ã½ÚµãµÄÃû³Æ
+---è·å–XMLä¸­æŸèŠ‚ç‚¹çš„åç§°
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@return string # è¯¥èŠ‚ç‚¹çš„åç§°
 function Xml:GetElementName(_Element) end
 
----»ñÈ¡Ä³½ÚµãµÄ¸½¼ÓÎÄ±¾Êı¾İ
----@param _Element uint #½ÚµãÃèÊö
----@return string  #Èô°üº¬¸½¼ÓÎÄ±¾£¬Ôò·µ»ØÎÄ±¾×Ö·û´®£»Èô²»°üº¬¸½¼ÓÎÄ±¾£¬Ôò·µ»Ø¿Õ×Ö·û´®¡£
+---è·å–æŸèŠ‚ç‚¹çš„é™„åŠ æ–‡æœ¬æ•°æ®
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@return string  #è‹¥åŒ…å«é™„åŠ æ–‡æœ¬ï¼Œåˆ™è¿”å›æ–‡æœ¬å­—ç¬¦ä¸²ï¼›è‹¥ä¸åŒ…å«é™„åŠ æ–‡æœ¬ï¼Œåˆ™è¿”å›ç©ºå­—ç¬¦ä¸²ã€‚
 function Xml:GetText(_Element) end
 
 --#endregion
 
---#region »ñÈ¡ÊôĞÔ
+--#region è·å–å±æ€§
 
 
----»ñÈ¡¸¡µãÊôĞÔÖµ
----@param _Element uint # ½ÚµãÃèÊö
----@param _Attr string #ÊôĞÔÃû
----@return double # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨µÄ¸¡µãÊôĞÔÖµ£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø`0.0`¡£
+---è·å–æµ®ç‚¹å±æ€§å€¼
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Attr string #å±æ€§å
+---@return double # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šçš„æµ®ç‚¹å±æ€§å€¼ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›`0.0`ã€‚
 function Xml:AttributeDouble(_Element, _Attr) end
 
----»ñÈ¡´ø·ûºÅÊôĞÔÖµ
----@param _Element uint # ½ÚµãÃèÊö
----@param _Attr string #ÊôĞÔÃû
----@return int # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨µÄ¸¡µãÊôĞÔÖµ£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø`0`¡£
+---è·å–å¸¦ç¬¦å·å±æ€§å€¼
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Attr string #å±æ€§å
+---@return int # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šçš„æµ®ç‚¹å±æ€§å€¼ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›`0`ã€‚
 function Xml:AttributeInt(_Element, _Attr) end
 
----»ñÈ¡ÎŞ·ûºÅÕûĞÍÊôĞÔÖµ
----@param _Element uint # ½ÚµãÃèÊö
----@param _Attr string #ÊôĞÔÃû
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨µÄ¸¡µãÊôĞÔÖµ£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø`0`¡£
+---è·å–æ— ç¬¦å·æ•´å‹å±æ€§å€¼
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Attr string #å±æ€§å
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šçš„æµ®ç‚¹å±æ€§å€¼ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›`0`ã€‚
 function Xml:AttributeUInt(_Element, _Attr) end
 
----»ñÈ¡×Ö·û´®ÊôĞÔÖµ
----@param _Element uint #½ÚµãÃèÊö
----@param _Attr string #ÊôĞÔÃû
----@return string # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØÖ¸¶¨µÄ×Ö·û´®ÊôĞÔÖµ£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø¿Õ×Ö·û´®¡£
+---è·å–å­—ç¬¦ä¸²å±æ€§å€¼
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@param _Attr string #å±æ€§å
+---@return string # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æŒ‡å®šçš„å­—ç¬¦ä¸²å±æ€§å€¼ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›ç©ºå­—ç¬¦ä¸²ã€‚
 function Xml:Attribute(_Element, _Attr) end
 
 --#endregion
 
 --#endregion
 
---#region ²åÈë
+--#region æ’å…¥
 
----²åÈë×Ó½Úµã
----@param _Element uint #½ÚµãÃèÊö
----@param _Name string #Óû²åÈëµÄ×Ó½ÚµãµÄ½ÚÃû
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØĞÂ²åÈëµÄ×Ó½ÚµãÃèÊö£¬ĞÂ²åÈëµÄ½ÚµãÎ»ÓÚµ±Ç°ÓµÓĞµÄ×Ó½ÚµãµÄ×îºóÃæ£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø0¡£
+---æ’å…¥å­èŠ‚ç‚¹
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@param _Name string #æ¬²æ’å…¥çš„å­èŠ‚ç‚¹çš„èŠ‚å
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æ–°æ’å…¥çš„å­èŠ‚ç‚¹æè¿°ï¼Œæ–°æ’å…¥çš„èŠ‚ç‚¹ä½äºå½“å‰æ‹¥æœ‰çš„å­èŠ‚ç‚¹çš„æœ€åé¢ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:InsertChild(_Element, _Name) end
 
----Ïòºó²åĞÖµÜ½Úµã
----@param _Element uint #½ÚµãÃèÊö
----@param _Name string #Óû²åÈëµÄ×Ó½ÚµãµÄ½ÚÃû
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØĞÂ²åÈëµÄ×Ó½ÚµãÃèÊö£¬ĞÂ²åÈëµÄ½ÚµãÎ»ÓÚµ±Ç°ÓµÓĞµÄ×Ó½ÚµãµÄ×îºóÃæ£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø0¡£
+---å‘åæ’å…„å¼ŸèŠ‚ç‚¹
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@param _Name string #æ¬²æ’å…¥çš„å­èŠ‚ç‚¹çš„èŠ‚å
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æ–°æ’å…¥çš„å­èŠ‚ç‚¹æè¿°ï¼Œæ–°æ’å…¥çš„èŠ‚ç‚¹ä½äºå½“å‰æ‹¥æœ‰çš„å­èŠ‚ç‚¹çš„æœ€åé¢ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:InsertNext(_Element, _Name) end
 
----ÏòÇ°²åÈëĞÖµÜ½Úµã
----@param _Element uint #½ÚµãÃèÊö
----@param _Name string #Óû²åÈëµÄ×Ó½ÚµãµÄ½ÚÃû
----@return uint # ÈôÖ´ĞĞ³É¹¦£¬Ôò·µ»ØĞÂ²åÈëµÄ×Ó½ÚµãÃèÊö£¬ĞÂ²åÈëµÄ½ÚµãÎ»ÓÚµ±Ç°ÓµÓĞµÄ×Ó½ÚµãµÄ×îºóÃæ£»ÈôÖ´ĞĞÊ§°Ü£¬Ôò·µ»Ø0¡£
+---å‘å‰æ’å…¥å…„å¼ŸèŠ‚ç‚¹
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@param _Name string #æ¬²æ’å…¥çš„å­èŠ‚ç‚¹çš„èŠ‚å
+---@return uint # è‹¥æ‰§è¡ŒæˆåŠŸï¼Œåˆ™è¿”å›æ–°æ’å…¥çš„å­èŠ‚ç‚¹æè¿°ï¼Œæ–°æ’å…¥çš„èŠ‚ç‚¹ä½äºå½“å‰æ‹¥æœ‰çš„å­èŠ‚ç‚¹çš„æœ€åé¢ï¼›è‹¥æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›0ã€‚
 function Xml:InsertPrev(_Element, _Name) end
 
 --#endregion
 
---#region ÅĞ¶Ï
+--#region åˆ¤æ–­
 
----ÅĞ¶ÏÊÇ·ñ´æÔÚÖ¸¶¨ÊôĞÔÃû
----@param _Element uint # ½ÚµãÃèÊö
----@param _Attr string # ÊôĞÔÃû
----@return bool # `true` ´æÔÚ `false` ²»´æÔÚ
+---åˆ¤æ–­æ˜¯å¦å­˜åœ¨æŒ‡å®šå±æ€§å
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Attr string # å±æ€§å
+---@return bool # `true` å­˜åœ¨ `false` ä¸å­˜åœ¨
 function Xml:HasAttribute(_Element, _Attr) end
 
----ÅĞ¶ÏÊÇ·ñÓĞ¸½¼ÓÎÄ±¾
----@param _Element uint #½ÚµãÃèÊö
----@return bool #  `true`°üº¬¸½¼ÓÎÄ±¾Êı¾İ¡£ `false`²»°üº¬¸½¼ÓÎÄ±¾Êı¾İ¡£
+---åˆ¤æ–­æ˜¯å¦æœ‰é™„åŠ æ–‡æœ¬
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@return bool #  `true`åŒ…å«é™„åŠ æ–‡æœ¬æ•°æ®ã€‚ `false`ä¸åŒ…å«é™„åŠ æ–‡æœ¬æ•°æ®ã€‚
 function Xml:HasText(_Element) end
 
----ÅĞ¶Ï½ÚµãÊÇ·ñÓĞĞ§
----@param _Element uint #½ÚµãÃèÊö
----@return bool `true`  ½ÚµãÃèÊöºÏ·¨ `false` ½ÚµãÃèÊö²»ºÏ·¨
+---åˆ¤æ–­èŠ‚ç‚¹æ˜¯å¦æœ‰æ•ˆ
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@return bool `true`  èŠ‚ç‚¹æè¿°åˆæ³• `false` èŠ‚ç‚¹æè¿°ä¸åˆæ³•
 function Xml:IsValidElement(_Element) end
 
----ÅĞ¶ÏÎÄ¼şÊÇ·ñÓĞĞ§
----@return bool `true` ÒÑÕı³£¼ÓÔØ `false` Î´Õı³£¼ÓÔØ
+---åˆ¤æ–­æ–‡ä»¶æ˜¯å¦æœ‰æ•ˆ
+---@return bool `true` å·²æ­£å¸¸åŠ è½½ `false` æœªæ­£å¸¸åŠ è½½
 function Xml:IsValidXml() end
 
 --#endregion
 
---#region É¾³ı
+--#region åˆ é™¤
 
----É¾³ıËùÓĞ×Ó½Úµã
----@param _Element uint # ½ÚµãÃèÊö
----@return bool # `true` É¾³ı³É¹¦£¬ `false` É¾³ıÊ§°Ü
+---åˆ é™¤æ‰€æœ‰å­èŠ‚ç‚¹
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@return bool # `true` åˆ é™¤æˆåŠŸï¼Œ `false` åˆ é™¤å¤±è´¥
 function Xml:RemoveAllChild(_Element) end
 
----É¾³ıÖ¸¶¨½ÚÃûµÄ×Ó½Úµã
----@param _Element uint # ½ÚµãÃèÊö
----@param _Name string #Ö¸¶¨ÓûÉ¾³ıµÄ×Ó½ÚµãµÄ½ÚÃû
----@return bool # `true` É¾³ı³É¹¦£¬ `false` É¾³ıÊ§°Ü
+---åˆ é™¤æŒ‡å®šèŠ‚åçš„å­èŠ‚ç‚¹
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Name string #æŒ‡å®šæ¬²åˆ é™¤çš„å­èŠ‚ç‚¹çš„èŠ‚å
+---@return bool # `true` åˆ é™¤æˆåŠŸï¼Œ `false` åˆ é™¤å¤±è´¥
 function Xml:RemoveChildByName(_Element, _Name) end
 
----É¾³ıµ±Ç°½Úµã
----@param _Element uint #½ÚµãÃèÊö
----@return bool # `true` É¾³ı³É¹¦£¬ `false` É¾³ıÊ§°Ü
+---åˆ é™¤å½“å‰èŠ‚ç‚¹
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@return bool # `true` åˆ é™¤æˆåŠŸï¼Œ `false` åˆ é™¤å¤±è´¥
 function Xml:Remove(_Element) end
 
----É¾³ıÖ¸¶¨ÊôĞÔ
----@param _Element uint # ½ÚµãÃèÊö
----@param _Attr string # Ö¸¶¨ÒªÉ¾³ıµÄÊôĞÔÃû
----@return bool # `true` É¾³ı³É¹¦£¬ `false` É¾³ıÊ§°Ü
+---åˆ é™¤æŒ‡å®šå±æ€§
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Attr string # æŒ‡å®šè¦åˆ é™¤çš„å±æ€§å
+---@return bool # `true` åˆ é™¤æˆåŠŸï¼Œ `false` åˆ é™¤å¤±è´¥
 function Xml:DelAttribute(_Element, _Attr) end
 
 --#endregion
 
---#region ±£´æ
+--#region ä¿å­˜
 
----±£´æµ½Ö¸¶¨ÎÄ¼ş
----@param _Path string # ÎÄ¼şµÄ**¾ø¶ÔÂ·¾¶**
----@return bool # `true` ±£´æ³É¹¦ `false` ±£´æÊ§°Ü
+---ä¿å­˜åˆ°æŒ‡å®šæ–‡ä»¶
+---@param _Path string # æ–‡ä»¶çš„**ç»å¯¹è·¯å¾„**
+---@return bool # `true` ä¿å­˜æˆåŠŸ `false` ä¿å­˜å¤±è´¥
 function Xml:SaveXml(_Path) end
 
----±£´æ
----@return bool # `true` ±£´æ³É¹¦ `false` ±£´æÊ§°Ü
+---ä¿å­˜
+---@return bool # `true` ä¿å­˜æˆåŠŸ `false` ä¿å­˜å¤±è´¥
 function Xml:Save() end
 
 --#endregion
 
---#region ÉèÖÃ
+--#region è®¾ç½®
 
----ÉèÖÃ¸¡µãÊôĞÔÖµ
----@param _Element uint #½ÚµãÃèÊö
----@param _Attr string # ÊôĞÔÃû
----@param _Value double # ÊôĞÔÖµ
----@return bool # `true` Ö´ĞĞ³É¹¦£¬ `false` Ö´ĞĞÊ§°Ü
---- > Èô¸Ã½Úµã²»´æÔÚÖ¸¶¨ÊôĞÔ£¬ÔòÌí¼Ó¡£
+---è®¾ç½®æµ®ç‚¹å±æ€§å€¼
+---@param _Element uint #èŠ‚ç‚¹æè¿°
+---@param _Attr string # å±æ€§å
+---@param _Value double # å±æ€§å€¼
+---@return bool # `true` æ‰§è¡ŒæˆåŠŸï¼Œ `false` æ‰§è¡Œå¤±è´¥
+--- > è‹¥è¯¥èŠ‚ç‚¹ä¸å­˜åœ¨æŒ‡å®šå±æ€§ï¼Œåˆ™æ·»åŠ ã€‚
 function Xml:SetAttributeDouble(_Element, _Attr, _Value) end
 
----ÉèÖÃ´ø·ûºÅÕûĞÍÊôĞÔÖµ
----@param _Element uint # ½ÚµãÃèÊö
----@param _Attr string # ÊôĞÔÃû
----@param _Value uint # ÊôĞÔÖµ
----@return bool # `true` Ö´ĞĞ³É¹¦£¬ `false` Ö´ĞĞÊ§°Ü
---- > Èô¸Ã½Úµã²»´æÔÚÖ¸¶¨ÊôĞÔ£¬ÔòÌí¼Ó¡£
+---è®¾ç½®å¸¦ç¬¦å·æ•´å‹å±æ€§å€¼
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Attr string # å±æ€§å
+---@param _Value uint # å±æ€§å€¼
+---@return bool # `true` æ‰§è¡ŒæˆåŠŸï¼Œ `false` æ‰§è¡Œå¤±è´¥
+--- > è‹¥è¯¥èŠ‚ç‚¹ä¸å­˜åœ¨æŒ‡å®šå±æ€§ï¼Œåˆ™æ·»åŠ ã€‚
 function Xml:SetAttributeInt(_Element, _Attr, _Value) end
 
----ÉèÖÃ´ø·ûºÅÕûĞÍÊôĞÔÖµ
----@param _Element uint # ½ÚµãÃèÊö
----@param _Attr string # ÊôĞÔÃû
----@param _Value uint # ÊôĞÔÖµ
----@return bool # `true` Ö´ĞĞ³É¹¦£¬ `false` Ö´ĞĞÊ§°Ü
---- > Èô¸Ã½Úµã²»´æÔÚÖ¸¶¨ÊôĞÔ£¬ÔòÌí¼Ó¡£
+---è®¾ç½®å¸¦ç¬¦å·æ•´å‹å±æ€§å€¼
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Attr string # å±æ€§å
+---@param _Value uint # å±æ€§å€¼
+---@return bool # `true` æ‰§è¡ŒæˆåŠŸï¼Œ `false` æ‰§è¡Œå¤±è´¥
+--- > è‹¥è¯¥èŠ‚ç‚¹ä¸å­˜åœ¨æŒ‡å®šå±æ€§ï¼Œåˆ™æ·»åŠ ã€‚
 function Xml:SetAttributeUInt(_Element, _Attr, _Value) end
 
----ÉèÖÃ´ø·ûºÅÕûĞÍÊôĞÔÖµ
----@param _Element uint # ½ÚµãÃèÊö
----@param _Attr string # ÊôĞÔÃû
----@param _Value string # ÊôĞÔÖµ
----@return bool # `true` Ö´ĞĞ³É¹¦£¬ `false` Ö´ĞĞÊ§°Ü
---- > Èô¸Ã½Úµã²»´æÔÚÖ¸¶¨ÊôĞÔ£¬ÔòÌí¼Ó¡£
+---è®¾ç½®å¸¦ç¬¦å·æ•´å‹å±æ€§å€¼
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Attr string # å±æ€§å
+---@param _Value string # å±æ€§å€¼
+---@return bool # `true` æ‰§è¡ŒæˆåŠŸï¼Œ `false` æ‰§è¡Œå¤±è´¥
+--- > è‹¥è¯¥èŠ‚ç‚¹ä¸å­˜åœ¨æŒ‡å®šå±æ€§ï¼Œåˆ™æ·»åŠ ã€‚
 function Xml:SetAttribute(_Element, _Attr, _Value) end
 
----ÉèÖÃ¸½¼ÓÎÄ±¾Êı¾İ
----@param _Element uint # ½ÚµãÃèÊö
----@param _Value string #¸½¼Ó½ÚµãÊı¾İ×Ö·û´®
----@param _CData bool # ÊÇ·ñÊÇCDataÀàĞÍ `true` CData ÀàĞÍ£¬ `false` ²»ÊÇCDataÀàĞÍ
----@return bool # `true` Ö´ĞĞ³É¹¦£¬ `false` Ö´ĞĞÊ§°Ü
+---è®¾ç½®é™„åŠ æ–‡æœ¬æ•°æ®
+---@param _Element uint # èŠ‚ç‚¹æè¿°
+---@param _Value string #é™„åŠ èŠ‚ç‚¹æ•°æ®å­—ç¬¦ä¸²
+---@param _CData bool # æ˜¯å¦æ˜¯CDataç±»å‹ `true` CData ç±»å‹ï¼Œ `false` ä¸æ˜¯CDataç±»å‹
+---@return bool # `true` æ‰§è¡ŒæˆåŠŸï¼Œ `false` æ‰§è¡Œå¤±è´¥
 function Xml:SetText(_Element, _Value, _CData) end
 
 --#endregion

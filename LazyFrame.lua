@@ -569,14 +569,12 @@ local tSet_t = {
     ---@param self Wnd
     ---@param Param uint
     ["IDParam"] = function(self, Param)
-        dbg("设置的参数为： " .. Param)
         GUI:WndSetIDParam(self.Handle, Param)
     end,
     --- 设置窗体控件的自定义参数
     ---@param self Wnd
     ---@param Param uint
     ["Param"] = function(self, Param)
-        dbg("设置的参数为： " .. Param)
         GUI:WndSetParam(self.Handle, Param)
     end,
     --- 设置窗口Esc关闭属性
@@ -866,6 +864,10 @@ local EditPropSetList_t = InitSetter_t({
 
 local EditPropGetList_t = InitGetterFromSetter(EditPropSetList_t)
 
+EditPropGetList_t["Text"] = function(self)
+    return GUI:EditGetTextM(self:GetHandle())
+end
+
 -- SetClassGetter(Edit, EditPropGetList_t)
 -- SetClassSetter(Edit, EditPropSetList_t)
 
@@ -1140,6 +1142,7 @@ end
 ---@field IsActivePageBtn bool?
 ---@field DrawCenter bool?
 ---@field ImgID int?
+---@field ShowDisable boolean?
 ---@field new fun(arg:ButtonNewArg) :Button
 Button = NewClass("Button", Wnd)
 
@@ -1151,7 +1154,6 @@ local ButtonPropSetList_t = InitSetter_t({
     ---@param _DrawCenter boolean
     ---@return nil
     ["DrawCenter"] = function(self, _DrawCenter)
-        CL:Log("设置按钮")
         return GUI:ButtonSetDrawCenter(self.Handle, _DrawCenter)
     end,
     ["Text"] = function(self, _Text)
@@ -1175,6 +1177,9 @@ local ButtonPropSetList_t = InitSetter_t({
     end,
     ["ImgID"] = function(self, _ImageID)
         return GUI:WndSetImageID(self.Handle, _ImageID)
+    end,
+    ["ShowDisable"] = function(self, _Flag)
+        return GUI:ButtonSetShowDisable(self.Handle, _Flag)
     end
 })
 
@@ -1555,6 +1560,7 @@ end
 --#endregion
 
 --#region RichEdit
+
 ---@class RichEditCreateArg
 ---@field Parent Parent
 ---@field Name string
@@ -1696,6 +1702,84 @@ end
 ---@param _ColorStr string # 颜色字符串，
 function RichEdit:SetLinkColor(_Flag, _ColorStr)
     return GUI:RichEditSetLinkColor(self.Handle, _Flag, _ColorStr)
+end
+
+--#endregion
+
+--#endregion
+
+--#region ComboBox
+
+--#region ComboBoxDefine
+
+---@class ComboBoxCreateArg
+---@field Parent Parent
+---@field Name string
+---@field ImgId int
+---@field PosX int?
+---@field PosY int?
+---@field SizeX int?
+---@field SizeY int?
+---@field Length int? #新建组合框控件的下拉背景的高度
+
+
+---@class ComboBox : Wnd
+---@field ClsName "RichEdit"
+---@field new fun(arg:ComboBoxCreateArg) : ComboBox
+ComboBox = NewClass("ComboBox", Wnd)
+
+--#endregion
+
+--#region ComboBox New
+
+---组合框初始化函数
+---@param self ComboBox
+---@param arg ComboBoxCreateArg
+ComboBox.onCreate = function(self, arg)
+    local Name = arg.Name or "default"
+    local Parent = 0
+    if type(arg.Parent) == "table" then
+        Parent = arg.Parent:GetHandle() --[[@as int]]
+    elseif type(arg.Parent) == "number" then
+        Parent = arg.Parent --[[@as int]]
+    end
+    self.Handle = GUI:ComboBoxCreate(Parent, Name, arg.ImgId,
+        arg.PosX or 0, arg.PosY or 0, arg.SizeX or 100, arg.SizeY or 25, arg.Length or 100)
+end
+
+---创建新组合框
+---@param self ComboBox
+---@param arg ComboBoxCreateArg
+---@return ComboBox
+ComboBox.New = function(self, arg)
+    return ComboBox.new(arg)
+end
+
+ComboBox.Create = function(self, Parent, Name, ImgID, PosX, PosY, SizeX, SizeY, Length)
+    return ComboBox:New { Parent = Parent, Name = Name, ImgId = ImgID, PosX = PosX, PosY = PosY, SizeX = SizeX, SizeY = SizeY, Length = Length }
+end
+--#endregion
+
+--#region ComboBox Method
+
+function ComboBox:SetCurSelect(_Index)
+    return GUI:ComboBoxSetCurSelect(self:GetHandle(), _Index)
+end
+
+function ComboBox:SetEditSize(_Width, _Height)
+    return GUI:ComboBoxSetEditSize(self:GetHandle(), _Width, _Height)
+end
+
+function ComboBox:SetFixListLength(_Length)
+    return GUI:ComboBoxSetFixListLength(self:GetHandle(), _Length)
+end
+
+function ComboBox:SetListFillImage(_ImgId)
+    return GUI:ComboBoxSetListFillImage(self:GetHandle(), _ImgId)
+end
+
+function ComboBox:SetScrollBarImage(_Up, _Mid, _Down, _Back)
+    return GUI:ComboBoxSetScrollBarImage(self:GetHandle(), _Up, _Mid, _Down, _Back)
 end
 
 --#endregion

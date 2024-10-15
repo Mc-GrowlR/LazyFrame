@@ -1325,3 +1325,116 @@ function CL:GetBuffPropByKeyName(key_name, prop_type) end
 ---@param _PropertyType int
 ---@return bool # 执行结果
 function CL:GetPlayerProperty32(_RoleGUID, _PropertyType) end
+
+--- 求两个字符串代表的数字的积
+---@param _Left string # 左边字符串
+---@param _Right string # 右边字符串
+---@return string # 计算结果（为字符串 格式）
+function CL:Multiply(_Left, _Right) end
+
+--- 求两个字符串代表的数字的商
+---@param _Left string # 左边字符串
+---@param _Right string # 右边字符串
+---@return string # 计算结果（为字符串格式）
+---> 如果参数`_Right` 字符串为`0`,则返回计算结果为`0`
+function CL:Divided(_Left, _Right) end
+
+--- 设置角色额外伤害的图片
+---@param _Idx int # `0` - `9` 伤害的索引值
+---@param _ImageID uint # 伤害图片资源 ID
+function CL:SetUserRoleHurtImage(_Idx, _ImageID) end
+
+--- 设置角色额外伤害的图片
+---@param _Idx int # `0` - `9` 伤害的索引值
+---@param _ImageID uint # 伤害图片资源 ID
+function CL:SetUserRoleHurtImage2(_Idx, _ImageID) end
+
+---改变攻击模式
+---@param _AttacMod
+---| `0` 全体模式
+---| `1` 和平模式
+---| `2` 组队模式
+---| `3` 行会模式
+---| `4` PK模式
+---| `5` 联盟模式
+---| `6` 阵营模式
+function CL:ChangeAttacMod(_AttacMod) end
+
+--- 此函数作用为打开摆摊面板。
+function CL:ShowStallGUI() end
+
+--- 打开神兔宝库面板
+function CL:OnCBGDealerWnd() end
+
+--- 设置技能栏指定位置的数据
+---@param _Pos int # 技能栏的位置，0代表第一个位置
+---@param _Type int #
+---@param _TemplateID int
+function CL:SkillBarSetDataByPos(_Pos, _Type, _TemplateID) end
+
+--- 以指定的方式复活角色
+---@param _ReliveType
+---| `1` 原地复活
+---| `2` 回城复活
+---| `2` 副本复活
+---@return boolean
+function CL:DoPlayerReliveByType(_ReliveType) end
+
+--- 获取当前地图的角色复活方式
+---@return
+---| `1` # 回到附近城市
+---| `2` # 回到附近城市或原地复活
+---| `3` # 回到副本入口
+---| `4` # 回到副本入口或原地复活
+function CL:GetMapOption() end
+
+---设置当前使用的字体
+---@param _FontName string # 字体名称
+function CL:SetCurFont(_FontName) end
+
+---获取杀死自己玩家角色名
+---@return string # 玩家角色名称
+function CL:GetKillerName() end
+
+---在屏幕上绘制图片
+---@param _XPos int
+---@param _YPos int
+---@param _ImageID int
+function CL:DrawImage(_XPos, _YPos, _ImageID) end
+
+--- 获取当前玩家角色的状态
+---@return
+---| `0` # 未登录
+---| `1` # 选角色
+---| `2` # 游戏中
+---| `3` # 死亡
+function CL:GetPlayerStatus() end
+
+--- 设置角色额外伤害的飘字起始图片资源ID和间隔
+--- > only 2d端游
+---@param _Idx
+---| 0 # 16 other_attach_num2   自身或被击角色 额外伤害飘字
+---| 1 # 17 other_attach_num3   自身或被击角色 额外伤害飘字
+---| 3 # 18 other_attach_num4   自身或被击角色 额外伤害飘字
+---| 4 # 19 other_attach_num5   自身或被击角色 额外伤害飘字
+---| 5 # 20 other_attach_num6   自身或被击角色 额外伤害飘字
+---| 6 # 21 other_attach_num7   自身或被击角色 额外伤害飘字
+---| 7 # 22 other_attach_num8   自身或被击角色 额外伤害飘字
+---| 8 # 23 other_attach_num9   自身或被击角色 额外伤害飘字
+---| 9 # 24 other_attach_num10  自身或被击角色 额外伤害飘字
+---@param _ImageID uint
+---@param _Interval int # 图片资源间隔
+function CL:SetUserRoleHurtNumImage(_Idx, _ImageID, _Interval) end
+
+--- 获取任务奖励物品具体信息
+---@param _QuestID int # 任务ID
+---@return bool # LuaRet 类型：
+--- 列表信息储存在全局变量 `LuaRet` 中：
+--- - `i` 为奖励物品的序号；
+--- - `LuaRet[i][1]` 奖励物品的模板 `ID`；
+--- - `LuaRet[i][2]` 奖励物品的数量；
+--- - `LuaRet[i][3]` 绑定的类型:
+---     - `0` 代表**非绑定**
+---     - `1` 代表**绑定**，
+---     - `2` 代表**绑定或不绑定**都可以。
+function CL:GetQuestAwardByID(_QuestID) end
