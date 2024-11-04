@@ -3,64 +3,64 @@
 ---@alias GUIDataPropType
 ---| `ITEMGUIDATA_ITEMGUID`		# GUID
 ---| `ITEMGUIDATA_IMAGEID`		# ICONN
----| `ITEMGUIDATA_TYPE`			# ÀàĞÍ£º`1`±íÊ¾ÎïÆ·£¬`2`±íÊ¾¼¼ÄÜ
----| `ITEMGUIDATA_ITEMID`		# Ä£°åID
----| `ITEMGUIDATA_PARAM`		# ×Ô¶¨Òå²ÎÊı
----| `ITEMGUIDATA_ITEMCOUNT`	# ÊıÁ¿
----| `ITEMGUIDATA_INVALIDATE`	# ÊÇ·ñÓĞĞ§
----| `ITEMGUIDATA_ISSTACKITEM`	# ÊÇ·ñ¿É¶Ñµş
----| `ITEMGUIDATA_ITEMPOS`		# ¾ø¶ÔÎ»ÖÃ
----| `ITEMGUIDATA_CDTIME`		# CDÊ±¼ä
----| `ITEMGUIDATA_CDSTARTTICK`	# CD¿ªÊ¼Ê±¼ä
----| `ITEMGUIDATA_INCDSTATE`	# ÊÇ·ñCD×´Ì¬
----| `ITEMGUIDATA_ITEMLOCK`		# ÊÇ·ñËø¶¨
----| `ITEMGUIDATA_ITEMPRICETYPE`# ¼Û¸ñÀàĞÍ£º`1`½ğ±Ò£¬`2`Ôª±¦
----| `ITEMGUIDATA_ITEMPRICE`	# ¼Û¸ñ
----| `ITEMGUIDATA_ISSHOWBIND`	# ÊÇ·ñ°ó¶¨
+---| `ITEMGUIDATA_TYPE`			# ç±»å‹ï¼š`1`è¡¨ç¤ºç‰©å“ï¼Œ`2`è¡¨ç¤ºæŠ€èƒ½
+---| `ITEMGUIDATA_ITEMID`		# æ¨¡æ¿ID
+---| `ITEMGUIDATA_PARAM`		# è‡ªå®šä¹‰å‚æ•°
+---| `ITEMGUIDATA_ITEMCOUNT`	# æ•°é‡
+---| `ITEMGUIDATA_INVALIDATE`	# æ˜¯å¦æœ‰æ•ˆ
+---| `ITEMGUIDATA_ISSTACKITEM`	# æ˜¯å¦å¯å †å 
+---| `ITEMGUIDATA_ITEMPOS`		# ç»å¯¹ä½ç½®
+---| `ITEMGUIDATA_CDTIME`		# CDæ—¶é—´
+---| `ITEMGUIDATA_CDSTARTTICK`	# CDå¼€å§‹æ—¶é—´
+---| `ITEMGUIDATA_INCDSTATE`	# æ˜¯å¦CDçŠ¶æ€
+---| `ITEMGUIDATA_ITEMLOCK`		# æ˜¯å¦é”å®š
+---| `ITEMGUIDATA_ITEMPRICETYPE`# ä»·æ ¼ç±»å‹ï¼š`1`é‡‘å¸ï¼Œ`2`å…ƒå®
+---| `ITEMGUIDATA_ITEMPRICE`	# ä»·æ ¼
+---| `ITEMGUIDATA_ISSHOWBIND`	# æ˜¯å¦ç»‘å®š
 -----------
----·â×°½Ó¿Ú
+---å°è£…æ¥å£
 -----------
 
 
----½«´°¿Ú¾ÓÖĞ
----@param _Handle int # Ö¸¶¨´°¿Ú¾ä±ú
----@param _Info string # Ö¸¶¨´°¿ÚÃèÊö
+---å°†çª—å£å±…ä¸­
+---@param _Handle int # æŒ‡å®šçª—å£å¥æŸ„
+---@param _Info string # æŒ‡å®šçª—å£æè¿°
 function CenterWnd(_Handle, _Info)
     WndSetPosAt(_Handle, _Info, 0.5, 0.5)
 end
 
----»ñÈ¡´°¿Ú¾ä±ú
----@param _Handle int @¸¸´°¿Ú¾ä±ú
----@param _Info string @´°¿ÚÃû³Æ£¬Èô´Ë²ÎÊıµÄÖµÉèÖÃÎªparent£¬Ôò»á»ñÈ¡¸¸´°¿ÚĞÅÏ¢£¬·ñÔò¸ù¾İÉèÖÃµÄ×Ö·û´®»ñÈ¡ÏàÓ¦´°¿Ú£¨×Ó¿Ø¼ş£©µÄ¾ä±ú¡£
----@return int @»ñÈ¡³É¹¦Ôò·µ»Ø´°¿Ú£¨×Ó¿Ø¼ş£©µÄ¾ä±ú »ñÈ¡Ê§°ÜÔò·µ»Ø`0`
+---è·å–çª—å£å¥æŸ„
+---@param _Handle int @çˆ¶çª—å£å¥æŸ„
+---@param _Info string @çª—å£åç§°ï¼Œè‹¥æ­¤å‚æ•°çš„å€¼è®¾ç½®ä¸ºparentï¼Œåˆ™ä¼šè·å–çˆ¶çª—å£ä¿¡æ¯ï¼Œå¦åˆ™æ ¹æ®è®¾ç½®çš„å­—ç¬¦ä¸²è·å–ç›¸åº”çª—å£ï¼ˆå­æ§ä»¶ï¼‰çš„å¥æŸ„ã€‚
+---@return int @è·å–æˆåŠŸåˆ™è¿”å›çª—å£ï¼ˆå­æ§ä»¶ï¼‰çš„å¥æŸ„ è·å–å¤±è´¥åˆ™è¿”å›`0`
 function GetWindow(_Handle, _Info)
 end
 
----´´½¨Í¼Æ¬¿Ø¼ş
----@param _Handle int @¸¸´°¿Ú¾ä±ú
----@param _Info string @¸¸´°¿ÚÃû³Æ
----@param _ImageId int @Í¼Æ¬×ÊÔ´ID
----@param _PosX int @ ĞÂ½¨Í¼Æ¬Ïà¶ÔÓÚ¸¸¿Ø¼şÎ»ÖÃµÄºá×ø±ê
----@param _PosY int @ ĞÂ½¨Í¼Æ¬¿Ø¼şÎ»ÖÃÏà¶ÔÓÚ¸¸¿Ø¼şÎ»ÖÃµÄ×İ×ø±ê
----@param _SizeX int @ĞÂ½¨Í¼Æ¬¿Ø¼şµÄ¿í¶È£¨´Ë²ÎÊıÎŞĞ§
----@param _SizeY int @ĞÂ½¨Í¼Æ¬¿Ø¼şµÄ¸ß¶È£¨´Ë²ÎÊıÎŞĞ§
----@param _ID string @ Í¼Æ¬¿Ø¼şµÄÃû³Æ
----@param _Align int @ Í¼Æ¬¿Ø¼şµÄ¶ÔÆë·½Ê½£¨²ÎÊı±£ÁôĞèÎª0
----@param _HintInfo string @ ÌáÊ¾ÎÄ×Ö£¨ÊÖÓÎÖĞÎŞĞ§
+---åˆ›å»ºå›¾ç‰‡æ§ä»¶
+---@param _Handle int @çˆ¶çª—å£å¥æŸ„
+---@param _Info string @çˆ¶çª—å£åç§°
+---@param _ImageId int @å›¾ç‰‡èµ„æºID
+---@param _PosX int @ æ–°å»ºå›¾ç‰‡ç›¸å¯¹äºçˆ¶æ§ä»¶ä½ç½®çš„æ¨ªåæ ‡
+---@param _PosY int @ æ–°å»ºå›¾ç‰‡æ§ä»¶ä½ç½®ç›¸å¯¹äºçˆ¶æ§ä»¶ä½ç½®çš„çºµåæ ‡
+---@param _SizeX int @æ–°å»ºå›¾ç‰‡æ§ä»¶çš„å®½åº¦ï¼ˆæ­¤å‚æ•°æ— æ•ˆ
+---@param _SizeY int @æ–°å»ºå›¾ç‰‡æ§ä»¶çš„é«˜åº¦ï¼ˆæ­¤å‚æ•°æ— æ•ˆ
+---@param _ID string @ å›¾ç‰‡æ§ä»¶çš„åç§°
+---@param _Align int @ å›¾ç‰‡æ§ä»¶çš„å¯¹é½æ–¹å¼ï¼ˆå‚æ•°ä¿ç•™éœ€ä¸º0
+---@param _HintInfo string @ æç¤ºæ–‡å­—ï¼ˆæ‰‹æ¸¸ä¸­æ— æ•ˆ
 ---@return int
 function CreateImage(_Handle, _Info, _ImageId, _PosX, _PosY, _SizeX, _SizeY, _ID, _Align, _HintInfo)
 end
 
----´´½¨´°¿Ú
+---åˆ›å»ºçª—å£
 function CreateCtrl(_Handle, _Info, _Type, _ImageId, _PosX, _PosY, _SizeX, _SizeY, _ID, _Align, _HintInfo)
 end
 
----´´½¨¾²Ì¬ÎÄ±¾¿ò¿Ø¼ş
----@return int @¾ä±ú
+---åˆ›å»ºé™æ€æ–‡æœ¬æ¡†æ§ä»¶
+---@return int @å¥æŸ„
 function CreateStatic(_Handle, _Info, _ImageId, _PosX, _PosY, _SizeX, _SizeY, _ID, _Align, _HintInfo)
 end
 
----»ñÈ¡´°Ìå¿Ø¼şÏà¶ÔÓÚ¸¸´°ÌåµÄ×ø±êÎ»ÖÃ
+---è·å–çª—ä½“æ§ä»¶ç›¸å¯¹äºçˆ¶çª—ä½“çš„åæ ‡ä½ç½®
 ---@param _Handle int
 ---@param _Info string
 ---@return bool
@@ -70,90 +70,90 @@ end
 ---------------------
 
 
---#region Àà¶¨Òå
+--#region ç±»å®šä¹‰
 
 ---@class GUI
 GUI = {}
 
 ---@alias LuaUIEvent
----| `RDWndBaseCL_mouse_lbDown`          -- Êó±ê×ó¼ü°´ÏÂÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_lbUp`            -- Êó±ê×ó¼üµ¯ÆğÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_lbClick`         -- Êó±ê×ó¼üµã»÷ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_lbDbClick`       -- Êó±ê×ó¼üË«»÷ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)
----| `RDWndBaseCL_mouse_rbDown`          -- Êó±êÓÒ¼ü°´ÏÂÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_rbUp`            -- Êó±êÓÒ¼üµ¯ÆğÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_rbClick`         -- Êó±êÓÒ¼üµã»÷ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_rbDbClick`       -- Êó±êÓÒ¼üË«»÷ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_move`            -- Êó±êÒÆ¶¯ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_wheel`           -- Êó±ê¹öÂÖ¹ö¶¯ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_in`              -- Êó±ê½øÈë¿Ø¼şÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_mouse_out`             -- Êó±êÀë¿ª¿Ø¼şÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_wnd_visible`           -- ¿É¼û×´Ì¬·¢Éú±ä»¯ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_wnd_show`              -- ÏÔÊ¾×´Ì¬·¢Éú±ä»¯ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_wnd_enable`            -- ¿ÉÓÃ×´Ì¬·¢Éú±ä»¯ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_wnd_active`            -- ¼¤»î×´Ì¬·¢Éú±ä»¯ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_wnd_move`              -- ¿Ø¼şÒÆ¶¯ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_key_char`              -- ×Ö·ûÊäÈëÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_key_down`              -- Ä³¼ü°´ÏÂÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_key_up`                -- Ä³¼üµ¯ÆğÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_wnd_sizeChange`        -- ´°¿Ú´óĞ¡·¢Éú±ä»¯ÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_wnd_close`             -- ´°¿Ú¹Ø±ÕÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
----| `RDWndBaseCL_wnd_destroy`           -- ´°¿ÚÏú»ÙÊÂ¼ş£¨int _HandleID(´°¿Ú¾ä±ú)£©
+---| `RDWndBaseCL_mouse_lbDown`          -- é¼ æ ‡å·¦é”®æŒ‰ä¸‹äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_lbUp`            -- é¼ æ ‡å·¦é”®å¼¹èµ·äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_lbClick`         -- é¼ æ ‡å·¦é”®ç‚¹å‡»äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_lbDbClick`       -- é¼ æ ‡å·¦é”®åŒå‡»äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)
+---| `RDWndBaseCL_mouse_rbDown`          -- é¼ æ ‡å³é”®æŒ‰ä¸‹äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_rbUp`            -- é¼ æ ‡å³é”®å¼¹èµ·äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_rbClick`         -- é¼ æ ‡å³é”®ç‚¹å‡»äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_rbDbClick`       -- é¼ æ ‡å³é”®åŒå‡»äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_move`            -- é¼ æ ‡ç§»åŠ¨äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_wheel`           -- é¼ æ ‡æ»šè½®æ»šåŠ¨äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_in`              -- é¼ æ ‡è¿›å…¥æ§ä»¶äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_mouse_out`             -- é¼ æ ‡ç¦»å¼€æ§ä»¶äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_wnd_visible`           -- å¯è§çŠ¶æ€å‘ç”Ÿå˜åŒ–äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_wnd_show`              -- æ˜¾ç¤ºçŠ¶æ€å‘ç”Ÿå˜åŒ–äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_wnd_enable`            -- å¯ç”¨çŠ¶æ€å‘ç”Ÿå˜åŒ–äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_wnd_active`            -- æ¿€æ´»çŠ¶æ€å‘ç”Ÿå˜åŒ–äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_wnd_move`              -- æ§ä»¶ç§»åŠ¨äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_key_char`              -- å­—ç¬¦è¾“å…¥äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_key_down`              -- æŸé”®æŒ‰ä¸‹äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_key_up`                -- æŸé”®å¼¹èµ·äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_wnd_sizeChange`        -- çª—å£å¤§å°å‘ç”Ÿå˜åŒ–äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_wnd_close`             -- çª—å£å…³é—­äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
+---| `RDWndBaseCL_wnd_destroy`           -- çª—å£é”€æ¯äº‹ä»¶ï¼ˆint _HandleID(çª—å£å¥æŸ„)ï¼‰
 
 
 --#endregion
 
----×¢²á´°Ìå¿Ø¼şµÄÊÂ¼şÊÂ¼ş»Øµ÷º¯Êı
----@param _HandleID int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Msg LuaUIEvent @ Ö¸¶¨´°Ìå¿Ø¼şµÄÊÂ¼şID
----@param _FuncName string @»Øµ÷º¯ÊıÃû
+---æ³¨å†Œçª—ä½“æ§ä»¶çš„äº‹ä»¶äº‹ä»¶å›è°ƒå‡½æ•°
+---@param _HandleID int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Msg LuaUIEvent @ æŒ‡å®šçª—ä½“æ§ä»¶çš„äº‹ä»¶ID
+---@param _FuncName string @å›è°ƒå‡½æ•°å
 ---@return bool
 function GUI:WndRegistScript(_HandleID, _Msg, _FuncName)
 end
 
----´´½¨Í¼Æ¬¿Ø¼ş
----@param _ParentHandle int @¸¸´°¿Ú¾ä±ú
----@param _pWndID char @ĞÂ½¨Í¼Æ¬¿Ø¼şµÄÃû³Æ
----@param _ImageID uint @ĞÂ½¨Í¼Æ¬¿Ø¼şµÄÍ¼Æ¬×ÊÔ´ID
----@param _PosX int @ĞÂ½¨Í¼Æ¬¿Ø¼şÎ»ÖÃµÄºá×ø±ê
----@param _PosY int @ĞÂ½¨Í¼Æ¬¿Ø¼şÎ»ÖÃµÄ×İ×ø±ê
----@return int @ OK£º¾ä±ú£¬No£º0
+---åˆ›å»ºå›¾ç‰‡æ§ä»¶
+---@param _ParentHandle int @çˆ¶çª—å£å¥æŸ„
+---@param _pWndID char @æ–°å»ºå›¾ç‰‡æ§ä»¶çš„åç§°
+---@param _ImageID uint @æ–°å»ºå›¾ç‰‡æ§ä»¶çš„å›¾ç‰‡èµ„æºID
+---@param _PosX int @æ–°å»ºå›¾ç‰‡æ§ä»¶ä½ç½®çš„æ¨ªåæ ‡
+---@param _PosY int @æ–°å»ºå›¾ç‰‡æ§ä»¶ä½ç½®çš„çºµåæ ‡
+---@return int @ OKï¼šå¥æŸ„ï¼ŒNoï¼š0
 ---@nodiscard
 function GUI:ImageCreate(_ParentHandle, _pWndID, _ImageID, _PosX, _PosY)
 end
 
----´Ëº¯ÊıÓÃÓÚÉèÖÃÓëÖ¸¶¨´°Ìå¿Ø¼şÏà¹ØÁªµÄ×Ô¶¨Òå²ÎÊıµÄÊıÖµ¡£
+---æ­¤å‡½æ•°ç”¨äºè®¾ç½®ä¸æŒ‡å®šçª—ä½“æ§ä»¶ç›¸å…³è”çš„è‡ªå®šä¹‰å‚æ•°çš„æ•°å€¼ã€‚
 ---@param _HandleID int
 ---@param _Param uint
 function GUI:WndSetParam(_HandleID, _Param)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şµÄ×Ô¶¨Òå²ÎÊı
----Í¬`WndSetParam`
+---è®¾ç½®çª—ä½“æ§ä»¶çš„è‡ªå®šä¹‰å‚æ•°
+---åŒ`WndSetParam`
 ---@param _HandleID int
 ---@param _Param uint
 function GUI:WndSetIDParam(_HandleID, _Param)
 end
 
----´Ëº¯ÊıÉèÖÃÖ¸¶¨´°¿ÚµÄ´óĞ¡¡£
+---æ­¤å‡½æ•°è®¾ç½®æŒ‡å®šçª—å£çš„å¤§å°ã€‚
 ---@param _HandleID int
 ---@param _W int
 ---@param _H int
 function GUI:WndSetSizeM(_HandleID, _W, _H)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼ş¶¯»­Ñ­»·²¥·Å
----@param _HandleID int @Í¼Æ¬¿Ø¼ş
----@param _Speed uint @¶¯»­Ã»Ö¡Ê±¼ä¼ä¸ô£¬Ä¬ÈÏÖµÎª100£¬µ¥Î»ÎªºÁÃë£¨ms£©
----@param _AnimCount int @¶¯»­Ñ­»·²¥·Å´ÎÊı £¬Ä¬ÈÏÖµ£º`0`£¨Ò»Ö±²¥·Å£©
----@param _AnimCallBackFunc string @¶¯»­²¥·ÅÖÁÖ¸¶¨´ÎÊıºóµÄ¶¯×÷
----1. µ±´Ë²ÎÊıÉèÖÃÎª¿Õ×Ö·û´®£¨Ä¬ÈÏÖµ£©Ê±£¬¶¯»­²¥·ÅÍê±Ïºó£¬×Ô¶¯Ïú»Ù
----2. µ±´Ë²ÎÊıÉèÖÃÎªÆäËû×Ö·û´®Ê±£¬¶¯»­²¥·ÅÖÁÖ¸¶¨´ÎÊıºó¶ÔÓ¦º¯Êı»á×÷ÎªLua½Å±¾º¯Êı½øĞĞ»Øµ÷£¬ÓÉ½Å±¾½Ó¹Ü´¦Àí¡£
+---è®¾ç½®å›¾ç‰‡æ§ä»¶åŠ¨ç”»å¾ªç¯æ’­æ”¾
+---@param _HandleID int @å›¾ç‰‡æ§ä»¶
+---@param _Speed uint @åŠ¨ç”»æ²¡å¸§æ—¶é—´é—´éš”ï¼Œé»˜è®¤å€¼ä¸º100ï¼Œå•ä½ä¸ºæ¯«ç§’ï¼ˆmsï¼‰
+---@param _AnimCount int @åŠ¨ç”»å¾ªç¯æ’­æ”¾æ¬¡æ•° ï¼Œé»˜è®¤å€¼ï¼š`0`ï¼ˆä¸€ç›´æ’­æ”¾ï¼‰
+---@param _AnimCallBackFunc string @åŠ¨ç”»æ’­æ”¾è‡³æŒ‡å®šæ¬¡æ•°åçš„åŠ¨ä½œ
+---1. å½“æ­¤å‚æ•°è®¾ç½®ä¸ºç©ºå­—ç¬¦ä¸²ï¼ˆé»˜è®¤å€¼ï¼‰æ—¶ï¼ŒåŠ¨ç”»æ’­æ”¾å®Œæ¯•åï¼Œè‡ªåŠ¨é”€æ¯
+---2. å½“æ­¤å‚æ•°è®¾ç½®ä¸ºå…¶ä»–å­—ç¬¦ä¸²æ—¶ï¼ŒåŠ¨ç”»æ’­æ”¾è‡³æŒ‡å®šæ¬¡æ•°åå¯¹åº”å‡½æ•°ä¼šä½œä¸ºLuaè„šæœ¬å‡½æ•°è¿›è¡Œå›è°ƒï¼Œç”±è„šæœ¬æ¥ç®¡å¤„ç†ã€‚
 ---TODO
 function GUI:ImageSetAnimate(_HandleID, _Speed, _AnimCount, _AnimCallBackFunc)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼şÊÇ·ñ²¥·Å¶¯»­
+---è®¾ç½®å›¾ç‰‡æ§ä»¶æ˜¯å¦æ’­æ”¾åŠ¨ç”»
 ---@param _Handle int
 ---@param _Info string
 ---@param _Enable bool
@@ -161,108 +161,108 @@ end
 function ImageSetAnimateEnable(_Handle, _Info, _Enable, _Speed)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼şÊÇ·ñ×Ô¶¯Ëõ·Å
+---è®¾ç½®å›¾ç‰‡æ§ä»¶æ˜¯å¦è‡ªåŠ¨ç¼©æ”¾
 ---@param _HandleID int
----@param _Flag bool @ÊÇ·ñ×Ô¶¯Ëõ·Å
+---@param _Flag bool @æ˜¯å¦è‡ªåŠ¨ç¼©æ”¾
 function GUI:ImageSetFitSize(_HandleID, _Flag)
 end
 
----´´½¨°´Å¥¿Ø¼ş
----@param _ParentHandle int @¸¸´°¿Ú¾ä±ú
----@param _pButtonID char @ĞÂ½¨°´Å¥¿Ø¼şÃû³Æ
----@param _ImageId uint @¿Õ¼ä°´Å¥µÄÍ¼Æ¬×ÊÔ´
----@param _PosX int @ĞÂ½¨°´Å¥¿Ø¼şÎ»ÖÃµÄºá×ø±ê
----@param _PosY int @ĞÂ½¨°´Å¥¿Õ¼äÎ»ÖÃµÄ×İ×ø±ê
----@return int @OK£º¾ä±ú£¬No£º0
+---åˆ›å»ºæŒ‰é’®æ§ä»¶
+---@param _ParentHandle int @çˆ¶çª—å£å¥æŸ„
+---@param _pButtonID char @æ–°å»ºæŒ‰é’®æ§ä»¶åç§°
+---@param _ImageId uint @ç©ºé—´æŒ‰é’®çš„å›¾ç‰‡èµ„æº
+---@param _PosX int @æ–°å»ºæŒ‰é’®æ§ä»¶ä½ç½®çš„æ¨ªåæ ‡
+---@param _PosY int @æ–°å»ºæŒ‰é’®ç©ºé—´ä½ç½®çš„çºµåæ ‡
+---@return int @OKï¼šå¥æŸ„ï¼ŒNoï¼š0
 function GUI:ButtonCreate(_ParentHandle, _pButtonID, _ImageId, _PosX, _PosY)
 end
 
----ÉèÖÃ°´Å¥ÊÇ·ñÏÔÊ¾ÉÁË¸µÄÌØĞ§
+---è®¾ç½®æŒ‰é’®æ˜¯å¦æ˜¾ç¤ºé—ªçƒçš„ç‰¹æ•ˆ
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:ButtonSetShine(_HandleID, _Flag)
 end
 
----»ñÈ¡×Ó´°¿Ú¾ä±ú
----´Ë½Ó¿Ú²éÑ¯Éî¶ÈÎª1
----@param _HandleID int @ ¸¸´°¿Ú¾ä±ú
----@param _ID string @´°¿ÚÃû³Æ
----@return int @ »ñÈ¡³É¹¦Ôò·µ»Ø´°¿Ú£¨×Ó¿Ø¼ş£©µÄ¾ä±ú »ñÈ¡Ê§°ÜÔò·µ»Ø0
+---è·å–å­çª—å£å¥æŸ„
+---æ­¤æ¥å£æŸ¥è¯¢æ·±åº¦ä¸º1
+---@param _HandleID int @ çˆ¶çª—å£å¥æŸ„
+---@param _ID string @çª—å£åç§°
+---@return int @ è·å–æˆåŠŸåˆ™è¿”å›çª—å£ï¼ˆå­æ§ä»¶ï¼‰çš„å¥æŸ„ è·å–å¤±è´¥åˆ™è¿”å›0
 function GUI:WndFindChildM(_HandleID, _ID)
 end
 
----ÉèÖÃ´°¿Ú¿Ø¼şµÄÌáÊ¾ÎÄ×Ö
+---è®¾ç½®çª—å£æ§ä»¶çš„æç¤ºæ–‡å­—
 ---@param _HandleID int
 ---@param _HintInof string
 function GUI:WndSetHint(_HandleID, _HintInof)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şÊÇ·ñ¿É¼û
+---è®¾ç½®çª—ä½“æ§ä»¶æ˜¯å¦å¯è§
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:WndSetVisible(_HandleID, _Flag)
 end
 
----ÉèÖÃ´°¿ÚÊÇ·ñÏìÓ¦²Ù×÷
----¹¦ÄÜÀàËÆÓÚ`WndSetMouseEnableIN`½Ó¿Ú£¬Çø±ğÔÚÓÚ´Ëº¯ÊıËù½ÓÊÕµÄ²Ù×÷ÀàĞÍ³ıÊó±êµã»÷Íâ£¬»¹ÓĞ°üÀ¨°´¼üµÈÆäËû·½Ê½¡£
+---è®¾ç½®çª—å£æ˜¯å¦å“åº”æ“ä½œ
+---åŠŸèƒ½ç±»ä¼¼äº`WndSetMouseEnableIN`æ¥å£ï¼ŒåŒºåˆ«åœ¨äºæ­¤å‡½æ•°æ‰€æ¥æ”¶çš„æ“ä½œç±»å‹é™¤é¼ æ ‡ç‚¹å‡»å¤–ï¼Œè¿˜æœ‰åŒ…æ‹¬æŒ‰é”®ç­‰å…¶ä»–æ–¹å¼ã€‚
 ---@param _HandleID int
 ---@param _Flag bool @
---- - `true`:ÏûÏ¢½«»á´«µİÖÁ´Ë´°¿ÚÏÂµÄ×Ó¿Ø¼ş,
---- - `false`: ÏûÏ¢½«²»»á´«µİÖÁ´Ë´°¿ÚÏÂµÄ×Ó¿Ø¼ş
+--- - `true`:æ¶ˆæ¯å°†ä¼šä¼ é€’è‡³æ­¤çª—å£ä¸‹çš„å­æ§ä»¶,
+--- - `false`: æ¶ˆæ¯å°†ä¸ä¼šä¼ é€’è‡³æ­¤çª—å£ä¸‹çš„å­æ§ä»¶
 function GUI:WndSetCanRevMsg(_HandleID, _Flag)
 end
 
----ÉèÖÃÍ¼Æ¬ ¿Ø¼ş¼ì²âµã»÷ÇøÓòÀàĞÍ
----@param _HandleID int @Ö¸¶¨Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@param _Flag int @¼ì²âµã»÷µÄÀàĞÍ
---- ÊÖÓÎºÍ¶ËÓÎ£º
+---è®¾ç½®å›¾ç‰‡ æ§ä»¶æ£€æµ‹ç‚¹å‡»åŒºåŸŸç±»å‹
+---@param _HandleID int @æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@param _Flag int @æ£€æµ‹ç‚¹å‡»çš„ç±»å‹
+--- æ‰‹æ¸¸å’Œç«¯æ¸¸ï¼š
 ---
---- 0. ²»¼ì²â
---- 1. £¨Ä¬ÈÏÖµ£©¼ì²âµã»÷Î»ÖÃÊÇ·ñÔÚÍ¼Æ¬ÉÏ£¨ºöÂÔÍ¸Ã÷¶È£©
---- 2. ¼ì²âµã»÷Î»ÖÃÊÇ·ñÔÚ¿Ø¼ş·¶Î§ÄÚ
+--- 0. ä¸æ£€æµ‹
+--- 1. ï¼ˆé»˜è®¤å€¼ï¼‰æ£€æµ‹ç‚¹å‡»ä½ç½®æ˜¯å¦åœ¨å›¾ç‰‡ä¸Šï¼ˆå¿½ç•¥é€æ˜åº¦ï¼‰
+--- 2. æ£€æµ‹ç‚¹å‡»ä½ç½®æ˜¯å¦åœ¨æ§ä»¶èŒƒå›´å†…
 ---
---- H5£º
---- 1. £¨Ä¬ÈÏÖµ£©¼ì²âµã»÷Î»ÖÃÊÇ·ñÔÚÍ¼Æ¬ÉÏ£¨ºöÂÔÍ¸Ã÷¶È£©
---- 2. ÆäËû¼ì²âµã»÷Î»ÖÃÊÇ·ñÔÚ¿Ø¼ş·¶Î§ÄÚ
+--- H5ï¼š
+--- 1. ï¼ˆé»˜è®¤å€¼ï¼‰æ£€æµ‹ç‚¹å‡»ä½ç½®æ˜¯å¦åœ¨å›¾ç‰‡ä¸Šï¼ˆå¿½ç•¥é€æ˜åº¦ï¼‰
+--- 2. å…¶ä»–æ£€æµ‹ç‚¹å‡»ä½ç½®æ˜¯å¦åœ¨æ§ä»¶èŒƒå›´å†…
 function GUI:ImageSetCheckPoint(_HandleID, _Flag)
 end
 
----´´½¨±à¼­¿ò¿Ø¼ş
+---åˆ›å»ºç¼–è¾‘æ¡†æ§ä»¶
 ---@param _HandleID int
----@param _pEditID string @Ãû³Æ
----@param _PosX int @ºá×ø±ê
----@param _PosY int @×İ×ø±ê
----@param _SizeX int @¿í¶È
----@param _SizeY int @¸ß¶È
+---@param _pEditID string @åç§°
+---@param _PosX int @æ¨ªåæ ‡
+---@param _PosY int @çºµåæ ‡
+---@param _SizeX int @å®½åº¦
+---@param _SizeY int @é«˜åº¦
 ---@return int
 ---@nodiscard
 function GUI:EditCreate(_HandleID, _pEditID, _PosX, _PosY, _SizeX, _SizeY)
 end
 
----ÉèÖÃ±à¼­¿òÎÄ±¾µÄ×ÖÌå
+---è®¾ç½®ç¼–è¾‘æ¡†æ–‡æœ¬çš„å­—ä½“
 ---@param _HandleID int
----@param _Text string @×ÖÌåÃû³Æ£º¼´`FontSetting.xml`ÎÄ¼şÖĞµÄ`FontUseName`×Ö¶ÎµÄÖµ£¬ÏêÇé²é¿´ **XMLÅäÖÃÎÄ¼ş** -> **×ÖÌåÑùÊ½ÅäÖÃ**£©
+---@param _Text string @å­—ä½“åç§°ï¼šå³`FontSetting.xml`æ–‡ä»¶ä¸­çš„`FontUseName`å­—æ®µçš„å€¼ï¼Œè¯¦æƒ…æŸ¥çœ‹ **XMLé…ç½®æ–‡ä»¶** -> **å­—ä½“æ ·å¼é…ç½®**ï¼‰
 function GUI:EditSetFontM(_HandleID, _Text)
 end
 
----ÉèÖÃ±à¼­¿òÎÄ±¾ÑÕÉ«
+---è®¾ç½®ç¼–è¾‘æ¡†æ–‡æœ¬é¢œè‰²
 ---@param _HandleID int
 ---@param _Color uint
 function GUI:EditSetTextColor(_HandleID, _Color)
 end
 
----ÉèÖÃ±à¼­¿òÊÇ·ñ¿ÉÒÔ±à¼­
+---è®¾ç½®ç¼–è¾‘æ¡†æ˜¯å¦å¯ä»¥ç¼–è¾‘
 ---@param _HandleID int
 ---@param _CanEdit bool
 function GUI:EditSetCanEdit(_HandleID, _CanEdit)
 end
 
----ÉèÖÃ±à¼­¿òµÄÎÄ±¾¾ÓÖĞÏÔÊ¾
+---è®¾ç½®ç¼–è¾‘æ¡†çš„æ–‡æœ¬å±…ä¸­æ˜¾ç¤º
 ---@param _HandleID int
 function GUI:EditSetFontCenter(_HandleID)
 end
 
----Éú³ÉÑÕÉ«Öµ
+---ç”Ÿæˆé¢œè‰²å€¼
 ---@param R int
 ---@param G int
 ---@param B int
@@ -271,82 +271,82 @@ end
 function GUI:MakeColor(R, G, B, A)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şµÄÎÄ±¾ÄÚÈİ
+---è®¾ç½®çª—ä½“æ§ä»¶çš„æ–‡æœ¬å†…å®¹
 ---@param _HandleID int
 ---@param _Text string
 function GUI:WndSetTextM(_HandleID, _Text)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şµÄÎ»ÖÃ
+---è®¾ç½®çª—ä½“æ§ä»¶çš„ä½ç½®
 ---@param _HandleID int
 ---@param _XPos int
 ---@param _YPos int
 function GUI:WndSetPosM(_HandleID, _XPos, _YPos)
 end
 
----»ñÈ¡¿Ø¼şÍ¼Æ¬×ÊÔ´±àºÅ
+---è·å–æ§ä»¶å›¾ç‰‡èµ„æºç¼–å·
 ---@param _HandleID int
 ---@return int
 function GUI:WndGetImageID(_HandleID)
 end
 
----ÉèÖÃ±à¼­¿òµÄÎÄ±¾ÄÚÈİ
----@param _HandleID int @ ±à¼­¿ò¾ä±ú
----@param _Text string @ÎÄ±¾ÄÚÈİ
+---è®¾ç½®ç¼–è¾‘æ¡†çš„æ–‡æœ¬å†…å®¹
+---@param _HandleID int @ ç¼–è¾‘æ¡†å¥æŸ„
+---@param _Text string @æ–‡æœ¬å†…å®¹
 function GUI:EditSetTextM(_HandleID, _Text)
 end
 
----ÔÚ´°Ìå¿Ø¼şÖĞÌí¼Ó½¨Òé¶¨Ê±Æ÷
----@param _HandleID int @ Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Elapse int @Ö´ĞĞ»Øµ÷º¯ÊıµÄÊ±¼ä¼ä¸ô
----@param _ScriptHandle string @»Øµ÷º¯ÊıµÄÃû³Æ
----@return int @OK£º¶¨Ê±Æ÷ID£ºNO£º0
+---åœ¨çª—ä½“æ§ä»¶ä¸­æ·»åŠ å»ºè®®å®šæ—¶å™¨
+---@param _HandleID int @ æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Elapse int @æ‰§è¡Œå›è°ƒå‡½æ•°çš„æ—¶é—´é—´éš”
+---@param _ScriptHandle string @å›è°ƒå‡½æ•°çš„åç§°
+---@return int @OKï¼šå®šæ—¶å™¨IDï¼šNOï¼š0
 function GUI:WndAddTimerBrief(_HandleID, _Elapse, _ScriptHandle)
 end
 
----ÔÚ´°Ìå¿Ø¼şÖĞÌí¼Ó½¨Òé¶¨Ê±Æ÷
----@param _HandleID int @ Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Elapse int @Ö´ĞĞ»Øµ÷º¯ÊıµÄÊ±¼ä¼ä¸ô
----@param _ScriptHandle string @»Øµ÷º¯ÊıµÄÃû³Æ
----@param _Param string @ Ô¤ÉèµÄ»Øµ÷²ÎÊı
----@return int @OK£º¶¨Ê±Æ÷ID£ºNO£º0
+---åœ¨çª—ä½“æ§ä»¶ä¸­æ·»åŠ å»ºè®®å®šæ—¶å™¨
+---@param _HandleID int @ æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Elapse int @æ‰§è¡Œå›è°ƒå‡½æ•°çš„æ—¶é—´é—´éš”
+---@param _ScriptHandle string @å›è°ƒå‡½æ•°çš„åç§°
+---@param _Param string @ é¢„è®¾çš„å›è°ƒå‚æ•°
+---@return int @OKï¼šå®šæ—¶å™¨IDï¼šNOï¼š0
 function GUI:WndAddTimerBriefEx(_HandleID, _Elapse, _ScriptHandle, _Param)
 end
 
----»ñÈ¡´°Ìå¿Ø¼şµÄ¿É¼û×´Ì¬
+---è·å–çª—ä½“æ§ä»¶çš„å¯è§çŠ¶æ€
 ---@param _HandleID int
 ---@return bool
 function GUI:WndGetVisible(_HandleID)
 end
 
----¹Ø±Õ´°¿Ú
+---å…³é—­çª—å£
 ---@param _HandleID int
 function GUI:WndClose(_HandleID)
 end
 
----´´½¨´°¿Ú
----Ê¹ÓÃ´Ë½Ó¿Ú´´½¨µÄ´°¿ÚµÄÄ¬ÈÏ±ê¼ÇÎª`flg_wndBase_autoTop`£¨½«¿Ø¼şÖÃÓÚËùÔÚ¸¸´°¿ÚµÄ×îÉÏ²ã£©¡£
----@param _ParentHandle int @¸¸´°¿Ú¾ä±ú
----@param _ID string @ ĞÂ½¨´°¿ÚµÄÃû³Æ
----@param _ImageID uint @ĞÂ½¨´°¿ÚµÄÍ¼Æ¬×ÊÔ´ID
----@param _X int @ ĞÂ½¨´°¿ÚµÄºá×ø±ê
----@param _Y int @ ĞÂ½¨´°¿ÚÎ´ÖªµÄ×İ×ø±ê
+---åˆ›å»ºçª—å£
+---ä½¿ç”¨æ­¤æ¥å£åˆ›å»ºçš„çª—å£çš„é»˜è®¤æ ‡è®°ä¸º`flg_wndBase_autoTop`ï¼ˆå°†æ§ä»¶ç½®äºæ‰€åœ¨çˆ¶çª—å£çš„æœ€ä¸Šå±‚ï¼‰ã€‚
+---@param _ParentHandle int @çˆ¶çª—å£å¥æŸ„
+---@param _ID string @ æ–°å»ºçª—å£çš„åç§°
+---@param _ImageID uint @æ–°å»ºçª—å£çš„å›¾ç‰‡èµ„æºID
+---@param _X int @ æ–°å»ºçª—å£çš„æ¨ªåæ ‡
+---@param _Y int @ æ–°å»ºçª—å£æœªçŸ¥çš„çºµåæ ‡
 ---@return int
 function GUI:WndCreateWnd(_ParentHandle, _ID, _ImageID, _X, _Y)
 end
 
----ÉèÖÃ´°¿ÚEsc¹Ø±ÕÊôĞÔ
+---è®¾ç½®çª—å£Escå…³é—­å±æ€§
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:WndSetIsESCClose(_HandleID, _Flag)
 end
 
----ÉèÖÃ´°¿Ú×ó¼üÍÏ¶¯ÊôĞÔ
+---è®¾ç½®çª—å£å·¦é”®æ‹–åŠ¨å±æ€§
 ---@param _HandleID int
 function GUI:WndSetMoveWithLBM(_HandleID)
 end
 
----ÉèÖÃ¾Å¹¬¸ñÆ´½ÓÍ¼Æ¬
+---è®¾ç½®ä¹å®«æ ¼æ‹¼æ¥å›¾ç‰‡
 ---@param _HandleID int
 ---@param _LeftUp int
 ---@param _RightUp int
@@ -360,22 +360,22 @@ end
 function GUI:ImageSetAroundImage(_HandleID, _LeftUp, _RightUp, _LeftDown, _RightDown, _Mid, _Up, _Down, _Left, _Right)
 end
 
----»ñÈ¡´°¿Ú´óĞ¡
+---è·å–çª—å£å¤§å°
 ---@param _HandleID int
----@return bool @Èç¹û³É¹¦£¬»ñÈ¡´°¿ÚµÄ´óĞ¡´¢´æÔÚ`LuaRet`ÖĞ£¬
+---@return bool @å¦‚æœæˆåŠŸï¼Œè·å–çª—å£çš„å¤§å°å‚¨å­˜åœ¨`LuaRet`ä¸­ï¼Œ
 function GUI:WndGetSizeM(_HandleID)
 end
 
----»ñÈ¡´°¿Ú×Ó¿Ø¼şÊıÁ¿
+---è·å–çª—å£å­æ§ä»¶æ•°é‡
 ---@param _HandleID int
----@return int @·µ»Ø×Ó´°¿ÚµÄÊıÁ¿
+---@return int @è¿”å›å­çª—å£çš„æ•°é‡
 function GUI:WndGetChildCount(_HandleID)
 end
 
----´´½¨ÎïÆ·À¸¿Ø¼ş
----@param _ParentHandleID long @¸¸´°¿Ú¾ä±ú
----@param _pItemCtrlID char@ĞÂ½¨ÎïÆ·¿òÃû×Ö
----@param _ImageID uint @Í¼Æ¬×ÊÔ´ID
+---åˆ›å»ºç‰©å“æ æ§ä»¶
+---@param _ParentHandleID long @çˆ¶çª—å£å¥æŸ„
+---@param _pItemCtrlID char@æ–°å»ºç‰©å“æ¡†åå­—
+---@param _ImageID uint @å›¾ç‰‡èµ„æºID
 ---@param _PosX int
 ---@param _PosY int
 ---@param _SizeX int
@@ -384,75 +384,75 @@ end
 function GUI:ItemCtrlCreate(_ParentHandleID, _pItemCtrlID, _ImageID, _PosX, _PosY, _SizeX, _SizeY)
 end
 
----»ñÈ¡¸¸´°¿Ú¾ä±ú
----@param _HandleID int # Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@return int #  »ñÈ¡³É¹¦Ôò·µ»Ø¸¸´°¿Ú¾ä±ú£¬»ñÈ¡Ê§°ÜÔò·µ»Ø0
+---è·å–çˆ¶çª—å£å¥æŸ„
+---@param _HandleID int # æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@return int #  è·å–æˆåŠŸåˆ™è¿”å›çˆ¶çª—å£å¥æŸ„ï¼Œè·å–å¤±è´¥åˆ™è¿”å›0
 function GUI:WndGetParentM(_HandleID)
 end
 
----»ñÈ¡¸¸´°¿Ú¿Ø¼şÏà¶ÔÓÚ¸¸´°ÌåµÄ×ø±êÎ»ÖÃ
+---è·å–çˆ¶çª—å£æ§ä»¶ç›¸å¯¹äºçˆ¶çª—ä½“çš„åæ ‡ä½ç½®
 ---@param _HandleID int
 ---@return bool
 function GUI:WndGetPosM(_HandleID)
 end
 
----»ñÈ¡´°¿Ú¾ä±ú
----@param _HandleID int @¸¸´°¿Ú¾ä±ú
----@param _Info string @Òª²éÑ°µÄ´°¿ÚÃû³Æ
+---è·å–çª—å£å¥æŸ„
+---@param _HandleID int @çˆ¶çª—å£å¥æŸ„
+---@param _Info string @è¦æŸ¥å¯»çš„çª—å£åç§°
 ---@return int
 function GUI:WndFindWindow(_HandleID, _Info)
 end
 
----ÉèÖÃ¿Ø¼şÍ¼Æ¬×ÊÔ´±àºÅ
----@param _HandleID int @ÒªÖ¸¶¨¿Ø¼şµÄ¾ä±ú
----@param _ImageId uint @Í¼Æ¬×ÊÔ´±àºÅ
+---è®¾ç½®æ§ä»¶å›¾ç‰‡èµ„æºç¼–å·
+---@param _HandleID int @è¦æŒ‡å®šæ§ä»¶çš„å¥æŸ„
+---@param _ImageId uint @å›¾ç‰‡èµ„æºç¼–å·
 function GUI:WndSetImageID(_HandleID, _ImageId)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şµÄÓÃ»§×Ô¶¨ÒåÊı¾İ
---- Ö§³Ö×î¶à´´½¨10×é×Ô¶¨ÒåÊı¾İ
----@param _HandleID int @ÒªÖ¸¶¨µÄ´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Data int @×Ô¶¨ÒåÊı¾İµÄÊıÖµ
----@param _DataIndex int @×Ô¶¨ÒåÊı¾İµÄË÷Òı
+---è®¾ç½®çª—ä½“æ§ä»¶çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®
+--- æ”¯æŒæœ€å¤šåˆ›å»º10ç»„è‡ªå®šä¹‰æ•°æ®
+---@param _HandleID int @è¦æŒ‡å®šçš„çª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Data int @è‡ªå®šä¹‰æ•°æ®çš„æ•°å€¼
+---@param _DataIndex int @è‡ªå®šä¹‰æ•°æ®çš„ç´¢å¼•
 function GUI:WndSetUserData(_HandleID, _Data, _DataIndex)
 end
 
----ÉèÖÃÎïÆ·¿òÊı¾İ×Ô¶¯¹ÜÀí
+---è®¾ç½®ç‰©å“æ¡†æ•°æ®è‡ªåŠ¨ç®¡ç†
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:ItemCtrlSetItemDataAutoManager(_HandleID, _Flag)
 end
 
----ÉèÖÃ°´Å¥°´ÏÂÊ±ÎÄ×ÖÊÇ·ñ¸Ä±äÎ»ÖÃ
----ÈçÉèÖÃÎª¿ªÆô£¬°´Å¥°´ÏÂÊ±ÎÄ×Ö»áÏòÓÒÏÂ·½Æ«ÒÆÒ»¸öÏñËØ
+---è®¾ç½®æŒ‰é’®æŒ‰ä¸‹æ—¶æ–‡å­—æ˜¯å¦æ”¹å˜ä½ç½®
+---å¦‚è®¾ç½®ä¸ºå¼€å¯ï¼ŒæŒ‰é’®æŒ‰ä¸‹æ—¶æ–‡å­—ä¼šå‘å³ä¸‹æ–¹åç§»ä¸€ä¸ªåƒç´ 
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:ButtonSetDownTextPosChange(_HandleID, _Flag)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼ş×Ô¶¨Òå²ÎÊıµÄÖµ
+---è®¾ç½®å›¾ç‰‡æ§ä»¶è‡ªå®šä¹‰å‚æ•°çš„å€¼
 ---@param _HandleID int
 ---@param _Param int
----£¨0:ÆÕÍ¨»æÖÆ
----1:ÆÕÍ¨»æÖÆ
----2:×óÓÒÆ½ÆÌ»æÖÆ
----3.ÉÏÏÂÆ½ÆÌ»æÖÆ
----4.¾Å¹¬¸ñ»æÖÆ£©
+---ï¼ˆ0:æ™®é€šç»˜åˆ¶
+---1:æ™®é€šç»˜åˆ¶
+---2:å·¦å³å¹³é“ºç»˜åˆ¶
+---3.ä¸Šä¸‹å¹³é“ºç»˜åˆ¶
+---4.ä¹å®«æ ¼ç»˜åˆ¶ï¼‰
 function GUI:ImageSetParam(_HandleID, _Param)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şÎÄ±¾ÑÕÉ«
----@param _HandleID int @ Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Color uint @ÎÄ±¾ÑÕÉ«£¬¾ä¾ßÌå¿É¼û[ÑÕÉ«×Ö·û´®](https://tool.173uu.com/#/scriptdocument/0?name=g2652&t=1718249086844)½çÃæ
----ÑÕÉ«×Ö·û´®¸ñÊ½£º
----1. ÒÔ#¿ªÍ·×Ö·û´®:Í¨¹ı½Ó¿Ú`GetColor`
----2. Í¨¹ı½Ó¿Ú`MakeColor`¡¢`MakeARGB`»ò`Lua-MakeARGB`Éú³ÉµÄÑÕÉ«Öµ£¬½öÊÊÓÃÓÚÊıÖµÀàĞÍµÄ²ÎÊı
----3. ÔÚ`GlobalDefine.lua`½Å±¾ÎÄ¼şÖĞ¶¨ÒåµÄÑÕÉ«±ê¼Ç
----4. ³ÌĞòÔ¤¶¨ÒåµÄÑÕÉ«±ê¼Ç£¨²»Çø·Ö´óĞ¡Ğ´£©
+---è®¾ç½®çª—ä½“æ§ä»¶æ–‡æœ¬é¢œè‰²
+---@param _HandleID int @ æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Color uint @æ–‡æœ¬é¢œè‰²ï¼Œå¥å…·ä½“å¯è§[é¢œè‰²å­—ç¬¦ä¸²](https://tool.173uu.com/#/scriptdocument/0?name=g2652&t=1718249086844)ç•Œé¢
+---é¢œè‰²å­—ç¬¦ä¸²æ ¼å¼ï¼š
+---1. ä»¥#å¼€å¤´å­—ç¬¦ä¸²:é€šè¿‡æ¥å£`GetColor`
+---2. é€šè¿‡æ¥å£`MakeColor`ã€`MakeARGB`æˆ–`Lua-MakeARGB`ç”Ÿæˆçš„é¢œè‰²å€¼ï¼Œä»…é€‚ç”¨äºæ•°å€¼ç±»å‹çš„å‚æ•°
+---3. åœ¨`GlobalDefine.lua`è„šæœ¬æ–‡ä»¶ä¸­å®šä¹‰çš„é¢œè‰²æ ‡è®°
+---4. ç¨‹åºé¢„å®šä¹‰çš„é¢œè‰²æ ‡è®°ï¼ˆä¸åŒºåˆ†å¤§å°å†™ï¼‰
 function GUI:WndSetTextColorM(_HandleID, _Color)
 end
 
----Éú³ÉÑÕÉ«Öµ£¬²ÎÊıÊıÖµ·¶Î§ÔÚ`0~255`Ö®¼ä
+---ç”Ÿæˆé¢œè‰²å€¼ï¼Œå‚æ•°æ•°å€¼èŒƒå›´åœ¨`0~255`ä¹‹é—´
 ---@param A int
 ---@param R int
 ---@param G int
@@ -461,238 +461,238 @@ end
 function GUI:MakeARGB(A, R, G, B)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şÎÄ×ÖµÄÅÅÁĞ·½Ê½
----@param _HandleID int @ Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _XOffset int @ÎÄ×ÖµÄºá×ø±êµÄÆ«ÒÆÁ¿
----@param _YOffset int @ ÎÄ×ÖµÄ×İ×ø±êµÄÆ«ÒÆÁ¿
----@param _FontDistance int @ ÎÄ×ÖµÄ¼ä¾à£¬µ¥Î»ÎªÏñËØ
----@param _ArrangeType int @ ÅÅÁĞÀàĞÍ£º£¨0£ºË®Æ½ÅÅÁĞ£¬1£º´¹Ö±ÅÅÁĞ£©
+---è®¾ç½®çª—ä½“æ§ä»¶æ–‡å­—çš„æ’åˆ—æ–¹å¼
+---@param _HandleID int @ æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _XOffset int @æ–‡å­—çš„æ¨ªåæ ‡çš„åç§»é‡
+---@param _YOffset int @ æ–‡å­—çš„çºµåæ ‡çš„åç§»é‡
+---@param _FontDistance int @ æ–‡å­—çš„é—´è·ï¼Œå•ä½ä¸ºåƒç´ 
+---@param _ArrangeType int @ æ’åˆ—ç±»å‹ï¼šï¼ˆ0ï¼šæ°´å¹³æ’åˆ—ï¼Œ1ï¼šå‚ç›´æ’åˆ—ï¼‰
 function GUI:WndSetTextArrangeType(_HandleID, _XOffset, _YOffset, _FontDistance, _ArrangeType)
 end
 
----ÉèÖÃ°´Å¥×ÖÌå
----@param _HandleID int @Ö¸¶¨°´Å¥¿Ø¼şµÄ¾ä±ú
----@param _FontName string @×ÖÌåÃû³Æ£¨¼´`FontSetting.xml`ÎÄ¼şÖĞµÄ`FontUseName`×Ö¶ÎµÄÖµ£©ÏêÇé¼û[×ÖÌåÑùÊ½ÅäÖÃ](https://tool.173uu.com/#/scriptdocument/0?name=g3518&t=1718249837874)
+---è®¾ç½®æŒ‰é’®å­—ä½“
+---@param _HandleID int @æŒ‡å®šæŒ‰é’®æ§ä»¶çš„å¥æŸ„
+---@param _FontName string @å­—ä½“åç§°ï¼ˆå³`FontSetting.xml`æ–‡ä»¶ä¸­çš„`FontUseName`å­—æ®µçš„å€¼ï¼‰è¯¦æƒ…è§[å­—ä½“æ ·å¼é…ç½®](https://tool.173uu.com/#/scriptdocument/0?name=g3518&t=1718249837874)
 function GUI:ButtonSetTextFont(_HandleID, _FontName)
 end
 
----ÉèÖÃÊÇ·ñÎª¼¤»îµÄÒ³Ç©°´Å¥
----@param _HandleID int @ ¾ä±ú
----@param _Flag bool @true£º¼¤»î
+---è®¾ç½®æ˜¯å¦ä¸ºæ¿€æ´»çš„é¡µç­¾æŒ‰é’®
+---@param _HandleID int @ å¥æŸ„
+---@param _Flag bool @trueï¼šæ¿€æ´»
 function GUI:ButtonSetIsActivePageBtn(_HandleID, _Flag)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şµÄÃè»æË³Ğò
----@param _HandleID int @¾ä±ú
----@param _Order int @ÓÅÏÈ¼¶
+---è®¾ç½®çª—ä½“æ§ä»¶çš„æç»˜é¡ºåº
+---@param _HandleID int @å¥æŸ„
+---@param _Order int @ä¼˜å…ˆçº§
 function GUI:SetLocalZOrder(_HandleID, _Order)
 end
 
----»ñÈ¡´°Ìå¿Ø¼şµÄÃû³Æ
+---è·å–çª—ä½“æ§ä»¶çš„åç§°
 ---@param _HandleID int
 ---@return string @OK:name,NO:""
 function GUI:WndGetIDM(_HandleID)
 end
 
----ÉèÖÃ°´Å¥Ñ¡Ôñ·¶Î§
+---è®¾ç½®æŒ‰é’®é€‰æ‹©èŒƒå›´
 ---@param _HandleID int
 ---@param _SizeX int
 ---@param _SizeY int
 function GUI:ButtonSetSelectRange(_HandleID, _SizeX, _SizeY)
 end
 
----ÉèÖÃÎïÆ·¿òÊÇ·ñ¿ÉÊ¹ÓÃÓÒ¼ü
+---è®¾ç½®ç‰©å“æ¡†æ˜¯å¦å¯ä½¿ç”¨å³é”®
 ---@param _HandleID int
----@param _Flag bool @true£ºÓÒ¼üµã»÷ÎïÆ·¿òÊ¹ÓÃÎïÆ·£¬false £ºÓÒ¼üµã»÷ÎïÆ·¿òÎŞÈÎºÎ×÷ÓÃ
+---@param _Flag bool @trueï¼šå³é”®ç‚¹å‡»ç‰©å“æ¡†ä½¿ç”¨ç‰©å“ï¼Œfalse ï¼šå³é”®ç‚¹å‡»ç‰©å“æ¡†æ— ä»»ä½•ä½œç”¨
 function GUI:ItemCtrlSetRBtnUse(_HandleID, _Flag)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞÎïÆ·µÄÍ¼±ê³ß´ç´óĞ¡
+---è®¾ç½®ç‰©å“æ¡†ä¸­ç‰©å“çš„å›¾æ ‡å°ºå¯¸å¤§å°
 ---@param _HandleID int
 ---@param _IconXSize int
 ---@param _IconYSize int
 function GUI:ItemCtrlSetIconSize(_HandleID, _IconXSize, _IconYSize)
 end
 
----ÉèÖÃ´°¿ÚÊÇ·ñ¿ÉÓÃ
+---è®¾ç½®çª—å£æ˜¯å¦å¯ç”¨
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:WndSetEnableM(_HandleID, _Flag)
 end
 
----´´½¨¸´Ñ¡¿ò¿Ø¼ş
+---åˆ›å»ºå¤é€‰æ¡†æ§ä»¶
 ---@param _ParentHandle int
----@param _pCheckID  string @¸´Ñ¡¿ò¿Ø¼şµÄÃû³Æ
----@param _ImageID uint @Í¼Æ¬×ÊÔ´ID
----@param _Tital string @¸´Ñ¡¿ò¿Ø¼ş±êÌâ
----@param _PosX int @ºá×ø±ê
----@param _PosY int @×İ×ø±ê
----@return int @OK£º¾ä±ú£¬No£º0
+---@param _pCheckID  string @å¤é€‰æ¡†æ§ä»¶çš„åç§°
+---@param _ImageID uint @å›¾ç‰‡èµ„æºID
+---@param _Tital string @å¤é€‰æ¡†æ§ä»¶æ ‡é¢˜
+---@param _PosX int @æ¨ªåæ ‡
+---@param _PosY int @çºµåæ ‡
+---@return int @OKï¼šå¥æŸ„ï¼ŒNoï¼š0
 function GUI:CheckBoxCreate(_ParentHandle, _pCheckID, _ImageID, _Tital, _PosX, _PosY)
 end
 
----ÉèÖÃ¸´Ñ¡¿òµÄÑ¡ÖĞ×´Ì¬
+---è®¾ç½®å¤é€‰æ¡†çš„é€‰ä¸­çŠ¶æ€
 ---@param _HandleID int
 ---@param _Check bool
 function GUI:CheckBoxSetCheck(_HandleID, _Check)
 end
 
----ÉèÖÃ¸´Ñ¡¿òµÄÑ¡Ôñ×´Ì¬
+---è®¾ç½®å¤é€‰æ¡†çš„é€‰æ‹©çŠ¶æ€
 ---@param _Handle int
 ---@param _Info string
 ---@param _Check bool
----@return bool @ true:¿Õ¼ä´æÔÚ£¬false£º¿Õ¼ä²»´æÔÚ
+---@return bool @ true:ç©ºé—´å­˜åœ¨ï¼Œfalseï¼šç©ºé—´ä¸å­˜åœ¨
 function CheckSetCheck(_Handle, _Info, _Check)
 end
 
----ÉèÖÃ¸´Ñ¡¿ò¿Ø¼şµÄÑ¡ÖĞ×´Ì¬ÊÇ·ñ¸Ä±ä
+---è®¾ç½®å¤é€‰æ¡†æ§ä»¶çš„é€‰ä¸­çŠ¶æ€æ˜¯å¦æ”¹å˜
 ---@param _HandleID int
 ---@param _AutoChange bool
 function GUI:CheckBoxSetAutoChange(_HandleID, _AutoChange)
 end
 
----»ñÈ¡¸´Ñ¡¿òµÄÑ¡ÖĞ×´Ì¬
----@param _HandleID int @Ö¸¶¨¸´Ñ¡¿ò¿Ø¼şµÄ¾ä±ú
+---è·å–å¤é€‰æ¡†çš„é€‰ä¸­çŠ¶æ€
+---@param _HandleID int @æŒ‡å®šå¤é€‰æ¡†æ§ä»¶çš„å¥æŸ„
 ---@return bool
 function GUI:CheckBoxGetCheck(_HandleID)
 end
 
----ÉèÖÃ°´Å¥ÉÏÏÔÊ¾µÄÍ¼Æ¬
+---è®¾ç½®æŒ‰é’®ä¸Šæ˜¾ç¤ºçš„å›¾ç‰‡
 ---@param _HandleID int
 ---@param _ImageID uint
 function GUI:ButtonSetDrawPostTexture(_HandleID, _ImageID)
 end
 
----¸ù¾İË÷ÒıÃûÌî³äÎïÆ·¿òÊı¾İ !!!:ÊÖÓÎ
----@param _Handle int @Ö¸ÏòÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _KeyName string @ÎïÆ·µÄË÷ÒıÃû
----@param _Count int @ÎïÆ·¶ÑµşµÄÊıÁ¿
----@param _IsBind bool @ÎïÆ·ÊÇ·ñ°ó¶¨
+---æ ¹æ®ç´¢å¼•åå¡«å……ç‰©å“æ¡†æ•°æ® !!!:æ‰‹æ¸¸
+---@param _Handle int @æŒ‡å‘ç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _KeyName string @ç‰©å“çš„ç´¢å¼•å
+---@param _Count int @ç‰©å“å †å çš„æ•°é‡
+---@param _IsBind bool @ç‰©å“æ˜¯å¦ç»‘å®š
 function RDItemCtrlSetGUIDataByKeyName(_Handle, _KeyName, _Count, _IsBind)
 end
 
----ÉèÖÃÎïÆ·¿ò±³¾°Í¼Æ¬
+---è®¾ç½®ç‰©å“æ¡†èƒŒæ™¯å›¾ç‰‡
 ---@param _HandleID int
 ---@param _ImgId int
 function GUI:ItemCtrlSetBackImageID(_HandleID, _ImgId)
 end
 
----¸ù¾İÎïÆ·IDÌî³äÎïÆ·¿ò
----@param _Handle int # ÖÃ¶¥ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _Info string? # ÖÃ¶¥ÎïÆ·¿ò¿Ø¼şµÄÃèÊö
----@param __ItemID int # ÎïÆ·Ä£°åID
----@param _Count int # ÎïÆ·¶ÑµşÊıÁ¿
----@param _IsBind bool # ÎïÆ·ÊÇ·ñ°ó¶¨ £º`true` °ó¶¨£º`false`·Ç°ó¶¨
----@return bool # `true` : Ö´ĞĞ³É¹¦, `false` £º Ö´ĞĞÊ§°Ü
+---æ ¹æ®ç‰©å“IDå¡«å……ç‰©å“æ¡†
+---@param _Handle int # ç½®é¡¶ç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Info string? # ç½®é¡¶ç‰©å“æ¡†æ§ä»¶çš„æè¿°
+---@param __ItemID int # ç‰©å“æ¨¡æ¿ID
+---@param _Count int # ç‰©å“å †å æ•°é‡
+---@param _IsBind bool # ç‰©å“æ˜¯å¦ç»‘å®š ï¼š`true` ç»‘å®šï¼š`false`éç»‘å®š
+---@return bool # `true` : æ‰§è¡ŒæˆåŠŸ, `false` ï¼š æ‰§è¡Œå¤±è´¥
 function RDItemCtrlSetGUIDataPropByItemID(_Handle, _Info, __ItemID, _Count, _IsBind)
 end
 
----¸ù¾İÎïÆ·GUIDÌî³äÎïÆ·¿ò
+---æ ¹æ®ç‰©å“GUIDå¡«å……ç‰©å“æ¡†
 ---@param _Handle int
 ---@param _Info string
 ---@param _ItemGUID string
 function RDItemCtrlSetGUIDataPropByGUID(_Handle, _Info, _ItemGUID)
 end
 
----»ñÈ¡ÎïÆ·¿òÖ¸ÏòÎïÆ·µÄË÷ÒıÃû
----´Ë½Ó¿ÚÖ»ÄÜ»ñÈ¡Ê¹ÓÃGUIDÌî³äµÄÎïÆ·¿òÖĞ¶ÔÓ¦ÎïÆ·µÄË÷ÒıÃû¡£
----@param _Handle int @ÎïÆ·¿ò¾ä±ú
----@param _Info string @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄÃèÊö
+---è·å–ç‰©å“æ¡†æŒ‡å‘ç‰©å“çš„ç´¢å¼•å
+---æ­¤æ¥å£åªèƒ½è·å–ä½¿ç”¨GUIDå¡«å……çš„ç‰©å“æ¡†ä¸­å¯¹åº”ç‰©å“çš„ç´¢å¼•åã€‚
+---@param _Handle int @ç‰©å“æ¡†å¥æŸ„
+---@param _Info string @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„æè¿°
 function RDItemCtrlGetGUIDataKeyName(_Handle, _Info)
 end
 
----¸ù¾İË÷ÒıÃûÌî³äÎïÆ·¿ò !!!: **¶ËÓÎ**
----@param _Handle int @ÎïÆ·¿ò¾ä±ú
----@param _Info string? @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄÃèÊö
----@param _KeyName string @ÎïÆ·Ë÷ÒıÃû
----@param _Count int @ÎïÆ·¶ÑµşµÄÊıÁ¿
----@param _IsBind bool @ÎïÆ·ÊÇ·ñ°ó¶¨
+---æ ¹æ®ç´¢å¼•åå¡«å……ç‰©å“æ¡† !!!: **ç«¯æ¸¸**
+---@param _Handle int @ç‰©å“æ¡†å¥æŸ„
+---@param _Info string? @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„æè¿°
+---@param _KeyName string @ç‰©å“ç´¢å¼•å
+---@param _Count int @ç‰©å“å †å çš„æ•°é‡
+---@param _IsBind bool @ç‰©å“æ˜¯å¦ç»‘å®š
 function RDItemCtrlSetGUIDataPropByKeyName(_Handle, _Info, _KeyName, _Count, _IsBind)
 end
 
----Çå³şÎïÆ·¿òÖĞÒÑÓĞµÄÎïÆ·Êı¾İ
----@param _Handle int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _Info string @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄÃèÊö
+---æ¸…æ¥šç‰©å“æ¡†ä¸­å·²æœ‰çš„ç‰©å“æ•°æ®
+---@param _Handle int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Info string @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„æè¿°
 function RDItemCtrlClearGUIData(_Handle, _Info)
 end
 
----´´½¨´ø¹ö¶¯Ìõ´°¿Ú
+---åˆ›å»ºå¸¦æ»šåŠ¨æ¡çª—å£
 ---@param _ParentHandle int
----@param _ID string @  ĞÂ½¨¿Ø¼şÃû³Æ
----@param _X int  @ ĞÂ½¨µÄºá×ø±ê
----@param _Y int @ĞÂ½¨µÄ×İ×ø±ê
+---@param _ID string @  æ–°å»ºæ§ä»¶åç§°
+---@param _X int  @ æ–°å»ºçš„æ¨ªåæ ‡
+---@param _Y int @æ–°å»ºçš„çºµåæ ‡
 ---@param _Width int
 ---@param _Height int
----@return int @ ¾ä±ú
+---@return int @ å¥æŸ„
 function GUI:WndCreateScrollWnd(_ParentHandle, _ID, _X, _Y, _Width, _Height)
 end
 
----´´½¨´ø¹ö¶¯Ìõ´°¿Ú£¨À©Õ¹£©
+---åˆ›å»ºå¸¦æ»šåŠ¨æ¡çª—å£ï¼ˆæ‰©å±•ï¼‰
 ---@param _ParentHandle int
----@param _ID string @  ĞÂ½¨¿Ø¼şÃû³Æ
----@param _X int  @ ĞÂ½¨µÄºá×ø±ê
----@param _Y int @ĞÂ½¨µÄ×İ×ø±ê
+---@param _ID string @  æ–°å»ºæ§ä»¶åç§°
+---@param _X int  @ æ–°å»ºçš„æ¨ªåæ ‡
+---@param _Y int @æ–°å»ºçš„çºµåæ ‡
 ---@param _Width int
 ---@param _Height int
----@param _Vert bool @ÊÇ·ñ´´½¨´ø´¹Ö±¹ö¶¯ÌõµÄ´°¿Ú£¬true£º´¹Ö±£¬false£ºË®Æ½
----@return int @ ¾ä±ú
+---@param _Vert bool @æ˜¯å¦åˆ›å»ºå¸¦å‚ç›´æ»šåŠ¨æ¡çš„çª—å£ï¼Œtrueï¼šå‚ç›´ï¼Œfalseï¼šæ°´å¹³
+---@return int @ å¥æŸ„
 function GUI:WndCreateScrollWndEx(_ParentHandle, _ID, _X, _Y, _Width, _Height, _Vert)
 end
 
----´´½¨Ë®Æ½¹ö¶¯Ìõ¿Ø¼ş
----@param _ParentHandleID int@ ¸¸´°¿Ú¾ä±ú
----@param _pItemCtrlID string@ĞÂ½¨Ë®Æ½¹ö¶¯ÌõµÄÃû³Æ
----@param _ImageUp int@Ïò×ó¹ö¶¯°´Å¥µÄÍ¼Æ¬×ÊÔ´ID
----@param _ImageDown int@ÏòÓÒ¹ö¶¯°´Å¥µÄÍ¼Æ¬×ÊÔ´ID
----@param _ImageThumb int@¹ö¶¯ÌõµÄÇ°¾°£¨¼´»¬¿é£©Í¼Æ¬×ÊÔ´ID
----@param _ImageBack int@ ¹ö¶¯ÌõµÄ±³¾°Í¼Æ¬×ÊÔ´ID
----@param _PosX int @ ĞÂ½¨Ë®Æ½¹ö¶¯ÌõÎ»ÖÃµÄºá×ø±ê
----@param _PosY int @ ĞÂ½¨Ë®Æ½¹ö¶¯ÌõÎ»ÖÃµÄ×İ×ø±ê
----@param _Length int@ ĞÂ½¨Ë®Æ½¹ö¶¯ÌõµÄ³¤¶È
----@return int @¾ä±ú
+---åˆ›å»ºæ°´å¹³æ»šåŠ¨æ¡æ§ä»¶
+---@param _ParentHandleID int@ çˆ¶çª—å£å¥æŸ„
+---@param _pItemCtrlID string@æ–°å»ºæ°´å¹³æ»šåŠ¨æ¡çš„åç§°
+---@param _ImageUp int@å‘å·¦æ»šåŠ¨æŒ‰é’®çš„å›¾ç‰‡èµ„æºID
+---@param _ImageDown int@å‘å³æ»šåŠ¨æŒ‰é’®çš„å›¾ç‰‡èµ„æºID
+---@param _ImageThumb int@æ»šåŠ¨æ¡çš„å‰æ™¯ï¼ˆå³æ»‘å—ï¼‰å›¾ç‰‡èµ„æºID
+---@param _ImageBack int@ æ»šåŠ¨æ¡çš„èƒŒæ™¯å›¾ç‰‡èµ„æºID
+---@param _PosX int @ æ–°å»ºæ°´å¹³æ»šåŠ¨æ¡ä½ç½®çš„æ¨ªåæ ‡
+---@param _PosY int @ æ–°å»ºæ°´å¹³æ»šåŠ¨æ¡ä½ç½®çš„çºµåæ ‡
+---@param _Length int@ æ–°å»ºæ°´å¹³æ»šåŠ¨æ¡çš„é•¿åº¦
+---@return int @å¥æŸ„
 function GUI:ScrollBarHCreate(_ParentHandleID, _pItemCtrlID, _ImageUp, _ImageDown, _ImageThumb, _ImageBack, _PosX, _PosY,
                               _Length)
 end
 
----ÉèÖÃ±à¼­¿òÊÇ·ñ¿É¶àĞĞ±à¼­
+---è®¾ç½®ç¼–è¾‘æ¡†æ˜¯å¦å¯å¤šè¡Œç¼–è¾‘
 ---@param _HandleID int
 ---@param _MultiLine bool
 function GUI:EditSetMultiLineEdit(_HandleID, _MultiLine)
 end
 
----ÉèÖÃ±à¼­¿òÊÇ·ñÏŞÖÆ×ÖÌå´óĞ¡
+---è®¾ç½®ç¼–è¾‘æ¡†æ˜¯å¦é™åˆ¶å­—ä½“å¤§å°
 ---@param _HandleID int
 ---@param _LimitSize bool
 function GUI:EditSetLimitStringSize(_HandleID, _LimitSize)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼şÊÇ·ñÒÔÖĞĞÄµã»æÖÆ
+---è®¾ç½®å›¾ç‰‡æ§ä»¶æ˜¯å¦ä»¥ä¸­å¿ƒç‚¹ç»˜åˆ¶
 ---@param _HandleID int
 ---@param _DrawCenter bool
 function GUI:ImageSetFixedDrawCenter(_HandleID, _DrawCenter)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼şµÄÍ¼Æ¬
+---è®¾ç½®å›¾ç‰‡æ§ä»¶çš„å›¾ç‰‡
 ---@param _Handle int
 ---@param _Info string?
 ---@param _ImageID uint
----@return bool # `true` Ö´ĞĞ³É¹¦, `false` Ö´ĞĞÊ§°Ü£¨Î´ÕÒµ½¶ÔÓ¦¿Ø¼ş£©
+---@return bool # `true` æ‰§è¡ŒæˆåŠŸ, `false` æ‰§è¡Œå¤±è´¥ï¼ˆæœªæ‰¾åˆ°å¯¹åº”æ§ä»¶ï¼‰
 function ImageSetImageID(_Handle, _Info, _ImageID)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼şÊÇ·ñ²¥·Å¶¯»­
+---è®¾ç½®å›¾ç‰‡æ§ä»¶æ˜¯å¦æ’­æ”¾åŠ¨ç”»
 ---@param _HandleID int
 ---@param _Enable bool
 ---@param _Speed uint
 function GUI:ImageSetAnimateEnable(_HandleID, _Enable, _Speed)
 end
 
----½«´°¿ÚÒÆ¶¯ÖÁ×îÉÏ²ã
----@param _HandleID int @ ÖÆ¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
+---å°†çª—å£ç§»åŠ¨è‡³æœ€ä¸Šå±‚
+---@param _HandleID int @ åˆ¶å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
 function GUI:WndMoveToParentTop(_HandleID)
 end
 
----ÉèÖÃÎïÆ·¿òÊÇ·ñÓĞĞ§
+---è®¾ç½®ç‰©å“æ¡†æ˜¯å¦æœ‰æ•ˆ
 ---@param _Handle int
 ---@param _Info string?
 ---@param _Enable bool
@@ -700,100 +700,101 @@ end
 function RDItemCtrlSetGUIDataEnable(_Handle, _Info, _Enable)
 end
 
----ÉèÖÃÎïÆ·¿òÊÇ·ñÏÔÊ¾ÎïÆ·ÊıÁ¿
+---è®¾ç½®ç‰©å“æ¡†æ˜¯å¦æ˜¾ç¤ºç‰©å“æ•°é‡
 ---@param _HandleID int
----@param _Flag bool @true£ºÏÔÊ¾£¬fals£º²»ÏÔÊ¾
+---@param _Flag bool @trueï¼šæ˜¾ç¤ºï¼Œfalsï¼šä¸æ˜¾ç¤º
 function GUI:ItemCtrlSetShowItemCount(_HandleID, _Flag)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞÎïÆ·µÄÊôĞÔÖµ
+---è®¾ç½®ç‰©å“æ¡†ä¸­ç‰©å“çš„å±æ€§å€¼
 ---@param _Handle int
 ---@param _Info string?
 ---@param _PropType int
----@param _PropValue table @ÊôĞÔÖµ£¬ÊôĞÔÖµµÄ¾ßÌåÀàĞÍ¸ù¾İÖ¸¶¨µÄGUIÊôĞÔÀàĞÍ¾ö¶¨
+---@param _PropValue table @å±æ€§å€¼ï¼Œå±æ€§å€¼çš„å…·ä½“ç±»å‹æ ¹æ®æŒ‡å®šçš„GUIå±æ€§ç±»å‹å†³å®š
 function RDItemCtrlSetGUIDataPropByType(_Handle, _Info, _PropType, _PropValue)
 end
 
----ÊÇ·ñÏÔÊ¾ÎïÆ·¿òÇ°¾°Í¼Æ¬
+---æ˜¯å¦æ˜¾ç¤ºç‰©å“æ¡†å‰æ™¯å›¾ç‰‡
 ---@param _Handle int
 ---@param _Info string?
 ---@param _ImgId int
 function RDItemCtrlSetFrontImageID(_Handle, _Info, _ImgId)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞÎïÆ·µÄÊôĞÔÖµ
+---è®¾ç½®ç‰©å“æ¡†ä¸­ç‰©å“çš„å±æ€§å€¼
 ---@param _HandleID int
----@param _PropType GUIDataPropType @ÊôĞÔÖµ£¬¶ÔÓ¦ÊôĞÔÀàĞÍµÄ²ÎÊıĞèÒªÍ¨¹ıÈ«¾Ö±äÁ¿`LuaArg`À´´«µİ
+---@param _PropType GUIDataPropType @å±æ€§å€¼ï¼Œå¯¹åº”å±æ€§ç±»å‹çš„å‚æ•°éœ€è¦é€šè¿‡å…¨å±€å˜é‡`LuaArg`æ¥ä¼ é€’
+---@return bool
 function GUI:ItemCtrlSetGUIDataPropByType(_HandleID, _PropType)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞµÄÎïÆ·ÊÇ·ñÏÔÊ¾Îª´óÍ¼±ê
+---è®¾ç½®ç‰©å“æ¡†ä¸­çš„ç‰©å“æ˜¯å¦æ˜¾ç¤ºä¸ºå¤§å›¾æ ‡
 ---@param _HandleID int
----@param _BigIconType int @0£ºÆÕÍ¨Í¼±ê£¬ÆäËûÊıÖµ£º´óÍ¼±ê
+---@param _BigIconType int @0ï¼šæ™®é€šå›¾æ ‡ï¼Œå…¶ä»–æ•°å€¼ï¼šå¤§å›¾æ ‡
 function GUI:ItemCtrlSetBigIcon(_HandleID, _BigIconType)
 end
 
----ÎïÆ·¿òÉèÖÃÎª´óÍ¼±êÊ±£¬ÊÇ·ñ²¥·Å¶¯»­
+---ç‰©å“æ¡†è®¾ç½®ä¸ºå¤§å›¾æ ‡æ—¶ï¼Œæ˜¯å¦æ’­æ”¾åŠ¨ç”»
 ---@param _HandleID long
 ---@param _Anim bool
 ---@param _AnimSpeed uint
 function GUI:ItemCtrlSetBigIconAnim(_HandleID, _Anim, _AnimSpeed)
 end
 
----ÉèÖÃÎïÆ·¿òµÄÍ¼±êÀàĞÍ
----@param _HandleID int @ ¾ä±ú
----@param _Type int @Í¼±êÀàĞÍ
+---è®¾ç½®ç‰©å“æ¡†çš„å›¾æ ‡ç±»å‹
+---@param _HandleID int @ å¥æŸ„
+---@param _Type int @å›¾æ ‡ç±»å‹
 function GUI:ItemCtrlSetIconImageType(_HandleID, _Type)
 end
 
----ÉèÖÃÍ¼Æ¬ÊÇ·ñÏàÓ¦²Ù×÷
+---è®¾ç½®å›¾ç‰‡æ˜¯å¦ç›¸åº”æ“ä½œ
 ---@param _Handle int
 ---@param _Info string
 ---@param _Flag bool
 function WndSetCanRevMsg(_Handle, _Info, _Flag)
 end
 
----ÉèÖÃ´°¿ÚÊÇ·ñ¿ÉÓÃ
---- ´Ëº¯ÊıÉèÖÃÓĞÏìÓ¦µÄ¿Ø¼şÊÇ·ñ¿ÉÊ¹ÓÃ¡£
+---è®¾ç½®çª—å£æ˜¯å¦å¯ç”¨
+--- æ­¤å‡½æ•°è®¾ç½®æœ‰å“åº”çš„æ§ä»¶æ˜¯å¦å¯ä½¿ç”¨ã€‚
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:WndSetEnableM(_HandleID, _Flag)
 end
 
----½«´°¿ÚÒÆ¶¯ÖÁ×îÉÏ²ã
+---å°†çª—å£ç§»åŠ¨è‡³æœ€ä¸Šå±‚
 ---@param _Handle int
 ---@param _Info string
 function WndMoveToParentTop(_Handle, _Info)
 end
 
----±ê¼Ç´°Ìå¿Ø¼şÎª¸ßÓÅÏÈ¼¶UI
----@param _Name string @´°Ìå¿Ø¼şµÄÃû×Ö
+---æ ‡è®°çª—ä½“æ§ä»¶ä¸ºé«˜ä¼˜å…ˆçº§UI
+---@param _Name string @çª—ä½“æ§ä»¶çš„åå­—
 function GUI:SetHighPriorityUIName(_Name)
 end
 
---- ÉèÖÃÍ¼Æ¬¿Ø¼şµÄËõ·ÅºÍĞı×ª
+--- è®¾ç½®å›¾ç‰‡æ§ä»¶çš„ç¼©æ”¾å’Œæ—‹è½¬
 ---@param _HandleID int
 ---@param _ScaleX int
 ---@param _ScaleY int
 ---@param _Roation int
---- > Ä¬ÈÏÊÇ×óÉÏ½Ç²»±ä£¬µ«¿ÉÒÔÉèÖÃÖĞĞÄ»æÖÆ
+--- > é»˜è®¤æ˜¯å·¦ä¸Šè§’ä¸å˜ï¼Œä½†å¯ä»¥è®¾ç½®ä¸­å¿ƒç»˜åˆ¶
 function GUI:ImageSetTransfrom(_HandleID, _ScaleX, _ScaleY, _Roation)
 end
 
----ÉèÖÃ±à¼­¿òÊÇ·ñÏŞÖÆ×ÖÌå´óĞ¡
+---è®¾ç½®ç¼–è¾‘æ¡†æ˜¯å¦é™åˆ¶å­—ä½“å¤§å°
 ---@param _HandleID int
 ---@param _LimitSize bool
 function GUI:EditSetLimitStringSize(_HandleID, _LimitSize)
 end
 
----×Ô¶¨Òå´°Ìå¿Ø¼şµÄÎÄ×Ö´óĞ¡
----ÔÚ2d¿Í»§¶ËÖĞ£¬´Ë½Ó¿ÚÖ§³ÖµÄ´°Ìå¿Ø¼ş°üÀ¨£º °´Å¥¡¢±à¼­¿ò ¡¢¶à¹¦ÄÜ±à¼­¿òºÍ¸´Ñ¡¿ò ¿Ø¼şµÈ
+---è‡ªå®šä¹‰çª—ä½“æ§ä»¶çš„æ–‡å­—å¤§å°
+---åœ¨2då®¢æˆ·ç«¯ä¸­ï¼Œæ­¤æ¥å£æ”¯æŒçš„çª—ä½“æ§ä»¶åŒ…æ‹¬ï¼š æŒ‰é’®ã€ç¼–è¾‘æ¡† ã€å¤šåŠŸèƒ½ç¼–è¾‘æ¡†å’Œå¤é€‰æ¡† æ§ä»¶ç­‰
 ---@param _HandleID int
 ---@param _Size int
 function GUI:WndSetFontSize(_HandleID, _Size)
 end
 
----ÉèÖÃ³ÉÍ¼Æ¬¿Ø¼ş»æÖÆÇøÓò
+---è®¾ç½®æˆå›¾ç‰‡æ§ä»¶ç»˜åˆ¶åŒºåŸŸ
 ---@param _HandleID int
 ---@param _StartX float
 ---@param _EndX float
@@ -802,207 +803,207 @@ end
 function GUI:ImageSetDrawRect(_HandleID, _StartX, _EndX, _StartY, _EndY)
 end
 
----ÉèÖÃÑ¡ÔñÎÄ±¾ÄÚÈİÊ±ÊÇ·ñÏÔÊ¾±³¾°Ìõ
---- - ½ö2d¶ËÓÎÊÊÓÃ
----@param _HandleID int @ ¾ä±ú
----@param _Value bool @ÊÇ·ñÏÔÊ¾À¶É«µÄ¸ßÁÁÌõ
+---è®¾ç½®é€‰æ‹©æ–‡æœ¬å†…å®¹æ—¶æ˜¯å¦æ˜¾ç¤ºèƒŒæ™¯æ¡
+--- - ä»…2dç«¯æ¸¸é€‚ç”¨
+---@param _HandleID int @ å¥æŸ„
+---@param _Value bool @æ˜¯å¦æ˜¾ç¤ºè“è‰²çš„é«˜äº®æ¡
 function GUI:EditSetDrawSelectBgWhenCantEdit(_HandleID, _Value)
 end
 
----ÉèÖÃ°´Å¥¸÷¸ö×´Ì¬Í¼Æ¬Ïà¶ÔÓÚÖ÷Í¼Æ¬µÄIDÆ«ÒÆ
----@param _HandleID int @ °´Å¥¾ä±ú
----@param _NormalIndex int @ Õı³£×´Ì¬ÏÂÍ¼Æ¬×ÊÔ´IDÏà¶ÔÓÚ°´Å¥´´½¨Í¼Æ¬×ÊÔ´ID µÄÆ«ÒÆ
----@param _MouseOnIndex int @Êó±êĞü¸¡×´Ì¬ÏÂÍ¼Æ¬×ÊÔ´IDÏà¶ÔÓÚ°´Å¥´´½¨Ê±Í¼Æ¬×ÊÔ´IDµÄÆ«ÒÆ
----@param _MouseDownIndex int@Êó±ê°´ÏÂ×´Ì¬ÏÂÍ¼Æ¬×ÊÔ´IDÏà¶ÔÓÚ°´Å¥´´½¨Ê±Í¼Æ¬×ÊÔ´IDµÄÆ«ÒÆ
----@param _DisableIndex int @°´Å¥²»¿ÉÓÃ×´Ì¬ÏÂÍ¼Æ¬×ÊÔ´IDÏà¶ÔÓÚ°´Å¥´´½¨Ê±Í¼Æ¬×ÊÔ´IDµÄÆ«ÒÆ
+---è®¾ç½®æŒ‰é’®å„ä¸ªçŠ¶æ€å›¾ç‰‡ç›¸å¯¹äºä¸»å›¾ç‰‡çš„IDåç§»
+---@param _HandleID int @ æŒ‰é’®å¥æŸ„
+---@param _NormalIndex int @ æ­£å¸¸çŠ¶æ€ä¸‹å›¾ç‰‡èµ„æºIDç›¸å¯¹äºæŒ‰é’®åˆ›å»ºå›¾ç‰‡èµ„æºID çš„åç§»
+---@param _MouseOnIndex int @é¼ æ ‡æ‚¬æµ®çŠ¶æ€ä¸‹å›¾ç‰‡èµ„æºIDç›¸å¯¹äºæŒ‰é’®åˆ›å»ºæ—¶å›¾ç‰‡èµ„æºIDçš„åç§»
+---@param _MouseDownIndex int@é¼ æ ‡æŒ‰ä¸‹çŠ¶æ€ä¸‹å›¾ç‰‡èµ„æºIDç›¸å¯¹äºæŒ‰é’®åˆ›å»ºæ—¶å›¾ç‰‡èµ„æºIDçš„åç§»
+---@param _DisableIndex int @æŒ‰é’®ä¸å¯ç”¨çŠ¶æ€ä¸‹å›¾ç‰‡èµ„æºIDç›¸å¯¹äºæŒ‰é’®åˆ›å»ºæ—¶å›¾ç‰‡èµ„æºIDçš„åç§»
 function GUI:ButtonSetImageIndex(_HandleID, _NormalIndex, _MouseOnIndex, _MouseDownIndex, _DisableIndex)
 end
 
----ÉèÖÃÎïÆ·¿òÄ¬ÈÏÍ¼Æ¬
+---è®¾ç½®ç‰©å“æ¡†é»˜è®¤å›¾ç‰‡
 ---@param _HandleID int
----@param _ImgId int @Ä¬ÈÏÍ¼Æ¬id
+---@param _ImgId int @é»˜è®¤å›¾ç‰‡id
 function GUI:ItemCtrlSetDefaultImage(_HandleID, _ImgId)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞÎïÆ·´óÍ¼±êµÄÆ«ÒÆ
+---è®¾ç½®ç‰©å“æ¡†ä¸­ç‰©å“å¤§å›¾æ ‡çš„åç§»
 ---@param _HandleID int
----@param _OffsetX int @ÉèÖÃÍ¼Æ¬Ë®Æ½Æ«ÒÆÁ¿
----@param _OffsetY int @ÉèÖÃÍ¼Æ¬´¹Ö±Æ«ÒÆÁ¿
+---@param _OffsetX int @è®¾ç½®å›¾ç‰‡æ°´å¹³åç§»é‡
+---@param _OffsetY int @è®¾ç½®å›¾ç‰‡å‚ç›´åç§»é‡
 function GUI:ItemCtrlSetBigIconOffset(_HandleID, _OffsetX, _OffsetY)
 end
 
----ÉèÖÃÍ¼Æ¬ÊÇ·ñÒÔÖĞĞÄµã»æÖÆ
+---è®¾ç½®å›¾ç‰‡æ˜¯å¦ä»¥ä¸­å¿ƒç‚¹ç»˜åˆ¶
 ---@param _HandleID int
----@param _DrawCenter bool @true:ÖĞĞÄµã»æÖÆ¡£false£ºÄ¬ÈÏ·½Ê½»æÖÆ
+---@param _DrawCenter bool @true:ä¸­å¿ƒç‚¹ç»˜åˆ¶ã€‚falseï¼šé»˜è®¤æ–¹å¼ç»˜åˆ¶
 function GUI:ImageSetDrawCenter(_HandleID, _DrawCenter)
 end
 
----Îª´°Ìå¿Ø¼şÌí¼Ó×Ô¶¨ÒåÊôĞÔ
+---ä¸ºçª—ä½“æ§ä»¶æ·»åŠ è‡ªå®šä¹‰å±æ€§
 ---@param _HandleID int
----@param _Key string @ ÊôĞÔÃû
----@param _Val string@ ÊôĞÔÖµ
+---@param _Key string @ å±æ€§å
+---@param _Val string@ å±æ€§å€¼
 function GUI:WndAddProperty(_HandleID, _Key, _Val)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞÎïÆ·µÄGUIData¾ä±ú
+---è®¾ç½®ç‰©å“æ¡†ä¸­ç‰©å“çš„GUIDataå¥æŸ„
 ---@param _HandleID int
----@param _ItemDataHandle long @ÎïÆ·µÄGUIData¾ä±ú
+---@param _ItemDataHandle long @ç‰©å“çš„GUIDataå¥æŸ„
 function GUI:ItemCtrlSetGUIData(_HandleID, _ItemDataHandle)
 end
 
----Çå¿ÕÎïÆ·¿òÊı¾İ
+---æ¸…ç©ºç‰©å“æ¡†æ•°æ®
 ---@param _HandleID int
 function GUI:ItemCtrlClearItemData(_HandleID)
 end
 
----´´½¨¶à¹¦ÄÜ±à¼­¿ò¿Ø¼ş
+---åˆ›å»ºå¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶
 ---@param _ParentHandleID int
 ---@param _pWndItemID string
 ---@param _PosX int
 ---@param _PosY int
 ---@param _SizeX int
 ---@param _SizeY int
----@return int @¾ä±ú
+---@return int @å¥æŸ„
 ---@nodiscard
 function GUI:RichEditCreate(_ParentHandleID, _pWndItemID, _PosX, _PosY, _SizeX, _SizeY)
 end
 
----ÉèÖÃ¶à¹¦ÄÜ±à¼­¿òÊÇ·ñ¿ÉÒÔ±à¼­
+---è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ˜¯å¦å¯ä»¥ç¼–è¾‘
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:RichEditSetEditEnable(_HandleID, _Flag)
 end
 
----Ìí¼Ó´°Ìå¿Ø¼şµÄ±ê¼Ç
+---æ·»åŠ çª—ä½“æ§ä»¶çš„æ ‡è®°
 ---@param _HandleID int
----@param _Flag uint @±ê¼ÇÀàĞÍ
+---@param _Flag uint @æ ‡è®°ç±»å‹
 function GUI:WndAddFlags(_HandleID, _Flag)
 end
 
----ÉèÖÃ°´Å¥ÒÆ¶¯µ½»î¶¯×Ó¿Ø¼şÉÏ²ã
+---è®¾ç½®æŒ‰é’®ç§»åŠ¨åˆ°æ´»åŠ¨å­æ§ä»¶ä¸Šå±‚
 ---@param _HandleID int
 function GUI:ButtonSetMoveToActionTop(_HandleID)
 end
 
----ÉèÖÃ°´Å¥µÄÍ¼Æ¬
+---è®¾ç½®æŒ‰é’®çš„å›¾ç‰‡
 ---@param _Handle int
 ---@param _Info string
 ---@param _ImageId int
 function ButtonSetImageID(_Handle, _Info, _ImageId)
 end
 
----´´½¨´¹Ö±¹ö¶¯Ìõ
----@param _ParentHandleID int @¸¸´°¿Ú¾ä±ú
----@param _pItemCtrlID string @ĞÂ½¨¹ö¶¯ÌõµÄÃû³Æ
----@param _ImageUp int @ÏòÉÏ¹ö¶¯°´Å¥µÄÍ¼Æ¬×ÊÔ´id
----@param _ImageDown int @ÏòÏÂ¹ö¶¯µÄÍ¼Æ¬×ÊÔ´ID
----@param _ImageThumb int @¹ö¶¯ÌõµÄÇ°¾°£¨¼´»¬¿é£©Í¼Æ¬×ÊÔ´ID
----@param _ImageBack int @ ¹ö¶¯ÌõµÄ±³¾°Í¼Æ¬×ÊÔ´ID
----@param _PosX int @ĞÂ½¨´¹Ö±¹ö¶¯ÌõÎ»ÖÃµÄºá×ø±ê
----@param _PosY int @ĞÂ½¨´¹Ö±¹ö¶¯ÌõÎ»ÖÃµÄ×İ×ø±ê
----@param _Length int @ĞÂ½¨´¹Ö±¹ö¶¯ÌõµÄ¸ß¶È
----@return int @¾ä±ú
+---åˆ›å»ºå‚ç›´æ»šåŠ¨æ¡
+---@param _ParentHandleID int @çˆ¶çª—å£å¥æŸ„
+---@param _pItemCtrlID string @æ–°å»ºæ»šåŠ¨æ¡çš„åç§°
+---@param _ImageUp int @å‘ä¸Šæ»šåŠ¨æŒ‰é’®çš„å›¾ç‰‡èµ„æºid
+---@param _ImageDown int @å‘ä¸‹æ»šåŠ¨çš„å›¾ç‰‡èµ„æºID
+---@param _ImageThumb int @æ»šåŠ¨æ¡çš„å‰æ™¯ï¼ˆå³æ»‘å—ï¼‰å›¾ç‰‡èµ„æºID
+---@param _ImageBack int @ æ»šåŠ¨æ¡çš„èƒŒæ™¯å›¾ç‰‡èµ„æºID
+---@param _PosX int @æ–°å»ºå‚ç›´æ»šåŠ¨æ¡ä½ç½®çš„æ¨ªåæ ‡
+---@param _PosY int @æ–°å»ºå‚ç›´æ»šåŠ¨æ¡ä½ç½®çš„çºµåæ ‡
+---@param _Length int @æ–°å»ºå‚ç›´æ»šåŠ¨æ¡çš„é«˜åº¦
+---@return int @å¥æŸ„
 function GUI:ScrollBarVCreate(_ParentHandleID, _pItemCtrlID, _ImageUp, _ImageDown, _ImageThumb, _ImageBack, _PosX, _PosY,
                               _Length)
 end
 
----»ñÈ¡´°Ìå¿Ø¼şµÄ×Ô¶¨Òå²ÎÊı
----@param _HandleID int @´°Ìå¿Ø¼şµÄ¾ä±ú
----@return uint @×Ô¶¨Òå²ÎÊıÖµ
+---è·å–çª—ä½“æ§ä»¶çš„è‡ªå®šä¹‰å‚æ•°
+---@param _HandleID int @çª—ä½“æ§ä»¶çš„å¥æŸ„
+---@return uint @è‡ªå®šä¹‰å‚æ•°å€¼
 function GUI:WndGetParam(_HandleID)
 end
 
----»ñÈ¡°´Å¥ÊÇ·ñÎª»ÒÉ«×´Ì¬
+---è·å–æŒ‰é’®æ˜¯å¦ä¸ºç°è‰²çŠ¶æ€
 ---@param _HandleID int
 function GUI:ButtonGetShowDisable(_HandleID)
 end
 
----ÉèÖÃ°´Å¥ÊÇ·ñÎª»ÒÉ«×´Ì¬
+---è®¾ç½®æŒ‰é’®æ˜¯å¦ä¸ºç°è‰²çŠ¶æ€
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:ButtonSetShowDisable(_HandleID, _Flag)
 end
 
----»ñÈ¡±à¼­¿òµÄÎÄ±¾ÄÚÈİ
+---è·å–ç¼–è¾‘æ¡†çš„æ–‡æœ¬å†…å®¹
 ---@param _HandleID int
----@return string @OK£º±à¼­¿òµÄÎÄ±¾ÄÚÈİ£¬NO:`""`
+---@return string @OKï¼šç¼–è¾‘æ¡†çš„æ–‡æœ¬å†…å®¹ï¼ŒNO:`""`
 function GUI:EditGetTextM(_HandleID)
 end
 
----ÉèÖÃ°´Å¥ÅĞ¶ÏÊó±êÊÇ·ñÔÚ´°¿ÚµÄ·½Ê½
+---è®¾ç½®æŒ‰é’®åˆ¤æ–­é¼ æ ‡æ˜¯å¦åœ¨çª—å£çš„æ–¹å¼
 ---@param _HandleID int
----@param _Flag int ÅĞ¶Ï·½Ê½ `0`Ê¹ÓÃ°´Å¥Í¼Æ¬ÅĞ¶Ï¡£Êó±êµã»÷ÔÚ°´Å¥Ê¹ÓÃµÄÍ¼Æ¬ÉÏ¼´ÅĞ¶ÏÎªÔÚ´°¿ÚÄÚ¡£ ÆäËûÖµ Ê¹ÓÃ¿Ø¼ş×ÔÉíÅĞ¶Ï¡£Êó±êµã»÷ÔÚ°´Å¥¿Ø¼şÄÚ¼´ÅĞ¶ÏÎªÔÚ´°¿ÚÄÚ¡£
+---@param _Flag int åˆ¤æ–­æ–¹å¼ `0`ä½¿ç”¨æŒ‰é’®å›¾ç‰‡åˆ¤æ–­ã€‚é¼ æ ‡ç‚¹å‡»åœ¨æŒ‰é’®ä½¿ç”¨çš„å›¾ç‰‡ä¸Šå³åˆ¤æ–­ä¸ºåœ¨çª—å£å†…ã€‚ å…¶ä»–å€¼ ä½¿ç”¨æ§ä»¶è‡ªèº«åˆ¤æ–­ã€‚é¼ æ ‡ç‚¹å‡»åœ¨æŒ‰é’®æ§ä»¶å†…å³åˆ¤æ–­ä¸ºåœ¨çª—å£å†…ã€‚
 function GUI:ButtonSetCheckPoint(_HandleID, _Flag)
 end
 
----ÉèÖÃ´°Ì¨¿Ø¼şµÄ¼¤»î×´Ì¬
+---è®¾ç½®çª—å°æ§ä»¶çš„æ¿€æ´»çŠ¶æ€
 ---@param _HandleID int
----@param _Flag bool @ `true`Ö¸¶¨´°Ìå¿Ø¼şÎª¼¤»î×´Ì¬ `false`Ö¸¶¨´°Ìå¿Ø¼şÎª·Ç¼¤»î×´Ì¬
+---@param _Flag bool @ `true`æŒ‡å®šçª—ä½“æ§ä»¶ä¸ºæ¿€æ´»çŠ¶æ€ `false`æŒ‡å®šçª—ä½“æ§ä»¶ä¸ºéæ¿€æ´»çŠ¶æ€
 function GUI:WndSetActiveM(_HandleID, _Flag)
 end
 
----ÉèÖÃÎïÆ·¿ò¸ßÁÁÍ¼Æ¬
----@param _HandleID int @ÖÆ¶¨ÎïÆ·¿òµÄ¾ä±ú
----@param _ImgId int @ÎïÆ·¿ò¸ßÁÁÊ±ÏÔÊ¾µÄÍ¼Æ¬ID
+---è®¾ç½®ç‰©å“æ¡†é«˜äº®å›¾ç‰‡
+---@param _HandleID int @åˆ¶å®šç‰©å“æ¡†çš„å¥æŸ„
+---@param _ImgId int @ç‰©å“æ¡†é«˜äº®æ—¶æ˜¾ç¤ºçš„å›¾ç‰‡ID
 function GUI:ItemCtrlSetHighlightImageID(_HandleID, _ImgId)
 end
 
----ÉèÖÃ¹ö¶¯Ìõ²½³¤
----@param _HandleID int @ ¾ä±ú
----@param _Step int @Ö¸¶¨²½³¤ÊıÖµ£¬Ä¬ÈÏµÄ·¶Î§Îª`0~100`
+---è®¾ç½®æ»šåŠ¨æ¡æ­¥é•¿
+---@param _HandleID int @ å¥æŸ„
+---@param _Step int @æŒ‡å®šæ­¥é•¿æ•°å€¼ï¼Œé»˜è®¤çš„èŒƒå›´ä¸º`0~100`
 function GUI:ScrollBarSetSetp(_HandleID, _Step)
 end
 
----¶à¹¦ÄÜÎÄ±¾¿òÌí¼ÓÎÄ±¾
----1. ´Ëº¯ÊıÌí¼ÓÎÄ±¾ÄÚÈİÖÁÖ¸¶¨µÄ¶à¹¦ÄÜ±à¼­¿ò¿Ø¼ş¡£ ¶à¹¦ÄÜ±à¼­¿òÔÊĞí¶à´Îµ÷ÓÃ´Ëº¯ÊıÌí¼Ó¶à¸öÎÄ±¾ÌõÄ¿£¬ÎÄ±¾»á°´Ë³ĞòÒÀ´Î×·¼Ó£¨¶ø²»ÊÇ¸²¸ÇÏÈÇ°µÄÎÄ±¾ÄÚÈİ£©¡£ ¸ù¾İËù´´½¨¶à¹¦ÄÜ±à¼­¿òµÄ¿í¶È£¬ËùÓĞµÄÎÄ±¾»á±»×Ô¶¯²ğ·ÖÎª¶àĞĞÏÔÊ¾¡£
----2. ½¨ÒéÔÚµ÷ÓÃĞŞ¸Ä×ÖÌå¼°×ÖÌå´óĞ¡µÄ½Ó¿Ú£¨ÀıÈç£º`GUI:RichEditSetCurFont`£©Ö®ºó£¬ÔÙµ÷ÓÃ´Ë½Ó¿ÚÀ´Ìí¼ÓÎÄ±¾¡£
+---å¤šåŠŸèƒ½æ–‡æœ¬æ¡†æ·»åŠ æ–‡æœ¬
+---1. æ­¤å‡½æ•°æ·»åŠ æ–‡æœ¬å†…å®¹è‡³æŒ‡å®šçš„å¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶ã€‚ å¤šåŠŸèƒ½ç¼–è¾‘æ¡†å…è®¸å¤šæ¬¡è°ƒç”¨æ­¤å‡½æ•°æ·»åŠ å¤šä¸ªæ–‡æœ¬æ¡ç›®ï¼Œæ–‡æœ¬ä¼šæŒ‰é¡ºåºä¾æ¬¡è¿½åŠ ï¼ˆè€Œä¸æ˜¯è¦†ç›–å…ˆå‰çš„æ–‡æœ¬å†…å®¹ï¼‰ã€‚ æ ¹æ®æ‰€åˆ›å»ºå¤šåŠŸèƒ½ç¼–è¾‘æ¡†çš„å®½åº¦ï¼Œæ‰€æœ‰çš„æ–‡æœ¬ä¼šè¢«è‡ªåŠ¨æ‹†åˆ†ä¸ºå¤šè¡Œæ˜¾ç¤ºã€‚
+---2. å»ºè®®åœ¨è°ƒç”¨ä¿®æ”¹å­—ä½“åŠå­—ä½“å¤§å°çš„æ¥å£ï¼ˆä¾‹å¦‚ï¼š`GUI:RichEditSetCurFont`ï¼‰ä¹‹åï¼Œå†è°ƒç”¨æ­¤æ¥å£æ¥æ·»åŠ æ–‡æœ¬ã€‚
 ---@param _HandleID int
----@param _Info string @ĞÂÔöµÄÎÄ±¾ÄÚÈİ
+---@param _Info string @æ–°å¢çš„æ–‡æœ¬å†…å®¹
 function GUI:RichEditAppendString(_HandleID, _Info)
 end
 
----ÉèÖÃ¶à¹¦ÄÜ±à¼­¿òµÄ×ÖÌå
+---è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†çš„å­—ä½“
 ---@param _HandleID int
 ---@param _FontName string
 function GUI:RichEditSetCurFont(_HandleID, _FontName)
 end
 
----ÉèÖÃ¶à¹¦ÄÜ±à¼­¿òÄ¬ÈÏµÄÎÄ±¾ÑÕÉ«
+---è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†é»˜è®¤çš„æ–‡æœ¬é¢œè‰²
 ---@param _HandleID int
 ---@param _Color uint
 function GUI:RichEditSetDefaultTextColor(_HandleID, _Color)
 end
 
---- ÉèÖÃ´°Ìå¿Ø¼şµÄ±ê¼Ç
+--- è®¾ç½®çª—ä½“æ§ä»¶çš„æ ‡è®°
 ---@param _HandleID int
 ---@param _Flag uint
 function GUI:WndSetFlagsM(_HandleID, _Flag)
 end
 
----ÉèÖÃÍ¼Æ¬Æ½ÆÌÏÔÊ¾
+---è®¾ç½®å›¾ç‰‡å¹³é“ºæ˜¾ç¤º
 ---@param _HandleID any
 function GUI:ImageSetDrawFlat(_HandleID)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şµÄÎÄ×ÖÆ«ÒÆ
----@param _HandleID int @Ö¸¶¨´°¿Ú¿Ø¼şµÄ¾ä±ú
----@param _X int @ºá×ø±êÆ«ÒÆÁ¿
----@param _Y int @×İ×ø±êÆ«ÒÆÁ¿
+---è®¾ç½®çª—ä½“æ§ä»¶çš„æ–‡å­—åç§»
+---@param _HandleID int @æŒ‡å®šçª—å£æ§ä»¶çš„å¥æŸ„
+---@param _X int @æ¨ªåæ ‡åç§»é‡
+---@param _Y int @çºµåæ ‡åç§»é‡
 function GUI:WndSetTextOffset(_HandleID, _X, _Y)
 end
 
----´´½¨ÁĞ±í¿ò¿Ø¼ş
----@param _ParentHandleID int @´´½¨ÁĞ±í¿ò¿Ø¼ş
----@param _pWndID char @ĞÂ½¨ÁĞ±í¿òµÄÃû³Æ
----@param _PosX int @ĞÂ½¨ÁĞ±í¿òÎ»ÖÃµÄºá×ø±ê¡£
----@param _PosY int @ĞÂ½¨ÁĞ±í¿òÎ»ÖÃµÄ×İ×ø±ê¡£
----@param _SizeX int @ĞÂ½¨ÁĞ±í¿òµÄ¿í¶È¡£
----@param _SizeY int @ĞÂ½¨ÁĞ±í¿òµÄ¸ß¶È¡£
----@return int @Èô´´½¨³É¹¦£¬Ôò·µ»ØĞÂ½¨ÁĞ±í¿òµÄ¾ä±ú
+---åˆ›å»ºåˆ—è¡¨æ¡†æ§ä»¶
+---@param _ParentHandleID int @åˆ›å»ºåˆ—è¡¨æ¡†æ§ä»¶
+---@param _pWndID char @æ–°å»ºåˆ—è¡¨æ¡†çš„åç§°
+---@param _PosX int @æ–°å»ºåˆ—è¡¨æ¡†ä½ç½®çš„æ¨ªåæ ‡ã€‚
+---@param _PosY int @æ–°å»ºåˆ—è¡¨æ¡†ä½ç½®çš„çºµåæ ‡ã€‚
+---@param _SizeX int @æ–°å»ºåˆ—è¡¨æ¡†çš„å®½åº¦ã€‚
+---@param _SizeY int @æ–°å»ºåˆ—è¡¨æ¡†çš„é«˜åº¦ã€‚
+---@return int @è‹¥åˆ›å»ºæˆåŠŸï¼Œåˆ™è¿”å›æ–°å»ºåˆ—è¡¨æ¡†çš„å¥æŸ„
 function GUI:ListBoxCreate(_ParentHandleID, _pWndID, _PosX, _PosY, _SizeX, _SizeY)
 end
 
----´´½¨×éºÏ¿ò¿Ø¼ş
+---åˆ›å»ºç»„åˆæ¡†æ§ä»¶
 ---@param _ParentHandleID int
 ---@param _pWndItemID char
 ---@param _ImageID int
@@ -1015,20 +1016,20 @@ end
 function GUI:ComboBoxCreate(_ParentHandleID, _pWndItemID, _ImageID, _PosX, _PosY, _SizeX, _SizeY, _Length)
 end
 
----ÉèÖÃ×éºÏ¿òÏÂÀ­±³¾°Í¼Æ¬
+---è®¾ç½®ç»„åˆæ¡†ä¸‹æ‹‰èƒŒæ™¯å›¾ç‰‡
 ---@param _Handle int
 ---@param _Info string
 ---@param _ImgId uint
 function ComboBoxSetListFillImage(_Handle, _Info, _ImgId)
 end
 
----ÉèÖÃ×éºÏ¿òÏÂÀ­±³¾°Í¼Æ¬
+---è®¾ç½®ç»„åˆæ¡†ä¸‹æ‹‰èƒŒæ™¯å›¾ç‰‡
 ---@param _HandleID int
 ---@param _ImgId uint
 function GUI:ComboBoxSetListFillImage(_HandleID, _ImgId)
 end
 
----ÉèÖÃ×éºÏ¿òÖĞ¹ö¶¯ÌõµÄÍ¼Æ¬
+---è®¾ç½®ç»„åˆæ¡†ä¸­æ»šåŠ¨æ¡çš„å›¾ç‰‡
 ---@param _HandleID int
 ---@param _Up uint
 ---@param _Mid uint
@@ -1037,15 +1038,15 @@ end
 function GUI:ComboBoxSetScrollBarImage(_HandleID, _Up, _Mid, _Down, _Back)
 end
 
----ÉèÖÃ¸´Ñ¡¿òÍ¼Æ¬µÄËõ·Å±ÈÀı
----@param handle long @¸´Ñ¡¿ò¾ä±ú
----@param scale_x int @XÖá·½ÏòËõ·Å
----@param scale_y int @YÖá·½ÏòËõ·Å
+---è®¾ç½®å¤é€‰æ¡†å›¾ç‰‡çš„ç¼©æ”¾æ¯”ä¾‹
+---@param handle long @å¤é€‰æ¡†å¥æŸ„
+---@param scale_x int @Xè½´æ–¹å‘ç¼©æ”¾
+---@param scale_y int @Yè½´æ–¹å‘ç¼©æ”¾
 function GUI:CheckBoxSetImageScale(handle, scale_x, scale_y)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şµÄMagicUIÌØĞ§²ÎÊı
----ÊıÖµ½ÔÎª±¶ÂÊ¡Á10000
+---è®¾ç½®çª—ä½“æ§ä»¶çš„MagicUIç‰¹æ•ˆå‚æ•°
+---æ•°å€¼çš†ä¸ºå€ç‡Ã—10000
 ---@param _HandleID int
 ---@param _InitScale int
 ---@param _FinalScale int
@@ -1057,485 +1058,485 @@ function GUI:WndSetMagicUIWithParam(_HandleID, _InitScale, _FinalScale, _ScaleIn
                                     _OpacityInterval)
 end
 
----ÉèÖÃÎïÆ·¿òÌØĞ§Í¼Æ¬
+---è®¾ç½®ç‰©å“æ¡†ç‰¹æ•ˆå›¾ç‰‡
 ---@param _HandleID int
----@param _ImgId int @ÎïÆ·¿òÌØĞ§Í¼Æ¬µÄID
----@param _Scale float @ÌØĞ§Í¼Æ¬µÄËõ·Å±ÈÀı 1Îª1±¶£¬2ÎªÁ½±¶
+---@param _ImgId int @ç‰©å“æ¡†ç‰¹æ•ˆå›¾ç‰‡çš„ID
+---@param _Scale float @ç‰¹æ•ˆå›¾ç‰‡çš„ç¼©æ”¾æ¯”ä¾‹ 1ä¸º1å€ï¼Œ2ä¸ºä¸¤å€
 function GUI:ItemCtrlSetEffectImageID(_HandleID, _ImgId, _Scale)
 end
 
----ÉèÖÃÎïÆ·¿òµÄÇ°¾°Í¼Æ¬
+---è®¾ç½®ç‰©å“æ¡†çš„å‰æ™¯å›¾ç‰‡
 ---@param _HandleID int
 ---@param _ImgId int
 function GUI:ItemCtrlSetFrontImageID(_HandleID, _ImgId)
 end
 
----ÉèÖÃÎïÆ·¿òÇ°¾°Í¼Æ¬µÄÆ«ÒÆ
+---è®¾ç½®ç‰©å“æ¡†å‰æ™¯å›¾ç‰‡çš„åç§»
 ---@param _HandleID int
----@param _XOff int @Í¼Æ¬µÄË®Æ½Æ«ÒÆÁ¿
----@param _YOff int @Í¼Æ¬µÄ´¹Ö±Æ«ÒÆÁ¿
+---@param _XOff int @å›¾ç‰‡çš„æ°´å¹³åç§»é‡
+---@param _YOff int @å›¾ç‰‡çš„å‚ç›´åç§»é‡
 function GUI:ItemCtrlSetFrontImageOffset(_HandleID, _XOff, _YOff)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞµÄÎïÆ·ÊÇ·ñÏÔÊ¾Îª´óÍ¼±ê
+---è®¾ç½®ç‰©å“æ¡†ä¸­çš„ç‰©å“æ˜¯å¦æ˜¾ç¤ºä¸ºå¤§å›¾æ ‡
 ---@param _Handle int
----@param _Info string @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄÃèÊö
----@param _IsBigIcon bool @ÎïÆ·ÊÇ·ñÎª´óÍ¼±ê£º`true`£ºÊÇ£¬`false`£º²»ÊÇ
+---@param _Info string @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„æè¿°
+---@param _IsBigIcon bool @ç‰©å“æ˜¯å¦ä¸ºå¤§å›¾æ ‡ï¼š`true`ï¼šæ˜¯ï¼Œ`false`ï¼šä¸æ˜¯
 function RDItemCtrlSetBigIcon(_Handle, _Info, _IsBigIcon)
 end
 
----»ñÈ¡ÎïÆ·¿òµÄÍ¼±êÀàĞÍ
+---è·å–ç‰©å“æ¡†çš„å›¾æ ‡ç±»å‹
 ---@param _HandleID int
 function GUI:ItemCtrlGetIconImageType(_HandleID)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞµÄÎïÆ·ÊÇ·ñÄÜ±»Ê°Æğ
+---è®¾ç½®ç‰©å“æ¡†ä¸­çš„ç‰©å“æ˜¯å¦èƒ½è¢«æ‹¾èµ·
 ---@param _Handle int
 ---@param flag bool
 function GUI:ItemCtrlSetMouseEnableSelect(_Handle, flag)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞµÀ¾ßµÄÑÕÉ«
----@param handle int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param color uint @ÒªÉèÖÃµÄÑÕÉ«
+---è®¾ç½®ç‰©å“æ¡†ä¸­é“å…·çš„é¢œè‰²
+---@param handle int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param color uint @è¦è®¾ç½®çš„é¢œè‰²
 function GUI:ItemCtrlSetColor(handle, color)
 end
 
----ÉèÖÃÎïÆ·¿òÊÇ·ñÏÔÊ¾Ëø¶¨Í¼±ê
----@param _HandleID int @ Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _ShowLockImage bool @ÊÇ·ñÏÔÊ¾Ëø¶¨Í¼±ê `true`£ºÏÔÊ¾,`false`£º²»ÏÔÊ¾
+---è®¾ç½®ç‰©å“æ¡†æ˜¯å¦æ˜¾ç¤ºé”å®šå›¾æ ‡
+---@param _HandleID int @ æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _ShowLockImage bool @æ˜¯å¦æ˜¾ç¤ºé”å®šå›¾æ ‡ `true`ï¼šæ˜¾ç¤º,`false`ï¼šä¸æ˜¾ç¤º
 function GUI:ItemCtrlSetShowLockImage(_HandleID, _ShowLockImage)
 end
 
----ÉèÖÃÎïÆ·¿òÎ´ÉúĞ§×´Ì¬µÄËøÍ¼±ê
+---è®¾ç½®ç‰©å“æ¡†æœªç”Ÿæ•ˆçŠ¶æ€çš„é”å›¾æ ‡
 ---@param _HandleID int
----@param _LockImgID uint @ËøÍ¼±êµÄÍ¼Æ¬×ÊÔ´ID£¬ÈôÉèÖÃÎª`0`Ôò²»ÏÔÊ¾Í¼±ê
+---@param _LockImgID uint @é”å›¾æ ‡çš„å›¾ç‰‡èµ„æºIDï¼Œè‹¥è®¾ç½®ä¸º`0`åˆ™ä¸æ˜¾ç¤ºå›¾æ ‡
 ---@param _OffsetX int
 ---@param _OffsetY int
----> ÈôÆ«ÒÆ¾ùÉèÖÃÎª0£¬ÔòÍ¼±êÏÔÊ¾Î»ÖÃÄ¬ÈÏÎª×óÉÏ½Ç
+---> è‹¥åç§»å‡è®¾ç½®ä¸º0ï¼Œåˆ™å›¾æ ‡æ˜¾ç¤ºä½ç½®é»˜è®¤ä¸ºå·¦ä¸Šè§’
 function GUI:ItemCtrlSetInvalidLockData(_HandleID, _LockImgID, _OffsetX, _OffsetY)
 end
 
----ÉèÖÃÎïÆ·¿òÊÇ·ñÏÔÊ¾Æ·ÖÊ±È½Ï¼ıÍ·
----@param _HandleID int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _ShowQualityArrow bool @ `true`£ºÏÔÊ¾,`false`£º²»ÏÔÊ¾
+---è®¾ç½®ç‰©å“æ¡†æ˜¯å¦æ˜¾ç¤ºå“è´¨æ¯”è¾ƒç®­å¤´
+---@param _HandleID int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _ShowQualityArrow bool @ `true`ï¼šæ˜¾ç¤º,`false`ï¼šä¸æ˜¾ç¤º
 function GUI:ItemCtrlSetShowQualityArrow(_HandleID, _ShowQualityArrow)
 end
 
----ÉèÖÃÎïÆ·¿òÖĞÎïÆ·ÊıÁ¿Êı×ÖµÄ¸ñÊ½
----@param _HandleID int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _FontName string @×ÖÌåÃû³Æ £¨¼´FontSetting.xmlÎÄ¼şÖĞµÄFontUseName×Ö¶ÎµÄÖµ£©
----@param _OffsetX int @ Ë®Æ½Æ«ÒÆÁ¿
----@param _OffsetY int @ ´¹Ö±Æ«ÒÆÁ¿
+---è®¾ç½®ç‰©å“æ¡†ä¸­ç‰©å“æ•°é‡æ•°å­—çš„æ ¼å¼
+---@param _HandleID int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _FontName string @å­—ä½“åç§° ï¼ˆå³FontSetting.xmlæ–‡ä»¶ä¸­çš„FontUseNameå­—æ®µçš„å€¼ï¼‰
+---@param _OffsetX int @ æ°´å¹³åç§»é‡
+---@param _OffsetY int @ å‚ç›´åç§»é‡
 function GUI:ItemCtrlSetNumberConfig(_HandleID, _FontName, _OffsetX, _OffsetY)
 end
 
----ÉèÖÃÎïÆ·¿òÏÔÊ¾°ó¶¨ÎïÆ·µÄËøµÄÍ¼±ê
----@param _ImageID uint @ËøµÄÍ¼Æ¬×ÊÔ´ID£¬ÈôÎª0Ôò²»ÏÔÊ¾
----@param _OffsetX int @ËøXÖáÆ«ÒÆ
----@param _OffsetY int @ËøÍ¼±êYÖáÆ«ÒÆ
----@param _ScaleX int @ËøÍ¼±êÍ¼Æ¬¿í¶ÈËõ·Å±ÈÀı
----@param _ScaleY int @ËøÍ¼±êÍ¼Æ¬¸ß¶ÈËõ·Å±ÈÀı
----Ëõ·Å±ÈÀıÎª£º ½«ÒªÉèÖÃµÄ±¶Êı³ËÒÔ10000¼´ÎªÉèÖÃÖµ
+---è®¾ç½®ç‰©å“æ¡†æ˜¾ç¤ºç»‘å®šç‰©å“çš„é”çš„å›¾æ ‡
+---@param _ImageID uint @é”çš„å›¾ç‰‡èµ„æºIDï¼Œè‹¥ä¸º0åˆ™ä¸æ˜¾ç¤º
+---@param _OffsetX int @é”Xè½´åç§»
+---@param _OffsetY int @é”å›¾æ ‡Yè½´åç§»
+---@param _ScaleX int @é”å›¾æ ‡å›¾ç‰‡å®½åº¦ç¼©æ”¾æ¯”ä¾‹
+---@param _ScaleY int @é”å›¾æ ‡å›¾ç‰‡é«˜åº¦ç¼©æ”¾æ¯”ä¾‹
+---ç¼©æ”¾æ¯”ä¾‹ä¸ºï¼š å°†è¦è®¾ç½®çš„å€æ•°ä¹˜ä»¥10000å³ä¸ºè®¾ç½®å€¼
 function GUI:ItemCtrlSetLockImage(_ImageID, _OffsetX, _OffsetY, _ScaleX, _ScaleY)
 end
 
----ÉèÖÃÎïÆ·¿ò±³¾°Í¼Æ¬ÊÇ·ñ×ÔÊÊÓ¦ÏÔÊ¾
+---è®¾ç½®ç‰©å“æ¡†èƒŒæ™¯å›¾ç‰‡æ˜¯å¦è‡ªé€‚åº”æ˜¾ç¤º
 ---@param _HandleID int
 ---@param _IsAdapt bool
 function GUI:ItemCtrlSetBackImageIsAdapt(_HandleID, _IsAdapt)
 end
 
----»ñÈ¡ÎïÆ·¿òÊÇ·ñ¿ÉÊ¹ÓÃÓÒ¼ü
----@param _HandleID int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@return bool @trueÓÒ¼üµã»÷ÎïÆ·¿òÊ¹ÓÃÎïÆ· falseÓÒ¼üµã»÷ÎïÆ·¿òÎŞÈÎºÎ×÷ÓÃ
----¼´Ê¹»ñÈ¡Îªtrue£¬ÊÖÓÎÖĞÓÒ¼üµã»÷ÎïÆ·¿òÊ¹ÓÃÎïÆ·µÄ¹¦ÄÜÒÑ²»ÔÙÓĞĞ§¡£
+---è·å–ç‰©å“æ¡†æ˜¯å¦å¯ä½¿ç”¨å³é”®
+---@param _HandleID int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@return bool @trueå³é”®ç‚¹å‡»ç‰©å“æ¡†ä½¿ç”¨ç‰©å“ falseå³é”®ç‚¹å‡»ç‰©å“æ¡†æ— ä»»ä½•ä½œç”¨
+---å³ä½¿è·å–ä¸ºtrueï¼Œæ‰‹æ¸¸ä¸­å³é”®ç‚¹å‡»ç‰©å“æ¡†ä½¿ç”¨ç‰©å“çš„åŠŸèƒ½å·²ä¸å†æœ‰æ•ˆã€‚
 function GUI:ItemCtrlGetRBtnUse(_HandleID)
 end
 
----»ñÈ¡ÎïÆ·¿òÊÇ·ñÏÔÊ¾ÎïÆ·ÊıÁ¿
+---è·å–ç‰©å“æ¡†æ˜¯å¦æ˜¾ç¤ºç‰©å“æ•°é‡
 ---@param _HandleID int
----@return bool@`true`ÏÔÊ¾ÎïÆ·ÊıÁ¿ `false`²»ÏÔÊ¾ÎïÆ·ÊıÁ¿
+---@return bool@`true`æ˜¾ç¤ºç‰©å“æ•°é‡ `false`ä¸æ˜¾ç¤ºç‰©å“æ•°é‡
 function GUI:ItemCtrlIsShowItemCount(_HandleID)
 end
 
---- »ñÈ¡ÎïÆ·¿ò±³¾°Í¼Æ¬
+--- è·å–ç‰©å“æ¡†èƒŒæ™¯å›¾ç‰‡
 ---@param _HandleID int
----@return int @ÎïÆ·¿ò±³¾°Í¼Æ¬ID
+---@return int @ç‰©å“æ¡†èƒŒæ™¯å›¾ç‰‡ID
 function GUI:ItemCtrlGetBackImageID(_HandleID)
 end
 
----»ñÈ¡ÎïÆ·¿òÖĞÎïÆ·´óÍ¼±êµÄÆ«ÒÆ
+---è·å–ç‰©å“æ¡†ä¸­ç‰©å“å¤§å›¾æ ‡çš„åç§»
 ---@param _HandleID int
 ---@return bool
----´Ëº¯Êı·µ»Ø²Ù×÷³É¹¦»òÊ§°Ü¡£Èç²Ù×÷³É¹¦£¬Ôò»ñÈ¡µÄÆ«ÒÆÁ¿´æ´¢ÔÚ`LuaRet`ÖĞ¡£
+---æ­¤å‡½æ•°è¿”å›æ“ä½œæˆåŠŸæˆ–å¤±è´¥ã€‚å¦‚æ“ä½œæˆåŠŸï¼Œåˆ™è·å–çš„åç§»é‡å­˜å‚¨åœ¨`LuaRet`ä¸­ã€‚
 ---``` lua
---- LuaRet[1] --Í¼Æ¬µÄË®Æ½Æ«ÒÆÁ¿£»
---- LuaRet[2] --Í¼Æ¬µÄ´¹Ö±Æ«ÒÆÁ¿¡£
+--- LuaRet[1] --å›¾ç‰‡çš„æ°´å¹³åç§»é‡ï¼›
+--- LuaRet[2] --å›¾ç‰‡çš„å‚ç›´åç§»é‡ã€‚
 ---```
 function GUI:ItemCtrlGetBigIconOffset(_HandleID)
 end
 
----»ñÈ¡ÎïÆ·¿òÄ¬ÈÏÍ¼Æ¬
+---è·å–ç‰©å“æ¡†é»˜è®¤å›¾ç‰‡
 ---@param _HandleID int
----@return int @ÎïÆ·¿òÄ¬ÈÏÍ¼Æ¬ID
+---@return int @ç‰©å“æ¡†é»˜è®¤å›¾ç‰‡ID
 function GUI:ItemCtrlGetDefaultImage(_HandleID)
 end
 
----»ñÈ¡ÎïÆ·¿òÇ°¾°Í¼Æ¬
+---è·å–ç‰©å“æ¡†å‰æ™¯å›¾ç‰‡
 ---@param _HandleID int
----@return int @ÎïÆ·¿òÇ°¾°Í¼Æ¬ID
+---@return int @ç‰©å“æ¡†å‰æ™¯å›¾ç‰‡ID
 function GUI:ItemCtrlGetFrontImageID(_HandleID)
 end
 
---- »ñÈ¡ÎïÆ·¿òÑ¡ÖĞÍ¼Æ¬  £¨ÎïÆ·¿ò¸ßÁÁÍ¼Æ¬£©
+--- è·å–ç‰©å“æ¡†é€‰ä¸­å›¾ç‰‡  ï¼ˆç‰©å“æ¡†é«˜äº®å›¾ç‰‡ï¼‰
 ---@param _HandleID int
----@return int @ÎïÆ·¿òÑ¡ÖĞÍ¼Æ¬ID
+---@return int @ç‰©å“æ¡†é€‰ä¸­å›¾ç‰‡ID
 function GUI:ItemCtrlGetHighlightImageID(_HandleID)
 end
 
----»ñÈ¡ÎïÆ·¿òÖĞÎïÆ·µÄÍ¼±ê³ß´ç´óĞ¡
+---è·å–ç‰©å“æ¡†ä¸­ç‰©å“çš„å›¾æ ‡å°ºå¯¸å¤§å°
 ---@param _GUIHandle int
---- ´Ëº¯ÊıÎŞ·µ»ØÖµ
---- »ñÈ¡µÄÍ¼±ê³ß´çĞÅÏ¢´æ´¢ÔÚÈ«¾Ö±äÁ¿LuaRetÖĞ¡£
+--- æ­¤å‡½æ•°æ— è¿”å›å€¼
+--- è·å–çš„å›¾æ ‡å°ºå¯¸ä¿¡æ¯å­˜å‚¨åœ¨å…¨å±€å˜é‡LuaRetä¸­ã€‚
 ---```lua
----LuaRet[1] -- Í¼±êµÄ¿í¶È£¨µ¥Î»ÎªÏñËØ£¨px£©£©
----LuaRet[2] -- Í¼±êµÄ¸ß¶È£¨µ¥Î»ÎªÏñËØ£¨px£©£©
+---LuaRet[1] -- å›¾æ ‡çš„å®½åº¦ï¼ˆå•ä½ä¸ºåƒç´ ï¼ˆpxï¼‰ï¼‰
+---LuaRet[2] -- å›¾æ ‡çš„é«˜åº¦ï¼ˆå•ä½ä¸ºåƒç´ ï¼ˆpxï¼‰ï¼‰
 ---```
---- ÈôÎ´Ê¹ÓÃ½Ó¿Ú`GUI:ItemCtrlSetIconSize`ÉèÖÃÎïÆ·Í¼±ê³ß´ç£¬ÔòÖ±½Ó·µ»Ø`-1`£¨ÎªÄ¬ÈÏÖµ£©£»
----Èô»ñÈ¡µÄÍ¼±ê¿í¶ÈºÍ¸ß¶È¾ùÎª`0`£¬Ôò´ú±í»ñÈ¡Ê§°Ü¡£
+--- è‹¥æœªä½¿ç”¨æ¥å£`GUI:ItemCtrlSetIconSize`è®¾ç½®ç‰©å“å›¾æ ‡å°ºå¯¸ï¼Œåˆ™ç›´æ¥è¿”å›`-1`ï¼ˆä¸ºé»˜è®¤å€¼ï¼‰ï¼›
+---è‹¥è·å–çš„å›¾æ ‡å®½åº¦å’Œé«˜åº¦å‡ä¸º`0`ï¼Œåˆ™ä»£è¡¨è·å–å¤±è´¥ã€‚
 function GUI:ItemCtrlGetIconSize(_GUIHandle)
 end
 
----ÉèÖÃÁĞ±í¿òµÄÁĞÊı
----@param _HandleID int @Ö¸¶¨ÁĞ±í¿ò¿Ø¼şµÄ¾ä±ú
----@param _ColNum int @Ö¸¶¨ÁĞÊı
+---è®¾ç½®åˆ—è¡¨æ¡†çš„åˆ—æ•°
+---@param _HandleID int @æŒ‡å®šåˆ—è¡¨æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _ColNum int @æŒ‡å®šåˆ—æ•°
 function GUI:ListBoxSetColumnNum(_HandleID, _ColNum)
 end
 
----ÉèÖÃÁĞ±í¿òÖĞÄ³ÁĞµÄÎ»ÖÃ
----@param _HandleID int @Ö¸¶¨ÁĞ±í¿ò¿Ø¼şµÄ¾ä±ú
----@param _ColumnIdx_ int @ Ö¸¶¨ÁĞºÅ£¬0±íÊ¾µÚÒ»ÁĞ
----@param _Pos int @Ö¸¶¨Î»ÖÃ
+---è®¾ç½®åˆ—è¡¨æ¡†ä¸­æŸåˆ—çš„ä½ç½®
+---@param _HandleID int @æŒ‡å®šåˆ—è¡¨æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _ColumnIdx_ int @ æŒ‡å®šåˆ—å·ï¼Œ0è¡¨ç¤ºç¬¬ä¸€åˆ—
+---@param _Pos int @æŒ‡å®šä½ç½®
 function GUI:ListBoxSetColumnPos(_HandleID, _ColumnIdx_, _Pos)
 end
 
---- ÉèÖÃÁĞ±í¿òÌõÄ¿µÄË®Æ½Æ«ÒÆÁ¿
----@param _HandleID int @Ö¸¶¨ÁĞ±í¿ò¿Ø¼şµÄ¾ä±ú
----@param _Offset int @ÌõÄ¿µÄË®Æ½Æ«ÒÆÁ¿-
+--- è®¾ç½®åˆ—è¡¨æ¡†æ¡ç›®çš„æ°´å¹³åç§»é‡
+---@param _HandleID int @æŒ‡å®šåˆ—è¡¨æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Offset int @æ¡ç›®çš„æ°´å¹³åç§»é‡-
 function GUI:ListBoxSetOffsetX(_HandleID, _Offset)
 end
 
----ÉèÖÃÁĞ±í¿òµÄÌõÄ¿ĞĞ¸ß
---- ´Ëº¯ÊıÉèÖÃÖ¸¶¨ÁĞ±í¿ò¿Ø¼şÖĞ¸÷¸öÌõÄ¿Ö®¼äµÄ´¹Ö±¼ä¸ô£¬¼´ĞĞ¼ä¾à¡£
----@param _HandleID int @Ö¸¶¨ÁĞ±í¿ò¿Ø¼şµÄ¾ä±ú
----@param _Offset int @ĞĞ¼ä¾à
---- Êµ¼ÊĞĞ¸ß¼´Îª×ÖÌå¸ß¶ÈÓëĞĞ¼ä¾àÖ®ºÍ¡£
+---è®¾ç½®åˆ—è¡¨æ¡†çš„æ¡ç›®è¡Œé«˜
+--- æ­¤å‡½æ•°è®¾ç½®æŒ‡å®šåˆ—è¡¨æ¡†æ§ä»¶ä¸­å„ä¸ªæ¡ç›®ä¹‹é—´çš„å‚ç›´é—´éš”ï¼Œå³è¡Œé—´è·ã€‚
+---@param _HandleID int @æŒ‡å®šåˆ—è¡¨æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Offset int @è¡Œé—´è·
+--- å®é™…è¡Œé«˜å³ä¸ºå­—ä½“é«˜åº¦ä¸è¡Œé—´è·ä¹‹å’Œã€‚
 function GUI:ListBoxSetOffsetY(_HandleID, _Offset)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şÊÇ·ñ¾ßÓĞMagicUIÌØĞ§
+---è®¾ç½®çª—ä½“æ§ä»¶æ˜¯å¦å…·æœ‰MagicUIç‰¹æ•ˆ
 ---@param _HandleID int
----@param _Type int @1£ºÓĞ£¬0£ºÎŞ
+---@param _Type int @1ï¼šæœ‰ï¼Œ0ï¼šæ— 
 function GUI:WndSetMagicUI(_HandleID, _Type)
 end
 
----´´½¨²Ëµ¥
----´´½¨Íê³ÉºóÄ¬ÈÏ²»ÏÔÊ¾£¬ĞèÒªµ÷ÓÃ`MenuShowPopupMenu`½Ó¿ÚÏÔÊ¾¡£
----@param _ParentID int @¸¸´°¿Ú¾ä±ú
----@param _WndId string @ĞÂ½¨²Ëµ¥¿Ø¼şµÄID
----@return int # ´´½¨³É¹¦Ôò·µ»ØĞÂ½¨²Ëµ¥¿Ø¼şµÄ¾ä±ú,´´½¨Ê§°ÜÔò·µ»Ø`0`
+---åˆ›å»ºèœå•
+---åˆ›å»ºå®Œæˆåé»˜è®¤ä¸æ˜¾ç¤ºï¼Œéœ€è¦è°ƒç”¨`MenuShowPopupMenu`æ¥å£æ˜¾ç¤ºã€‚
+---@param _ParentID int @çˆ¶çª—å£å¥æŸ„
+---@param _WndId string @æ–°å»ºèœå•æ§ä»¶çš„ID
+---@return int # åˆ›å»ºæˆåŠŸåˆ™è¿”å›æ–°å»ºèœå•æ§ä»¶çš„å¥æŸ„,åˆ›å»ºå¤±è´¥åˆ™è¿”å›`0`
 function GUI:MenuCreate(_ParentID, _WndId)
 end
 
----Ìí¼Ó²Ëµ¥ÌõÄ¿
----@param _ItemId int @Ìí¼ÓÌõÄ¿µÄID
----@param _TextInfo string @Ìí¼ÓµÄÌõÄ¿ÎÄ±¾
----@param _FlagImage uint @Ìí¼ÓÌõÄ¿Ç°ÃæµÄÍ¼Æ¬
----@param _ParentId int @Ìí¼ÓÌõÄ¿µÄ²Ëµ¥ÏîID µ±´Ë²ÎÊıÉèÖÃÎª`-1`Ê±£¬±íÊ¾´Ë²Ëµ¥Ã»ÓĞ¸¸²Ëµ¥Ïî
----@param _ItemImg uint @Ìí¼ÓÌõÄ¿µÄ±³¾°Í¼Æ¬
----@return bool @`true`:²Ëµ¥´æÔÚ£¬`false`:²Ëµ¥²»´æÔÚ
+---æ·»åŠ èœå•æ¡ç›®
+---@param _ItemId int @æ·»åŠ æ¡ç›®çš„ID
+---@param _TextInfo string @æ·»åŠ çš„æ¡ç›®æ–‡æœ¬
+---@param _FlagImage uint @æ·»åŠ æ¡ç›®å‰é¢çš„å›¾ç‰‡
+---@param _ParentId int @æ·»åŠ æ¡ç›®çš„èœå•é¡¹ID å½“æ­¤å‚æ•°è®¾ç½®ä¸º`-1`æ—¶ï¼Œè¡¨ç¤ºæ­¤èœå•æ²¡æœ‰çˆ¶èœå•é¡¹
+---@param _ItemImg uint @æ·»åŠ æ¡ç›®çš„èƒŒæ™¯å›¾ç‰‡
+---@return bool @`true`:èœå•å­˜åœ¨ï¼Œ`false`:èœå•ä¸å­˜åœ¨
 function GUI:MenuAddItem(_ItemId, _TextInfo, _FlagImage, _ParentId, _ItemImg)
 end
 
----Çå¿ÕÁĞ±í¿òËùÓĞÄÚÈİ
----@param _HandleID int @Ö¸¶¨ÁĞ±í¿ò¿Ø¼şµÄ¾ä±ú
+---æ¸…ç©ºåˆ—è¡¨æ¡†æ‰€æœ‰å†…å®¹
+---@param _HandleID int @æŒ‡å®šåˆ—è¡¨æ¡†æ§ä»¶çš„å¥æŸ„
 function GUI:ListBoxClear(_HandleID)
 end
 
----ÏòÁĞ±í¿òÖĞÌí¼Ó×Ô¶¨ÒåÑÕÉ«µÄÌõÄ¿
----@param _HandleID int @Ö¸¶¨ÁĞ±í¿ò¿Ø¼şµÄ¾ä±ú
----@param _Str string @ÎÄ±¾ÌõÄ¿µÄÄÚÈİ
----@param _Color uint @ ÎÄ±¾ÑÕÉ«
+---å‘åˆ—è¡¨æ¡†ä¸­æ·»åŠ è‡ªå®šä¹‰é¢œè‰²çš„æ¡ç›®
+---@param _HandleID int @æŒ‡å®šåˆ—è¡¨æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Str string @æ–‡æœ¬æ¡ç›®çš„å†…å®¹
+---@param _Color uint @ æ–‡æœ¬é¢œè‰²
 function GUI:ListBoxAddString(_HandleID, _Str, _Color)
 end
 
----»ñÈ¡ÁĞ±í¿òÑ¡ÖĞÌõÄ¿µÄĞĞºÅ
+---è·å–åˆ—è¡¨æ¡†é€‰ä¸­æ¡ç›®çš„è¡Œå·
 ---@param _HandleID int
----@return int @Ñ¡ÖĞÌõÄ¿µÄĞĞºÅ
+---@return int @é€‰ä¸­æ¡ç›®çš„è¡Œå·
 function GUI:ListBoxGetCurSelLine(_HandleID)
 end
 
----ÉèÖÃ²Ëµ¥Òş²Ø»òÏÔÊ¾
---- ²Ëµ¥¾ä±ú²ÎÊı¿ÉÍ¨¹ıÈ«¾Ö±äÁ¿TemporaryÀ´´«µİ¡£
----@param _UseMousePos bool @`true`:±íÊ¾ÔÚÊó±êÎ»ÖÃÏÔÊ¾²Ëµ¥,`false`±íÊ¾²»ÔÚÊó±êÎ»ÖÃÏÔÊ¾²Ëµ¥
----@return bool @ `true`²Ëµ¥´æÔÚ£¬`false`²Ëµ¥²»´æÔÚ
+---è®¾ç½®èœå•éšè—æˆ–æ˜¾ç¤º
+--- èœå•å¥æŸ„å‚æ•°å¯é€šè¿‡å…¨å±€å˜é‡Temporaryæ¥ä¼ é€’ã€‚
+---@param _UseMousePos bool @`true`:è¡¨ç¤ºåœ¨é¼ æ ‡ä½ç½®æ˜¾ç¤ºèœå•,`false`è¡¨ç¤ºä¸åœ¨é¼ æ ‡ä½ç½®æ˜¾ç¤ºèœå•
+---@return bool @ `true`èœå•å­˜åœ¨ï¼Œ`false`èœå•ä¸å­˜åœ¨
 function GUI:MenuShowPopupMenu(_UseMousePos)
 end
 
----»ñÈ¡ÁĞ±í¿òÖÆ¶¨ĞĞÊıºÍÁĞÊıµÄÌõÄ¿ÄÚÈİ
+---è·å–åˆ—è¡¨æ¡†åˆ¶å®šè¡Œæ•°å’Œåˆ—æ•°çš„æ¡ç›®å†…å®¹
 ---@param _HandleID int
----@param _LineIdx int @ÌõÄ¿ĞĞÊıµÄË÷Òı
----@param _ColIdx int @ÌõÄ¿ÁĞÊıµÄË÷Òı
----@return string  #Ñ¡ÖĞµÄÌõÄ¿ÄÚÈİ
+---@param _LineIdx int @æ¡ç›®è¡Œæ•°çš„ç´¢å¼•
+---@param _ColIdx int @æ¡ç›®åˆ—æ•°çš„ç´¢å¼•
+---@return string  #é€‰ä¸­çš„æ¡ç›®å†…å®¹
 function GUI:ListBoxGetString(_HandleID, _LineIdx, _ColIdx)
 end
 
----ÉèÖÃ±à¼­¿òÎÄ±¾ÄÚÈİÎªÖ¸¶¨µÄÊı×Ö
+---è®¾ç½®ç¼–è¾‘æ¡†æ–‡æœ¬å†…å®¹ä¸ºæŒ‡å®šçš„æ•°å­—
 ---@param _HandleID int
----@param _Data int @ÒªÉèÖÃµÄÊı×Ö
+---@param _Data int @è¦è®¾ç½®çš„æ•°å­—
 function GUI:EditSetInt(_HandleID, _Data)
 end
 
----ÉèÖÃ´°¿ÚÔÚÍÏ¶¯ÎïÆ·Ê±ÄÜ·ñ½ÓÊÜ´°¿ÚÊÂ¼ş
----@param _HandleID int @Ö¸¶¨´°¿Ú¿Ø¼şµÄ¾ä±ú
----@param _Flag bool @ true£ºÄÜ£¬false£º²»ÄÜ
+---è®¾ç½®çª—å£åœ¨æ‹–åŠ¨ç‰©å“æ—¶èƒ½å¦æ¥å—çª—å£äº‹ä»¶
+---@param _HandleID int @æŒ‡å®šçª—å£æ§ä»¶çš„å¥æŸ„
+---@param _Flag bool @ trueï¼šèƒ½ï¼Œfalseï¼šä¸èƒ½
 function GUI:WndSetCanDragItem(_HandleID, _Flag)
 end
 
----ÉèÖÃÎïÆ·¿òÊÇ·ñÖ§³ÖÍÏ¶¯ÎïÆ·²Ù×÷
----@param _HandleID int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _Flag bool  @ÊÇ·ñÖ§³ÖÍÏ¶¯ÎïÆ·
+---è®¾ç½®ç‰©å“æ¡†æ˜¯å¦æ”¯æŒæ‹–åŠ¨ç‰©å“æ“ä½œ
+---@param _HandleID int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Flag bool  @æ˜¯å¦æ”¯æŒæ‹–åŠ¨ç‰©å“
 function GUI:ItemCtrlSetCanDrag(_HandleID, _Flag)
 end
 
----ÉèÖÃÊÇ·ñÏÔÊ¾ÎïÆ·¿òÖĞ×°±¸µÄTIps±È½Ï
+---è®¾ç½®æ˜¯å¦æ˜¾ç¤ºç‰©å“æ¡†ä¸­è£…å¤‡çš„TIpsæ¯”è¾ƒ
 ---@param handle int
 ---@param enable bool
 function GUI:ItemCtrlEnableCompareTips(handle, enable)
 end
 
----ÉèÖÃ°´Å¥ÉÁË¸ÆµÂÊ
+---è®¾ç½®æŒ‰é’®é—ªçƒé¢‘ç‡
 ---@param handle long
 ---@param shine_gradient int
 function GUI:ButtonSetShineGradient(handle, shine_gradient)
 end
 
----É¾³ı´°Ìå¿Ø¼şÖĞÖ¸¶¨µÄ¶¨Ê±Æ÷
----@param _Handle int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Info string @ÖÆ¶¨´°Ìå¿Ø¼şµÄÃèÊö
----@param _ID int @ÒªÉ¾³ıµÄ¶¨Ê±Æ÷ID
----@return bool @OK£ºÖ´ĞĞ³É¹¦£¬false £»Ö´ĞĞÊ§°Ü
+---åˆ é™¤çª—ä½“æ§ä»¶ä¸­æŒ‡å®šçš„å®šæ—¶å™¨
+---@param _Handle int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Info string @åˆ¶å®šçª—ä½“æ§ä»¶çš„æè¿°
+---@param _ID int @è¦åˆ é™¤çš„å®šæ—¶å™¨ID
+---@return bool @OKï¼šæ‰§è¡ŒæˆåŠŸï¼Œfalse ï¼›æ‰§è¡Œå¤±è´¥
 function WndDelTimer(_Handle, _Info, _ID)
 end
 
----»ñÈ¡´°Ìå¿Ø¼şµÄÆÁÄ»×ø±ê
----@param _HandleID int @´°¿Ú×ø±ê
----@return bool @`true`£º»ñÈ¡³É¹¦£¬`fasle` »ñÈ¡Ê§°Ü
+---è·å–çª—ä½“æ§ä»¶çš„å±å¹•åæ ‡
+---@param _HandleID int @çª—å£åæ ‡
+---@return bool @`true`ï¼šè·å–æˆåŠŸï¼Œ`fasle` è·å–å¤±è´¥
 function GUI:WndGetScreenPos(_HandleID)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼şµÄµ­Èë»òµ­³öÏÂĞ§¹û
----@param _HandleID int @Ö¸¶¨Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@param _PosX int @µ­Èë»òµ­³ö½áÊøÊ±Í¼Æ¬¿Õ¼äµÄX×ø±ê
----@param _PosY int @µ­Èë»òµ­³ö½áÊøÊ±Í¼Æ¬¿Õ¼äµÄY×ø±ê
----@param _Count int @Ğ§¹û³ÖĞøÊ±¼ä£¬µ¥Î»ÎªºÁÃë£¨ms£©
----@param _FadeIn bool @Ñ¡Ôñµ­Èë»¹ÊÇµ­³ö
----@param _WaitCount int @Ğ§¹ûÆô¶¯Ç°µÄµÈ´ıÊ±¼ä£¬µ¥Î»ÎªºÁÃë£¨ms
----@param _State int @ Ğ§¹ûÀàĞÍ¡£ ÊäÈë·¶Î§Îª0-255£¬Êı×Ö½«±»×ª»»Îª¶ş½øÖÆ£¬¸ù¾İ¶ş½øÖÆÖµÀ´½øĞĞÅĞ¶Ï¡£ ´ÓÓÒÖÁ×ó£º µÚÒ»Î»Îª1ÓĞµ­Èë»òµ­³öµÄĞ§¹û µÚ¶şÎ»ÎŞÊµ¼ÊĞ§¹û£¬¿ÉºöÂÔ µÚÈıÎ»Îª1XÖá·½Ïò·Å´ó»òËõĞ¡¡£µ­ÈëÊ±Îª·Å´ó£¬µ­³öÊ±ÎªËõĞ¡¡£ µÚËÄÎ»Îª1YÖá·½Ïò·Å´ó»òËõĞ¡¡£µ­ÈëÊ±Îª·Å´ó£¬µ­³öÊ±ÎªËõĞ¡¡£
+---è®¾ç½®å›¾ç‰‡æ§ä»¶çš„æ·¡å…¥æˆ–æ·¡å‡ºä¸‹æ•ˆæœ
+---@param _HandleID int @æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@param _PosX int @æ·¡å…¥æˆ–æ·¡å‡ºç»“æŸæ—¶å›¾ç‰‡ç©ºé—´çš„Xåæ ‡
+---@param _PosY int @æ·¡å…¥æˆ–æ·¡å‡ºç»“æŸæ—¶å›¾ç‰‡ç©ºé—´çš„Yåæ ‡
+---@param _Count int @æ•ˆæœæŒç»­æ—¶é—´ï¼Œå•ä½ä¸ºæ¯«ç§’ï¼ˆmsï¼‰
+---@param _FadeIn bool @é€‰æ‹©æ·¡å…¥è¿˜æ˜¯æ·¡å‡º
+---@param _WaitCount int @æ•ˆæœå¯åŠ¨å‰çš„ç­‰å¾…æ—¶é—´ï¼Œå•ä½ä¸ºæ¯«ç§’ï¼ˆms
+---@param _State int @ æ•ˆæœç±»å‹ã€‚ è¾“å…¥èŒƒå›´ä¸º0-255ï¼Œæ•°å­—å°†è¢«è½¬æ¢ä¸ºäºŒè¿›åˆ¶ï¼Œæ ¹æ®äºŒè¿›åˆ¶å€¼æ¥è¿›è¡Œåˆ¤æ–­ã€‚ ä»å³è‡³å·¦ï¼š ç¬¬ä¸€ä½ä¸º1æœ‰æ·¡å…¥æˆ–æ·¡å‡ºçš„æ•ˆæœ ç¬¬äºŒä½æ— å®é™…æ•ˆæœï¼Œå¯å¿½ç•¥ ç¬¬ä¸‰ä½ä¸º1Xè½´æ–¹å‘æ”¾å¤§æˆ–ç¼©å°ã€‚æ·¡å…¥æ—¶ä¸ºæ”¾å¤§ï¼Œæ·¡å‡ºæ—¶ä¸ºç¼©å°ã€‚ ç¬¬å››ä½ä¸º1Yè½´æ–¹å‘æ”¾å¤§æˆ–ç¼©å°ã€‚æ·¡å…¥æ—¶ä¸ºæ”¾å¤§ï¼Œæ·¡å‡ºæ—¶ä¸ºç¼©å°ã€‚
 function GUI:ImageAddTracePoint(_HandleID, _PosX, _PosY, _Count, _FadeIn, _WaitCount, _State)
 end
 
----ÉèÖÃÍ¼Æ¬¿Õ¼äµÄ¶¯»­²¥·Å
----@param _HandleID int @Ö¸¶¨Í¼Æ¬¿Õ¼äµÄ¾ä±ú
----@param _Speed int @ ¶¯»­Ã¿Ö¡µÄÊ±¼ä¼ä¸ô£¬µ¥Î»ÎªºÁÃë
----@param _AnimType int @¶¯»­ÀàĞÍ
----1Ñ­»·²¥·Å¶¯»­
----2¶¯»­²¥·ÅÍê±Ï£¬Í£ÁôÔÚµÚÒ»Ö¡
----3¶¯»­²¥·ÅÍê±Ï£¬Í£ÁôÔÚ×îºóÒ»Ö¡
----4ÈçÔÚº¯Êı`ImageSetAnimate`ÖĞ¶¨ÒåÁË¶¯»­Ñ­»·´ÎÊı£¬Ôò²¥·ÅÖ¸¶¨´ÎÊıµÄ¶¯»­¡£²¥·ÅÍê±Ïºó£¬°´`_AnimCallBackFunc`²ÎÊıÖĞ¶¨ÒåµÄ¶¯×÷Ö´ĞĞ¡£
+---è®¾ç½®å›¾ç‰‡ç©ºé—´çš„åŠ¨ç”»æ’­æ”¾
+---@param _HandleID int @æŒ‡å®šå›¾ç‰‡ç©ºé—´çš„å¥æŸ„
+---@param _Speed int @ åŠ¨ç”»æ¯å¸§çš„æ—¶é—´é—´éš”ï¼Œå•ä½ä¸ºæ¯«ç§’
+---@param _AnimType int @åŠ¨ç”»ç±»å‹
+---1å¾ªç¯æ’­æ”¾åŠ¨ç”»
+---2åŠ¨ç”»æ’­æ”¾å®Œæ¯•ï¼Œåœç•™åœ¨ç¬¬ä¸€å¸§
+---3åŠ¨ç”»æ’­æ”¾å®Œæ¯•ï¼Œåœç•™åœ¨æœ€åä¸€å¸§
+---4å¦‚åœ¨å‡½æ•°`ImageSetAnimate`ä¸­å®šä¹‰äº†åŠ¨ç”»å¾ªç¯æ¬¡æ•°ï¼Œåˆ™æ’­æ”¾æŒ‡å®šæ¬¡æ•°çš„åŠ¨ç”»ã€‚æ’­æ”¾å®Œæ¯•åï¼ŒæŒ‰`_AnimCallBackFunc`å‚æ•°ä¸­å®šä¹‰çš„åŠ¨ä½œæ‰§è¡Œã€‚
 function GUI:ImageSetImageAnim(_HandleID, _Speed, _AnimType)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼şµÄÃªµãÎ»ÖÃ
----@param _HandleID int @Ö¸¶¨Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@param _AnchorEnable int @ÊÇ·ñ¸ü¸ÄÍ¼Æ¬µÄÃªµã×ø±ê £¬0 ²»¸ü¸Ä 1 ¸ü¸Ä
----@param _AnchorPosX int @int ¶¨ÒåÃªµãºá×ø±êµÄÎ»ÖÃ
----@param _AnchorPosY int @int ¶¨ÒåÃªµã×İ×ø±êµÄÎ»ÖÃ
+---è®¾ç½®å›¾ç‰‡æ§ä»¶çš„é”šç‚¹ä½ç½®
+---@param _HandleID int @æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@param _AnchorEnable int @æ˜¯å¦æ›´æ”¹å›¾ç‰‡çš„é”šç‚¹åæ ‡ ï¼Œ0 ä¸æ›´æ”¹ 1 æ›´æ”¹
+---@param _AnchorPosX int @int å®šä¹‰é”šç‚¹æ¨ªåæ ‡çš„ä½ç½®
+---@param _AnchorPosY int @int å®šä¹‰é”šç‚¹çºµåæ ‡çš„ä½ç½®
 function GUI:ImageSetCenter(_HandleID, _AnchorEnable, _AnchorPosX, _AnchorPosY)
 end
 
----ÉèÖÃÍ¼Æ¬Ëõ·ÅºÍĞı×ªµÄÏÈºóË³Ğò
----@param _GUIHandle int @ ¾ä±ú
----@param _flag bool @ `true`£¬ÏÈËõ·ÅºóĞı×ª£»`false`£¬ÏÈĞı×ªºóËõ·Å
+---è®¾ç½®å›¾ç‰‡ç¼©æ”¾å’Œæ—‹è½¬çš„å…ˆåé¡ºåº
+---@param _GUIHandle int @ å¥æŸ„
+---@param _flag bool @ `true`ï¼Œå…ˆç¼©æ”¾åæ—‹è½¬ï¼›`false`ï¼Œå…ˆæ—‹è½¬åç¼©æ”¾
 function GUI:ImageSetTransfromFirstScale(_GUIHandle, _flag)
 end
 
----Ìí¼Ó´°¿ÚÌØĞ§
----@param _Handle int @Ö§³Å¿é´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Info string @ Ö¸¶¨´°Ìå¿Ø¼şµÄÃèÊö
----@param _ImageId int @ÌØĞ§µÄÍ¼Æ¬×ÊÔ´ID
----@param _X int @ÌØĞ§Ïà¶Ô¸¸¿Ø¼şÔÚË®Æ½·½ÏòÉÏµÄÆ«ÒÆ
----@param _Y int @ ÌØĞ§Ïà¶Ô¸¸¿Ø¼şÔÚ´¹Ö±·½ÏòÉÏµÄÆ«ÒÆ
----@param _Elapse int@ÌØĞ§²¥·ÅÊ±¼ä¼ä¸ô £»µ¥Î»ÎªºÁÃë£¬Ä¬ÈÏÖµÎª`100`
----@param count int @ Ö¸¶¨ÌØĞ§²¥·Å´ÎÊı 0 Ä¬ÈÏÖµ£¨Ò»Ö±Ñ­»·²¥·ÅÌØĞ§£©
+---æ·»åŠ çª—å£ç‰¹æ•ˆ
+---@param _Handle int @æ”¯æ’‘å—çª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Info string @ æŒ‡å®šçª—ä½“æ§ä»¶çš„æè¿°
+---@param _ImageId int @ç‰¹æ•ˆçš„å›¾ç‰‡èµ„æºID
+---@param _X int @ç‰¹æ•ˆç›¸å¯¹çˆ¶æ§ä»¶åœ¨æ°´å¹³æ–¹å‘ä¸Šçš„åç§»
+---@param _Y int @ ç‰¹æ•ˆç›¸å¯¹çˆ¶æ§ä»¶åœ¨å‚ç›´æ–¹å‘ä¸Šçš„åç§»
+---@param _Elapse int@ç‰¹æ•ˆæ’­æ”¾æ—¶é—´é—´éš” ï¼›å•ä½ä¸ºæ¯«ç§’ï¼Œé»˜è®¤å€¼ä¸º`100`
+---@param count int @ æŒ‡å®šç‰¹æ•ˆæ’­æ”¾æ¬¡æ•° 0 é»˜è®¤å€¼ï¼ˆä¸€ç›´å¾ªç¯æ’­æ”¾ç‰¹æ•ˆï¼‰
 function WndAddEffect(_Handle, _Info, _ImageId, _X, _Y, _Elapse, count)
 end
 
----ÉèÖÃÎïÆ·¿òÌØĞ§Í¼Æ¬
----@param _Handle int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _Info string @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄÃèÊö
----@param _ImgId int @ÎïÆ·¿òÌØĞ§Í¼Æ¬µÄID
----@param _Scale float @ÌØĞ§Í¼Æ¬µÄËõ·Å±ÈÀı
+---è®¾ç½®ç‰©å“æ¡†ç‰¹æ•ˆå›¾ç‰‡
+---@param _Handle int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Info string @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„æè¿°
+---@param _ImgId int @ç‰©å“æ¡†ç‰¹æ•ˆå›¾ç‰‡çš„ID
+---@param _Scale float @ç‰¹æ•ˆå›¾ç‰‡çš„ç¼©æ”¾æ¯”ä¾‹
 function RDItemCtrlSetEffectImageID(_Handle, _Info, _ImgId, _Scale)
 end
 
----ÉèÖÃÎïÆ·¿òÊÇ·ñÏÔÊ¾Æ·ÖÊ±³¾°¿ò
----@param handle long @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param flag bool @ÊÇ·ñÏÔÊ¾Æ·ÖÊ±³¾°¿ò
+---è®¾ç½®ç‰©å“æ¡†æ˜¯å¦æ˜¾ç¤ºå“è´¨èƒŒæ™¯æ¡†
+---@param handle long @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param flag bool @æ˜¯å¦æ˜¾ç¤ºå“è´¨èƒŒæ™¯æ¡†
 function GUI:RDItemCtrlShowQualityBG(handle, flag)
 end
 
----ÉèÖÃ´ø¹ö¶¯µ÷µÄ´°¿ÚÖĞ¹ö¶¯ÌõµÄÍ¼Æ¬
----@param _Handle int @¾ä±ú
----@param up uint @¹ö¶¯ÌõÏòÉÏ¹ö¶¯µÄ°´Å¥µÄÍ¼Æ¬×ÊÔ´ID
----@param mid uint @¹ö¶¯Ìõ»¬¿éÍ¼Æ¬×ÊÔ´ID
----@param down uint @¹ö¶¯ÌõÏòÏÂ¹ö¶¯µÄ°´Å¥µÄÍ¼Æ¬×ÊÔ´ID
----@param _BackImageID uint @ ¹ö¶¯Ìõ±³¾°Í¼Æ¬×ÊÔ´ID
+---è®¾ç½®å¸¦æ»šåŠ¨è°ƒçš„çª—å£ä¸­æ»šåŠ¨æ¡çš„å›¾ç‰‡
+---@param _Handle int @å¥æŸ„
+---@param up uint @æ»šåŠ¨æ¡å‘ä¸Šæ»šåŠ¨çš„æŒ‰é’®çš„å›¾ç‰‡èµ„æºID
+---@param mid uint @æ»šåŠ¨æ¡æ»‘å—å›¾ç‰‡èµ„æºID
+---@param down uint @æ»šåŠ¨æ¡å‘ä¸‹æ»šåŠ¨çš„æŒ‰é’®çš„å›¾ç‰‡èµ„æºID
+---@param _BackImageID uint @ æ»šåŠ¨æ¡èƒŒæ™¯å›¾ç‰‡èµ„æºID
 function GUI:ScrollWndSetScrollBarImage(_Handle, up, mid, down, _BackImageID)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼ş¼ì²âµã»÷ÇøÓòÀàĞÍ
----@param _Handle int @Ö¸¶¨Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@param _Info string @ Ö¸¶¨Í¼Æ¬¿Õ¼äµÄÃèÊö
----@param _Flag int @¼ì²âµã»÷µÄÀàĞÍ
---- ÊÖÓÎºÍ¶ËÓÎ£º
+---è®¾ç½®å›¾ç‰‡æ§ä»¶æ£€æµ‹ç‚¹å‡»åŒºåŸŸç±»å‹
+---@param _Handle int @æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@param _Info string @ æŒ‡å®šå›¾ç‰‡ç©ºé—´çš„æè¿°
+---@param _Flag int @æ£€æµ‹ç‚¹å‡»çš„ç±»å‹
+--- æ‰‹æ¸¸å’Œç«¯æ¸¸ï¼š
 ---
---- 0. ²»¼ì²â
---- 1. £¨Ä¬ÈÏÖµ£©¼ì²âµã»÷Î»ÖÃÊÇ·ñÔÚÍ¼Æ¬ÉÏ£¨ºöÂÔÍ¸Ã÷¶È£©
---- 2. ¼ì²âµã»÷Î»ÖÃÊÇ·ñÔÚ¿Ø¼ş·¶Î§ÄÚ
+--- 0. ä¸æ£€æµ‹
+--- 1. ï¼ˆé»˜è®¤å€¼ï¼‰æ£€æµ‹ç‚¹å‡»ä½ç½®æ˜¯å¦åœ¨å›¾ç‰‡ä¸Šï¼ˆå¿½ç•¥é€æ˜åº¦ï¼‰
+--- 2. æ£€æµ‹ç‚¹å‡»ä½ç½®æ˜¯å¦åœ¨æ§ä»¶èŒƒå›´å†…
 ---
---- H5£º
---- 1. £¨Ä¬ÈÏÖµ£©¼ì²âµã»÷Î»ÖÃÊÇ·ñÔÚÍ¼Æ¬ÉÏ£¨ºöÂÔÍ¸Ã÷¶È£©
---- 2. ÆäËû¼ì²âµã»÷Î»ÖÃÊÇ·ñÔÚ¿Ø¼ş·¶Î§ÄÚ
+--- H5ï¼š
+--- 1. ï¼ˆé»˜è®¤å€¼ï¼‰æ£€æµ‹ç‚¹å‡»ä½ç½®æ˜¯å¦åœ¨å›¾ç‰‡ä¸Šï¼ˆå¿½ç•¥é€æ˜åº¦ï¼‰
+--- 2. å…¶ä»–æ£€æµ‹ç‚¹å‡»ä½ç½®æ˜¯å¦åœ¨æ§ä»¶èŒƒå›´å†…
 function ImageSetCheckPoint(_Handle, _Info, _Flag)
 end
 
----ÉèÖÃ°´Å¥ÔÚÌØ¶¨×´Ì¬µÄÎÄ×ÖÑÕÉ«
----@param _HandleID int @ Ö¸¶¨°´Å¥¿Ø¼şµÄ¾ä±ú
----@param _State int @ Ö¸¶¨°´Å¥µÄ×´Ì¬ £º
---- - `0` ÆÕÍ¨×´Ì¬
---- - `1` Êó±êĞüÍ£
---- - `2` Êó±ê°´ÏÂ
---- - `3` ½ûÓÃ×´Ì¬
----@param _Color uint @ [ÑÕÉ«Öµ](https://tool.173uu.com/#/scriptdocument/0?name=g2652&t=1719559062740)
+---è®¾ç½®æŒ‰é’®åœ¨ç‰¹å®šçŠ¶æ€çš„æ–‡å­—é¢œè‰²
+---@param _HandleID int @ æŒ‡å®šæŒ‰é’®æ§ä»¶çš„å¥æŸ„
+---@param _State int @ æŒ‡å®šæŒ‰é’®çš„çŠ¶æ€ ï¼š
+--- - `0` æ™®é€šçŠ¶æ€
+--- - `1` é¼ æ ‡æ‚¬åœ
+--- - `2` é¼ æ ‡æŒ‰ä¸‹
+--- - `3` ç¦ç”¨çŠ¶æ€
+---@param _Color uint @ [é¢œè‰²å€¼](https://tool.173uu.com/#/scriptdocument/0?name=g2652&t=1719559062740)
 function GUI:ButtonSetStateTextColor(_HandleID, _State, _Color)
 end
 
----»ñÈ¡´°Ìå¿Ø¼şµÄ¿É¼û×´Ì¬»ñÈ¡
----@param _Handle int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Info string @Ö¸¶¨´°Ìå¿Ø¼şµÄÃèÊö
----@return bool @`true` Ö¸¶¨´°Ìå¿Ø¼şÎª¿É¼û×´Ì¬£¬`false`Ö¸¶¨´°Ìå¿Ø¼şÎª²»¿É¼û×´Ì¬
+---è·å–çª—ä½“æ§ä»¶çš„å¯è§çŠ¶æ€è·å–
+---@param _Handle int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Info string @æŒ‡å®šçª—ä½“æ§ä»¶çš„æè¿°
+---@return bool @`true` æŒ‡å®šçª—ä½“æ§ä»¶ä¸ºå¯è§çŠ¶æ€ï¼Œ`false`æŒ‡å®šçª—ä½“æ§ä»¶ä¸ºä¸å¯è§çŠ¶æ€
 function WndGetVisibleM(_Handle, _Info)
 end
 
----×¡Ğ£¶à¹¦ÄÜ±à¼­¿òµÄ¿ØÖÆ×Ö·û´®
----@param _HandleID int@Ö¸¶¨¶à¹¦ÄÜ±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _ControlString string @¿ØÖÆ×Ö·û´®ÄÚÈİ Ä¿Ç°½öÖ§³Ö²ÎÊıÖµ `"FACE"`
+---ä½æ ¡å¤šåŠŸèƒ½ç¼–è¾‘æ¡†çš„æ§åˆ¶å­—ç¬¦ä¸²
+---@param _HandleID int@æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _ControlString string @æ§åˆ¶å­—ç¬¦ä¸²å†…å®¹ ç›®å‰ä»…æ”¯æŒå‚æ•°å€¼ `"FACE"`
 function GUI:RichEditUnRegisterControlString(_HandleID, _ControlString)
 end
 
----×¡Ğ£¶à¹¦ÄÜ±à¼­¿òµÄ¿ØÖÆ×Ö·û´®
----@param _HandleID int@Ö¸¶¨¶à¹¦ÄÜ±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _ControlString string @¿ØÖÆ×Ö·û´®ÄÚÈİ Ä¿Ç°½öÖ§³Ö²ÎÊıÖµ `"FACE"`
+---ä½æ ¡å¤šåŠŸèƒ½ç¼–è¾‘æ¡†çš„æ§åˆ¶å­—ç¬¦ä¸²
+---@param _HandleID int@æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _ControlString string @æ§åˆ¶å­—ç¬¦ä¸²å†…å®¹ ç›®å‰ä»…æ”¯æŒå‚æ•°å€¼ `"FACE"`
 function GUI:RichEditRegisterControlString(_HandleID, _ControlString)
 end
 
----Çå¿Õ¶à¹¦ÄÜ±à¼­¿òµÄÎÄ±¾ÄÚÈİ
----@param _HandleID int @¾ä±ú
+---æ¸…ç©ºå¤šåŠŸèƒ½ç¼–è¾‘æ¡†çš„æ–‡æœ¬å†…å®¹
+---@param _HandleID int @å¥æŸ„
 function GUI:RichEditClear(_HandleID)
 end
 
----ÉèÖÃÖ¸¶¨´°Ìå¿Ø¼şµÄ»ìÉ«ÀàĞÍ
----@param handle int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param blendtype int »ìÉ«ÀàĞÍÖµ£¨1-6£©
+---è®¾ç½®æŒ‡å®šçª—ä½“æ§ä»¶çš„æ··è‰²ç±»å‹
+---@param handle int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param blendtype int æ··è‰²ç±»å‹å€¼ï¼ˆ1-6ï¼‰
 function GUI:WndSetBlendType(handle, blendtype)
 end
 
----ÉèÖÃÍ¼Æ¬¿Õ¼äµÄÍ¸Ã÷¶È
----@param _HandleID int @¾ä±ú
----@param _Alpha uint @ Í¸Ã÷¶È
+---è®¾ç½®å›¾ç‰‡ç©ºé—´çš„é€æ˜åº¦
+---@param _HandleID int @å¥æŸ„
+---@param _Alpha uint @ é€æ˜åº¦
 function GUI:ImageSetAlpha(_HandleID, _Alpha)
 end
 
----»ñÈ¡°´Å¥ÊÇ·ñÎª¼¤»îµÄÒ³Ç©°´Å¥
----@param _HandleID int @Ö¸¶¨°´Å¥¿Ø¼şµÄ¾ä±ú
----@return bool @°´Å¥ÊÇ·ñÎª¼¤»î×´Ì¬
+---è·å–æŒ‰é’®æ˜¯å¦ä¸ºæ¿€æ´»çš„é¡µç­¾æŒ‰é’®
+---@param _HandleID int @æŒ‡å®šæŒ‰é’®æ§ä»¶çš„å¥æŸ„
+---@return bool @æŒ‰é’®æ˜¯å¦ä¸ºæ¿€æ´»çŠ¶æ€
 function GUI:ButtonGetIsActivePageBtn(_HandleID)
 end
 
----ÉèÖÃÁĞ±í¿òÖĞ¹ö¶¯ÌõµÄÍ¼Æ¬
----@param _HandleID int @Ö¸¶¨ÁĞ±í¿òµÄ¾ä±ú
----@param _Up uint @¹ö¶¯ÌõÏòÉÏ°´Å¥Í¼Æ¬×ÊÔ´ID
----@param _Mid uint @¹ö¶¯»¬¿éÍ¼Æ¬×ÊÔ´ID
----@param _Down uint @¹ö¶¯ÌõÏòÏÂ°´Å¥Í¼Æ¬×ÊÔ´ID
----@param _BackImageID uint  @¹ö¶¯Ìõ±³¾°Í¼Æ¬×ÊÔ´ID
+---è®¾ç½®åˆ—è¡¨æ¡†ä¸­æ»šåŠ¨æ¡çš„å›¾ç‰‡
+---@param _HandleID int @æŒ‡å®šåˆ—è¡¨æ¡†çš„å¥æŸ„
+---@param _Up uint @æ»šåŠ¨æ¡å‘ä¸ŠæŒ‰é’®å›¾ç‰‡èµ„æºID
+---@param _Mid uint @æ»šåŠ¨æ»‘å—å›¾ç‰‡èµ„æºID
+---@param _Down uint @æ»šåŠ¨æ¡å‘ä¸‹æŒ‰é’®å›¾ç‰‡èµ„æºID
+---@param _BackImageID uint  @æ»šåŠ¨æ¡èƒŒæ™¯å›¾ç‰‡èµ„æºID
 function GUI:ListBoxSetScrollBarImage(_HandleID, _Up, _Mid, _Down, _BackImageID)
 end
 
----»ñÈ¡´°¿Ú´óĞ¡
----@param _Handle int @ÖÆ¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Info string @ Ö¸¶¨´°Ìå¿Ø¼şµÄÃèÊö
----@return bool @ `true` »ñÈ¡³É¹¦£¬ `fasle`»ñÈ¡Ê§°Ü ´Ëº¯Êı·µ»Ø²Ù×÷³É¹¦»òÊ§°Ü¡£Èç²Ù×÷³É¹¦£¬Ôò»ñÈ¡´°¿Ú´óĞ¡µÄÊıÖµ´æ´¢ÔÚLuaRetÖĞ¡£
---- - `LuaRet[1]`´°¿ÚµÄ¿í¶È£¬µ¥Î»ÎªÏñËØ£¨px£©£»
---- - `LuaRet[2]`´°¿ÚµÄ¸ß¶È£¬µ¥Î»ÎªÏñËØ£¨px£©¡£
+---è·å–çª—å£å¤§å°
+---@param _Handle int @åˆ¶å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Info string @ æŒ‡å®šçª—ä½“æ§ä»¶çš„æè¿°
+---@return bool @ `true` è·å–æˆåŠŸï¼Œ `fasle`è·å–å¤±è´¥ æ­¤å‡½æ•°è¿”å›æ“ä½œæˆåŠŸæˆ–å¤±è´¥ã€‚å¦‚æ“ä½œæˆåŠŸï¼Œåˆ™è·å–çª—å£å¤§å°çš„æ•°å€¼å­˜å‚¨åœ¨LuaRetä¸­ã€‚
+--- - `LuaRet[1]`çª—å£çš„å®½åº¦ï¼Œå•ä½ä¸ºåƒç´ ï¼ˆpxï¼‰ï¼›
+--- - `LuaRet[2]`çª—å£çš„é«˜åº¦ï¼Œå•ä½ä¸ºåƒç´ ï¼ˆpxï¼‰ã€‚
 function WndGetSizeM(_Handle, _Info)
 end
 
----»ñÈ¡ÁĞ±í¿òÖĞµÄÌõÄ¿¸öÊı
----@param _HandleID int @Ö¸¶¨ÁĞ±í¿ò¿Ø¼şµÄ¾ä±ú
----@return int @ÌõÄ¿µÄ¸öÊı
+---è·å–åˆ—è¡¨æ¡†ä¸­çš„æ¡ç›®ä¸ªæ•°
+---@param _HandleID int @æŒ‡å®šåˆ—è¡¨æ¡†æ§ä»¶çš„å¥æŸ„
+---@return int @æ¡ç›®çš„ä¸ªæ•°
 function GUI:ListBoxGetLineCount(_HandleID)
 end
 
----ÉèÖÃÁĞ±í¿òµÄÑ¡ÖĞÌõÄ¿Ê½
----@param _HandleID int @Ö¸¶¨ÁĞ±í¿ò¿Ø¼şµÄ¾ä±ú
----@param _LineIdx int @ÌõÄ¿ĞĞÊıµÄË÷Òı £¬Ë÷Òı´Ó`0`¿ªÊ¼
----@param _ColIdx int @ÌõÄ¿ÁĞÊıµÄË÷Òı£¬Ë÷Òı´Ó`0`¿ªÊ¼
+---è®¾ç½®åˆ—è¡¨æ¡†çš„é€‰ä¸­æ¡ç›®å¼
+---@param _HandleID int @æŒ‡å®šåˆ—è¡¨æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _LineIdx int @æ¡ç›®è¡Œæ•°çš„ç´¢å¼• ï¼Œç´¢å¼•ä»`0`å¼€å§‹
+---@param _ColIdx int @æ¡ç›®åˆ—æ•°çš„ç´¢å¼•ï¼Œç´¢å¼•ä»`0`å¼€å§‹
 function GUI:ListBoxSetCurSel(_HandleID, _LineIdx, _ColIdx)
 end
 
----»ñÈ¡ÁĞ±í¿òÑ©ÖĞÌõÄ¿µÄÁĞºÅ
+---è·å–åˆ—è¡¨æ¡†é›ªä¸­æ¡ç›®çš„åˆ—å·
 ---@param _HandleID int
----@return int @Ñ¡ÖĞÌõÄ¿µÄÁĞºÅ
+---@return int @é€‰ä¸­æ¡ç›®çš„åˆ—å·
 function GUI:ListBoxGetCurSelCol(_HandleID)
 end
 
----»ñÈ¡ÁĞ±í¿òÖĞÖ¸¶¨ĞĞÊıµÚÒ»ÁĞµÄÌõÄ¿ÄÚÈİ
+---è·å–åˆ—è¡¨æ¡†ä¸­æŒ‡å®šè¡Œæ•°ç¬¬ä¸€åˆ—çš„æ¡ç›®å†…å®¹
 ---@param _HandleID int
 ---@param _LineIdx int
 ---@return string
 function GUI:ListBoxGetLineString(_HandleID, _LineIdx)
 end
 
----»ñÈ¡Ö¸¶¨ÀàĞÍµÄÅÅĞĞ°ñÊı¾İ
----@param type uint8 @ÅÅĞĞ°ñÀàĞÍ
----@return table @ÅÅĞĞ°ñĞÅÏ¢
-function lualib:GetTopList(type)
-end
+-- ---è·å–æŒ‡å®šç±»å‹çš„æ’è¡Œæ¦œæ•°æ®
+-- ---@param type uint8 @æ’è¡Œæ¦œç±»å‹
+-- ---@return table @æ’è¡Œæ¦œä¿¡æ¯
+-- function lualib:GetTopList(type)
+-- end
 
 --
 function GUI:ImageSetClipRect(_HandleID, _StartX, _EndX, _StartY, _EndY)
 end
 
----ÉèÖÃ°´Å¥µÄÏÔÊ¾½Ç¶È
----@param _Handle long Ö¸¶¨°´Å¥¿Ø¼şµÄ¾ä±ú
+---è®¾ç½®æŒ‰é’®çš„æ˜¾ç¤ºè§’åº¦
+---@param _Handle long æŒ‡å®šæŒ‰é’®æ§ä»¶çš„å¥æŸ„
 ---@param _IsRotate boolean
 ---@param _Roation int
 function GUI:ButtonSetRotate(_Handle, _IsRotate, _Roation)
 end
 
----ÔÚ´°Ìå¿Ø¼şÖĞÌí¼Ó¶¨Ê±Æ÷
+---åœ¨çª—ä½“æ§ä»¶ä¸­æ·»åŠ å®šæ—¶å™¨
 ---@param _HandleID int
 ---@param _ID int
 ---@param _Elapse int
@@ -1544,7 +1545,7 @@ end
 function GUI:WndAddTimer(_HandleID, _ID, _Elapse, _ScriptHandle)
 end
 
---- ÔÚ´°Ìå¿Ø¼şÖĞÌí¼Ó¶¨Ê±Æ÷£¨À©Õ¹£©
+--- åœ¨çª—ä½“æ§ä»¶ä¸­æ·»åŠ å®šæ—¶å™¨ï¼ˆæ‰©å±•ï¼‰
 ---@param _HandleID int
 ---@param _ID int
 ---@param _Elapse int
@@ -1553,166 +1554,167 @@ end
 ---@return bool
 function GUI:WndAddTimerEx(_HandleID, _ID, _Elapse, _ScriptHandle, _Param) end
 
----¸ù¾İGUIDÌî³äÎïÆ·¿òÊı¾İ
+---æ ¹æ®GUIDå¡«å……ç‰©å“æ¡†æ•°æ®
 ---@param _Handle number
 ---@param _Info string
 ---@param _ItemGUID string
 function GUI:ItemCtrlSetGUIDataByGUID(_Handle, _Info, _ItemGUID)
 end
 
----ÉèÖÃ°´Å¥ÉÏÏÔÊ¾µÄÍ¼Æ¬Ëõ·Å
----@param handle int @Ö¸¶¨°´Å¥¿Ø¼şµÄ¾ä±ú
----@param scale_x float @ X Öá·½ÏòÉÏµÄ±ÈÀı£ºÄ¬ÈÏÔ­Í¼ÊÇ1.0
----@param scale_y float @ YÖá·½ÏòÉÏµÄ±ÈÀı£ºÄ¬ÈÏÔ­Í¼ÊÇ1.0
+---è®¾ç½®æŒ‰é’®ä¸Šæ˜¾ç¤ºçš„å›¾ç‰‡ç¼©æ”¾
+---@param handle int @æŒ‡å®šæŒ‰é’®æ§ä»¶çš„å¥æŸ„
+---@param scale_x float @ X è½´æ–¹å‘ä¸Šçš„æ¯”ä¾‹ï¼šé»˜è®¤åŸå›¾æ˜¯1.0
+---@param scale_y float @ Yè½´æ–¹å‘ä¸Šçš„æ¯”ä¾‹ï¼šé»˜è®¤åŸå›¾æ˜¯1.0
 function GUI:ButtonSetDrawPostTextureScale(handle, scale_x, scale_y)
 end
 
----ÉèÖÃ°´Å¥µÄËõ·Å±ÈÀı
----@param _HandleID int @Ö¸¶¨°´Å¥¿Ø¼şµÄ¾ä±ú
----@param _XScale int @ X·½ÏòÉÏµÄËõ·Å£¬
----@param _YScale int @ Y·½ÏòÉÏµÄËõ·Å
+---è®¾ç½®æŒ‰é’®çš„ç¼©æ”¾æ¯”ä¾‹
+---@param _HandleID int @æŒ‡å®šæŒ‰é’®æ§ä»¶çš„å¥æŸ„
+---@param _XScale int @ Xæ–¹å‘ä¸Šçš„ç¼©æ”¾ï¼Œ
+---@param _YScale int @ Yæ–¹å‘ä¸Šçš„ç¼©æ”¾
 function GUI:ButtonSetScale(_HandleID, _XScale, _YScale)
 end
 
----ÉèÖÃÊÇ·ñÎª¼¤»îµÄÒ³Ç©°´Å¥
----@param _Handle int @Ö¸¶¨°´Å¥¿Ø¼şµÄ¾ä±ú
+---è®¾ç½®æ˜¯å¦ä¸ºæ¿€æ´»çš„é¡µç­¾æŒ‰é’®
+---@param _Handle int @æŒ‡å®šæŒ‰é’®æ§ä»¶çš„å¥æŸ„
 ---@param _Info string
 ---@param _Flag bool
 function ButtonSetIsActivePageBtn(_Handle, _Info, _Flag)
 end
 
----ÉèÖÃÍ¼Æ¬¿Ø¼şµÄĞı×ªºÍËõ·Å
----@param _HandleID int @Ö¸¶¨Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@param _ScaleX int @¿í¶ÈËõ·Å±ÈÀı
----@param _ScaleY int @¸ß¶ÈËõ·Å±ÈÀı
----@param _Roation int @Ğı×ªµÄ½Ç¶È
+---è®¾ç½®å›¾ç‰‡æ§ä»¶çš„æ—‹è½¬å’Œç¼©æ”¾
+---@param _HandleID int @æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@param _ScaleX int @å®½åº¦ç¼©æ”¾æ¯”ä¾‹
+---@param _ScaleY int @é«˜åº¦ç¼©æ”¾æ¯”ä¾‹
+---@param _Roation int @æ—‹è½¬çš„è§’åº¦
 function GUI:ImageSetTransfromplus(_HandleID, _ScaleX, _ScaleY, _Roation)
 end
 
---- ÉèÖÃ°´Å¥ÊÇ·ñÒÔÖĞĞÄµãÎªÃªµã½øĞĞ»æÖÆ
+--- è®¾ç½®æŒ‰é’®æ˜¯å¦ä»¥ä¸­å¿ƒç‚¹ä¸ºé”šç‚¹è¿›è¡Œç»˜åˆ¶
 ---@param _Handle int
 ---@param _DrawCenter bool
 function GUI:ButtonSetDrawCenter(_Handle, _DrawCenter)
 end
 
----ÏëÁĞ±í¿òÖĞÌí¼ÓÌõÄ¿
----@param _HandleID int @ÁĞ±í¿òµÄ¿Ø¼şµÄ¾ä±ú
----@param _Str string @ ÎÄ±¾ÌõÄ¿µÄÄÚÈİ
+---æƒ³åˆ—è¡¨æ¡†ä¸­æ·»åŠ æ¡ç›®
+---@param _HandleID int @åˆ—è¡¨æ¡†çš„æ§ä»¶çš„å¥æŸ„
+---@param _Str string @ æ–‡æœ¬æ¡ç›®çš„å†…å®¹
 function GUI:ListBoxAddStr(_HandleID, _Str)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şµÄTipÄÚÈİ
----@param _HandleID int @ Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _TipInfo string @TipÄÚÈİ
+---è®¾ç½®çª—ä½“æ§ä»¶çš„Tipå†…å®¹
+---@param _HandleID int @ æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _TipInfo string @Tipå†…å®¹
 function GUI:WndSetTipInfo(_HandleID, _TipInfo)
 end
 
----¸ù¾İÎïÆ·µÄGUIData¾ä±úÌî³äÎïÆ·¿ò
----@param _Handle int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _Info string @Ö»²ğ¿ªÎïÆ·¿ò¿Ø¼şµÄÃèÊö
----@param _GUIDataHandle int @ÎïÆ·µÄGUIData¾ä±ú
+---æ ¹æ®ç‰©å“çš„GUIDataå¥æŸ„å¡«å……ç‰©å“æ¡†
+---@param _Handle int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Info string @åªæ‹†å¼€ç‰©å“æ¡†æ§ä»¶çš„æè¿°
+---@param _GUIDataHandle int @ç‰©å“çš„GUIDataå¥æŸ„
 ---@return bool @true:ok,fasle:no
 function RDItemCtrlFillGUIData(_Handle, _Info, _GUIDataHandle)
 end
 
----×¢²á´°Ìå¿Ø¼şµÄÊÂ¼ş»Øµ÷º¯Êı£¨À©Õ¹£©
----@param _HandleID int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Msg int @ÖÆ¶¨´°Ìå¿Ø¼şµÄÊÂ¼şID
----@param _FuncName string @»Øµ÷º¯ÊıÃû
----@param _Param string @Ô¤ÉèµÄ»Øµ÷²ÎÊı£¬½«´«µİÖÁ»Øµ÷º¯ÊıµÄµÚ5¸ö²ÎÊı
----@return bool @true:¿Ø¼ş´æÔÚ,fasle:¿Ø¼ş²»´æÔÚ
+---æ³¨å†Œçª—ä½“æ§ä»¶çš„äº‹ä»¶å›è°ƒå‡½æ•°ï¼ˆæ‰©å±•ï¼‰
+---@param _HandleID int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Msg int @åˆ¶å®šçª—ä½“æ§ä»¶çš„äº‹ä»¶ID
+---@param _FuncName string @å›è°ƒå‡½æ•°å
+---@param _Param string @é¢„è®¾çš„å›è°ƒå‚æ•°ï¼Œå°†ä¼ é€’è‡³å›è°ƒå‡½æ•°çš„ç¬¬5ä¸ªå‚æ•°
+---@return bool @true:æ§ä»¶å­˜åœ¨,fasle:æ§ä»¶ä¸å­˜åœ¨
 function GUI:WndRegistScriptEx(_HandleID, _Msg, _FuncName, _Param)
 end
 
----ÉèÖÃ¶à¹¦ÄÜ±à¼­¿òÊÇ·ñ¿ÉÒÔ±à¼­
----@param _Handle int @Ö¸¶¨¶à¹¦ÄÜ±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _Info string @Ö¸¶¨¶à¹¦ÄÜ±à¼­¿òµÄÃèÊö
----@param _Flag bool @ ÊÇ·ñ¿ÉÒÔ±à¼­£º`true`¿ÉÒÔ£¬`fasle`²»¿ÉÒÔ
+---è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ˜¯å¦å¯ä»¥ç¼–è¾‘
+---@param _Handle int @æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Info string @æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†çš„æè¿°
+---@param _Flag bool @ æ˜¯å¦å¯ä»¥ç¼–è¾‘ï¼š`true`å¯ä»¥ï¼Œ`fasle`ä¸å¯ä»¥
 function RichEditSetEnable(_Handle, _Info, _Flag)
 end
 
----¹ı¹¦ÄÜ±à¼­¿òÌí¼ÓÎÄ±¾
----@param _Handle int @Ö¸¶¨¶à¹¦ÄÜ±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _Info string @Ö¸¶¨¶à¹¦ÄÜ±à¼­¿ò¿Ø¼şµÄÃèÊö
----@param _Text string @ÎÄ±¾ÄÚÈİ
+---è¿‡åŠŸèƒ½ç¼–è¾‘æ¡†æ·»åŠ æ–‡æœ¬
+---@param _Handle int @æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Info string @æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶çš„æè¿°
+---@param _Text string @æ–‡æœ¬å†…å®¹
 function RichEditAppendString(_Handle, _Info, _Text)
 end
 
----Ìá¸ß´°¿Ú¿Ø¼şµÄÏÔÊ¾²ã¼¶
----@param _HandleID int @¾ä±ú
+---æé«˜çª—å£æ§ä»¶çš„æ˜¾ç¤ºå±‚çº§
+---@param _HandleID int @å¥æŸ„
 function GUI:WndAscOrder(_HandleID)
 end
 
----ÉèÖÃ´°Ìå¿Ø¼şÊÇ·ñÏìÓ¦µã»÷²Ù×÷
----@param _HandleID int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Flag bool @ÊÇ·ñÏìÓ¦µã»÷²Ù×÷
+---è®¾ç½®çª—ä½“æ§ä»¶æ˜¯å¦å“åº”ç‚¹å‡»æ“ä½œ
+---@param _HandleID int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Flag bool @æ˜¯å¦å“åº”ç‚¹å‡»æ“ä½œ
 function GUI:WndSetMouseEnableIN(_HandleID, _Flag)
 end
 
----½«»î¶¯´°¿ÚÒÆ¶¯ÖÁ×îÉÏ²ã
----@param _HandleID int @ÖÆ¶¨»î¶¯´°¿ÚµÄ¾ä±ú
+---å°†æ´»åŠ¨çª—å£ç§»åŠ¨è‡³æœ€ä¸Šå±‚
+---@param _HandleID int @åˆ¶å®šæ´»åŠ¨çª—å£çš„å¥æŸ„
 function GUI:WndBringTopM(_HandleID)
 end
 
----ÉèÖÃÍ¼Æ¬ÊÇ·ñÒÔ»Ò¶ÈÏÔÊ¾
----@param _HandleID int @Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@param _Flag bool @ÊÇ·ñ»Ò¶ÈÏÔÊ¾
+---è®¾ç½®å›¾ç‰‡æ˜¯å¦ä»¥ç°åº¦æ˜¾ç¤º
+---@param _HandleID int @å›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@param _Flag bool @æ˜¯å¦ç°åº¦æ˜¾ç¤º
 function GUI:ImageSetGray(_HandleID, _Flag)
 end
 
----´´½¨´°¿Ú
----´Ëº¯Êı´´½¨µÄ´°¿ÚÒ»°ãÖ»×÷Îª¸¸´°¿ÚÓÃ£¬²»ÏÔÊ¾ÌùÍ¼×ÊÔ´£¬Ò²²»¾ß±¸Ò»Ğ©´øÉÏÏÂ¹ö¶¯ÌõµÈ¸ß¼¶ÊôĞÔ
----@param _ParentHandleID int @¸¸´°¿Ú¾ä±ú
----@param _ID string @ĞÂ½¨´°¿ÚµÄÃû³Æ´¦
----@param _ImageID uint @ĞÂ½¨´°¿ÚµÄÍ¼Æ¬×ÊÔ´ID£¬´Ë²ÎÊı²»Æğ×÷ÓÃ£¬Ò»°ãÉèÖÃÎª0
----@param _X int @ĞÂ½¨´°¿ÚÎ»ÖÃµÄºá×ø±ê
----@param _Y int @ĞÂ½¨´°¿ÚÎ»ÖÃµÄ×İ×ø±ê
----@param _Order int @´°¿ÚÃè»æµÄ²ã¼¶£ºÊıÖµÔ½´ó£¬´°¿ÚÏÔÊ¾Ô½¿¿Ç°£¨´Ë²ÎÊıÖ»Ö§³ÖÊÖÓÎ£¬¶ËÓÎºöÊÓ´Ë²ÎÊı£©
----@return int @ĞÂ½¨´°¿ÚµÄ¾ä±ú
+---åˆ›å»ºçª—å£
+---æ­¤å‡½æ•°åˆ›å»ºçš„çª—å£ä¸€èˆ¬åªä½œä¸ºçˆ¶çª—å£ç”¨ï¼Œä¸æ˜¾ç¤ºè´´å›¾èµ„æºï¼Œä¹Ÿä¸å…·å¤‡ä¸€äº›å¸¦ä¸Šä¸‹æ»šåŠ¨æ¡ç­‰é«˜çº§å±æ€§
+---@param _ParentHandleID int @çˆ¶çª—å£å¥æŸ„
+---@param _ID string @æ–°å»ºçª—å£çš„åç§°å¤„
+---@param _ImageID uint @æ–°å»ºçª—å£çš„å›¾ç‰‡èµ„æºIDï¼Œæ­¤å‚æ•°ä¸èµ·ä½œç”¨ï¼Œä¸€èˆ¬è®¾ç½®ä¸º0
+---@param _X int @æ–°å»ºçª—å£ä½ç½®çš„æ¨ªåæ ‡
+---@param _Y int @æ–°å»ºçª—å£ä½ç½®çš„çºµåæ ‡
+---@param _Order int @çª—å£æç»˜çš„å±‚çº§ï¼šæ•°å€¼è¶Šå¤§ï¼Œçª—å£æ˜¾ç¤ºè¶Šé å‰ï¼ˆæ­¤å‚æ•°åªæ”¯æŒæ‰‹æ¸¸ï¼Œç«¯æ¸¸å¿½è§†æ­¤å‚æ•°ï¼‰
+---@return int @æ–°å»ºçª—å£çš„å¥æŸ„
 function GUI:WndCreateGUIItem(_ParentHandleID, _ID, _ImageID, _X, _Y, _Order)
 end
 
----Ìí¼Ó¿Ø¼şµÄ¶¯×÷
----@param handle int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param action string @Json¸ñÊ½µÄ¶¯×÷ÅäÖÃ
----´íÎóĞÅÏ¢»á±£´æÔÚLuaRetÖĞ
+---æ·»åŠ æ§ä»¶çš„åŠ¨ä½œ
+---@param handle int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param action string @Jsonæ ¼å¼çš„åŠ¨ä½œé…ç½®
+---@return boolean
+---é”™è¯¯ä¿¡æ¯ä¼šä¿å­˜åœ¨LuaRetä¸­
 function GUI:WndAddAction(handle, action)
 end
 
----×Ô¶¯µ÷Õû´°Ìå¿Ø¼şµÄÎ»ÖÃºÍ´óĞ¡
----¶ËÓÎÖĞ£¬³ÌĞò¸ù¾İµ±Ç°ÓÃ»§ÉèÖÃµÄ·Ö±æÂÊ£¬Óë1024¡Á768µÄ±ÈÖµ¼ÆËãÒ»¸öËõ·ÅÒò×Ó£¬ÔÙ¸ù¾İ´ËËõ·ÅÒò×Óµ÷Õû´°Ìå¿Ø¼şµÄÎ»ÖÃºÍ´óĞ¡¡£
----@param _HandleID int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _ChangePos bool@ÊÇ·ñµ÷Õû´°Ìå¿Ø¼şÎ»ÖÃ
----@param _ChangeSize bool@ÊÇ·ñµ÷Õû´°Ìå¿Ø¼ş´óĞ¡
+---è‡ªåŠ¨è°ƒæ•´çª—ä½“æ§ä»¶çš„ä½ç½®å’Œå¤§å°
+---ç«¯æ¸¸ä¸­ï¼Œç¨‹åºæ ¹æ®å½“å‰ç”¨æˆ·è®¾ç½®çš„åˆ†è¾¨ç‡ï¼Œä¸1024Ã—768çš„æ¯”å€¼è®¡ç®—ä¸€ä¸ªç¼©æ”¾å› å­ï¼Œå†æ ¹æ®æ­¤ç¼©æ”¾å› å­è°ƒæ•´çª—ä½“æ§ä»¶çš„ä½ç½®å’Œå¤§å°ã€‚
+---@param _HandleID int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _ChangePos bool@æ˜¯å¦è°ƒæ•´çª—ä½“æ§ä»¶ä½ç½®
+---@param _ChangeSize bool@æ˜¯å¦è°ƒæ•´çª—ä½“æ§ä»¶å¤§å°
 function GUI:WndSetPosByDeviceSize(_HandleID, _ChangePos, _ChangeSize)
 end
 
----»ñÈ¡ÎïÆ·¿òÊı¾İÊÇ·ñ×Ô¶¯¹ÜÀí
----@param _HandleID int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@return bool @`true`×Ô¶¯¹ÜÀí£¬`false`½Å±¾¹ÜÀí
+---è·å–ç‰©å“æ¡†æ•°æ®æ˜¯å¦è‡ªåŠ¨ç®¡ç†
+---@param _HandleID int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@return bool @`true`è‡ªåŠ¨ç®¡ç†ï¼Œ`false`è„šæœ¬ç®¡ç†
 function GUI:ItemCtrlGetItemDataAutoManager(_HandleID)
 end
 
----»ñÈ¡ÎïÆ·¿òÖĞÎïÆ·µÄGUIData¾ä±ú
+---è·å–ç‰©å“æ¡†ä¸­ç‰©å“çš„GUIDataå¥æŸ„
 ---@param _HandleID int
----@return int # Ö´ĞĞ³É¹¦Ôò·µ»ØÎïÆ·µÄGUIData¾ä±ú Ö´ĞĞÊ§°ÜÔò·µ»Ø `0`
+---@return int # æ‰§è¡ŒæˆåŠŸåˆ™è¿”å›ç‰©å“çš„GUIDataå¥æŸ„ æ‰§è¡Œå¤±è´¥åˆ™è¿”å› `0`
 function GUI:ItemCtrlGetGUIData(_HandleID)
 end
 
----»ñÈ¡ËùÓĞ×Ó¿Ø¼şµÄÀàĞÍºÍ¾ä±ú
----@param _HandleID int @Ö¸¶¨¸¸¿Ø¼şµÄ¾ä±ú
----@return bool @»ñÈ¡ÊÇ·ñ³É¹¦
+---è·å–æ‰€æœ‰å­æ§ä»¶çš„ç±»å‹å’Œå¥æŸ„
+---@param _HandleID int @æŒ‡å®šçˆ¶æ§ä»¶çš„å¥æŸ„
+---@return bool @è·å–æ˜¯å¦æˆåŠŸ
 function GUI:WndGetChildWnd(_HandleID)
 end
 
----»ñÈ¡°´Å¥ÊÇ·ñÎª»ú³¡Å¼µÄÒ³Ç©°´Å¥
----@param _Handle int @Ö¸¶¨°´Å¥¿Ø¼şµÄ¾ä±ú
----@param _Info string @Ö¸¶¨°´Å¥¿Ø¼şµÄÃèÊö
----@return bool @°´Å¥ÊÇ·ñÎª¼¤»îµÄÒ³Ç©°´Å¥
+---è·å–æŒ‰é’®æ˜¯å¦ä¸ºæœºåœºå¶çš„é¡µç­¾æŒ‰é’®
+---@param _Handle int @æŒ‡å®šæŒ‰é’®æ§ä»¶çš„å¥æŸ„
+---@param _Info string @æŒ‡å®šæŒ‰é’®æ§ä»¶çš„æè¿°
+---@return bool @æŒ‰é’®æ˜¯å¦ä¸ºæ¿€æ´»çš„é¡µç­¾æŒ‰é’®
 function ButtonGetIsActivePageBtn(_Handle, _Info)
 end
 
----´´½¨Ê÷ĞÎ¿Ø¼ş
+---åˆ›å»ºæ ‘å½¢æ§ä»¶
 ---@param _Handle int
 ---@param _Info string
 ---@param _ImageId int
@@ -1727,22 +1729,22 @@ end
 function CreateTreeCtrl(_Handle, _Info, _ImageId, _PosX, _PosY, _SizeX, _SizeY, _ID, _Align, _HintInfo)
 end
 
----É¾³ı´°Ìå¿Ø¼şÖĞËùÓĞµÄ¶¨Ê±Æ÷
----@param _HandleID int @´°¿Ú¾ä±ú
+---åˆ é™¤çª—ä½“æ§ä»¶ä¸­æ‰€æœ‰çš„å®šæ—¶å™¨
+---@param _HandleID int @çª—å£å¥æŸ„
 function GUI:WndDelAllTimer(_HandleID)
 end
 
----½µµÍ´°¿Ú¿Ø¼şµÄäÖÈ¾²ã¼¶
----@param _HandleID int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
+---é™ä½çª—å£æ§ä»¶çš„æ¸²æŸ“å±‚çº§
+---@param _HandleID int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
 function GUI:WndDescOrder(_HandleID)
 end
 
----ÖØĞÂ¼ÆËã´°¿Ú´óĞ¡
+---é‡æ–°è®¡ç®—çª—å£å¤§å°
 ---@param _HandleID int
 function GUI:WndCalSize(_HandleID)
 end
 
----ÉèÖÃ¾Å¹¬¸ñÆ´½ÓÍ¼Æ¬
+---è®¾ç½®ä¹å®«æ ¼æ‹¼æ¥å›¾ç‰‡
 ---@param _HandleID int32
 ---@param _LeftUp int32
 ---@param _RightUp int32
@@ -1753,139 +1755,127 @@ end
 ---@param _Down int32
 ---@param _Left int32
 ---@param _Right int32
----@param _Scale boolean @ÔÚÆ´½ÓÊ±£¬¾Å¹¬¸ñµÄ4¸ö½Ç³ß´ç²»±ä£¨Èô¾Å¹¬¸ñÕûÌå³ß´çĞ¡ÓÚ4¸ö½ÇµÄ³ß´ç£¬Ôò»á½øĞĞ²Ã¼ô£©£¬ÆäÓà²¿·Ö»á¸ù¾İ´Ë²ÎÊıÉèÖÃµÄÆ´½Ó·½Ê½½øĞĞÆ´½Ó£¬¾ßÌåËµÃ÷ÈçÏÂ¡£
---- - trueÉìËõÄ£Ê½£¨ÎªÊÖÓÎÄ¬ÈÏÖµ£©:4Ìõ±ßÒÔ¼°ÖĞĞÄÇøÓò»áÀ­Éì£¨»òÕßËõ·Å£©×ÔÊÊÓ¦£¬ÊÊºÏËõ·Å±äĞÎºó²»»áÓ°ÏìĞ§¹ûµÄÍ¼Æ¬×ÊÔ´£»
---- - falseÆ½ÆÌÄ£Ê½£¨Îª¶ËÓÎÄ¬ÈÏÖµ£©£º4Ìõ±ßÒÔ¼°ÖĞĞÄÇøÓò»áÆ½ÆÌ£¨»òÕß²Ã¼ô£©×ÔÊÊÓ¦£¬ÊÊºÏ²Ã¼ôÆ´½ÓÈÎÒâÇøÓòºó²»»áÍ»Ø£µÄÍ¼Æ¬×ÊÔ´¡£
+---@param _Scale boolean @åœ¨æ‹¼æ¥æ—¶ï¼Œä¹å®«æ ¼çš„4ä¸ªè§’å°ºå¯¸ä¸å˜ï¼ˆè‹¥ä¹å®«æ ¼æ•´ä½“å°ºå¯¸å°äº4ä¸ªè§’çš„å°ºå¯¸ï¼Œåˆ™ä¼šè¿›è¡Œè£å‰ªï¼‰ï¼Œå…¶ä½™éƒ¨åˆ†ä¼šæ ¹æ®æ­¤å‚æ•°è®¾ç½®çš„æ‹¼æ¥æ–¹å¼è¿›è¡Œæ‹¼æ¥ï¼Œå…·ä½“è¯´æ˜å¦‚ä¸‹ã€‚
+--- - trueä¼¸ç¼©æ¨¡å¼ï¼ˆä¸ºæ‰‹æ¸¸é»˜è®¤å€¼ï¼‰:4æ¡è¾¹ä»¥åŠä¸­å¿ƒåŒºåŸŸä¼šæ‹‰ä¼¸ï¼ˆæˆ–è€…ç¼©æ”¾ï¼‰è‡ªé€‚åº”ï¼Œé€‚åˆç¼©æ”¾å˜å½¢åä¸ä¼šå½±å“æ•ˆæœçš„å›¾ç‰‡èµ„æºï¼›
+--- - falseå¹³é“ºæ¨¡å¼ï¼ˆä¸ºç«¯æ¸¸é»˜è®¤å€¼ï¼‰ï¼š4æ¡è¾¹ä»¥åŠä¸­å¿ƒåŒºåŸŸä¼šå¹³é“ºï¼ˆæˆ–è€…è£å‰ªï¼‰è‡ªé€‚åº”ï¼Œé€‚åˆè£å‰ªæ‹¼æ¥ä»»æ„åŒºåŸŸåä¸ä¼šçªå…€çš„å›¾ç‰‡èµ„æºã€‚
 function GUI:ImageSetAroundImageEx(_HandleID, _LeftUp, _RightUp, _LeftDown, _RightDown, _Mid, _Up, _Down, _Left, _Right,
                                    _Scale)
 end
 
----ÉèÖÃ´°ÌåÊÇ·ñ¿É¼û
+---è®¾ç½®çª—ä½“æ˜¯å¦å¯è§
 ---@param _Handle int32
 ---@param _Info string
 ---@param _Flag bool
 function WndSetVisibleM(_Handle, _Info, _Flag)
 end
 
----ÉèÖÃÍÏ¶¯´°¿ÚÊÇ·ñÏÔÊ¾Í¸Ã÷¶È
----@param _HandleID int #Ö¸¶¨´°¿Ú¿Ø¼şµÄ¾ä±ú
----@param _Flag bool @ÍÏ¶¯´°¿ÚÊÇ·ñÏÔÊ¾Í¸Ã÷¶È
+---è®¾ç½®æ‹–åŠ¨çª—å£æ˜¯å¦æ˜¾ç¤ºé€æ˜åº¦
+---@param _HandleID int #æŒ‡å®šçª—å£æ§ä»¶çš„å¥æŸ„
+---@param _Flag bool @æ‹–åŠ¨çª—å£æ˜¯å¦æ˜¾ç¤ºé€æ˜åº¦
 function GUI:WndSetCascadeOpacity(_HandleID, _Flag)
 end
 
----»ñÈ¡ÎïÆ·¿òÖĞÎïÆ·µÄÊôĞÔÖµ
----@param _Handle int @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _Info string @Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄÃèÊö
----@param _PropType int @GUIDataÊôĞÔÀàĞÍ
----@return any @ »ñÈ¡³É¹¦Ôò·µ»ØÎïÆ·¶ÔÓ¦ÊôĞÔµÄÊôĞÔÖµ£¬Ê§°ÜÔò·µ»Ø0
+---è·å–ç‰©å“æ¡†ä¸­ç‰©å“çš„å±æ€§å€¼
+---@param _Handle int @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Info string @æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„æè¿°
+---@param _PropType int @GUIDataå±æ€§ç±»å‹
+---@return any @ è·å–æˆåŠŸåˆ™è¿”å›ç‰©å“å¯¹åº”å±æ€§çš„å±æ€§å€¼ï¼Œå¤±è´¥åˆ™è¿”å›0
 function RDItemCtrlGetGUIDataPropByType(_Handle, _Info, _PropType)
 end
 
----ÉèÖÃ´°¿ÚÎªµ¯³ö²Ëµ¥
----@param _HandleID int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
+---è®¾ç½®çª—å£ä¸ºå¼¹å‡ºèœå•
+---@param _HandleID int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
 function GUI:WndSetMobilePopupMenu(_HandleID)
 end
 
----ÒÆ³ıËùÓĞ×Ó¿Ø¼ş
----@param _HandleID int @ ¸¸´°¿Ú¾ä±ú
+---ç§»é™¤æ‰€æœ‰å­æ§ä»¶
+---@param _HandleID int @ çˆ¶çª—å£å¥æŸ„
 function GUI:WndDlgClear(_HandleID)
 end
 
----ÉèÖÃ¶à¹¦ÄÜ±à¼­¿òÖĞÎÄ±¾µÄĞĞ¸ß
---- > Èç¹ûÒªÉèÖÃ¶à¹¦ÄÜ±à¼­¿òÖĞÎÄ±¾µÄĞĞ¼ä¾à£¬ÒªÏÈÊ¹ÓÃ´ËapiÉèÖÃĞĞ¸ß£¬È»ºó²ÅÄÜÌí¼ÓÎÄ±¾
----@param _HandleID int @Ö¸¶¨¶à¹¦ÄÜ±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _Offset int @ĞĞ¸ß
+---è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†ä¸­æ–‡æœ¬çš„è¡Œé«˜
+--- > å¦‚æœè¦è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†ä¸­æ–‡æœ¬çš„è¡Œé—´è·ï¼Œè¦å…ˆä½¿ç”¨æ­¤apiè®¾ç½®è¡Œé«˜ï¼Œç„¶åæ‰èƒ½æ·»åŠ æ–‡æœ¬
+---@param _HandleID int @æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Offset int @è¡Œé«˜
 function GUI:RichEditSetOffSet(_HandleID, _Offset)
 end
 
----²¥·Å¶à¹¦ÄÜ±à¼­¿òµÄÆøÅİ¶¯»­
----@param _HandleID int @Ö¸¶¨¶à¹¦ÄÜ±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param flg bool @ÊÇ·ñ¿ªÊ¼²¥·ÅÆøÅİ¶¯»­
----@param filename string @ÆøÅİ¶¯»­µÄÃû³Æ
+---æ’­æ”¾å¤šåŠŸèƒ½ç¼–è¾‘æ¡†çš„æ°”æ³¡åŠ¨ç”»
+---@param _HandleID int @æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param flg bool @æ˜¯å¦å¼€å§‹æ’­æ”¾æ°”æ³¡åŠ¨ç”»
+---@param filename string @æ°”æ³¡åŠ¨ç”»çš„åç§°
 function GUI:RichEditPlayBubbleAnim(_HandleID, flg, filename)
 end
 
----ÉèÖÃ¸´Ñ¡¿òµÄÎÄ±¾ÄÚÈİ
+---è®¾ç½®å¤é€‰æ¡†çš„æ–‡æœ¬å†…å®¹
 ---@param _HandleID int
 ---@param _ControlString string
 function GUI:CheckBoxSetText(_HandleID, _ControlString)
 end
 
----»ñÈ¡´°Ìå¿Ø¼şµÄ×Ô¶¨ÒåÊôĞÔ
----@param _HandleID int #Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Key string #ÊôĞÔÃû³Æ
----@return string # Ö¸¶¨×Ô¶¨ÒåÊôĞÔµÄÊôĞÔÖµ
+---è·å–çª—ä½“æ§ä»¶çš„è‡ªå®šä¹‰å±æ€§
+---@param _HandleID int #æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Key string #å±æ€§åç§°
+---@return string # æŒ‡å®šè‡ªå®šä¹‰å±æ€§çš„å±æ€§å€¼
 function GUI:WndGetProperty(_HandleID, _Key)
 end
 
----ÉèÖÃÁÄÌì´°¿ÚÊÇ·ñ×Ô¶¯ÓïÒôÁÄÌì
----@param flg bool @
----@param index int @ÆµµÀ
-function CL:SetChatWindowAutoVoiceChat(flg, index)
-end
-
----ÏÔÊ¾Ë½ÁÄÒ³Ãæ
----@param _HandleID int @Ë½ÁÄ°´Å¥µÄ¾ä±ú
----@param _Name string @Ë½ÁÄµÄÍæ¼Ò½ÇÉ«Ãû
-function CL:ChatWindowShowPrivatePage(_HandleID, _Name)
-end
-
----½«´°¿ÚÒÆ¶¯ÖÁ×îÏÂ²ã
----@param _HandleID int @Ö¸¶¨´°¿ÚµÄ¾ä±ú
+---å°†çª—å£ç§»åŠ¨è‡³æœ€ä¸‹å±‚
+---@param _HandleID int @æŒ‡å®šçª—å£çš„å¥æŸ„
 function GUI:WndMoveToParentBottom(_HandleID)
 end
 
---- »ñÈ¡¶à¹¦ÄÜ±à¼­¿òÖĞ±»µã»÷µÄÎÄ±¾
----@param _HandleID int @ ¾ä±ú
----@return string @ Ö´ĞĞ³É¹¦Ôò·µ»ØËùµã»÷µÄÎÄ±¾ÄÚÈİ Ö´ĞĞÊ§°ÜÔò·µ»Ø`""`
+--- è·å–å¤šåŠŸèƒ½ç¼–è¾‘æ¡†ä¸­è¢«ç‚¹å‡»çš„æ–‡æœ¬
+---@param _HandleID int @ å¥æŸ„
+---@return string @ æ‰§è¡ŒæˆåŠŸåˆ™è¿”å›æ‰€ç‚¹å‡»çš„æ–‡æœ¬å†…å®¹ æ‰§è¡Œå¤±è´¥åˆ™è¿”å›`""`
 function GUI:RichEditGetSelectClickString(_HandleID)
 end
 
----×éºÏ¿òÌí¼ÓÌõÄ¿
----@param _Handle int  @¾ä±ú
----@param _Info string @ ÃèÊö
----@param _Text string @ÎÄ±¾ÄÚÈİ
----@param _Id int  @Ìí¼ÓÌõÄ¿µÄID
+---ç»„åˆæ¡†æ·»åŠ æ¡ç›®
+---@param _Handle int  @å¥æŸ„
+---@param _Info string @ æè¿°
+---@param _Text string @æ–‡æœ¬å†…å®¹
+---@param _Id int  @æ·»åŠ æ¡ç›®çš„ID
 function ComboBoxAddString(_Handle, _Info, _Text, _Id)
 end
 
----»ñÈ¡×éºÏ¿òÖĞÑ©ÖĞÌõÄ¿µÄID
----@param _HandleID int @Ö¸¶¨×éºÏ¿ò¿Ø¼şµÄ¾ä±ú
----@return int @×éºÏ¿òÖĞÑ¡ÖĞÌõÄ¿µÄID
+---è·å–ç»„åˆæ¡†ä¸­é›ªä¸­æ¡ç›®çš„ID
+---@param _HandleID int @æŒ‡å®šç»„åˆæ¡†æ§ä»¶çš„å¥æŸ„
+---@return int @ç»„åˆæ¡†ä¸­é€‰ä¸­æ¡ç›®çš„ID
 function GUI:ComboBoxGetCurSelectID(_HandleID)
 end
 
----ÒÆ³ı´ø¹ö¶¯ÌõÏÂËùÓĞ×Ó¿Ø¼ş
----@param WndID int @Ö¸¶¨¹ö¶¯´°¿ÚµÄ¾ä±ú
+---ç§»é™¤å¸¦æ»šåŠ¨æ¡ä¸‹æ‰€æœ‰å­æ§ä»¶
+---@param WndID int @æŒ‡å®šæ»šåŠ¨çª—å£çš„å¥æŸ„
 function GUI:WndScrollWndClear(WndID)
 end
 
----ÉèÖÃ×éºÏ¿òÖĞÑ¡ÖĞµÄÌõÄ¿
----@param _HandleID int @¾ä±ú
----@param _Index int @ÌõÄ¿£º ´Ó0¿ªÊ¼
+---è®¾ç½®ç»„åˆæ¡†ä¸­é€‰ä¸­çš„æ¡ç›®
+---@param _HandleID int @å¥æŸ„
+---@param _Index int @æ¡ç›®ï¼š ä»0å¼€å§‹
 function GUI:ComboBoxSetCurSelect(_HandleID, _Index)
 end
 
----Çå¿Õ×éºÏ¿ò¿Ø¼şÄÚÈİ
----@param _Handle int @¾ä±ú
----@param _Info string @ÃèÊö
+---æ¸…ç©ºç»„åˆæ¡†æ§ä»¶å†…å®¹
+---@param _Handle int @å¥æŸ„
+---@param _Info string @æè¿°
 function ComboBoxClear(_Handle, _Info)
 end
 
----»ñÈ¡´°Ìå¿Ø¼şµÄ×Ô¶¨Òå²ÎÊı
----@param _HandleID int @¾ä±ú
----@return uint @º¯ÊıÖ´ĞĞ³É¹¦Ôò·µ»Ø×Ô¶¨Òå²ÎÊıµÄÊıÖµ¡£·ñÔòÖ´ĞĞÊ§°Ü·µ»Ø0¡£
+---è·å–çª—ä½“æ§ä»¶çš„è‡ªå®šä¹‰å‚æ•°
+---@param _HandleID int @å¥æŸ„
+---@return uint @å‡½æ•°æ‰§è¡ŒæˆåŠŸåˆ™è¿”å›è‡ªå®šä¹‰å‚æ•°çš„æ•°å€¼ã€‚å¦åˆ™æ‰§è¡Œå¤±è´¥è¿”å›0ã€‚
 function GUI:WndGetIDParam(_HandleID)
 end
 
---- ÉèÖÃ¿Ø¼şÎÄ×ÖÊÇ·ñÊ¹ÓÃÃè±ß
----@param _Handle int @°´¼ü¾ä±ú
----@param _used bool@ ÊÇ·ñÊ¹ÓÃÃè±ß
+--- è®¾ç½®æ§ä»¶æ–‡å­—æ˜¯å¦ä½¿ç”¨æè¾¹
+---@param _Handle int @æŒ‰é”®å¥æŸ„
+---@param _used bool@ æ˜¯å¦ä½¿ç”¨æè¾¹
 function GUI:WndSetUseTextGrow(_Handle, _used)
 end
 
----ÉèÖÃ¶à¹¦ÄÜ±à¼­¿òµÄ±³¾°Í¼Æ¬
----@param _HandleID int @¾ä±ú
+---è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†çš„èƒŒæ™¯å›¾ç‰‡
+---@param _HandleID int @å¥æŸ„
 ---@param _LeftUp uint
 ---@param _RightUp uint
 ---@param _LeftDown uint
@@ -1899,15 +1889,15 @@ function GUI:RichEditSetMultiBackImage(_HandleID, _LeftUp, _RightUp, _LeftDown, 
                                        _Right)
 end
 
----»ñÈ¡Êó±êÏà¶ÔÖ¸¶¨´°¿ÚµÄÎ»ÖÃ
----@param _HandleID int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
---- »ñÈ¡µÄ×ø±êÎ»ÖÃ´æ´¢ÔÚLuaRetÖĞ¡£
---- `LuaRet[1]`ºá×ø±ê£¨X£©£»
---- `LuaRet[2]`×İ×ø±ê£¨Y£©¡£
+---è·å–é¼ æ ‡ç›¸å¯¹æŒ‡å®šçª—å£çš„ä½ç½®
+---@param _HandleID int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+--- è·å–çš„åæ ‡ä½ç½®å­˜å‚¨åœ¨LuaRetä¸­ã€‚
+--- `LuaRet[1]`æ¨ªåæ ‡ï¼ˆXï¼‰ï¼›
+--- `LuaRet[2]`çºµåæ ‡ï¼ˆYï¼‰ã€‚
 function GUI:GetWndMousePos(_HandleID)
 end
 
---- ÉèÖÃ¶à¹¦ÄÜ±à¼­¿òÎÄ±¾ÇøÓò´óĞ¡
+--- è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ–‡æœ¬åŒºåŸŸå¤§å°
 ---@param _HandleID int
 ---@param _PosX int
 ---@param _PosY int
@@ -1916,322 +1906,331 @@ end
 function GUI:RichEditSetContentRect(_HandleID, _PosX, _PosY, _W, _H)
 end
 
----ÉèÖÃ±à¼­¿òÔÊĞíµÄ×î´ó×Ö·û¸öÊı
----@param _HandleID int @±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _MaxCount int @ÔÊĞíÊäÈëµÄ×î´ó×Ö·û¸öÊı £¬Èô ´Ë²ÎÊıÎª0£¬Ôò´ú±í¶Ô±à¼­¿ò¿Ø¼ş×î´ó¿ÉÏÔÊ¾×Ö½ÚÊı²»×öÏŞÖÆ
---- - ÈôÃ»ÓĞÊ¹ÓÃ½Ó¿ÚÉèÖÃ±à¼­¿òÔÊĞíÊäÈëµÄ×î´ó×Ö·û¸öÊı£¬Ôò¶ËÓÎºÍÊÖÓÎ¾ùÄ¬ÈÏ±à¼­¿ò¿Ø¼şÔÊĞíÊäÈëµÄ×î´ó×Ö·û¸öÊıÎª256¡£
---- - ÈôÊ¹ÓÃ´Ë½Ó¿Ú£¨»òÕß½Ó¿ÚLua_EditSetMaxCharNum£©ÉèÖÃ±à¼­¿òÔÊĞíÊäÈëµÄ×î´ó×Ö·û¸öÊı£¬Ôò±à¼­¿ò¿Ø¼şÔÊĞíÊäÈëµÄ×î´ó×Ö·û¸öÊıÎª¸Ã½Ó¿ÚÉèÖÃµÄÖµ¡£
---- - µ±±à¼­¿ò¿Ø¼şµÄÎÄ±¾ÄÚÈİ¶ÔÓ¦µÄ×Ö·û¸öÊı³¬³öÔÊĞíÊäÈëµÄ×î´ó×Ö·û¸öÊıÊ±£¬»áÏÔÊ¾Î´³¬³ö²¿·ÖµÄÎÄ±¾ÄÚÈİ¡£
---- - Ò»¸öºº×ÖÏàµ±ÓÚÁ½¸ö×Ö·û¡£
+---è®¾ç½®ç¼–è¾‘æ¡†å…è®¸çš„æœ€å¤§å­—ç¬¦ä¸ªæ•°
+---@param _HandleID int @ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _MaxCount int @å…è®¸è¾“å…¥çš„æœ€å¤§å­—ç¬¦ä¸ªæ•° ï¼Œè‹¥ æ­¤å‚æ•°ä¸º0ï¼Œåˆ™ä»£è¡¨å¯¹ç¼–è¾‘æ¡†æ§ä»¶æœ€å¤§å¯æ˜¾ç¤ºå­—èŠ‚æ•°ä¸åšé™åˆ¶
+--- - è‹¥æ²¡æœ‰ä½¿ç”¨æ¥å£è®¾ç½®ç¼–è¾‘æ¡†å…è®¸è¾“å…¥çš„æœ€å¤§å­—ç¬¦ä¸ªæ•°ï¼Œåˆ™ç«¯æ¸¸å’Œæ‰‹æ¸¸å‡é»˜è®¤ç¼–è¾‘æ¡†æ§ä»¶å…è®¸è¾“å…¥çš„æœ€å¤§å­—ç¬¦ä¸ªæ•°ä¸º256ã€‚
+--- - è‹¥ä½¿ç”¨æ­¤æ¥å£ï¼ˆæˆ–è€…æ¥å£Lua_EditSetMaxCharNumï¼‰è®¾ç½®ç¼–è¾‘æ¡†å…è®¸è¾“å…¥çš„æœ€å¤§å­—ç¬¦ä¸ªæ•°ï¼Œåˆ™ç¼–è¾‘æ¡†æ§ä»¶å…è®¸è¾“å…¥çš„æœ€å¤§å­—ç¬¦ä¸ªæ•°ä¸ºè¯¥æ¥å£è®¾ç½®çš„å€¼ã€‚
+--- - å½“ç¼–è¾‘æ¡†æ§ä»¶çš„æ–‡æœ¬å†…å®¹å¯¹åº”çš„å­—ç¬¦ä¸ªæ•°è¶…å‡ºå…è®¸è¾“å…¥çš„æœ€å¤§å­—ç¬¦ä¸ªæ•°æ—¶ï¼Œä¼šæ˜¾ç¤ºæœªè¶…å‡ºéƒ¨åˆ†çš„æ–‡æœ¬å†…å®¹ã€‚
+--- - ä¸€ä¸ªæ±‰å­—ç›¸å½“äºä¸¤ä¸ªå­—ç¬¦ã€‚
 function GUI:EditSetMaxCharNum(_HandleID, _MaxCount)
 end
 
----»ñÈ¡´°Ìå¿Õ¼äµÄ¿É¼û×´Ì¬
----@param _Handle int @Ö¸¶¨´°Ìå¿Õ¼äµÄ¾ä±ú
----@param _Info string @Ö¸¶¨´°Ìå¿Õ¼äµÄÃèÊö
----@return bool @ `true` Ö¸¶¨´°Ìå¿Ø¼şÎª¿É¼û×´Ì¬ ,`false` Ö¸¶¨´°Ìå¿Ø¼şÎª²»¿É¼û×´Ì¬
+---è·å–çª—ä½“ç©ºé—´çš„å¯è§çŠ¶æ€
+---@param _Handle int @æŒ‡å®šçª—ä½“ç©ºé—´çš„å¥æŸ„
+---@param _Info string @æŒ‡å®šçª—ä½“ç©ºé—´çš„æè¿°
+---@return bool @ `true` æŒ‡å®šçª—ä½“æ§ä»¶ä¸ºå¯è§çŠ¶æ€ ,`false` æŒ‡å®šçª—ä½“æ§ä»¶ä¸ºä¸å¯è§çŠ¶æ€
 function WndGetVisibleM(_Handle, _Info)
 end
 
----»ñÈ¡´°Ìå¿Ø¼şµÄÎÄ×Ö
----@param _HandleID int @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@return string @ÎÄ×ÖÄÚÈİ
+---è·å–çª—ä½“æ§ä»¶çš„æ–‡å­—
+---@param _HandleID int @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@return string @æ–‡å­—å†…å®¹
 function GUI:WndGetText(_HandleID)
 end
 
----ÉèÖÃ´°¿Ú¿É¼ûĞÔ
---- > Î´ÔÚÎÄµµÄÚ£¬Òò´úÂëµ÷ÓÃ¶øÌí¼Ó
----@param _Handle int32 @Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Info string @±Ø¶¨´°Ìå¿Ø¼şµÄÃèÊö
----@param _Flag bool @`true` ÉèÖÃÎª¿É¼û×´Ì¬ ,`false`ÉèÖÃÎª²»¿É¼û×´Ì¬
+---è®¾ç½®çª—å£å¯è§æ€§
+--- > æœªåœ¨æ–‡æ¡£å†…ï¼Œå› ä»£ç è°ƒç”¨è€Œæ·»åŠ 
+---@param _Handle int32 @æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Info string @å¿…å®šçª—ä½“æ§ä»¶çš„æè¿°
+---@param _Flag bool @`true` è®¾ç½®ä¸ºå¯è§çŠ¶æ€ ,`false`è®¾ç½®ä¸ºä¸å¯è§çŠ¶æ€
 function WndSetVisible(_Handle, _Info, _Flag)
 end
 
----»ñÈ¡´°Ìå¿Õ¼äµÄÓÃ»§×Ô¶¨ÒåÊı¾İ
----@param _HandleID int @´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _DataIndex int @×Ô¶¨ÒåÊı¾İµÄË÷Òı ´Ó`0`¿ªÊ¼£¬ÒÀ´ÎÀàÍÆ
+---è·å–çª—ä½“ç©ºé—´çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®
+---@param _HandleID int @çª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _DataIndex int @è‡ªå®šä¹‰æ•°æ®çš„ç´¢å¼• ä»`0`å¼€å§‹ï¼Œä¾æ¬¡ç±»æ¨
 function GUI:WndGetUserData(_HandleID, _DataIndex)
 end
 
----ÊÕÈ¡ÓÊ¼şµÄ¸½¼ş
----@param _Guid string @ÓÊ¼şµÄGUID
----@param _Index int @¸½¼şË÷Òı£º
---- - `1`: ½ğ±Ò
---- - `2`£ºÔª±¦
---- - `3~7`£ºÎïÆ·@×î¶àÔÊĞíÌí¼Ó`5`¸öÎïÆ·
---- - `8`£º»ı·Ö
-function CL:AttachmentMail(_Guid, _Index)
-end
-
----»ñÈ¡¶à¹¦ÄÜ±à¼­¿òµÄËùÓĞÎÄ±¾ÄÚÈİ
----@param _HandleID int @ Ö¸¶¨¶à¹¦ÄÜ±à¼­¿ò¿Ø¼şµÄ¾ä±ú¡£
----@return string @ ¶à¹¦ÄÜ±à¼­¿òËùÓĞµÄÎÄ±¾ÄÚÈİ¡£
+---è·å–å¤šåŠŸèƒ½ç¼–è¾‘æ¡†çš„æ‰€æœ‰æ–‡æœ¬å†…å®¹
+---@param _HandleID int @ æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„ã€‚
+---@return string @ å¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ‰€æœ‰çš„æ–‡æœ¬å†…å®¹ã€‚
 function GUI:RichEditGetAllString(_HandleID)
 end
 
----»ñÈ¡×ÖÌå¸ß¶È
----@param _FontName string @×ÖÌåÃû³Æ
----@return int @Ö¸¶¨×ÖÌåµÄ¸ß¶È
-function CL:GetFontStrHeight(_FontName)
-end
-
---- »ñÈ¡¶à¹¦ÄÜ±à¼­¿òÖĞÎÄ±¾¿Ø¼şµÄ¸öÊı
----@param _HandleID int @Ö¸¶¨¶à¹¦ÄÜ ±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@return int  @ Ö´ĞĞ³É¹¦Ôò·µ»ØÎÄ±¾¿Ø¼şµÄ¸öÊı Ö´ĞĞÊ§°ÜÔò·µ»Ø0
+--- è·å–å¤šåŠŸèƒ½ç¼–è¾‘æ¡†ä¸­æ–‡æœ¬æ§ä»¶çš„ä¸ªæ•°
+---@param _HandleID int @æŒ‡å®šå¤šåŠŸèƒ½ ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@return int  @ æ‰§è¡ŒæˆåŠŸåˆ™è¿”å›æ–‡æœ¬æ§ä»¶çš„ä¸ªæ•° æ‰§è¡Œå¤±è´¥åˆ™è¿”å›0
 function GUI:RichEditGetTextItemCount(_HandleID)
 end
 
----ÉèÖÃ °´Å¥ÎÄ×ÖÊÇ·ñ ÔÊĞí×óÉÏ·½Òç³ö
---- ´Ëº¯ÊıÉèÖÃ°´Å¥ÎÄ×ÖÊÇ·ñÔÊĞíÍù×óÉÏ·½ÏòÒç³ö¡£ Ä¬ÈÏÇé¿öÏÂ£¬µ±°´Å¥ÎÄ×Ö³¤¶È³¬¹ı°´Å¥³¤¶ÈÊ±£¬ÎÄ×ÖÎŞ·¨Ïò×óÒç³ö¡£
----@param _HandleID int @Ö¸¶¨°´Å¥¿Õ¼äµÄ¾ä±ú
----@param _CanOverflow bool@ÊÇ·ñ ÔÊĞíÒç³ö `true`ÔÊĞí £¬`false`²»ÔÊĞí
+---è®¾ç½® æŒ‰é’®æ–‡å­—æ˜¯å¦ å…è®¸å·¦ä¸Šæ–¹æº¢å‡º
+--- æ­¤å‡½æ•°è®¾ç½®æŒ‰é’®æ–‡å­—æ˜¯å¦å…è®¸å¾€å·¦ä¸Šæ–¹å‘æº¢å‡ºã€‚ é»˜è®¤æƒ…å†µä¸‹ï¼Œå½“æŒ‰é’®æ–‡å­—é•¿åº¦è¶…è¿‡æŒ‰é’®é•¿åº¦æ—¶ï¼Œæ–‡å­—æ— æ³•å‘å·¦æº¢å‡ºã€‚
+---@param _HandleID int @æŒ‡å®šæŒ‰é’®ç©ºé—´çš„å¥æŸ„
+---@param _CanOverflow bool@æ˜¯å¦ å…è®¸æº¢å‡º `true`å…è®¸ ï¼Œ`false`ä¸å…è®¸
 function GUI:ButtonSetTextCanOverflow(_HandleID, _CanOverflow)
 end
 
----ÉèÖÃ»¬¶¯Ìõµ±Ç°µÄ°Ù·Ö±È
---- > 2D ¶ËÓÎ²»¿ÉÓÃ
----@param _HandleID int @Ö¸¶¨»¬¶¯Ìõ¿Õ¼äµÄ¾ä±ú
----@param _percent int @Ö¸¶¨°Ù·Ö±ÈµÄÊıÖµ
+---è®¾ç½®æ»‘åŠ¨æ¡å½“å‰çš„ç™¾åˆ†æ¯”
+--- > 2D ç«¯æ¸¸ä¸å¯ç”¨
+---@param _HandleID int @æŒ‡å®šæ»‘åŠ¨æ¡ç©ºé—´çš„å¥æŸ„
+---@param _percent int @æŒ‡å®šç™¾åˆ†æ¯”çš„æ•°å€¼
 function GUI:SlideSetPercent(_HandleID, _percent)
 end
 
----»ñÈ¡»¬¶¯Ìõµ±Ç°µÄ°Ù·Ö±È
----@param _HandleID int @Ö¸¶¨¹ö¶¯Ìõ¿Ø¼şµÄ¾ä±ú
----@return int @»¬¶¯Ìõµ±Ç°Ëù´¦Î»ÖÃµÄ°Ù·Ö±ÈÊıÖµ
+---è·å–æ»‘åŠ¨æ¡å½“å‰çš„ç™¾åˆ†æ¯”
+---@param _HandleID int @æŒ‡å®šæ»šåŠ¨æ¡æ§ä»¶çš„å¥æŸ„
+---@return int @æ»‘åŠ¨æ¡å½“å‰æ‰€å¤„ä½ç½®çš„ç™¾åˆ†æ¯”æ•°å€¼
 function GUI:SlideGetPercent(_HandleID)
 end
 
----´´½¨»¬¶¯Ìõ¿Ø¼ş
----@param _ParentHandleID int @¸¸´°¿Ú¾ä±ú
----@param _pWndID string @¿Ø¼şÃû³Æ
----@param _backImage uint @±³¾°Í¼Æ¬×ÊÔ´ID
----@param _slideImage uint @Ç°¾°Í¼Æ¬×ÊÔ´ID
----@param _thumbImage uint @»¬¿éµÄÍ¼Æ¬×ÊÔ´ID
----@param _PosX int @ĞÂ½¨»¬¶¯ÌõÎ»ÖÃµÄºá×ø±ê
----@param _PosY int @ĞÂ½¨»¬¶¯ÌõÎ»ÖÃµÄ×İ×ø±ê
----@param _SizeX int @ĞÂ½¨»¬¶¯ÌõµÄ¿í¶È
----@param _SizeY int @ĞÂ½¨»¬¶¯ÌõµÄ¸ß¶È
----@return int @´´½¨³É¹¦Ôò·µ»ØĞÂ½¨»¬¶¯Ìõ¿Ø¼şµÄ¾ä±ú£¬´´½¨Ê§°Ü·µ»Ø0
+---åˆ›å»ºæ»‘åŠ¨æ¡æ§ä»¶
+---@param _ParentHandleID int @çˆ¶çª—å£å¥æŸ„
+---@param _pWndID string @æ§ä»¶åç§°
+---@param _backImage uint @èƒŒæ™¯å›¾ç‰‡èµ„æºID
+---@param _slideImage uint @å‰æ™¯å›¾ç‰‡èµ„æºID
+---@param _thumbImage uint @æ»‘å—çš„å›¾ç‰‡èµ„æºID
+---@param _PosX int @æ–°å»ºæ»‘åŠ¨æ¡ä½ç½®çš„æ¨ªåæ ‡
+---@param _PosY int @æ–°å»ºæ»‘åŠ¨æ¡ä½ç½®çš„çºµåæ ‡
+---@param _SizeX int @æ–°å»ºæ»‘åŠ¨æ¡çš„å®½åº¦
+---@param _SizeY int @æ–°å»ºæ»‘åŠ¨æ¡çš„é«˜åº¦
+---@return int @åˆ›å»ºæˆåŠŸåˆ™è¿”å›æ–°å»ºæ»‘åŠ¨æ¡æ§ä»¶çš„å¥æŸ„ï¼Œåˆ›å»ºå¤±è´¥è¿”å›0
 function GUI:SlideCreate(_ParentHandleID, _pWndID, _backImage, _slideImage, _thumbImage, _PosX, _PosY, _SizeX, _SizeY)
 end
 
----¼¤»îÖ¸¶¨ÀàĞÍµÄ´°¿Ú
----@param _Handle int @¸¸´°¿Ú¾ä±ú
----@param _Info string @¸¸´°¿ÚµÄ ÃèÊö
----@param _WindowType int @´°¿ÚÀàĞÍµÄË÷ÒıÖµ
----@return bool @`true`Ö´ĞĞ³É¹¦£¬`false`Ö´ĞĞÊ§°Ü
+---æ¿€æ´»æŒ‡å®šç±»å‹çš„çª—å£
+---@param _Handle int @çˆ¶çª—å£å¥æŸ„
+---@param _Info string @çˆ¶çª—å£çš„ æè¿°
+---@param _WindowType int @çª—å£ç±»å‹çš„ç´¢å¼•å€¼
+---@return bool @`true`æ‰§è¡ŒæˆåŠŸï¼Œ`false`æ‰§è¡Œå¤±è´¥
 function WndActiveItemWindow(_Handle, _Info, _WindowType)
 end
 
----´ò¿ªÖ¸¶¨ÀàĞÍµÄÎïÆ·´°¿Ú
----@param _Handle int @Ö¸¶¨´°¿Ú¿Õ¼äµÄ¾ä±ú
----@param _Info string  @ Ö¸¶¨´°Ìå¿Ø¼şµÄÃèÊö
----@param _WindowType int @´°¿ÚÀàĞÍ
----@param _LuaFunc_GetGUIDList string @»ñÈ¡ÎïÆ·´°¿ÚÖĞÒªÏÖÊµµÄÎïÆ·µÄº¯Êı½Ó¿ÚÃû
----@return bool @`true`Ö´ĞĞ³É¹¦£¬`false`Ö´ĞĞÊ§°Ü
---- > Èç²Ù×÷³É¹¦£¬»ñÈ¡µÄµ±Ç°¶ÓÁĞ×îÇ°µÄÎïÆ·´°¿ÚµÄID£¨ÀàĞÍ£º`int`£©´æ´¢ÔÚÈ«¾Ö±äÁ¿`LuaRet`ÖĞ¡£
+---æ‰“å¼€æŒ‡å®šç±»å‹çš„ç‰©å“çª—å£
+---@param _Handle int @æŒ‡å®šçª—å£ç©ºé—´çš„å¥æŸ„
+---@param _Info string  @ æŒ‡å®šçª—ä½“æ§ä»¶çš„æè¿°
+---@param _WindowType int @çª—å£ç±»å‹
+---@param _LuaFunc_GetGUIDList string @è·å–ç‰©å“çª—å£ä¸­è¦ç°å®çš„ç‰©å“çš„å‡½æ•°æ¥å£å
+---@return bool @`true`æ‰§è¡ŒæˆåŠŸï¼Œ`false`æ‰§è¡Œå¤±è´¥
+--- > å¦‚æ“ä½œæˆåŠŸï¼Œè·å–çš„å½“å‰é˜Ÿåˆ—æœ€å‰çš„ç‰©å“çª—å£çš„IDï¼ˆç±»å‹ï¼š`int`ï¼‰å­˜å‚¨åœ¨å…¨å±€å˜é‡`LuaRet`ä¸­ã€‚
 function WndOpenItemWindow(_Handle, _Info, _WindowType, _LuaFunc_GetGUIDList)
 end
 
---- Çå³ıÎïÆ·¿òÖĞÒÑÓĞµÄÎïÆ·Êı¾İ
----@param _Handle int @Ö¸¶¨ÎïÆ·¿ò¿Õ¼äµÄ¾ä±ú
----@param _Info string @Ö¸¶¨ÎïÆ·¿òµÄÃèÊö
+--- æ¸…é™¤ç‰©å“æ¡†ä¸­å·²æœ‰çš„ç‰©å“æ•°æ®
+---@param _Handle int @æŒ‡å®šç‰©å“æ¡†ç©ºé—´çš„å¥æŸ„
+---@param _Info string @æŒ‡å®šç‰©å“æ¡†çš„æè¿°
 ---@return bool @
 function RDItemCtrlClearGUIData(_Handle, _Info)
 end
 
----ÉèÖÃ±à¼­¿òµÄÎÄ±¾ÄÚÈİ
----@param _Handle int  # ÖÃ¶¥±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _Info string # ÖÃ¶¥±à¼­¿ò¿Ø¼şµÄÃèÊö
----@param _Text string # ÎÄ±¾ÄÚÈİ
+---è®¾ç½®ç¼–è¾‘æ¡†çš„æ–‡æœ¬å†…å®¹
+---@param _Handle int  # ç½®é¡¶ç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Info string # ç½®é¡¶ç¼–è¾‘æ¡†æ§ä»¶çš„æè¿°
+---@param _Text string # æ–‡æœ¬å†…å®¹
 function EditSetTextM(_Handle, _Info, _Text) end
 
----ÉèÖÃ±à¼­¿òÎÄ±¾ÑÕÉ«
----@param _Handle int @Ö¸¶¨±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _Info string # ÖÃ¶¥±à¼­¿ò¿Ø¼şµÄÃèÊö
----@param _Color uint # ÎÄ±¾ÑÕÉ«£¬¾ßÌåÇë²Î¼û**ÑÕÉ«×Ö·û´®**½çÃæ
+---è®¾ç½®ç¼–è¾‘æ¡†æ–‡æœ¬é¢œè‰²
+---@param _Handle int @æŒ‡å®šç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Info string # ç½®é¡¶ç¼–è¾‘æ¡†æ§ä»¶çš„æè¿°
+---@param _Color uint # æ–‡æœ¬é¢œè‰²ï¼Œå…·ä½“è¯·å‚è§**é¢œè‰²å­—ç¬¦ä¸²**ç•Œé¢
 function EditSetTextColor(_Handle, _Info, _Color) end
 
----ÉèÖÃÍ¼Æ¬ÊÇ·ñ¾µÏñ·­×ª
----@param _HandleID int # Ö¸¶¨Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@param _FlipX bool # Ë®Æ½·­×ª
----@param _FlipY bool # ´¹Ö±·­×ª
+---è®¾ç½®å›¾ç‰‡æ˜¯å¦é•œåƒç¿»è½¬
+---@param _HandleID int # æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@param _FlipX bool # æ°´å¹³ç¿»è½¬
+---@param _FlipY bool # å‚ç›´ç¿»è½¬
 function GUI:ImageSetFlip(_HandleID, _FlipX, _FlipY) end
 
----»ñÈ¡Í¼Æ¬¿Õ¼äµÄÍ¼Æ¬×ÊÔ´ID
----@param _HandleID int @Ö¸¶¨Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@return int @ »ñÈ¡³É¹¦Ôò·µ»ØÖ¸¶¨Í¼Æ¬¿Ø¼şµÄÍ¼Æ¬×ÊÔ´ID , »ñÈ¡Ê§°ÜÔò·µ»Ø`0`
+---è·å–å›¾ç‰‡ç©ºé—´çš„å›¾ç‰‡èµ„æºID
+---@param _HandleID int @æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@return int @ è·å–æˆåŠŸåˆ™è¿”å›æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å›¾ç‰‡èµ„æºID , è·å–å¤±è´¥åˆ™è¿”å›`0`
 function GUI:ImageGetImageID(_HandleID)
 end
 
----»ñÈ¡Í¼Æ¬¿Ø¼ş¼ì²âµã»÷ÇøÓòÕâÀàĞÍ
----ÊÖÓÎ²»ÊÊÓÃ
----@param _HandleID int @Ö¸¶¨Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@return int @·µ»Ø¼ì²âµã»÷µÄÀàĞÍ
+---è·å–å›¾ç‰‡æ§ä»¶æ£€æµ‹ç‚¹å‡»åŒºåŸŸè¿™ç±»å‹
+---æ‰‹æ¸¸ä¸é€‚ç”¨
+---@param _HandleID int @æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@return int @è¿”å›æ£€æµ‹ç‚¹å‡»çš„ç±»å‹
 function GUI:ImageGetCheckPoint(_HandleID) end
 
----ÉèÖÃ¸´Ñ¡¿òÎÄ±¾ÊÇ·ñ´¹Ö±¾ÓÖĞ
----@param handle int @ ¾ä±ú
----@param is_center_text boolean @ÊÇ·ñ´¹Ö±Ö®ÖĞ£¬
---- - `true` :´¹Ö±¾ÓÖĞ
---- - `false` : ²»¾ÓÖĞ
+---è®¾ç½®å¤é€‰æ¡†æ–‡æœ¬æ˜¯å¦å‚ç›´å±…ä¸­
+---@param handle int @ å¥æŸ„
+---@param is_center_text boolean @æ˜¯å¦å‚ç›´ä¹‹ä¸­ï¼Œ
+--- - `true` :å‚ç›´å±…ä¸­
+--- - `false` : ä¸å±…ä¸­
 function GUI:CheckBoxSetCenterTextVertically(handle, is_center_text) end
 
----É¾³ıÁĞ±í¿òÖĞÖ¸¶¨µÄ±êÄ¿
----@param _HandleID int @¾ä±ú
----@param _LineIdx int @ÒªÉ¾³ıµÄÌõÄ¿Ë÷Òı£¬Ë÷Òı´Ó`0`¿ªÊ¼
+---åˆ é™¤åˆ—è¡¨æ¡†ä¸­æŒ‡å®šçš„æ ‡ç›®
+---@param _HandleID int @å¥æŸ„
+---@param _LineIdx int @è¦åˆ é™¤çš„æ¡ç›®ç´¢å¼•ï¼Œç´¢å¼•ä»`0`å¼€å§‹
 function GUI:ListBoxDelString(_HandleID, _LineIdx)
 end
 
----ÉèÖÃÈ«²¿²Ëµ¥ÌõÄ¿ÊÇ·ñ¿É¼û
----²Ëµ¥¾ä±ú²ÎÊı¿ÉÍ¨¹ıÈ«¾Ö±äÁ¿`Temporary`À´´«µİ¡£
+---è®¾ç½®å…¨éƒ¨èœå•æ¡ç›®æ˜¯å¦å¯è§
+---èœå•å¥æŸ„å‚æ•°å¯é€šè¿‡å…¨å±€å˜é‡`Temporary`æ¥ä¼ é€’ã€‚
 ---@param _Flag boolean
 ---@return boolean
 function GUI:MenuSetAllItemVisiable(_Flag) end
 
----»ñÈ¡²Ëµ¥
+---è·å–èœå•
 ---@param _HandleID any
 function GUI:MenuGetMenu(_HandleID) end
 
----ÉèÖÃ¿Ø¼şÎÄ×ÖÊÇ·ñÊ¹ÓÃÃè±ß
----¸Ä½Ó¿ÚÒÑ¹ıÆÚ£¬ÇëÊ¹ÓÃ£º`GUI:WndSetUseTextGrow(_Handle,_used)`
----@param _Handle int # ¾ä±ú
----@param _used boolean # ÊÇ·ñÃè±ß `true` Ê¹ÓÃÃè±ß £¬ `false` ²»ÊÊÓÃÃè±ß
+---è®¾ç½®æ§ä»¶æ–‡å­—æ˜¯å¦ä½¿ç”¨æè¾¹
+---æ”¹æ¥å£å·²è¿‡æœŸï¼Œè¯·ä½¿ç”¨ï¼š`GUI:WndSetUseTextGrow(_Handle,_used)`
+---@param _Handle int # å¥æŸ„
+---@param _used boolean # æ˜¯å¦æè¾¹ `true` ä½¿ç”¨æè¾¹ ï¼Œ `false` ä¸é€‚ç”¨æè¾¹
 function GUI:EditSetUseTextGrow(_Handle, _used) end
 
----Çå³ı´°Ìå¿Ø¼şµÄÊÂ¼ş»Øµ÷º¯Êı
----@param _HandleID int #  Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
----@param _Msg int # Ö¸¶¨´°Ìå¿Ø¼şµÄÊÂ¼şID
----@return bool # `true` ¿Ø¼ş´æÔÚ£¬ `false`¿Ø¼ş²»´æÔÚ
+---æ¸…é™¤çª—ä½“æ§ä»¶çš„äº‹ä»¶å›è°ƒå‡½æ•°
+---@param _HandleID int #  æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
+---@param _Msg int # æŒ‡å®šçª—ä½“æ§ä»¶çš„äº‹ä»¶ID
+---@return bool # `true` æ§ä»¶å­˜åœ¨ï¼Œ `false`æ§ä»¶ä¸å­˜åœ¨
 function GUI:WndClearScript(_HandleID, _Msg)
 end
 
----ÉèÖÃ±à¼­¿òÊÇ·ñÎª Êı×Ö±à¼­¿ò
+---è®¾ç½®ç¼–è¾‘æ¡†æ˜¯å¦ä¸º æ•°å­—ç¼–è¾‘æ¡†
 ---@param _HandleID int
 ---@param _Flag bool
 function GUI:EditSetBNumber(_HandleID, _Flag)
 end
 
----»ñÈ¡ÎïÆ·¿òÖĞÎïÆ·µÄÊôĞÔÖµ
----@param _HandleID int # Ö¸¶¨ÎïÆ·¿ò¿Ø¼şµÄ¾ä±ú
----@param _PropType GUIDataPropType # GUIDataÊôĞÔÀàĞÍ
+---è·å–ç‰©å“æ¡†ä¸­ç‰©å“çš„å±æ€§å€¼
+---@param _HandleID int # æŒ‡å®šç‰©å“æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _PropType GUIDataPropType # GUIDataå±æ€§ç±»å‹
 ---@return boolean
---- >  ´Ëº¯Êı·µ»Ø²Ù×÷³É¹¦»òÊ§°Ü¡£Èç²Ù×÷³É¹¦£¬Ôò»ñÈ¡µÄÎïÆ·µÄGUIDataÊôĞÔÖµ´æ´¢ÔÚÈ«¾Ö±äÁ¿LuaRetÖĞ¡£
+--- >  æ­¤å‡½æ•°è¿”å›æ“ä½œæˆåŠŸæˆ–å¤±è´¥ã€‚å¦‚æ“ä½œæˆåŠŸï¼Œåˆ™è·å–çš„ç‰©å“çš„GUIDataå±æ€§å€¼å­˜å‚¨åœ¨å…¨å±€å˜é‡LuaRetä¸­ã€‚
 function GUI:ItemCtrlGetGUIDataPropByType(_HandleID, _PropType)
 end
 
---- ÉèÖÃ±à¼­¿ò¿Ø¼şÖĞÎÄ±¾Ãè±ßÑÕÉ«
----@param _HandleID int #Ö¸¶¨±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _Color uint # ÎÄ±¾µÄÃè±ßÑÕÉ«
+--- è®¾ç½®ç¼–è¾‘æ¡†æ§ä»¶ä¸­æ–‡æœ¬æè¾¹é¢œè‰²
+---@param _HandleID int #æŒ‡å®šç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Color uint # æ–‡æœ¬çš„æè¾¹é¢œè‰²
 function GUI:EditSetTextGrowColor(_HandleID, _Color) end
 
---- »ñÈ¡ÎïÆ·×Ô¶¨Òå×Ö·û´®±äÁ¿
----@param _ItemEntityHandle int  #ÎïÆ·ÊµÌå¾ä±ú
----@param _ItemCustomKey string ×Ô¶¨Òå±äÁ¿Ë÷ÒıÃû
----@return string
-function CL:GetItemEntityCustomVarStr(_ItemEntityHandle, _ItemCustomKey) end
-
---- ÉèÖÃ´°Ìå¿Ø¼şµÄÃû³Æ
----@param _HandleID int #¾ä±ú
----@param _NewId string # ÒªÉèÖÃµÄ´°Ìå¿Ø¼şÃû³Æ
+--- è®¾ç½®çª—ä½“æ§ä»¶çš„åç§°
+---@param _HandleID int #å¥æŸ„
+---@param _NewId string # è¦è®¾ç½®çš„çª—ä½“æ§ä»¶åç§°
 function GUI:WndSetIDM(_HandleID, _NewId) end
 
---- ÉèÖÃ¶à¹¦ÄÜ±à¼­¿òÊÇ·ñÆôÓÃÖØĞÂäÖÈ¾ÎÄ±¾
----@param _HandleID int # ¾ä±ú
----@param _Enable bool # ÊÇ·ñÆôÓÃÖØĞÂäÖÈ¾ÎÄ±¾
+--- è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ˜¯å¦å¯ç”¨é‡æ–°æ¸²æŸ“æ–‡æœ¬
+---@param _HandleID int # å¥æŸ„
+---@param _Enable bool # æ˜¯å¦å¯ç”¨é‡æ–°æ¸²æŸ“æ–‡æœ¬
 function GUI:RichEditEnableInvalidateData(_HandleID, _Enable) end
 
---- ÉèÖÃ±à¼­¿òÖĞ¿ÉÊäÈëµÄ×î´óÊıÖµ
+--- è®¾ç½®ç¼–è¾‘æ¡†ä¸­å¯è¾“å…¥çš„æœ€å¤§æ•°å€¼
 ---@param _HandleID int
 ---@param _Type
----| 0 # ÆÕÍ¨±à¼­¿ò
----| 1 # ²»ÊÜ×î´ó×Ö·ûÊıÏŞÖÆµÄÊı×Ö±à¼­¿ò
----| 2 # ²»ÊÜ×î´ó×Ö·ûÊıÏŞÖÆµÄ»õ±ÒÊı×Ö±à¼­¿ò
----| -1 # ÊÜ×î´ó×Ö·ûÊıÏŞÖÆµÄÊı×Ö±à¼­¿ò
----| -2 # ÊÜ×î´ó×Ö·ûÊıÏŞÖÆµÄ»õ±ÒÊı×Ö±à¼­¿ò
----@param _Number string # ×î´óÊıÖµ
---- > µ±²ÎÊı_TypeÉèÖÃÎª`0`Ê±£¬´Ë²ÎÊı²»ÉúĞ§¡£
+---| 0 # æ™®é€šç¼–è¾‘æ¡†
+---| 1 # ä¸å—æœ€å¤§å­—ç¬¦æ•°é™åˆ¶çš„æ•°å­—ç¼–è¾‘æ¡†
+---| 2 # ä¸å—æœ€å¤§å­—ç¬¦æ•°é™åˆ¶çš„è´§å¸æ•°å­—ç¼–è¾‘æ¡†
+---| -1 # å—æœ€å¤§å­—ç¬¦æ•°é™åˆ¶çš„æ•°å­—ç¼–è¾‘æ¡†
+---| -2 # å—æœ€å¤§å­—ç¬¦æ•°é™åˆ¶çš„è´§å¸æ•°å­—ç¼–è¾‘æ¡†
+---@param _Number string # æœ€å¤§æ•°å€¼
+--- > å½“å‚æ•°_Typeè®¾ç½®ä¸º`0`æ—¶ï¼Œæ­¤å‚æ•°ä¸ç”Ÿæ•ˆã€‚
 ---
---- > ÔÚ²ÎÊı_TypeÉèÖÃÎª-1»ò-2µÄÇ°ÌáÏÂ£¬Èô²ÎÊı_NumberÉèÖÃµÄÊıÖµ¶ÔÓ¦µÄ×Ö·ûÊı´óÓÚ´Ë±à¼­¿ò¿Ø¼şÔÊĞíÊäÈëµÄ×Ö·ûÊı£¬ÔòÊµ¼Ê¿ÉÊäÈëµÄ×î´óÊıÖµÎªµ±Ç°×Ö·ûÊıËù¶ÔÓ¦µÄ×î´óÖµ£¬¾ßÌå¿É²Î¿¼ÓÒ²àÊ¾Àı¡£
+--- > åœ¨å‚æ•°_Typeè®¾ç½®ä¸º-1æˆ–-2çš„å‰æä¸‹ï¼Œè‹¥å‚æ•°_Numberè®¾ç½®çš„æ•°å€¼å¯¹åº”çš„å­—ç¬¦æ•°å¤§äºæ­¤ç¼–è¾‘æ¡†æ§ä»¶å…è®¸è¾“å…¥çš„å­—ç¬¦æ•°ï¼Œåˆ™å®é™…å¯è¾“å…¥çš„æœ€å¤§æ•°å€¼ä¸ºå½“å‰å­—ç¬¦æ•°æ‰€å¯¹åº”çš„æœ€å¤§å€¼ï¼Œå…·ä½“å¯å‚è€ƒå³ä¾§ç¤ºä¾‹ã€‚
 function GUI:EditSetMaxNumber(_HandleID, _Type, _Number) end
 
---- ÉèÖÃ±à¼­¿òµÄ¹â±êÎ»ÖÃ
+--- è®¾ç½®ç¼–è¾‘æ¡†çš„å…‰æ ‡ä½ç½®
 ---@param _HandleID int
----@param _CurSorPos int # ¹â±êÎ»ÖÃ Èô´Ë²ÎÊıÉèÖÃÎª`n`£¬Ôò¹â±ê»áÏÔÊ¾ÔÚµÚ`n`¸ö×Ö·ûºóÃæ¡£
+---@param _CurSorPos int # å…‰æ ‡ä½ç½® è‹¥æ­¤å‚æ•°è®¾ç½®ä¸º`n`ï¼Œåˆ™å…‰æ ‡ä¼šæ˜¾ç¤ºåœ¨ç¬¬`n`ä¸ªå­—ç¬¦åé¢ã€‚
 function GUI:EditSetCurSorPos(_HandleID, _CurSorPos) end
 
---- ÉèÖÃ±à¼­¿òÖĞÒªÑ¡ÔñµÄÄÚÈİµÄÆğÊ¼Î»ÖÃ
+--- è®¾ç½®ç¼–è¾‘æ¡†ä¸­è¦é€‰æ‹©çš„å†…å®¹çš„èµ·å§‹ä½ç½®
 ---@param _HandleID int
----@param select_pos int ÒªÑ¡ÔñµÄÄÚÈİµÄÆğÊ¼Î»ÖÃ ,Èô´Ë²ÎÊıÉèÖÃÎª`n`£¬Ôò´ÓµÚ`n+1`¸ö×Ö·û¿ªÊ¼Ñ¡Ôñ¡£
+---@param select_pos int è¦é€‰æ‹©çš„å†…å®¹çš„èµ·å§‹ä½ç½® ,è‹¥æ­¤å‚æ•°è®¾ç½®ä¸º`n`ï¼Œåˆ™ä»ç¬¬`n+1`ä¸ªå­—ç¬¦å¼€å§‹é€‰æ‹©ã€‚
 function GUI:EditSetSelectPos(_HandleID, select_pos) end
 
 ---CheckBoxGetAutoChange
 ---@param _HandleID int
----@return bool # `true`  ¿É¸Ä±ä£¬ false²»¿É¸Ä±ä
+---@return bool # `true`  å¯æ”¹å˜ï¼Œ falseä¸å¯æ”¹å˜
 function GUI:CheckBoxGetAutoChange(_HandleID) end
 
---- ÉèÖÃ¶à¹¦ÄÜ±à¼­¿ò¿Ø¼şÖĞÎÄ±¾µÄÃè±ßÑÕÉ«
+--- è®¾ç½®å¤šåŠŸèƒ½ç¼–è¾‘æ¡†æ§ä»¶ä¸­æ–‡æœ¬çš„æè¾¹é¢œè‰²
 ---@param _HandleID int
 ---@param _Color uint
 function GUI:RichEditSetTextGrowColor(_HandleID, _Color) end
 
---- ÉèÖÃÖ¸¶¨¶à¹¦ÄÜ±à¼­¿ò³¬Á´½ÓÎÄ×ÖµÄÑÕÉ«
+--- è®¾ç½®æŒ‡å®šå¤šåŠŸèƒ½ç¼–è¾‘æ¡†è¶…é“¾æ¥æ–‡å­—çš„é¢œè‰²
 ---@param _HandleID int
 ---@param _Flag
----| `1` # Ñ¡ÖĞÁ´½ÓµÄÑÕÉ«£¨¼´¸ßÁÁµÄÑÕÉ«£©
----| `2` # ¿ÉÑ¡Ôñ×Ö·û´®Á´½ÓµÄÑÕÉ«£¨¼´SELECT±êÇ©ÖĞµÄÎÄ×Ö£©
----| `3` # ±êÌâÁ´½ÓµÄÑÕÉ«£¨¼´TITLE±êÇ©ÖĞµÄÎÄ×Ö£©
----| `4` # Ãû×ÖÁ´½ÓµÄÑÕÉ«£¨¼´NAMELINK±êÇ©ÖĞµÄÎÄ×Ö£©
----| `5` # ÆÕÍ¨Á´½ÓµÄÑÕÉ«£¨¼´LINK±êÇ©ÖĞµÄÎÄ×Ö£©
----| `6` # NPCÁ´½ÓµÄÑÕÉ«£¨¼´NPCLINK±êÇ©ÖĞµÄÎÄ×Ö£©
----| `7` # ÎïÆ·Á´½ÓµÄÑÕÉ«£¨¼´ITEMLINK±êÇ©ÖĞµÄÎÄ×Ö£©
----| `8` # UIÁ´½ÓµÄÑÕÉ«£¨¼´UILINK±êÇ©ÖĞµÄÎÄ×Ö£©
----| `9` # ¹Ø±ÕÁ´½ÓµÄÑÕÉ«£¨¼´CLOSE±êÇ©ÖĞµÄÎÄ×Ö£©
+---| `1` # é€‰ä¸­é“¾æ¥çš„é¢œè‰²ï¼ˆå³é«˜äº®çš„é¢œè‰²ï¼‰
+---| `2` # å¯é€‰æ‹©å­—ç¬¦ä¸²é“¾æ¥çš„é¢œè‰²ï¼ˆå³SELECTæ ‡ç­¾ä¸­çš„æ–‡å­—ï¼‰
+---| `3` # æ ‡é¢˜é“¾æ¥çš„é¢œè‰²ï¼ˆå³TITLEæ ‡ç­¾ä¸­çš„æ–‡å­—ï¼‰
+---| `4` # åå­—é“¾æ¥çš„é¢œè‰²ï¼ˆå³NAMELINKæ ‡ç­¾ä¸­çš„æ–‡å­—ï¼‰
+---| `5` # æ™®é€šé“¾æ¥çš„é¢œè‰²ï¼ˆå³LINKæ ‡ç­¾ä¸­çš„æ–‡å­—ï¼‰
+---| `6` # NPCé“¾æ¥çš„é¢œè‰²ï¼ˆå³NPCLINKæ ‡ç­¾ä¸­çš„æ–‡å­—ï¼‰
+---| `7` # ç‰©å“é“¾æ¥çš„é¢œè‰²ï¼ˆå³ITEMLINKæ ‡ç­¾ä¸­çš„æ–‡å­—ï¼‰
+---| `8` # UIé“¾æ¥çš„é¢œè‰²ï¼ˆå³UILINKæ ‡ç­¾ä¸­çš„æ–‡å­—ï¼‰
+---| `9` # å…³é—­é“¾æ¥çš„é¢œè‰²ï¼ˆå³CLOSEæ ‡ç­¾ä¸­çš„æ–‡å­—ï¼‰
 ---@param _ColorStr string
 function GUI:RichEditSetLinkColor(_HandleID, _Flag, _ColorStr) end
 
---- É¾³ı´°Ìå¿Ø¼şÖĞÖ¸¶¨µÄ¶¨Ê±Æ÷
+--- åˆ é™¤çª—ä½“æ§ä»¶ä¸­æŒ‡å®šçš„å®šæ—¶å™¨
 ---@param _HandleID int
 ---@param _ID int
----@return bool #Ö´ĞĞ½á¹û
+---@return bool #æ‰§è¡Œç»“æœ
 function GUI:WndDelTimer(_HandleID, _ID) end
 
---- É¾³ı´°Ìå¿Ø¼şµÄ×Ô¶¨ÒåÊôĞÔ
+--- åˆ é™¤çª—ä½“æ§ä»¶çš„è‡ªå®šä¹‰å±æ€§
 ---@param _HandleID int
----@param _Key string #ÊôĞÔÃû³Æ
+---@param _Key string #å±æ€§åç§°
 function GUI:WndDelProperty(_HandleID, _Key) end
 
---- ÉèÖÃ°´Å¥ÊÇ·ñÎª¼¤»î×´Ì¬
+--- è®¾ç½®æŒ‰é’®æ˜¯å¦ä¸ºæ¿€æ´»çŠ¶æ€
 ---@param _HandleID int
 ---@param _Flag boolean
 function GUI:ButtonSetIsActiveBtn(_HandleID, _Flag) end
 
---- ¸ù¾İJSON×Ö·û´®Ìî³äÎïÆ·¿òÎïÆ·
+--- æ ¹æ®JSONå­—ç¬¦ä¸²å¡«å……ç‰©å“æ¡†ç‰©å“
 ---@param _HandleID int
----@param _JsonString string #Json×Ö·û´®
+---@param _JsonString string #Jsonå­—ç¬¦ä¸²
 function GUI:ItemCtrlSetJson(_HandleID, _JsonString) end
 
---- ÉèÖÃ±à¼­¿òÖĞÎÄ±¾µÄĞĞ¼ä¾à
----@param _HandleID int # Ö¸¶¨±à¼­¿ò¿Ø¼şµÄ¾ä±ú
----@param _Offset int # ĞĞ¼ä¾à£¬µ¥Î»Îª£¨`px`£©
+--- è®¾ç½®ç¼–è¾‘æ¡†ä¸­æ–‡æœ¬çš„è¡Œé—´è·
+---@param _HandleID int # æŒ‡å®šç¼–è¾‘æ¡†æ§ä»¶çš„å¥æŸ„
+---@param _Offset int # è¡Œé—´è·ï¼Œå•ä½ä¸ºï¼ˆ`px`ï¼‰
 function GUI:EditSetOffSet(_HandleID, _Offset) end
 
---- ÉèÖÃ´°¿ÚÎªµ¯³ö²Ëµ¥
----@param _HandleID int #Ö¸¶¨´°Ìå¿Ø¼şµÄ¾ä±ú
+--- è®¾ç½®çª—å£ä¸ºå¼¹å‡ºèœå•
+---@param _HandleID int #æŒ‡å®šçª—ä½“æ§ä»¶çš„å¥æŸ„
 function GUI:WndSetPopupMenu(_HandleID) end
 
---- ÉèÖÃÍ¼Æ¬¿Ø¼şÑÕÉ«
----@param _HandleID int # Ö¸¶¨Í¼Æ¬¿Ø¼şµÄ¾ä±ú
----@param _ImageColor uint # Ö¸¶¨Í¼Æ¬¿Ø¼şµÄÑÕÉ«
+--- è®¾ç½®å›¾ç‰‡æ§ä»¶é¢œè‰²
+---@param _HandleID int # æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„å¥æŸ„
+---@param _ImageColor uint # æŒ‡å®šå›¾ç‰‡æ§ä»¶çš„é¢œè‰²
 function GUI:ImageSetColor(_HandleID, _ImageColor) end
 
---- ÉèÖÃ×éºÏ¿òÖĞ±à¼­¿òµÄ´óĞ¡
+--- è®¾ç½®ç»„åˆæ¡†ä¸­ç¼–è¾‘æ¡†çš„å¤§å°
 ---@param _HandleID int
 ---@param _Width int
 ---@param _Height int
 function GUI:ComboBoxSetEditSize(_HandleID, _Width, _Height) end
 
---- ÉèÖÃ×éºÏ¿ò¿Ø¼ş¹Ì¶¨µÄÏÂÀ­±³¾°¸ß¶È
+--- è®¾ç½®ç»„åˆæ¡†æ§ä»¶å›ºå®šçš„ä¸‹æ‹‰èƒŒæ™¯é«˜åº¦
 ---@param _HandleID int
----@param _Length int # µ¥Î»ÎªÏñËØ
+---@param _Length int # å•ä½ä¸ºåƒç´ 
 function GUI:ComboBoxSetFixListLength(_HandleID, _Length) end
+
+--- æ¸…ç©ºç»„åˆæ¡†æ§ä»¶å†…å®¹
+---@param _HandleID int
+function GUI:ComboBoxClear(_HandleID) end
+
+--- è®¾ç½®æŒ‰é’®ä¸Šçš„å›¾ç‰‡çš„åç§»é‡
+---@param handle int
+---@param px int # Xè½´æ–¹å‘ä¸Šä¸­å¿ƒåç§»
+---@param py int # Yè½´æ–¹å‘ä¸Šä¸­å¿ƒåç§»
+function GUI:ButtonSetDrawPostTextureOffset(handle, px, py) end
+
+--- è®¾ç½®å›¾ç‰‡æ§ä»¶çš„è£å‰ªåŠ¨ç”»
+---@param _HandleID int
+---@param _StartX int # `0-1`
+---@param _StartY int # `0-1`
+---@param _EndX int # `0-1`
+---@param _EndY int # `0-1`
+---@param _Speed int # `0-1`
+function GUI:ImageSetClipAnim(_HandleID, _StartX, _StartY, _EndX, _EndY, _Speed) end
+
+--- è·å–å›¾ç‰‡æ§ä»¶æ˜¯å¦ä¸­å¿ƒç»˜åˆ¶
+---@param _HandleID int
+---@return bool # `true` ä¸­å¿ƒç»˜åˆ¶ </br> `false` é»˜è®¤æ–¹å¼ç»˜åˆ¶
+function GUI:ImageGetDrawCenter(_HandleID) end
+
+--- ç»„åˆæ¡†æ·»åŠ æ¡ç›®å¹¶è®¾ç½®æ¡ç›®æ–‡æœ¬çš„é¢œè‰²
+---@param _HandleID int
+---@param _Info string
+---@param _Id int
+---@param _Color uint
+function GUI:ComboBoxAddString(_HandleID, _Info, _Id, _Color) end

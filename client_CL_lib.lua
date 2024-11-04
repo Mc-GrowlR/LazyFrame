@@ -1199,36 +1199,50 @@ end
 
 ---设置玩家角色隐藏标志
 --- > 设置不会隐藏任何野怪。
----@param _Flag int @
---- - `0` 表示取消设置。
---- - `1` 表示只隐藏其他玩家角色而不隐藏其宠物。
---- - `2` 表示只隐藏其他玩家角色的宠物而不隐藏玩家角色自身。
---- - `3` 表示同时隐藏玩家角色和宠物。
+---@param _Flag
+---| `0` 表示取消设置。
+---| `1` 表示只隐藏其他玩家角色而不隐藏其宠物。
+---| `2` 表示只隐藏其他玩家角色的宠物而不隐藏玩家角色自身。
+---| `3` 表示同时隐藏玩家角色和宠物。
 function CL:SetHideRoleFlag(_Flag)
 end
 
 ---设置游戏保护设置数据
----@param id int @
---- - `2003`延迟时间数据
---- - `2004`HP设置数据
---- - `2005`HP按百分比设置数据
---- - `2006`复选框是否选中
---- - `2007`下拉框中当前选中项目
+---@param id
+---| `2003` # 延迟时间数据
+---| `2004` # HP设置数据
+---| `2005` # HP按百分比设置数据
+---| `2006` # 复选框是否选中
+---| `2007` # 下拉框中当前选中项目
 ---@param index int @数组索引值范围0~9，
 ---@param _String string @设置值
 ---@return bool @`true` 执行成功 ，`false` 执行失败
 function CL:SetProtectIndex(id, index, _String)
 end
 
+---@class ProtectArr2002
+---@field [1] int[]
+---@field [2] int[]
+---@field [3] int[]
+---@field [4] int[]
+---@field [5] int[]
+---@field [6] int[]
+---@field [7] int[]
+---@field [8] int[]
+---@field [9] int[]
+---@field [10] int[]
+
 ---获取游戏保护设置数据
----@param id int @
---- - `2002`下拉框中物品的模板ID数据
---- - `2003`延迟时间数据
---- - `2004`HP设置数据
---- - `2005`HP按百分比设置数据
---- - `2006`复选框是否选中数据
---- - `2007`下拉框中当前选中项目的索引号
----@return bool @`true`获取成功，`false`获取失败，获取的属性存储在全局变量LuaRet中。
+---@param id
+--- | `2002` # 下拉框中物品的模板ID数据
+--- | `2003` # 延迟时间数据
+--- | `2004` # HP设置数据
+--- | `2005` # HP按百分比设置数据
+--- | `2006` # 复选框是否选中数据
+--- | `2007` # 下拉框中当前选中项目的索引号
+---@return bool #
+--- - `true`获取成功，`false`获取失败，获取的属性存储在全局变量`LuaRet`中。
+--- - `LuaRet` 的类型：`ProtectArr2002` ..
 function CL:GetProtectArr(id)
 end
 
@@ -1438,3 +1452,117 @@ function CL:SetUserRoleHurtNumImage(_Idx, _ImageID, _Interval) end
 ---     - `1` 代表**绑定**，
 ---     - `2` 代表**绑定或不绑定**都可以。
 function CL:GetQuestAwardByID(_QuestID) end
+
+--- 设置多功能编辑框超链接文字的颜色
+---@param _Flag # 设置类型
+---| 1 选中链接的颜色（即高亮的颜色）
+---| 2 可选择字符串链接的颜色（即SELECT标签中的文字）
+---| 3 标题链接的颜色（即TITLE标签中的文字）
+---| 4 名字链接的颜色（即NAMELINK标签中的文字）
+---| 5 普通链接的颜色（即LINK标签中的文字）
+---| 6 NPC链接的颜色（即NPCLINK标签中的文字）
+---| 7 物品链接的颜色（即ITEMLINK标签中的文字）
+---| 8 UI链接的颜色（即UILINK标签中的文字）
+---| 9 关闭链接的颜色（即CLOSE标签中的文字）
+---@param _ColorStr string #颜色字符串  示例： `#FFFFE0`
+function CL:SetSystemColor(_Flag, _ColorStr) end
+
+--- 设置是否锁定物品
+---@param _ItemGUID string
+---@param _Lock bool
+function CL:CustomLockItem(_ItemGUID, _Lock) end
+
+--- 通过称号ID获取称号信息
+---@param id int
+---@return bool # 获取称号信息是否成功
+---  此函数返回操作成功或失败。如操作成功，获取的属性列表信息存储在全局变量`LuaRet`中；</br>
+--- 其中名称, 描述, 来源在PC端其返回`GBK`编码，而移动端则返回的是`UTF8`编码，</br>这点和`CL:GetTitleList`和`CL:GetMyTitleList`不同。</br>
+--- - `LuaRet[1]` 称号ID；
+--- - `LuaRet[2]` 名称；
+--- - `LuaRet[3]` 描述；
+--- - `LuaRet[4]` 是否加入未获得称号显示；
+--- - `LuaRet[5]` 来源；
+--- - `LuaRet[6]` Buff ID；
+function CL:GetTitleTemplatePropByID(id) end
+
+--- 根据套装ID获取装备ID列表
+---@param _ID int
+---@return bool #  此函数返回操作成功或失败。如操作成功，则获取的信息存储在全局变量LuaRet中。 LuaRet[i] 第i件装备的ID。
+function CL:GetSuitItemListByID(_ID) end
+
+--- 自动寻路到达NPC所在位置
+---@param _Name string
+---@param _QuestID int
+function CL:AutoFindPathByNPCKeyName(_Name, _QuestID) end
+
+---设置聊天窗口是否自动语音聊天
+---@param flg bool @
+---@param index int @频道
+function CL:SetChatWindowAutoVoiceChat(flg, index) end
+
+---显示私聊页面
+---@param _HandleID int @私聊按钮的句柄
+---@param _Name string @私聊的玩家角色名
+function CL:ChatWindowShowPrivatePage(_HandleID, _Name) end
+
+---收取邮件的附件
+---@param _Guid string @邮件的GUID
+---@param _Index int @附件索引：
+--- - `1`: 金币
+--- - `2`：元宝
+--- - `3~7`：物品@最多允许添加`5`个物品
+--- - `8`：积分
+function CL:AttachmentMail(_Guid, _Index) end
+
+---获取字体高度
+---@param _FontName string @字体名称
+---@return int @指定字体的高度
+function CL:GetFontStrHeight(_FontName) end
+
+--- 获取物品自定义字符串变量
+---@param _ItemEntityHandle int  #物品实体句柄
+---@param _ItemCustomKey string 自定义变量索引名
+---@return string
+function CL:GetItemEntityCustomVarStr(_ItemEntityHandle, _ItemCustomKey) end
+
+--- 设置物品的掉落特效（扩展）
+---@param _Idx int
+---@param _ImageID uint
+---@param _R int
+---@param _G int
+---@param _B int
+---@param _A int
+function CL:SetItemEffectEx(_Idx, _ImageID, _R, _G, _B, _A) end
+
+--- 设置指定光柱特效的缩放值
+---@param image_id uint
+---@param scale_x int # 10000
+---@param scale_y int
+function CL:SetBeamEffectScaleByImageID(image_id, scale_x, scale_y) end
+
+--- 设置物品的掉落特效
+---@param _Idx int
+---@param _ImageID uint
+--- -  2D：特效的图片资源ID
+--- -  3D：特效ID
+---@param _R int
+---@param _G int
+---@param _B int
+---@param _A int
+function CL:SetItemEffect(_Idx, _ImageID, _R, _G, _B, _A) end
+
+--- 求两数的和
+---@param _Data1 int
+---@param _Data2 int
+---@return int #计算结果
+function CL:Add(_Data1, _Data2) end
+
+--- 求两数的商
+---@param _Data1 int
+---@param _Data2 int
+---@return int
+function CL:Div(_Data1, _Data2) end
+
+--- 获取当前时间的TICK值
+---@return int @ 当前时间的TICK值（即从操作系统启动开始所经过的毫秒数）
+function CL:GetCurTick() end

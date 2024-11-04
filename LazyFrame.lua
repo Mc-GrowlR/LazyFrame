@@ -102,6 +102,41 @@ end
 
 --#region 自定义函数
 
+local JobName_t = setmetatable({
+    [1] = "战士",
+    [2] = "法师",
+    [3] = "术士",
+}, {
+    __index = function(t, k)
+        dbg("查找职业名字出错： " .. k)
+        return ""
+    end
+})
+
+function GetJobName(job)
+    return JobName_t[job]
+end
+
+function dbginfo(message)
+    -- 获取调用者的信息
+    local level = 2
+    while true do
+        local info = debug.getinfo(level, "Slfn")
+        if not info then break end
+        if info.what ~= "C" and info.what ~= "tail" then
+            -- 找到了有效的调用者信息
+            local source = info.source
+            local line = info.currentline
+            local funcName = info.name or "unknown"
+            dbg(string.format("DBG: %s:%d in function '%s': %s", source, line, funcName, message))
+            return
+        end
+        level = level + 1
+    end
+    -- 如果没有找到有效的调用者信息，打印默认信息
+    dbg(string.format("DBG: unknown location: %s", message))
+end
+
 function Tacit(obj)
     return function(fn, ...)
         if fn == nil then
@@ -170,6 +205,29 @@ local WndType_t = {
     [14] = { "wnd" },
 }
 
+function Print_f(...)
+    local s = ""
+    local arg = { ... }
+    s = table.concat(arg, "\t")
+    CL:Log(s)
+end
+
+function PrintPos(_Handle)
+    if GUI:WndGetPosM(_Handle) then
+        Print_f("Wnd Name: <" .. GUI:WndGetIDM(_Handle) .. " : " ..
+            serialize(GUI:WndGetIDM(GUI:WndGetParentM(_Handle))) ..
+            "> PosX : (" .. LuaRet[1] .. ") PosY : (" .. LuaRet[2] .. ")")
+    end
+end
+
+function PrintSize(_Handle)
+    if GUI:WndGetSizeM(_Handle) then
+        Print_f("Wnd Name: <" .. GUI:WndGetIDM(_Handle) .. " : " ..
+            serialize(GUI:WndGetIDM(GUI:WndGetParentM(_Handle)))
+            .. "> SizeX : (" .. LuaRet[1] .. ") SizeY : (" .. LuaRet[2] .. ")")
+    end
+end
+
 --#region xml
 
 ---迭代xml表节点，迭代 深度为1
@@ -231,6 +289,11 @@ end
 
 --#endregion
 
+--#region 打印
+
+
+--#endregion
+
 --#endregion
 
 --#region Wnd
@@ -254,6 +317,7 @@ end
 ---@field SizeX int?
 ---@field SizeY int?
 ---@field Hint string?
+---@field MagicUI int?  #  `1` 有`MagicUI`特效 </br>  `0` 无`MagicUI`特效
 ---@field new fun(arg:WndCreateArg) : Wnd
 ---@field __set__ table
 ---@field __get__ table
@@ -262,7 +326,20 @@ end
 Wnd = NewClass("Wnd")
 
 
---#region 封装接口
+--#region Wnd method
+
+---移出窗口所有子控件
+function Wnd:Clear()
+    if type(self) ~= "table" then
+        CL:Log("类型不合")
+        return
+    end
+    if self.clsName ~= "Wnd" then
+        Print_f("Class: " .. self.clsName .. " be call")
+        return
+    end
+    GUI:WndDlgClear(self:GetHandle())
+end
 
 ---获取窗口句柄
 ---@return int
@@ -283,7 +360,10 @@ end
 ---@param arg WndSize
 function Wnd:SetSize(arg)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndSetSizeM(WND_H, arg.SizeX or 0, arg.SizeY or 0)
+    if WND_H ~= 0 then
+        return GUI:WndSetSizeM(WND_H, arg.SizeX or 0, arg.SizeY or 0)
+    end
+    return false
 end
 
 ---改变窗口大小
@@ -292,7 +372,10 @@ end
 ---@return nil
 function Wnd:SetWndSize(SizeX, SizeY)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndSetSizeM(WND_H, SizeX or 0, SizeY or 0)
+    if WND_H ~= 0 then
+        return GUI:WndSetSizeM(WND_H, SizeX or 0, SizeY or 0)
+    end
+    return false
 end
 
 ---@class WndPos
@@ -303,21 +386,30 @@ end
 ---@param arg WndPos
 function Wnd:SetPos(arg)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndSetPosM(WND_H, arg.PosX or 0, arg.PosY or 0)
+    if WND_H ~= 0 then
+        return GUI:WndSetPosM(WND_H, arg.PosX or 0, arg.PosY or 0)
+    end
+    return false
 end
 
 ---设置窗口参数
 ---@param param int
 function Wnd:SetParam(param)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndSetParam(WND_H, param or 0)
+    if WND_H ~= 0 then
+        return GUI:WndSetParam(WND_H, param or 0)
+    end
+    return false
 end
 
 ---获取窗口参数
 ---@return integer
 function Wnd:GetParam()
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndGetParam(WND_H)
+    if WND_H ~= 0 then
+        return GUI:WndGetParam(WND_H)
+    end
+    return 0
 end
 
 ---@class SetWndArg
@@ -345,7 +437,10 @@ end
 ---@param _Val string@ 属性值
 function Wnd:AddProperty(_Key, _Val)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndAddProperty(WND_H, _Key, _Val)
+    if WND_H ~= 0 then
+        return GUI:WndAddProperty(WND_H, _Key, _Val)
+    end
+    return false
 end
 
 --#endregion
@@ -358,7 +453,10 @@ end
 ---@return string
 function Wnd.GetProperty(self, _Key)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndGetProperty(WND_H, _Key)
+    if WND_H ~= 0 then
+        return GUI:WndGetProperty(WND_H, _Key)
+    end
+    return ""
 end
 
 --#endregion
@@ -370,17 +468,27 @@ end
 ---@param _Key string @ 属性名
 function Wnd:DelProperty(_Key)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndDelProperty(WND_H, _Key)
+    if WND_H ~= 0 then
+        return GUI:WndDelProperty(WND_H, _Key)
+    end
+    return false
 end
 
 --#endregion
 
 --#endregion
+
+--#region 标记
 
 function Wnd:SetFlags(_Flag)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndSetFlagsM(WND_H, _Flag)
+    if WND_H ~= 0 then
+        return GUI:WndSetFlagsM(WND_H, _Flag)
+    end
+    return false
 end
+
+--#endregion
 
 --#region 窗体回调函数
 
@@ -393,7 +501,10 @@ end
 ---@return bool
 function Wnd:AddRe(_Msg, _FuncName)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndRegistScript(WND_H, _Msg, _FuncName)
+    if WND_H ~= 0 then
+        return GUI:WndRegistScript(WND_H, _Msg, _FuncName)
+    end
+    return false
 end
 
 ---注册窗体控件的事件回调函数（扩展）
@@ -403,13 +514,22 @@ end
 ---@return bool @true:控件存在,fasle:控件不存在
 function Wnd:AddReEx(_Msg, _FuncName, _Param)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndRegistScriptEx(WND_H, _Msg, _FuncName, _Param)
+    if WND_H ~= 0 then
+        return GUI:WndRegistScriptEx(WND_H, _Msg, _FuncName, _Param)
+    end
+    return false
 end
 
 ---添加左键点击函数
 ---@param _FuncName string
 function Wnd:AddReLBClick(_FuncName)
     return Wnd.AddRe(self, RDWndBaseCL_mouse_lbClick, _FuncName)
+end
+
+---添加左键点击函数
+---@param _FuncName string
+function Wnd:AddReLBClickEx(_FuncName, cParam)
+    return Wnd.AddReEx(self, RDWndBaseCL_mouse_lbClick, _FuncName, cParam)
 end
 
 ---增加鼠标进入控件回调函数
@@ -433,15 +553,27 @@ function Wnd:AddReClose(_FuncName)
     return Wnd.AddRe(self, RDWndBaseCL_wnd_close, _FuncName)
 end
 
+function Wnd:AddReWndVisible(_FuncName)
+    return Wnd.AddRe(self, RDWndBaseCL_wnd_visible, _FuncName)
+end
+
 --#endregion
 
 --#region 删除
 
+---删除窗口对应的事件回调函数
+---@param _Msg int
+---@return boolean
 function Wnd:DelRe(_Msg)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndClearScript(WND_H, _Msg)
+    if WND_H ~= 0 then
+        return GUI:WndClearScript(WND_H, _Msg)
+    end
+    return false
 end
 
+---删除左键点击事件
+---@return boolean
 function Wnd:DelReLBClick()
     return Wnd:DelRe(RDWndBaseCL_mouse_lbClick)
 end
@@ -460,7 +592,10 @@ end
 ---@param _ScriptHandle string
 function Wnd:AddTimer(_ID, _Elapse, _ScriptHandle)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndAddTimer(WND_H, _ID, _Elapse, _ScriptHandle)
+    if WND_H ~= 0 then
+        return GUI:WndAddTimer(WND_H, _ID, _Elapse, _ScriptHandle)
+    end
+    return false
 end
 
 ---在窗体控件中添加定时器
@@ -469,7 +604,10 @@ end
 ---@param _ScriptHandle string
 function Wnd:AddTimerEx(_ID, _Elapse, _ScriptHandle, _Param)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndAddTimerEx(WND_H, _ID, _Elapse, _ScriptHandle, _Param)
+    if WND_H ~= 0 then
+        return GUI:WndAddTimerEx(WND_H, _ID, _Elapse, _ScriptHandle, _Param)
+    end
+    return false
 end
 
 ---在窗体控件中添加建议定时器
@@ -478,7 +616,10 @@ end
 ---@return int @OK：定时器ID：NO：0
 function Wnd:AddTimerBrief(_Elapse, _ScriptHandle)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndAddTimerBrief(WND_H, _Elapse, _ScriptHandle)
+    if WND_H ~= 0 then
+        return GUI:WndAddTimerBrief(WND_H, _Elapse, _ScriptHandle)
+    end
+    return 0
 end
 
 ---在窗体控件中添加建议定时器
@@ -488,7 +629,10 @@ end
 ---@return int @OK：定时器ID：NO：0
 function Wnd:AddTimerBriefEx(_Elapse, _ScriptHandle, _Param)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndAddTimerBriefEx(WND_H, _Elapse, _ScriptHandle, _Param)
+    if WND_H ~= 0 then
+        return GUI:WndAddTimerBriefEx(WND_H, _Elapse, _ScriptHandle, _Param)
+    end
+    return 0
 end
 
 --#endregion
@@ -497,13 +641,19 @@ end
 
 function Wnd:DelTimer(_ID)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndDelTimer(WND_H, _ID)
+    if WND_H ~= 0 then
+        return GUI:WndDelTimer(WND_H, _ID)
+    end
+    return false
 end
 
 ---删除窗体中所有的定时器
 function Wnd:DelAllTimer()
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndDelAllTimer(WND_H)
+    if WND_H ~= 0 then
+        return GUI:WndDelAllTimer(WND_H)
+    end
+    return false
 end
 
 --#endregion
@@ -516,10 +666,33 @@ end
 
 function Wnd:SetTip(_TipInfo)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
-    return GUI:WndSetTipInfo(WND_H, _TipInfo)
+    if WND_H ~= 0 then
+        return GUI:WndSetTipInfo(WND_H, _TipInfo)
+    end
+    return false
 end
 
 --#endregion
+
+--#endregion
+
+--#region 动作
+
+
+---添加控件的动作
+---@param action string
+---@return boolean, string?
+function Wnd:AddActioin(action)
+    local WND_H = (type(self) == "number" and self or self:GetHandle())
+    if WND_H ~= 0 then
+        if GUI:WndAddAction(WND_H, action) then
+            return true
+        else
+            return false, LuaRet --[[@as string?]]
+        end
+    end
+    return false
+end
 
 --#endregion
 
@@ -614,6 +787,10 @@ local tSet_t = {
     end,
     ["Hint"] = function(self, _HintInof)
         return GUI:WndSetHint(self.Handle, _HintInof)
+    end,
+    ["MagicUI"] = function(self, _Type)
+        if type(_Type) ~= "number" then return end
+        return GUI:WndSetMagicUI(self.Handle, _Type == 0 and 0 or 1)
     end
 }
 
@@ -864,8 +1041,11 @@ local EditPropSetList_t = InitSetter_t({
 
 local EditPropGetList_t = InitGetterFromSetter(EditPropSetList_t)
 
+---Edit Text属性Getter
+---@param self Edit
+---@return string
 EditPropGetList_t["Text"] = function(self)
-    return GUI:EditGetTextM(self:GetHandle())
+    rawset(self.getset_values, "Text", GUI:EditGetTextM(self:GetHandle()))
 end
 
 -- SetClassGetter(Edit, EditPropGetList_t)
@@ -940,6 +1120,7 @@ Image = NewClass("Image", Wnd)
 
 --#region Image Setter, Getter
 
+---@class ImagePropSetList
 local ImagePropSetList_t = InitSetter_t({
     ---设置图片控件是否以中心点绘制（修正）
     ---@param self Image
@@ -1065,7 +1246,34 @@ end
 ---@param _Enable bool
 ---@param _Speed uint
 function Image:SetAnimateEnable(_Enable, _Speed)
-    return GUI:ImageSetAnimateEnable(self.Handle, _Enable, _Speed)
+    local IMAGE_H = type(self) == "table" and self:GetHandle() or self
+    if type(IMAGE_H) ~= "number" or IMAGE_H == 0 then
+        Print_f("" .. serialize(debug.getinfo(1, "n")))
+        return false
+    end
+    if GUI:ImageGetDrawCenter(IMAGE_H) then
+        GUI:WndAddProperty(IMAGE_H, "image_anim_fix_center", "1")
+    end
+    return GUI:ImageSetAnimateEnable(IMAGE_H, _Enable, _Speed)
+end
+
+---设置图片控件动画循环播放
+---@param _Speed uint @动画没帧时间间隔，默认值为100，单位为毫秒（ms）
+---@param _AnimCount int @动画循环播放次数 ，默认值：`0`（一直播放）
+---@param _AnimCallBackFunc string @动画播放至指定次数后的动作
+---1. 当此参数设置为空字符串（默认值）时，动画播放完毕后，自动销毁
+---2. 当此参数设置为其他字符串时，动画播放至指定次数后对应函数会作为Lua脚本函数进行回调，由脚本接管处理。
+---TODO
+function Image:SetAnimate(_Speed, _AnimCount, _AnimCallBackFunc)
+    local IMAGE_H = type(self) == "table" and self:GetHandle() or self
+    if type(IMAGE_H) ~= "number" or IMAGE_H == 0 then
+        Print_f("" .. serialize(debug.getinfo(1, "n")))
+        return false
+    end
+    if GUI:ImageGetDrawCenter(IMAGE_H) then
+        GUI:WndAddProperty(IMAGE_H, "image_anim_fix_center", "1")
+    end
+    return GUI:ImageSetAnimate(IMAGE_H, _Speed, _AnimCount, _AnimCallBackFunc)
 end
 
 ---设置图片是否镜像翻转
@@ -1104,7 +1312,7 @@ function Image:SetDrawRect(_StartX, _EndX, _StartY, _EndY)
 end
 
 ---设置图片类
----@param arg table
+---@param arg ImagePropSetList
 function Image:SetProp(arg)
     local __set__ = Image.__set__
     local t
@@ -1133,6 +1341,7 @@ end
 ---@field clsName "Button"
 ---@field Type 2
 ---@field Text string?
+---@field Font string?
 ---@field FontSize int?
 ---@field TextColor (string|int)?
 ---@field IsCenter bool?
@@ -1142,6 +1351,7 @@ end
 ---@field IsActivePageBtn bool?
 ---@field DrawCenter bool?
 ---@field ImgID int?
+---@field PostTexture int?
 ---@field ShowDisable boolean?
 ---@field new fun(arg:ButtonNewArg) :Button
 Button = NewClass("Button", Wnd)
@@ -1159,11 +1369,17 @@ local ButtonPropSetList_t = InitSetter_t({
     ["Text"] = function(self, _Text)
         return GUI:WndSetTextM(self.Handle, _Text)
     end,
+    ["Font"] = function(self, _FontName)
+        return GUI:ButtonSetTextFont(self.Handle, _FontName)
+    end,
     ["FontSize"] = function(self, _Size)
         return GUI:WndSetFontSize(self.Handle, _Size)
     end,
     ["TextColor"] = function(self, _Color)
         return GUI:WndSetTextColorM(self.Handle, TransColor(_Color))
+    end,
+    ["IsCenter"] = function(self, _DrawCenter)
+        return GUI:ButtonSetDrawCenter(self.Handle, _DrawCenter)
     end,
     ["Rotate"] = function(self, _Roation)
         GUI:ButtonSetDrawCenter(self.Handle, true)
@@ -1180,6 +1396,9 @@ local ButtonPropSetList_t = InitSetter_t({
     end,
     ["ShowDisable"] = function(self, _Flag)
         return GUI:ButtonSetShowDisable(self.Handle, _Flag)
+    end,
+    ["PostTexture"] = function(self, _ImageID)
+        return GUI:ButtonSetDrawPostTexture(self.Handle, _ImageID)
     end
 })
 
@@ -1228,7 +1447,7 @@ end
 --#region Button method
 
 ---设置按钮缩放比例
----@param ... table | number[]
+---@param ... { XS:int, YS:int } | number[]
 ---@return nil
 function Button:SetScale(...)
     local _XS = 10000
@@ -1252,6 +1471,19 @@ end
 ---@return nil
 function Button:SetImageIndex(_NormalIndex, _MouseOnIndex, _MouseDownIndex, _DisableIndex)
     return GUI:ButtonSetImageIndex(self.Handle, _NormalIndex, _MouseOnIndex, _MouseDownIndex, _DisableIndex)
+end
+
+---设置按钮类
+---@param arg Button
+function Button:SetProp(arg)
+    local __set__ = self.__set__
+    local t
+    for key, value in pairs(arg) do
+        t = __set__[key]
+        if t ~= nil then
+            t(self, value)
+        end
+    end
 end
 
 --#endregion
@@ -1472,6 +1704,18 @@ function ItemCtrl:SetJson(_JsonString)
     return GUI:ItemCtrlSetJson(self.Handle, _JsonString)
 end
 
+--- 根据物品GUID填充物品框
+---@param _ItemGUID string
+---@return boolean
+function ItemCtrl:SetGUIDataByGUID(_ItemGUID)
+    local ITEM_H = (type(self) == "table" and self.Handle or self) --[[@as int]]
+    if ITEM_H ~= 0 then
+        RDItemCtrlSetGUIDataPropByGUID(ITEM_H, "", _ItemGUID)
+        return true
+    end
+    return false
+end
+
 --#endregion
 
 --#region 获取物品框内物品信息
@@ -1514,6 +1758,18 @@ end
 
 --#region GUIData 及其属性
 
+--- 设置物品框中物品的属性值
+---@param _PropType int
+---@return bool
+function ItemCtrl:SetGUIDataProp(_PropType, Arg)
+    local ITEM_H = (type(self) == "table" and self.Handle or self) --[[@as int]]
+    if ITEM_H ~= 0 then
+        LuaArg = Arg
+        return GUI:ItemCtrlSetGUIDataPropByType(ITEM_H, _PropType)
+    end
+    return false
+end
+
 ---获取物品框中对应物品的索引名
 ---@return string
 function ItemCtrl:GetItemKeyName()
@@ -1524,8 +1780,11 @@ end
 ---@param _PropType GUIDataPropType
 ---@return any
 function ItemCtrl:GetGUIDataProp(_PropType)
-    GUI:ItemCtrlGetGUIDataPropByType(self:GetHandle(), _PropType)
-    return LuaRet
+    local ITEM_H = (type(self) == "table" and self.Handle or self) --[[@as int]]
+    if ITEM_H ~= 0 then
+        GUI:ItemCtrlGetGUIDataPropByType(ITEM_H, _PropType)
+        return LuaRet
+    end
 end
 
 --#endregion
@@ -1534,10 +1793,20 @@ end
 
 ---添加物品移入判断函数
 ---@param _FuncName string
----@return nil
+---@return bool?
 function ItemCtrl:PushBackItemWindow(_FuncName)
     if type(_FuncName) ~= "string" then return end
-    return Sys_PushBackItemWindow(self:GetHandle(), _FuncName)
+    local WND_H = 0
+    if type(self) == "number" then
+        WND_H = self --[[@as int]]
+    elseif type(self) == "table" then
+        WND_H = self:GetHandle()
+    end
+
+    if WND_H ~= 0 and type(_FuncName) == "string" and _FuncName ~= "" then
+        return Sys_PushBackItemWindow(WND_H, _FuncName)
+    end
+    return false
 end
 
 --#endregion
@@ -1557,6 +1826,25 @@ function ItemCtrl:SetProp(arg)
     end
 end
 
+--#region 添加物品框移入事件函数
+
+---添加物品框物品移入事件
+---@param _FuncName string
+function ItemCtrl:AddReItemIn(_FuncName)
+    self:AddRe(RDWnd2DItemCtrl_ItemIn, _FuncName)
+end
+
+---添加物品框物品移出事件
+---@param _FuncName string
+function ItemCtrl:AddReItemOut(_FuncName)
+    self:AddRe(RDWnd2DItemCtrl_ItemOut, _FuncName)
+end
+
+--#endregion
+
+--#endregion
+
+
 --#endregion
 
 --#region RichEdit
@@ -1574,6 +1862,7 @@ end
 ---@field FontSize int?
 ---@field CurFont string?
 ---@field IsCanEdit bool? #  设置多功能编辑框是否可以编辑
+---@field OffSet int?
 ---@field DefaultTextColor (uint | string)?
 ---@field IsCenter bool?
 ---@field UseTextGrow bool?
@@ -1605,6 +1894,9 @@ local RichEditPropSetList_t = InitSetter_t({
     ["GrowColor"] = function(self, _Color)
         return GUI:RichEditSetTextGrowColor(self.Handle, TransColor(_Color))
     end,
+    ["OffSet"] = function(self, _Offset)
+        GUI:RichEditSetOffSet(self.Handle, _Offset)
+    end
 })
 
 local RichEditPropGetList_t = InitGetterFromSetter(RichEditPropSetList_t)
@@ -1708,6 +2000,7 @@ end
 
 --#endregion
 
+
 --#region ComboBox
 
 --#region ComboBoxDefine
@@ -1781,6 +2074,86 @@ end
 function ComboBox:SetScrollBarImage(_Up, _Mid, _Down, _Back)
     return GUI:ComboBoxSetScrollBarImage(self:GetHandle(), _Up, _Mid, _Down, _Back)
 end
+
+--#endregion
+
+--#region CheckBox
+
+--#region CheckBoxDefine
+
+---@class CheckBoxNewArg
+---@field Parent Parent
+---@field Name string
+---@field ImgId int
+---@field Title string
+---@field PosX int
+---@field PosY int
+
+---@class CheckBox : Wnd
+---@field AutoChange boolean?
+---@field Check boolean?
+---@field Text boolean?
+---@field ClsName "CheckBox"
+---@field new fun(arg:CheckBoxNewArg) : CheckBox
+CheckBox = NewClass("CheckBox", Wnd)
+
+--#endregion
+
+--#region CheckBox New
+
+---初始化复选框
+---@param self CheckBox
+---@param arg CheckBoxNewArg
+CheckBox.onCreate = function(self, arg)
+    local Name = arg.Name or "default"
+    local Parent = 0
+    if type(arg.Parent) == "table" then
+        Parent = arg.Parent:GetHandle() --[[@as int]]
+    elseif type(arg.Parent) == "number" then
+        Parent = arg.Parent --[[@as int]]
+    end
+    self.Handle = GUI:CheckBoxCreate(Parent, Name,
+        arg.ImgId, arg.Title, arg.PosX, arg.PosY)
+end
+
+---comment
+---@param self CheckBox
+---@param arg CheckBoxNewArg
+---@return CheckBox
+CheckBox.New = function(self, arg)
+    return CheckBox.new(arg)
+end
+
+---创建
+---@param _ParentHandle Parent
+---@param _pCheckID string
+---@param _ImageID int
+---@param _Tital string
+---@param _PosX integer
+---@param _PosY integer
+CheckBox.Create = function(_ParentHandle, _pCheckID, _ImageID, _Tital, _PosX, _PosY)
+    return CheckBox.new { Parent = _ParentHandle, Name = _pCheckID, ImgId = _ImageID, Title = _Tital, PosX = _PosX, PosY = _PosY }
+end
+
+--#endregion
+
+--#region CheckBox getset
+
+local CheckBoxPropSetList_t = InitSetter_t({
+    ["AutoChange"] = function(self, _AutoChange)
+        return GUI:CheckBoxSetAutoChange(self:GetHandle(), _AutoChange)
+    end,
+    ["Check"] = function(self, _Check)
+        return GUI:CheckBoxSetCheck(self:GetHandle(), _Check)
+    end,
+    ["Text"] = function(self, _ControlString)
+        return GUI:CheckBoxSetText(self:GetHandle(), _ControlString)
+    end
+})
+local CheckBoxPropGetList_t = InitGetterFromSetter(CheckBoxPropSetList_t)
+
+CheckBox:SetSetter(CheckBoxPropSetList_t)
+CheckBox:SetGetter(CheckBoxPropGetList_t)
 
 --#endregion
 

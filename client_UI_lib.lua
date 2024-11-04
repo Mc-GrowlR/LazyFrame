@@ -159,3 +159,84 @@ function UI:Lua_GetItemEntityCustomVarStr(_ItemEntityHandle, _ItemCustomKey) end
 ---@param _KeyName string
 ---@return bool
 function UI:Lua_GetItemTemplateHandleByKeyName(_KeyName) end
+
+---获取自身所有装备的GUID
+---`LuaRet[idx]`,`idx`为索引号，范围为`1~64`，值为装备的`GUID`；
+function UI:Lua_GetPlayerSelfEquipData() end
+
+--- 获取英雄的装备GUID列表
+---@param guid string #英雄的GUID
+---@return bool # 返回的结果在全局变量`LuaRet` 中
+function UI:Lua_GetPlayerHeroEquipDataEx(guid) end
+
+--- 获取英雄的装备GUID列表
+---@return bool # 返回的结果在全局变量`LuaRet` 中
+function UI:Lua_GetPlayerHeroEquipData() end
+
+--- 根据GUID获取物品的模板句柄
+---@param _ItemGUID_Uint64Str string # 物品的GUID
+---@return bool # `true` 执行成功，`false` 执行失败 返回的结果在全局变量`LuaRet` 中
+function UI:Lua_GetItemTemplateHandleByGUID(_ItemGUID_Uint64Str) end
+
+--- 获取套装属性
+---@param _ID int
+---@param _PropType int #套装的类型
+---@return bool #结果储存在全局变量`LuaRet`中
+function UI:Lua_GetSuitPropByID(_ID, _PropType) end
+
+--- 根据套装ID获取装备ID列表
+---@param _ID int # 套装的ID
+function UI:Lua_GetSuitItemListByID(_ID) end
+
+--- 根据ID获取物品的模板属性的属性值
+---@param _ID int
+---@param _PropType int
+function UI:Lua_GetItemTemplatePropByID(_ID, _PropType) end
+
+--- 根据GUIData属性类型获取物品的GUIData属性值
+---@param _ItemGUIDataHandleID int
+---@param _PropType int
+---@return bool #此函数返回操作成功或失败。如操作成功，获取的物品的GUIData属性值存储在全局变量LuaRet中。
+function UI:Lua_GetItemGUIDataPropByType(_ItemGUIDataHandleID, _PropType) end
+
+---  根据GUID获取物品的属性值
+--- @param _ItemGUID_Uint64Str string # 物品的GUID
+--- @param _PropType int # 物品属性类型
+--- @return bool
+function UI:Lua_GetItemEntityPropByGUID(_ItemGUID_Uint64Str, _PropType) end
+
+--- 获取目标玩家所有装备的GUID
+--- @return bool
+function UI:Lua_GetPlayerTargetEquipData() end
+
+---设置MessageBox弹框
+---@param _MsgboxId string # 控件的名称
+---@param _MsgType int # 弹装类型
+---@param _MsgStyle int # 弹窗的按钮显示
+---@param _Info string # 弹窗内容
+---@return bool # 如果为`true` ，则窗棂子句柄储储存在全局变量`LuaRet`中
+function UI:Lua_MessageBox(_MsgboxId, _MsgType, _MsgStyle, _Info) end
+
+---为窗体控件添加自定义属性
+---@param _Key string # 属性名称
+---@param _Val string # 属性值
+function UI:Lua_WndAddProperty(_Key, _Val) end
+
+---创建窗口
+---@param _ID int 窗口名
+---@param _ParentHandleID int #父窗口句柄ID
+---@return bool # 结果储存在全局变量`LuaRet`中
+function UI:Lua_CreateWnd(_ID, _ParentHandleID) end
+
+---加载布局文件
+---@param _ID string #文件名称
+---@return bool
+function UI:Lua_WndLoadLayOut(_ID) end
+
+---设置窗体控件是否可见
+---@param _Flag bool
+function UI:Lua_WndSetVisible(_Flag) end
+
+---设置窗体控件是否可见
+---@param _Flag boolean
+function UI:Lua_WndSetVisible(_Flag) end
