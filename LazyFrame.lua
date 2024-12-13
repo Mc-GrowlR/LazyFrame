@@ -103,15 +103,15 @@ end
 --#region 自定义函数
 
 local JobName_t = setmetatable({
-    [1] = "战士",
-    [2] = "法师",
-    [3] = "术士",
-}, {
-    __index = function(t, k)
-        dbg("查找职业名字出错： " .. k)
-        return ""
-    end
-})
+                                   [1] = "战士",
+                                   [2] = "法师",
+                                   [3] = "术士",
+                               }, {
+                                   __index = function(t, k)
+                                       dbg("查找职业名字出错： " .. k)
+                                       return ""
+                                   end
+                               })
 
 function GetJobName(job)
     return JobName_t[job]
@@ -212,11 +212,31 @@ function Print_f(...)
     CL:Log(s)
 end
 
-function PrintPos(_Handle)
+---打印窗体控件相对于窗口的坐标
+---@param _Handle int
+function PrintWndPos4Parent(_Handle)
+    if not GUI:WndIsLive(_Handle) then
+        local info = debug.getinfo(2, "SLl")
+        CL:Log(string.format("Error: Called form : %s:%d", info.short_src, info.currentline))
+    end
     if GUI:WndGetPosM(_Handle) then
-        Print_f("Wnd Name: <" .. GUI:WndGetIDM(_Handle) .. " : " ..
+        Print_f("Wnd Name: <" .. GUI:WndGetIDM(_Handle) .. " : (Parent" ..
             serialize(GUI:WndGetIDM(GUI:WndGetParentM(_Handle))) ..
-            "> PosX : (" .. LuaRet[1] .. ") PosY : (" .. LuaRet[2] .. ")")
+            ")> for Parent [ PosX : (" .. LuaRet[1] .. ") PosY : (" .. LuaRet[2] .. ") ]")
+    end
+end
+
+---打印窗体控件相对于窗口的坐标
+---@param _Handle int
+function PrintWndPos4Screen(_Handle)
+    if not GUI:WndIsLive(_Handle) then
+        local info = debug.getinfo(2, "SLl")
+        CL:Log(string.format("Called from: %s:%d", info.short_src, info.currentline or 0))
+    end
+    if GUI:WndGetScreenPos(_Handle) then
+        Print_f("Wnd Name: <" .. GUI:WndGetIDM(_Handle) .. " : (Parent:" ..
+            serialize(GUI:WndGetIDM(GUI:WndGetParentM(_Handle))) ..
+            ")> for Screen [ PosX : (" .. LuaRet[1] .. ") PosY : (" .. LuaRet[2] .. ") ]")
     end
 end
 
@@ -252,9 +272,189 @@ end
 
 --#endregion
 
+--#region 系统
+
+--#region 特效
+
+---画圆函数
+---@param xc int
+---@param yc int
+---@param x int
+---@param y int
+---@param eid int
+---@param elist_t int[]
+function DrawCircle(xc, yc, x, y, eid, elist_t)
+    local elist_t = elist_t
+    local lgw, lgh = CL:GetLogicGridWidth(), CL:GetLogicGridHeight()
+    ---@type [int,int][]
+    local positions = {
+        { xc + x, yc + y },
+        { xc - x, yc + y },
+        { xc + x, yc - y },
+        { xc - x, yc - y },
+        { xc + y, yc + x },
+        { xc - y, yc + x },
+        { xc + y, yc - x },
+        { xc - y, yc - x },
+    }
+    local eeid = 0
+    local insert = table.insert
+    for _, pos in ipairs(positions) do
+        local x_pos = pos[1] * lgw + lgw / 2
+        local y_pos = pos[2] * lgh + lgh / 2
+        eeid = CL:AddMagicToPoint(eid, x_pos, y_pos, 0, 0)
+        insert(elist_t, eeid)
+    end
+end
+
+---
+---@param xc int
+---@param yc int
+---@param r int
+---@param eid int
+---@param elist_t int[]
+function CircleBres(xc, yc, r, eid, elist_t)
+    local x, y, d = 0, r, (1 - r)
+    DrawCircle(xc, yc, x, y, eid, elist_t)
+    while y >= x do
+        DrawCircle(xc, yc, x, y, eid, elist_t)
+        if d < 0 then
+            d = d + 2 * x + 3
+        else
+            d = d + 2 * (x - y) + 5
+            y = y - 1
+        end
+        x = x + 1
+    end
+end
+
+---画正方形
+---@param xs int
+---@param ys int
+---@param size int
+---@param eid int
+---@return int[]
+function SquareBres(xs, ys, size, eid)
+    local elist_t = {}
+    local insert = table.insert
+    local lgw, lgh = CL:GetLogicGridWidth(), CL:GetLogicGridHeight()
+    local x_pos, y_pos = 0, 0
+    local eeid = 0
+
+    y_pos = ys * lgh + lgh / 2
+    for i = xs, xs + size - 1 do
+        x_pos = i * lgw + lgw / 2
+        eeid = CL:AddMagicToPoint(eid, x_pos, y_pos, 0, 0)
+        insert(elist_t, eeid)
+    end
+
+    y_pos = (ys + size - 1) * lgh + lgh / 2
+    for i = xs, xs + size - 1 do
+        x_pos = i * lgw + lgw / 2
+        eeid = CL:AddMagicToPoint(eid, x_pos, y_pos, 0, 0)
+        insert(elist_t, eeid)
+    end
+
+    x_pos = xs * lgw + lgw / 2
+    for i = ys + 1, ys + size - 2 do
+        y_pos = i * lgh + lgh / 2
+        eeid = CL:AddMagicToPoint(eid, x_pos, y_pos, 0, 0)
+        insert(elist_t, eeid)
+    end
+
+    x_pos = (xs + size - 1) * lgw + lgw / 2
+    for i = ys + 1, ys + size - 2 do
+        y_pos = i * lgh + lgh / 2
+        eeid = CL:AddMagicToPoint(eid, x_pos, y_pos, 0, 0)
+        insert(elist_t, eeid)
+    end
+
+    return elist_t
+end
+
+---按照中心点绘制正方向
+---@param xs int
+---@param ys int
+---@param rs int
+---@param eid int
+---@return integer[]
+function SquareBresWithCenter(xs, ys, rs, eid)
+    local posx = xs - rs
+    local posy = ys - rs
+    -- dbg("posx: " .. posx .. " posu: " .. posy)
+    return SquareBres(posx, posy, rs * 2 + 1, eid)
+end
+
+--#endregion
+
+--#region 坐标
+
+--#region 检测
+
+---检测一个点是否在一个正方形内
+---@param xs int
+---@param ys int
+---@param size int
+---@param px int
+---@param py int
+---@return bool
+function CheckPosIsInSquare(xs, ys, size, px, py)
+    xs = tonumber(xs)
+    ys = tonumber(ys)
+    px = tonumber(px)
+    py = tonumber(py)
+
+    return px > xs and py > ys and px < xs + size - 1 and py < ys + size - 1
+end
+
+---检测一个点是否在一个正方形内
+---@param xs int
+---@param ys int
+---@param rs int
+---@param px int
+---@param py int
+---@return bool
+function CheckPosIsInSquareWithCenter(xs, ys, rs, px, py)
+    return px > (xs - rs) and py > (ys - rs) and px < (xs + rs) and py < (ys + rs)
+end
+
+--#endregion
+
+--#region 转换
+
+---转换场景坐标到逻辑格坐标
+---@param posx int
+---@param posy int
+---@return int
+---@return int
+function ConvertSencePos2LogicPos(posx, posy)
+    local w = CL:GetLogicGridWidth()  --获取当前地图逻辑格宽度
+    local h = CL:GetLogicGridHeight() --获取当前地图逻辑格高度
+    return ((posx - w / 2) / w), ((posy - h / 2) / h)
+end
+
+---转逻辑格坐标到场景坐标
+---@param posx int
+---@param posy int
+---@return int
+---@return int
+function ConvertLogicPos2SencePos(posx, posy)
+    local w = CL:GetLogicGridWidth()  --获取当前地图逻辑格宽度
+    local h = CL:GetLogicGridHeight() --获取当前地图逻辑格高度
+    return (posx * w + w / 2), (posy * h + h / 2)
+end
+
+--#endregion
+
+--#endregion
+
+--#endregion
+
 --#region 玩家
 
 --#region 获取
+
+--#region 自定义变量
 
 ---获取服务器传回的个人自定义`int`变量
 ---@param _DataKey string
@@ -268,6 +468,46 @@ end
 ---@return string
 function GetSelfStr(_DataKey)
     return CL:GetPlayerCustomStringData(CL:GetPlayerSelfGUID(), _DataKey)
+end
+
+--#endregion
+
+---获取玩家自身的位置
+---@return integer
+---@return integer
+function GetPlayerSelfPos()
+    local posx = CL:GetPlayerSelfPropBase(ROLE_PROP_POSX) and LuaRet or 0 --[[@as int]]
+    local posy = CL:GetPlayerSelfPropBase(ROLE_PROP_POSY) and LuaRet or 0 --[[@as int]]
+    return posx, posy
+end
+
+local MainPropList_t = {
+    { ROLE_PROP32_MAX_PHY_DEF, 1, },
+    { ROLE_PROP32_MIN_PHY_DEF, 1, },
+    { ROLE_PROP32_MAX_MAG_DEF, 1, },
+    { ROLE_PROP32_MIN_MAG_DEF, 1, },
+    { ROLE_PROP32_MAX_PHY_ATK, 1, },
+    { ROLE_PROP32_MIN_PHY_ATK, 1, },
+    { ROLE_PROP32_MAX_MAG_ATK, 1, },
+    { ROLE_PROP32_MIN_MAG_ATK, 1, },
+    { ROLE_PROP32_MAX_TAO_ATK, 1, },
+    { ROLE_PROP32_MIN_TAO_ATK, 1, },
+}
+
+---获取战斗力
+---@param GUID string
+---@return integer
+GetCombatPower = function(GUID)
+    dbg("name: " .. (CL:GetPlayerPropBase(GUID, ROLE_PROP_ROLENAME) and LuaRet or ""))
+    local sum = 0
+    for index, value in ipairs(MainPropList_t) do
+        if CL:GetPlayerProperty32(GUID, value[1]) then
+            dbg("num : " .. LuaRet)
+            sum = sum + (LuaRet --[[@as int]] * (value[2] or 1))
+            dbg("sum: " .. sum)
+        end
+    end
+    return sum
 end
 
 --#endregion
@@ -290,8 +530,6 @@ end
 --#endregion
 
 --#region 打印
-
-
 --#endregion
 
 --#endregion
@@ -546,6 +784,13 @@ function Wnd:AddReMouseOut(_FuncName)
     return Wnd.AddRe(self, RDWndBaseCL_mouse_out, _FuncName)
 end
 
+---RDWndBaseCL_mouse_move
+---@param _FuncName string
+---@return boolean
+function Wnd:AddRemouseMove(_FuncName)
+    return Wnd.AddRe(self, RDWndBaseCL_mouse_move, _FuncName)
+end
+
 --- 增加窗口关闭事件回调函数
 ---@param _FuncName string
 ---@return boolean
@@ -553,6 +798,9 @@ function Wnd:AddReClose(_FuncName)
     return Wnd.AddRe(self, RDWndBaseCL_wnd_close, _FuncName)
 end
 
+---增加窗口可见性变化函数
+---@param _FuncName string
+---@return boolean
 function Wnd:AddReWndVisible(_FuncName)
     return Wnd.AddRe(self, RDWndBaseCL_wnd_visible, _FuncName)
 end
@@ -907,6 +1155,9 @@ Edit = NewClass("Edit", Wnd) --[[@as Edit]]
 ---@field FontSize int? #字体大小
 ---@field GrowColor (int|string)? 描边颜色
 ---@field IsGrow bool? 是否描边
+---@field IsCurrency bool? # 设置编辑框为货币类型
+---@field MultiLine bool? # 设置编辑框是否可多行
+---@field OffSet int? # OffSet
 
 ---设置编辑框属性
 ---@param arg EditSetPropArg
@@ -940,6 +1191,9 @@ function Edit:SetProp(arg)
         if arg.FontSize ~= nil then self.FontSize = arg.FontSize end
         if arg.GrowColor ~= nil then self.GrowColor = arg.GrowColor end
         if arg.IsGrow ~= nil then self.IsGrow = arg.IsGrow end
+        if arg.IsCurrency ~= nil then self.IsCurrency = arg.IsCurrency end
+        if arg.MultiLine ~= nil then self.MultiLine = arg.MultiLine end
+        if arg.OffSet ~= nil then self.OffSet = arg.OffSet end
     end
 
     return true
@@ -1036,7 +1290,10 @@ local EditPropSetList_t = InitSetter_t({
     end,
     ["OffSet"] = function(self, _Offset)
         return GUI:EditSetOffSet(self.Handle, _Offset)
-    end
+    end,
+    ["IsCurrency"] = function(self, _IsCurrency)
+        return GUI:EditSetIsCurrency(self.Handle, _IsCurrency)
+    end,
 })
 
 local EditPropGetList_t = InitGetterFromSetter(EditPropSetList_t)
@@ -1114,6 +1371,7 @@ end
 ---@field IsGray bool?
 ---@field ImgID int?
 ---@field FitSize bool?
+---@field CheckPoint int?
 ---@field new fun(arg:ImageNewArg) :Image
 ---@field private ArouImgList int[]
 Image = NewClass("Image", Wnd)
@@ -1144,6 +1402,13 @@ local ImagePropSetList_t = InitSetter_t({
     end,
     ["FitSize"] = function(self, _Flag)
         return GUI:ImageSetFitSize(self.Handle, _Flag)
+    end,
+    --- 设置图片控件检测点击区域类型
+    ---@param self Image
+    ---@param _Flag 0|1|2
+    ---@return nil
+    ["CheckPoint"] = function(self, _Flag)
+        return GUI:ImageSetCheckPoint(self.Handle, _Flag)
     end
 })
 
@@ -1219,16 +1484,16 @@ function Image.SetAroundImageEx(self, ImgID)
     local t = (type_s == "number" and { 0, 2, 6, 8, 4, 1, 7, 3, 5 } or self.ArouImgList)
     local ImageID = ImgID
     return GUI:ImageSetAroundImageEx(IMAGE_H,
-        ImageID + t[1],
-        ImageID + t[2],
-        ImageID + t[3],
-        ImageID + t[4],
-        ImageID + t[5],
-        ImageID + t[6],
-        ImageID + t[7],
-        ImageID + t[8],
-        ImageID + t[9],
-        false)
+                                     ImageID + t[1],
+                                     ImageID + t[2],
+                                     ImageID + t[3],
+                                     ImageID + t[4],
+                                     ImageID + t[5],
+                                     ImageID + t[6],
+                                     ImageID + t[7],
+                                     ImageID + t[8],
+                                     ImageID + t[9],
+                                     false)
 end
 
 --#endregion
@@ -1513,6 +1778,7 @@ end
 ---@field ItemImgID  int?
 ---@field EffectImgID int?
 ---@field HighlightImgID int?
+---@field ShowItemCount bool?
 ---@field ImgID int?
 ---@field new fun(arg:ItemCtrlNewArg) :ItemCtrl
 ItemCtrl = NewClass("ItemCtrl", Wnd)
@@ -1604,6 +1870,9 @@ local ItemCtrlPropSetList_t = InitSetter_t({
         return GUI:ItemCtrlSetFrontImageID(self.Handle, _ImgId)
     end,
     ["ItemCount"] = function(self, _Flag)
+        return GUI:ItemCtrlSetShowItemCount(self.Handle, _Flag)
+    end,
+    ["ShowItemCount"] = function(self, _Flag)
         return GUI:ItemCtrlSetShowItemCount(self.Handle, _Flag)
     end
 })
@@ -2037,7 +2306,7 @@ ComboBox.onCreate = function(self, arg)
         Parent = arg.Parent --[[@as int]]
     end
     self.Handle = GUI:ComboBoxCreate(Parent, Name, arg.ImgId,
-        arg.PosX or 0, arg.PosY or 0, arg.SizeX or 100, arg.SizeY or 25, arg.Length or 100)
+                                     arg.PosX or 0, arg.PosY or 0, arg.SizeX or 100, arg.SizeY or 25, arg.Length or 100)
 end
 
 ---创建新组合框
@@ -2077,6 +2346,8 @@ end
 
 --#endregion
 
+--#endregion
+
 --#region CheckBox
 
 --#region CheckBoxDefine
@@ -2091,7 +2362,7 @@ end
 
 ---@class CheckBox : Wnd
 ---@field AutoChange boolean?
----@field Check boolean?
+---@field Check boolean? # 选择状态
 ---@field Text boolean?
 ---@field ClsName "CheckBox"
 ---@field new fun(arg:CheckBoxNewArg) : CheckBox
@@ -2113,7 +2384,7 @@ CheckBox.onCreate = function(self, arg)
         Parent = arg.Parent --[[@as int]]
     end
     self.Handle = GUI:CheckBoxCreate(Parent, Name,
-        arg.ImgId, arg.Title, arg.PosX, arg.PosY)
+                                     arg.ImgId, arg.Title, arg.PosX, arg.PosY)
 end
 
 ---comment
@@ -2154,7 +2425,5 @@ local CheckBoxPropGetList_t = InitGetterFromSetter(CheckBoxPropSetList_t)
 
 CheckBox:SetSetter(CheckBoxPropSetList_t)
 CheckBox:SetGetter(CheckBoxPropGetList_t)
-
---#endregion
 
 --#endregion
