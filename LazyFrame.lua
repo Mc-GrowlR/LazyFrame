@@ -3,25 +3,19 @@
 ---- lua 模拟C#类
 --- [链接](https://blog.csdn.net/YuAnHandSome/article/details/105809559)
 --- 已做修改添加Getter和Setter机制
-local mt = {}
-mt.__get__ = {}
-mt.__set__ = {}
-
-local function SetClassSetter(self, Prop_t)
-    self.__set__ = setmetatable(Prop_t, { __index = self.base.__set__ or {} })
-end
-
-local function SetClassGetter(self, Prop_t)
-    self.__get__ = setmetatable(Prop_t, { __index = self.base.__get__ or {} })
-end
+local mt = {
+    clsName = "mt",
+    __get__ = {},
+    __set__ = {},
+}
 
 ---建构一个新的类
 ---@param clsName string 类名
 ---@param base table? 基类
 ---@return table
-function NewClass(clsName, base)
-    local cls = {}
+local function NewClass(clsName, base)
     base = base or mt
+    local cls = {}
     cls.__get__ = (base.__get__ and setmetatable({}, { __index = base.__get__ }) or {})
     cls.__set__ = (base.__set__ and setmetatable({}, { __index = base.__set__ }) or {})
     setmetatable(cls, { __index = base })
@@ -30,41 +24,29 @@ function NewClass(clsName, base)
     cls.__index = cls
     --- 类实例化
     cls.new = function(...)
+        --- 原型对象实例
         local cls_instance = {}
         cls_instance.getset_values = {}
-        for k, v in pairs(cls) do
-            cls_instance[k] = v
-        end
+
+        local BaseCls = cls
         local cls_instance_mt = {
+            --- Getter 实现
             __index = function(t, k)
-                -- print("value: type: " .. type(k))
-                if cls[k] then
-                    return cls[k]
+                if BaseCls[k] then
+                    return BaseCls[k]
                 end
                 --- 如果有getter ，则执行getter
                 if t.__get__[k] then
                     t.__get__[k](t) -- 执行
                     return t.getset_values[k]
                 end
-                if string.sub(k, 1, 2) == "__" then
-                    local tmpK = string.sub(k, 3, -1)
-                    if t.getset_values[tmpK] then
-                        return t.getset_values[tmpK]
-                    end
-                end
             end,
+            --- Setter 实现
             __newindex = function(t, k, v)
-                -- print(k .. v)
                 if t.__set__[k] then
                     t.__set__[k](t, v)                -- 执行获取器
                     cls_instance.getset_values[k] = v --储存值
                     return
-                end
-                if string.sub(k, 1, 2) == "__" then
-                    local tmpK = string.sub(k, 3, -1)
-                    if t.getset_values[tmpK] then
-                        t.getset_values[tmpK] = v
-                    end
                 end
                 --没有获取器
                 rawset(t, k, v)
@@ -72,24 +54,31 @@ function NewClass(clsName, base)
             end
         }
         setmetatable(cls_instance, cls_instance_mt)
+
         if cls_instance.onCreate then
             cls_instance:onCreate(...) -- 为什么这里执行函数不会触发__newindex函数
             -- 同样会触发，只不过，由于__index函数内的设定没有设定getter的属性会被rawset函数设置
         end
+
         return cls_instance
     end
     --- 设置类 的Setter和Getter
-    cls.SetSetter = SetClassSetter
-    cls.SetGetter = SetClassGetter
+    cls.SetSetter = function(self, Prop_t)
+        self.__set__ = setmetatable(Prop_t, { __index = self.base.__set__ or {} })
+    end
+    cls.SetGetter = function(self, Prop_t)
+        self.__get__ = setmetatable(Prop_t, { __index = self.base.__get__ or {} })
+    end
+
     return cls
 end
 
-function InitSetter_t(Prop_t)
+local function InitSetter_t(Prop_t)
     Prop_t.__index = Prop_t
     return Prop_t
 end
 
-function InitGetterFromSetter(Prop_t)
+local function InitGetterFromSetter(Prop_t)
     local tmp_t = {}
     for key, value in pairs(Prop_t) do
         tmp_t[key] = function(self) end
@@ -102,19 +91,21 @@ end
 
 --#region 自定义函数
 
-local JobName_t = setmetatable({
-                                   [1] = "战士",
-                                   [2] = "法师",
-                                   [3] = "术士",
-                               }, {
-                                   __index = function(t, k)
-                                       dbg("查找职业名字出错： " .. k)
-                                       return ""
-                                   end
-                               })
+do
+    local JobName_t = setmetatable({
+                                       [1] = "战士",
+                                       [2] = "法师",
+                                       [3] = "术士",
+                                   }, {
+                                       __index = function(t, k)
+                                           dbg("查找职业名字出错： " .. k)
+                                           return ""
+                                       end
+                                   })
 
-function GetJobName(job)
-    return JobName_t[job]
+    function GetJobName(job)
+        return JobName_t[job]
+    end
 end
 
 function dbginfo(message)
@@ -536,6 +527,8 @@ end
 
 --#region Wnd
 
+--#region Class Define
+
 ---@alias Parent Wnd|Image|Button|Edit|ItemCtrl|int
 
 ---@class Wnd
@@ -563,8 +556,220 @@ end
 ---@field SetGetter fun(self:Wnd,Prop_t:table)
 Wnd = NewClass("Wnd")
 
+--#endregion
+
+--#region Wnd New
+
+---@class WndCreateArg
+---@field Parent Parent
+---@field Name string
+---@field ImgID int?
+---@field PosX int?
+---@field PosY int?
+---@field SizeX int?
+---@field SizeY int?
+
+---创建并初始化
+---@param self Wnd
+---@param arg WndCreateArg
+Wnd.onCreate = function(self, arg)
+    local Parent = 0
+    if type(arg.Parent) == "table" then
+        Parent = arg.Parent:GetHandle() --[[@as int]]
+    elseif type(arg.Parent) == "number" then
+        Parent = arg.Parent --[[@as int]]
+    end
+
+    local Name = arg.Name or "default"
+    local ImgID = arg.ImgID or 0
+    self.Handle = GUI:WndCreateWnd(Parent or 0, Name, ImgID, 0, 0)
+    self.PosX = arg.PosX or 0
+    self.PosY = arg.PosY or 0
+    self.Name = Name
+    self.SizeX = arg.SizeX or 0
+    self.SizeY = arg.SizeY or 0
+    self.Type = 14
+end
+
+---创建窗口
+---@param arg WndCreateArg
+---@return Wnd
+function Wnd:New(arg)
+    return Wnd.new(arg)
+end
+
+---创建窗口
+---@param Parent int|Parent
+---@param Name string
+---@param ImgID int?
+---@param PosX int?
+---@param PosY int?
+---@return Wnd
+function Wnd:Create(Parent, Name, ImgID, PosX, PosY)
+    return Wnd.new { Parent = Parent, Name = Name, ImgID = ImgID, PosX = PosX or 0, PosY = PosY or 0 }
+end
+
+---创建窗口
+---@param Parent int|Parent
+---@param Name string
+---@param ImgID int?
+---@param PosX int?
+---@param PosY int?
+---@return Wnd
+function Wnd:CreateMainWnd(Parent, Name, ImgID, PosX, PosY)
+    local wnd = Wnd.new { Parent = Parent, Name = Name, ImgID = ImgID, PosX = PosX or 0, PosY = PosY or 0 }
+    wnd.IsESC = true
+    wnd.MoveWithLBM = true
+    if ImgID ~= nil then
+        wnd:SetWndSize(CL:GetTextureWidth(ImgID), CL:GetTextureHeight(ImgID))
+    end
+    return wnd
+end
+
+--#endregion
+
+--#region Wnd Setter,Getter
+
+---@class WndSetter
+---@field Pos {PosX:int, PosY:int}?
+---@field PosX int?
+---@field PosY int?
+---@field Enable boolean?
+---@field Hint string?
+---@field IDParam int?
+---@field IsESC bool?
+---@field MagicUI int?
+---@field MoveWithLBM bool?
+---@field Name string?
+---@field Param int?
+---@field SizeX int?
+---@field SizeY int?
+---@field Visible boolean?
+
+local tSet_t = {
+    ---改变窗口位置
+    ---@param self Wnd
+    ---@param arg WndPos
+    ["Pos"] = function(self, arg)
+        if self.Handle == nil then return end
+        self.PosX = arg.PosX
+        self.PosY = arg.PosY
+    end,
+    ---改变窗口位置
+    ---@param self Wnd
+    ---@param arg int
+    ["PosX"] = function(self, arg)
+        if self.Handle == nil then return end
+        if GUI:WndGetPosM(self.Handle) then
+            GUI:WndSetPosM(self.Handle, arg, LuaRet[2])
+        end
+    end,
+    ---改变窗口位置
+    ---@param self Wnd
+    ---@param arg int
+    ["PosY"] = function(self, arg)
+        if self.Handle == nil then return end
+        if GUI:WndGetPosM(self.Handle) then
+            GUI:WndSetPosM(self.Handle, LuaRet[1], arg)
+        end
+    end,
+    ---改变窗口 名称
+    ---@param self Wnd
+    ---@param Name string
+    ["Name"] = function(self, Name)
+        GUI:WndSetIDM(self.Handle, Name)
+    end,
+    ---设置 窗体控件是否 可见
+    ---@param self Wnd
+    ---@param Visible bool
+    ["Visible"] = function(self, Visible)
+        GUI:WndSetVisible(self.Handle, Visible)
+    end,
+    --- 设置窗体控件的自定义参数
+    ---@param self Wnd
+    ---@param Param uint
+    ["IDParam"] = function(self, Param)
+        GUI:WndSetIDParam(self.Handle, Param)
+    end,
+    --- 设置窗体控件的自定义参数
+    ---@param self Wnd
+    ---@param Param uint
+    ["Param"] = function(self, Param)
+        GUI:WndSetParam(self.Handle, Param)
+    end,
+    --- 设置窗口Esc关闭属性
+    ---@param self Wnd
+    ---@param IsESC bool
+    ["IsESC"] = function(self, IsESC)
+        GUI:WndSetIsESCClose(self.Handle, IsESC)
+    end,
+    --- 设置窗口是否可用
+    ---@param self Wnd
+    ---@param Enable bool
+    ["Enable"] = function(self, Enable)
+        GUI:WndSetEnableM(self.Handle, Enable)
+    end,
+    --- 设置窗口是否响应操作
+    ---@param self Wnd
+    ---@param CanRevMsg bool
+    ["CanRevMsg"] = function(self, CanRevMsg)
+        GUI:WndSetCanRevMsg(self.Handle, CanRevMsg)
+    end,
+    ["MoveWithLBM"] = function(self, MoveWithLBM)
+        if MoveWithLBM == true then
+            return GUI:WndSetMoveWithLBM(self.Handle)
+        end
+    end,
+    ["SizeX"] = function(self, SizeX)
+        if self.Handle == nil then return end
+        if GUI:WndGetSizeM(self.Handle) then
+            GUI:WndSetSizeM(self.Handle, SizeX or 0, LuaRet[2])
+        end
+    end,
+    ["SizeY"] = function(self, SizeY)
+        if self.Handle == nil then return end
+        if GUI:WndGetSizeM(self.Handle) then
+            GUI:WndSetSizeM(self.Handle, LuaRet[1], SizeY or 0)
+        end
+    end,
+    ["Hint"] = function(self, _HintInof)
+        return GUI:WndSetHint(self.Handle, _HintInof)
+    end,
+    ["MagicUI"] = function(self, _Type)
+        if type(_Type) ~= "number" then return end
+        return GUI:WndSetMagicUI(self.Handle, _Type == 0 and 0 or 1)
+    end
+}
+
+local WndPropSetList_t = InitSetter_t(tSet_t)
+local WndPropGetList_t = InitSetter_t(tSet_t)
+
+Wnd:SetSetter(WndPropSetList_t)
+Wnd:SetGetter(WndPropGetList_t)
+
+--#endregion
 
 --#region Wnd method
+
+--#region 类属性
+
+---设置类属性
+---@param arg WndSetter
+function Wnd:SetProp(arg)
+    if type(self) ~= "table" then return end
+    if self:GetHandle() == 0 then return end
+
+    local __set__ = self.__set__
+    local t
+    for key, value in pairs(arg) do
+        t = __set__[key]
+        if t ~= nil then
+            t(self, value)
+        end
+    end
+end
+
+--#endregion
 
 ---移出窗口所有子控件
 function Wnd:Clear()
@@ -579,16 +784,21 @@ function Wnd:Clear()
     GUI:WndDlgClear(self:GetHandle())
 end
 
+--#region 窗口句柄
+
 ---获取窗口句柄
 ---@return int
 function Wnd:GetHandle()
     return self.Handle
 end
 
+--- 设置对象句柄
 ---@param _Handle int
 function Wnd:SetHandle(_Handle)
     self.Handle = _Handle
 end
+
+--#endregion
 
 ---@class WndSize
 ---@field SizeX int
@@ -946,177 +1156,7 @@ end
 
 --#endregion
 
---#region Wnd Setter,Getter
-local tSet_t = {
-    ---改变窗口位置
-    ---@param self Wnd
-    ---@param arg WndPos
-    ["Pos"] = function(self, arg)
-        if self.Handle == nil then return end
-        self.PosX = arg.PosX
-        self.PosY = arg.PosY
-    end,
-    ---改变窗口位置
-    ---@param self Wnd
-    ---@param arg int
-    ["PosX"] = function(self, arg)
-        if self.Handle == nil then return end
-        if GUI:WndGetPosM(self.Handle) then
-            GUI:WndSetPosM(self.Handle, arg, LuaRet[2])
-        end
-    end,
-    ---改变窗口位置
-    ---@param self Wnd
-    ---@param arg int
-    ["PosY"] = function(self, arg)
-        if self.Handle == nil then return end
-        if GUI:WndGetPosM(self.Handle) then
-            GUI:WndSetPosM(self.Handle, LuaRet[1], arg)
-        end
-    end,
-    ---改变窗口 名称
-    ---@param self Wnd
-    ---@param Name string
-    ["Name"] = function(self, Name)
-        GUI:WndSetIDM(self.Handle, Name)
-    end,
-    ---设置 窗体控件是否 可见
-    ---@param self Wnd
-    ---@param Visible bool
-    ["Visible"] = function(self, Visible)
-        GUI:WndSetVisible(self.Handle, Visible)
-    end,
-    --- 设置窗体控件的自定义参数
-    ---@param self Wnd
-    ---@param Param uint
-    ["IDParam"] = function(self, Param)
-        GUI:WndSetIDParam(self.Handle, Param)
-    end,
-    --- 设置窗体控件的自定义参数
-    ---@param self Wnd
-    ---@param Param uint
-    ["Param"] = function(self, Param)
-        GUI:WndSetParam(self.Handle, Param)
-    end,
-    --- 设置窗口Esc关闭属性
-    ---@param self Wnd
-    ---@param IsESC bool
-    ["IsESC"] = function(self, IsESC)
-        GUI:WndSetIsESCClose(self.Handle, IsESC)
-    end,
-    --- 设置窗口是否可用
-    ---@param self Wnd
-    ---@param Enable bool
-    ["Enable"] = function(self, Enable)
-        GUI:WndSetEnableM(self.Handle, Enable)
-    end,
-    --- 设置窗口是否响应操作
-    ---@param self Wnd
-    ---@param CanRevMsg bool
-    ["CanRevMsg"] = function(self, CanRevMsg)
-        GUI:WndSetCanRevMsg(self.Handle, CanRevMsg)
-    end,
-    ["MoveWithLBM"] = function(self, MoveWithLBM)
-        if MoveWithLBM == true then
-            return GUI:WndSetMoveWithLBM(self.Handle)
-        end
-    end,
-    ["SizeX"] = function(self, SizeX)
-        if self.Handle == nil then return end
-        if GUI:WndGetSizeM(self.Handle) then
-            GUI:WndSetSizeM(self.Handle, SizeX or 0, LuaRet[2])
-        end
-    end,
-    ["SizeY"] = function(self, SizeY)
-        if self.Handle == nil then return end
-        if GUI:WndGetSizeM(self.Handle) then
-            GUI:WndSetSizeM(self.Handle, LuaRet[1], SizeY or 0)
-        end
-    end,
-    ["Hint"] = function(self, _HintInof)
-        return GUI:WndSetHint(self.Handle, _HintInof)
-    end,
-    ["MagicUI"] = function(self, _Type)
-        if type(_Type) ~= "number" then return end
-        return GUI:WndSetMagicUI(self.Handle, _Type == 0 and 0 or 1)
-    end
-}
 
-local WndPropSetList_t = InitSetter_t(tSet_t)
-local WndPropGetList_t = InitSetter_t(tSet_t)
-
-Wnd:SetSetter(WndPropSetList_t)
-Wnd:SetGetter(WndPropGetList_t)
-
---#endregion
-
---#region Wnd New
----@class WndCreateArg
----@field Parent Parent
----@field Name string
----@field ImgID int?
----@field PosX int?
----@field PosY int?
----@field SizeX int?
----@field SizeY int?
-
----创建并初始化
----@param self Wnd
----@param arg WndCreateArg
-Wnd.onCreate = function(self, arg)
-    local Parent = 0
-    if type(arg.Parent) == "table" then
-        Parent = arg.Parent:GetHandle() --[[@as int]]
-    elseif type(arg.Parent) == "number" then
-        Parent = arg.Parent --[[@as int]]
-    end
-    local Name = arg.Name or "default"
-    local ImgID = arg.ImgID or 0
-    self.Handle = GUI:WndCreateWnd(Parent or 0, Name, ImgID, 0, 0)
-    self.PosX = arg.PosX or 0
-    self.PosY = arg.PosY or 0
-    self.Name = Name
-    self.SizeX = arg.SizeX or 0
-    self.SizeY = arg.SizeY or 0
-    self.Type = 14
-end
-
----创建窗口
----@param arg WndCreateArg
----@return Wnd
-function Wnd:New(arg)
-    return Wnd.new(arg)
-end
-
----创建窗口
----@param Parent int|Parent
----@param Name string
----@param ImgID int?
----@param PosX int?
----@param PosY int?
----@return Wnd
-function Wnd:Create(Parent, Name, ImgID, PosX, PosY)
-    return Wnd.new { Parent = Parent, Name = Name, ImgID = ImgID, PosX = PosX or 0, PosY = PosY or 0 }
-end
-
----创建窗口
----@param Parent int|Parent
----@param Name string
----@param ImgID int?
----@param PosX int?
----@param PosY int?
----@return Wnd
-function Wnd:CreateMainWnd(Parent, Name, ImgID, PosX, PosY)
-    local wnd = Wnd.new { Parent = Parent, Name = Name, ImgID = ImgID, PosX = PosX or 0, PosY = PosY or 0 }
-    wnd.IsESC = true
-    wnd.MoveWithLBM = true
-    if ImgID ~= nil then
-        wnd:SetWndSize(CL:GetTextureWidth(ImgID), CL:GetTextureHeight(ImgID))
-    end
-    return wnd
-end
-
---#endregion
 
 --#endregion
 
@@ -1139,9 +1179,10 @@ end
 ---@field MultiLine bool?
 ---@field OffSet int? # 编辑框行高
 ---@field new fun(arg:EditCreateArg) : Edit
+---@field SetProp fun(self:Edit, arg: EditSetter)
 Edit = NewClass("Edit", Wnd) --[[@as Edit]]
 
----@class EditSetPropArg
+---@class EditSetter: WndSetter
 ---@field Handle int?
 ---@field Info string? # 指定编辑框的描述
 ---@field Visible bool? # 是否可见
@@ -1159,45 +1200,6 @@ Edit = NewClass("Edit", Wnd) --[[@as Edit]]
 ---@field MultiLine bool? # 设置编辑框是否可多行
 ---@field OffSet int? # OffSet
 
----设置编辑框属性
----@param arg EditSetPropArg
----@return bool
-function Edit:SetProp(arg)
-    local _flag = (type(self) == "number")
-    if _flag then
-        local Edit_H = self:GetHandle() --[[@as int]]
-        if not WndAttach(Edit_H, arg.Info) then return false end
-        if arg.Visible ~= nil then GUI:WndSetVisible(Edit_H, arg.Visible) end
-        if arg.Enable ~= nil then GUI:WndSetEnableM(Edit_H, arg.Enable) end
-        if arg.CanRevMsg ~= nil then GUI:WndSetCanRevMsg(Edit_H, arg.CanRevMsg) end
-        if arg.IsCenter == true then GUI:EditSetFontCenter(Edit_H) end
-        if arg.Color ~= nil then GUI:EditSetTextColor(Edit_H, TransColor(arg.Color)) end
-        if arg.IsNumber ~= nil then GUI:EditSetBNumber(Edit_H, true) end
-        if arg.Text ~= nil then GUI:EditSetTextM(Edit_H, arg.Text) end
-        if arg.Font ~= nil then GUI:EditSetFontM(Edit_H, arg.Font) end
-        if arg.FontSize ~= nil then GUI:WndSetFontSize(Edit_H, arg.FontSize) end
-        if arg.GrowColor ~= nil then GUI:EditSetTextGrowColor(Edit_H, TransColor(arg.GrowColor)) end
-        if arg.IsGrow ~= nil then GUI:WndSetUseTextGrow(Edit_H, arg.IsGrow) end
-    else
-        -- Edit_H = self --[[@as Edit]]
-        if arg.Visible ~= nil then self.Visible = arg.Visible end
-        if arg.Enable ~= nil then self.Enable = arg.Enable end
-        if arg.CanRevMsg ~= nil then self.CanRevMsg = arg.CanRevMsg end
-        if arg.IsCenter == true then self.IsCenter = arg.IsCenter end
-        if arg.Color ~= nil then self.Color = arg.Color end
-        if arg.IsNumber ~= nil then end
-        if arg.Text ~= nil then self.Text = arg.Text end
-        if arg.Font ~= nil then self.Font = arg.Font end
-        if arg.FontSize ~= nil then self.FontSize = arg.FontSize end
-        if arg.GrowColor ~= nil then self.GrowColor = arg.GrowColor end
-        if arg.IsGrow ~= nil then self.IsGrow = arg.IsGrow end
-        if arg.IsCurrency ~= nil then self.IsCurrency = arg.IsCurrency end
-        if arg.MultiLine ~= nil then self.MultiLine = arg.MultiLine end
-        if arg.OffSet ~= nil then self.OffSet = arg.OffSet end
-    end
-
-    return true
-end
 
 --#region Edit New
 
@@ -1305,12 +1307,6 @@ EditPropGetList_t["Text"] = function(self)
     rawset(self.getset_values, "Text", GUI:EditGetTextM(self:GetHandle()))
 end
 
--- SetClassGetter(Edit, EditPropGetList_t)
--- SetClassSetter(Edit, EditPropSetList_t)
-
--- Edit.__get__ = EditPropGetList_t
--- Edit.__set__ = EditPropSetList_t
-
 Edit:SetSetter(EditPropSetList_t)
 Edit:SetGetter(EditPropGetList_t)
 
@@ -1318,7 +1314,6 @@ Edit:SetGetter(EditPropGetList_t)
 
 
 --#region Edit method
-
 
 --- 设置编辑框中可输入的最大数值
 ---@param _Type
@@ -1353,6 +1348,8 @@ end
 
 --#region Image
 
+--#region Class Define
+
 ---@class ImageNewArg
 ---@field Parent Parent
 ---@field Name string
@@ -1374,11 +1371,19 @@ end
 ---@field CheckPoint int?
 ---@field new fun(arg:ImageNewArg) :Image
 ---@field private ArouImgList int[]
+---@field SetProp fun(self:Image, arg: ImageSetter)
 Image = NewClass("Image", Wnd)
 
 --#region Image Setter, Getter
+---@class ImageSetter: WndSetter
+---@field IsCenter bool?
+---@field IsGray bool?
+---@field ImgID int?
+---@field FitSize bool?
+---@field CheckPoint bool?
 
----@class ImagePropSetList
+--#endregion
+
 local ImagePropSetList_t = InitSetter_t({
     ---设置图片控件是否以中心点绘制（修正）
     ---@param self Image
@@ -1576,19 +1581,6 @@ function Image:SetDrawRect(_StartX, _EndX, _StartY, _EndY)
     return GUI:ImageSetDrawRect(self.Handle, _StartX, _EndX, _StartY, _EndY)
 end
 
----设置图片类
----@param arg ImagePropSetList
-function Image:SetProp(arg)
-    local __set__ = Image.__set__
-    local t
-    for key, value in pairs(arg) do
-        t = __set__[key]
-        if t ~= nil then
-            t(self, value)
-        end
-    end
-end
-
 --#endregion
 
 --#endregion
@@ -1619,9 +1611,24 @@ end
 ---@field PostTexture int?
 ---@field ShowDisable boolean?
 ---@field new fun(arg:ButtonNewArg) :Button
+---@field SetProp fun(self: Button, arg: ButtonSetter)
 Button = NewClass("Button", Wnd)
 
 --#region Button Setter, Getter
+
+---@class ButtonSetter: WndSetter
+---@field DrawCenter bool?
+---@field Text string?
+---@field Font string?
+---@field FontSize int?
+---@field TextColor (string|int)?
+---@field IsCenter bool?
+---@field Rotate int?
+---@field IsActiveBtn bool?
+---@field IsActivePageBtn bool?
+---@field ImgID int?
+---@field ShowDisable bool?
+---@field PostTexture int?
 
 local ButtonPropSetList_t = InitSetter_t({
     ---设置按钮是否以中心点为锚点进行绘制
@@ -1738,19 +1745,6 @@ function Button:SetImageIndex(_NormalIndex, _MouseOnIndex, _MouseDownIndex, _Dis
     return GUI:ButtonSetImageIndex(self.Handle, _NormalIndex, _MouseOnIndex, _MouseDownIndex, _DisableIndex)
 end
 
----设置按钮类
----@param arg Button
-function Button:SetProp(arg)
-    local __set__ = self.__set__
-    local t
-    for key, value in pairs(arg) do
-        t = __set__[key]
-        if t ~= nil then
-            t(self, value)
-        end
-    end
-end
-
 --#endregion
 
 --#endregion
@@ -1781,6 +1775,7 @@ end
 ---@field ShowItemCount bool?
 ---@field ImgID int?
 ---@field new fun(arg:ItemCtrlNewArg) :ItemCtrl
+---@field SetProp fun(self:ItemCtrl, arg: ItemCtrlSetter)
 ItemCtrl = NewClass("ItemCtrl", Wnd)
 
 --#endregion
@@ -1841,6 +1836,17 @@ end
 
 --#region ItemCtrl Setter, Getter
 
+---@class ItemCtrlSetter: WndSetter
+---@field GUIDataEnable bool?
+---@field BackImgID bool?
+---@field ItemImgID int?
+---@field EffectImgID int?
+---@field HighlightImgID int?
+---@field ImgID int?
+---@field FrontImgID int?
+---@field ItemCount int?
+---@field ShowItemCount bool?
+
 local ItemCtrlPropSetList_t = InitSetter_t({
     ---设置物品框是否有效
     ---@param self ItemCtrl
@@ -1879,8 +1885,6 @@ local ItemCtrlPropSetList_t = InitSetter_t({
 
 local ItemCtrlPropGetList_t = InitGetterFromSetter(ItemCtrlPropSetList_t)
 
--- SetClassSetter(ItemCtrl, ItemCtrlPropSetList_t)
--- SetClassGetter(ItemCtrl, ItemCtrlPropGetList_t)
 
 ItemCtrl:SetSetter(ItemCtrlPropSetList_t)
 ItemCtrl:SetGetter(ItemCtrlPropGetList_t)
@@ -2082,18 +2086,6 @@ end
 
 --#endregion
 
----批量更改窗体属性
----@param arg ItemCtrl
-function ItemCtrl:SetProp(arg)
-    if type(self) ~= "table" then return end
-
-    local __set__ = self.__set__
-    for k, v in pairs(arg) do
-        if __set__[k] then
-            self[k] = v
-        end
-    end
-end
 
 --#region 添加物品框移入事件函数
 
@@ -2136,9 +2128,21 @@ end
 ---@field IsCenter bool?
 ---@field UseTextGrow bool?
 ---@field new fun(arg:RichEditCreateArg) : RichEdit
+---@field SetProp fun(self: RichEdit, arg: RichEditSetter)
 RichEdit = NewClass("RichEdit", Wnd)
 
 --#region RichEdit Setter Getter
+
+---@class RichEditSetter
+---@field FontSize int?
+---@field CurFont string?
+---@field IsCanEdit bool?
+---@field IsCenter bool?
+---@field DefaultTextColor (string|int)?
+---@field UseTextGrow bool?
+---@field GrowColor (string| int)?
+---@field OffSet int ?
+
 local RichEditPropSetList_t = InitSetter_t({
     ["FontSize"] = function(self, FontSize)
         return GUI:RichEditSetCurFont(self.Handle, "system" .. FontSize)
@@ -2366,6 +2370,7 @@ end
 ---@field Text boolean?
 ---@field ClsName "CheckBox"
 ---@field new fun(arg:CheckBoxNewArg) : CheckBox
+---@field SetProp fun(self:CheckBox, arg:CheckBoxSetter)
 CheckBox = NewClass("CheckBox", Wnd)
 
 --#endregion
@@ -2409,6 +2414,11 @@ end
 --#endregion
 
 --#region CheckBox getset
+
+---@class CheckBoxSetter
+---@field AutoChange bool?
+---@field Check bool?
+---@field Text string?
 
 local CheckBoxPropSetList_t = InitSetter_t({
     ["AutoChange"] = function(self, _AutoChange)
