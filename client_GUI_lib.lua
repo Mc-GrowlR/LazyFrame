@@ -587,13 +587,6 @@ end
 function RDItemCtrlSetGUIDataPropByItemID(_Handle, _Info, __ItemID, _Count, _IsBind)
 end
 
----根据物品GUID填充物品框
----@param _Handle int
----@param _Info string
----@param _ItemGUID string
-function RDItemCtrlSetGUIDataPropByGUID(_Handle, _Info, _ItemGUID)
-end
-
 ---获取物品框指向物品的索引名
 ---此接口只能获取使用GUID填充的物品框中对应物品的索引名。
 ---@param _Handle int @物品框句柄
@@ -1707,7 +1700,7 @@ end
 function GUI:WndGetChildWnd(_HandleID)
 end
 
----获取按钮是否为机场偶的页签按钮
+---获取按钮是否为激活的页签按钮
 ---@param _Handle int @指定按钮控件的句柄
 ---@param _Info string @指定按钮控件的描述
 ---@return bool @按钮是否为激活的页签按钮
@@ -2234,3 +2227,112 @@ function GUI:ImageGetDrawCenter(_HandleID) end
 ---@param _Id int
 ---@param _Color uint
 function GUI:ComboBoxAddString(_HandleID, _Info, _Id, _Color) end
+
+--- 判断窗口是否存在
+---@param _HandleID int
+---@return bool
+function GUI:WndIsLive(_HandleID) end
+
+--- 设置编辑框为货币类型
+---@param _HandleID int
+---@param _IsCurrency bool
+function GUI:EditSetIsCurrency(_HandleID, _IsCurrency) end
+
+---@class RenderItemListCLass
+---@field [1] 0|3|5
+---@field [2] boolean
+---@field [3] string|number
+---@field [4] int 位置的X坐标，单位为像素
+---@field [5] int 位置的Y坐标，单位为像素
+---@field [6] int 项目的宽度，单位为像素；
+---@field [7] int 项目的高度，单位为像素；
+
+
+--- 获取多功能编辑框渲染项目列表
+---@param _HandleID int
+---@return bool
+--- `LuaRet` Type： `RenderItemListCLass[]` </br>
+--- 如果操作成功，获取的列表信息储存在全局变量`LuaRet`中 </br>
+---  i代表获取项目的序号；</br>
+--- - `LuaRet[i][1]`项目的类型：`0`代表文本，`3`代表图片，`5`代表按钮；</br>
+--- - `LuaRet[i][2]`项目是否可以被选择。`true`代表是，`false`代表否；</br>
+--- - `LuaRet[i][3]`针对不同的类型，所获取到的项目的信息。
+---     - 文本类型时，获取的是文本内容；
+---     - 图片类型时，获取的是图片资源ID；
+---     - 按钮类型时，获取的是按钮使用的图片资源ID和按钮的文本，格式为`图片资源ID_文本`；</br>
+--- - `LuaRet[i][4]`位置的X坐标，单位为像素；</br>
+--- - `LuaRet[i][5]`位置的Y坐标，单位为像素；</br>
+--- - `LuaRet[i][6]`项目的宽度，单位为像素；</br>
+--- - `LuaRet[i][7]`项目的高度，单位为像素；</br>
+function GUI:RichEditGetRenderItemList(_HandleID) end
+
+--- 设置滚动条滑块的位置
+---@param _HandleID int # 指定滚动条控件的句柄
+---@param _Pos int # 指定滑块移动到的位置
+function GUI:ScrollBarSetPos(_HandleID, _Pos) end
+
+--- 获取滚动条的图片资源ID
+---@param _HandleID int
+---@return bool
+--- 此函数返回操作成功或失败。如操作成功，则获取的图片资源ID数值存储在LuaRet中。
+--- - `LuaRet[1]` 垂直滚动条顶部或水平滚动条左边按钮的图片资源ID
+--- - `LuaRet[2]` 垂直滚动条底部或水平滚动条右边按钮的图片资源ID
+--- - `LuaRet[3]` 滑块的图片资源ID
+--- - `LuaRet[4]` 滚动条背景的图片资源ID
+function GUI:ScrollBarGetImageData(_HandleID) end
+
+--- 获取滚动条滑块当前位置
+---@param _HandleID int
+---@return int # 滚动条滑块的当前位置，默认的范围为0~100.
+function GUI:ScrollBarGetPos(_HandleID) end
+
+--- 设置图片的绘制区域边界
+---@param _Handle long
+---@param _Active bool
+---@param _Width int
+---@param _Height int
+function GUI:ImageSetDrawRectBound(_Handle, _Active, _Width, _Height) end
+
+--- 使滚动窗口接收来自父窗口的鼠标滚轮滚动事件
+---@param _Handle int
+---此函数使滚动窗口接收来自父窗口的鼠标滚轮滚动事件（即`RDWndBaseCL_mouse_wheel`事件）。
+function GUI:ScrollWndRecvMouseWheelMsgFromParent(_Handle) end
+
+--- 设置指定图片控件的混色类型
+---@param handle int
+---@param blendtype # 混色类型值（`1-6`）
+---| 1 # 表示将源图片的颜色和目标图片的颜色进行混合（忽略源图的透明度）；会完全使用源图片的颜色值和目标图片的颜色值，最终的颜色值就是两种颜色值的简单相加.
+---| 2 # 表示将源图片的颜色和目标图片的颜色进行混合（不忽略源图的透明度）；
+---| 3 # 表示目标图片的颜色值按照源图片的Alpha值取反后，将源图片的颜色和目标图片的颜色进行混合；
+---| 4 # （混色时最常用的方式）表示源图片的颜色值乘以自身的Alpha值，目标图片的颜色值按照源图片的Alpha值取反后，将源图片的颜色和目标图片的颜色进行混合；源图片的Alpha值越大，则产生的新颜色中源图片的颜色值所占比例就越大，而目标图片的颜色值所占比例越小
+---| 5 # 表示目标图片的颜色值按照源图片的颜色值取反后，将源图片的颜色和目标图片的颜色进行混合；
+---| 6 # 表示源图片的颜色值乘以自身的Alpha值，目标图片的颜色值按照源图片的颜色值取反后，将源图片的颜色和目标图片的颜色进行混合。
+--- - 源图片是指指定图片控件中的图片
+--- - 目标图片是指当前的颜色缓冲区（即绘制区域的背景图片）
+--- - 目标图片的颜色值按照源图片的Alpha值取反表示： `目标图片的颜色值 = 目标图片的颜色值*（1-源图片的Alpha值）`；
+--- - 目标图片的颜色值按照源图片的颜色值取反表示：  `目标图片的颜色值 = 目标图片的颜色值*（1-源图片的颜色值）`。
+--- - 上述颜色均按照1：1的比例进行混合。
+--- - 此参数配置为其他值时，当前接口无效。
+function GUI:ImageSetBlendType(handle, blendtype) end
+
+--- 设置图片的渲染状态
+---@param _HandleID int
+---@param _RenderState # 渲染状态
+---| 1 表示将源图片的颜色和目标图片的颜色进行混合（忽略源图的透明度）
+---| 2 表示将源图片的颜色和目标图片的颜色进行混合（不忽略源图的透明度）
+---| 3 表示目标图片的颜色值按照源图片的颜色值取反后，将源图片的颜色和目标图片的颜色进行混合
+--- - 源图片是指指定图片控件中的图片
+--- - 目标图片是指当前的颜色缓冲区（即绘制区域的背景图片）
+--- - 目标图片的颜色值按照源图片的颜色值取反表示：  `目标图片的颜色值=目标图片的颜色值*（1-源图片的颜色值）`。
+--- - 上述颜色均按照1：1的比例进行混合。
+function GUI:ImageSetRenderState(_HandleID, _RenderState) end
+
+--- 设置滚动窗口中滚动条滑块的位置
+---@param _Handle int
+---@param _Pos int
+function GUI:ScrollWndSetScrollPos(_Handle, _Pos) end
+
+--- 设置窗体控件的Tip面板回调函数
+---@param _HandleID int  # int
+---@param _FuncName string # 回调脚本函数的名称
+function GUI:WndSetTipFunction(_HandleID, _FuncName) end

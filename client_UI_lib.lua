@@ -240,3 +240,81 @@ function UI:Lua_WndSetVisible(_Flag) end
 ---设置窗体控件是否可见
 ---@param _Flag boolean
 function UI:Lua_WndSetVisible(_Flag) end
+
+--- 获取玩家角色自身的基本属性
+---@param _PropertyType int # 属性的类型
+---@return bool
+function UI:Lua_GetPlayerSelfPropBase(_PropertyType) end
+
+--- 获取其他玩家角色基本属性
+---@param _RoleGUID string
+---@param _PropertyType int
+---@return bool
+function UI:Lua_GetPlayerPropBase(_RoleGUID, _PropertyType) end
+
+--- 获取玩家角色自身的32位属性
+---@param _PropertyType int
+---@return int
+function UI:Lua_GetPlayerSelfProperty32(_PropertyType) end
+
+--- 获取其他玩家角色32位属性
+---@param _RoleGUID string
+---@param _PropertyType int
+---@return int
+function UI:Lua_GetPlayerProperty32(_RoleGUID, _PropertyType) end
+
+--- 获取当前英雄的GUID
+function UI:Lua_GetCurHeroGUID() end
+
+--- 获取物品自定义整型变量
+---@param _ItemEntityHandle int
+---@param _ItemCustomKey string
+---@return bool
+function UI:Lua_GetItemEntityCustomVarInt(_ItemEntityHandle, _ItemCustomKey) end
+
+--- 根据商城中物品索引名获取物品的句柄
+---@param _ItemName string
+---@return bool # LuaRet (Type: int)
+function UI:Lua_GetMallItemHandleByName(_ItemName) end
+
+--- 获取玩家角色自身的64位属性
+---@param _PropertyType int
+---@return bool
+function UI:Lua_GetPlayerSelfProperty64(_PropertyType) end
+
+--- 判断图片是否存在
+---@param _ImageID uint #图片资源
+---@return bool
+function UI:Lua_IsTextureExists(_ImageID) end
+
+--- 获取指定字体的字符串宽度
+---@param _FontName string
+---@param _TextInfo string
+---@return bool
+function UI:Lua_GetFontStrWidth(_FontName, _TextInfo) end
+
+--- 获取Buff属性
+---@param _BuffID int
+---@param _PropType int
+---@return bool
+function UI:Lua_GetBuffProp(_BuffID, _PropType) end
+
+--- 获取组队成员的属性
+---@param _RoleGUID string
+---@param _PropertyType int
+function UI:Lua_GetTeamPropByPlayerGUID(_RoleGUID, _PropertyType) end
+
+--- 根据地图的索引名获取地图名称
+---@param _MapKeyName string
+---@return bool
+function UI:Lua_GetMapNameByKeyName(_MapKeyName) end
+
+---设置物品框中物品的属性值
+---@param _PropType int
+---@return bool
+function UI:Lua_RDItemCtrlSetGUIDataPropByType(_PropType) end
+
+---设置物品框是否显示品质框
+---@param _HandleID long # 目标物品框控件的句柄
+---@param _Flag bool
+function UI:Lua_RDItemCtrlShowQualityBG(_HandleID, _Flag) end

@@ -41,7 +41,7 @@ json = {}
 function json.encode(oObject)
 end
 
----JSON字符串转换为Lua字符串
+--- 此函数将JSON格式的字符串转换成Lua对象，对象可以为数字、字符串或表。
 ---@param strJson string @JSON字符串
 ---@return any @LUA对象
 function json.decode(strJson)
@@ -327,7 +327,14 @@ function CL:GetPlayerSelfPropBase(_PropertyType)
 end
 
 ---获取玩家角色自身的64位属性
----@param _PropertyType int
+---@param _PropertyType
+---| `ROLE_PROP64_EXP`	        角色的经验值
+---| `ROLE_PROP64_INGOT`	    元宝数
+---| `ROLE_PROP64_BIND_INGOT`	绑定元宝数
+---| `ROLE_PROP64_INTEGRAL` 	积分
+---| `ROLE_PROP64_GOLD`	        金币数
+---| `ROLE_PROP64_BIND_GOLD`	绑定金币数
+---| `ROLE_PROP64_GOLD_DEPOSIT`	仓库金币数
 ---@return bool @返回结果在`LuaRet`中
 function CL:GetPlayerSelfProperty64(_PropertyType)
 end
@@ -1382,7 +1389,9 @@ function CL:OnCBGDealerWnd() end
 
 --- 设置技能栏指定位置的数据
 ---@param _Pos int # 技能栏的位置，0代表第一个位置
----@param _Type int #
+---@param _Type  # 数据的类型。
+---| `1` 物品
+---| `2` 技能
 ---@param _TemplateID int
 function CL:SkillBarSetDataByPos(_Pos, _Type, _TemplateID) end
 
@@ -1427,15 +1436,16 @@ function CL:GetPlayerStatus() end
 --- 设置角色额外伤害的飘字起始图片资源ID和间隔
 --- > only 2d端游
 ---@param _Idx
----| 0 # 16 other_attach_num2   自身或被击角色 额外伤害飘字
----| 1 # 17 other_attach_num3   自身或被击角色 额外伤害飘字
----| 3 # 18 other_attach_num4   自身或被击角色 额外伤害飘字
----| 4 # 19 other_attach_num5   自身或被击角色 额外伤害飘字
----| 5 # 20 other_attach_num6   自身或被击角色 额外伤害飘字
----| 6 # 21 other_attach_num7   自身或被击角色 额外伤害飘字
----| 7 # 22 other_attach_num8   自身或被击角色 额外伤害飘字
----| 8 # 23 other_attach_num9   自身或被击角色 额外伤害飘字
----| 9 # 24 other_attach_num10  自身或被击角色 额外伤害飘字
+---| `0` # 15 other_attach_num         自身或被击角色 额外伤害飘字
+---| `1` # 16 other_attach_num1 -Se:4  自身或被击角色 额外伤害飘字
+---| `2` # 17 other_attach_num2 -Se:5  自身或被击角色 额外伤害飘字
+---| `3` # 18 other_attach_num3 -Se:6  自身或被击角色 额外伤害飘字
+---| `4` # 19 other_attach_num4 -Se:7  自身或被击角色 额外伤害飘字
+---| `5` # 20 other_attach_num5 -Se:8  自身或被击角色 额外伤害飘字
+---| `6` # 21 other_attach_num6 -Se:9  自身或被击角色 额外伤害飘字
+---| `7` # 22 other_attach_num7 -Se:10 自身或被击角色 额外伤害飘字
+---| `8` # 23 other_attach_num8 -Se:11 自身或被击角色 额外伤害飘字
+---| `9` # 24 other_attach_num9 -Se:12 自身或被击角色 额外伤害飘字
 ---@param _ImageID uint
 ---@param _Interval int # 图片资源间隔
 function CL:SetUserRoleHurtNumImage(_Idx, _ImageID, _Interval) end
@@ -1566,3 +1576,239 @@ function CL:Div(_Data1, _Data2) end
 --- 获取当前时间的TICK值
 ---@return int @ 当前时间的TICK值（即从操作系统启动开始所经过的毫秒数）
 function CL:GetCurTick() end
+
+--- 获取组队成员（含自身）的属性
+---@param _RoleGUID string # 玩家角色的GUID
+---@param _PropertyType int # 属性类型
+function CL:GetTeamPropByPlayerGUIDAll(_RoleGUID, _PropertyType) end
+
+--- 设置伤害飘字
+---@param _RoleGUID string
+---@param _AttackValue int
+---@param _Type int
+---@param _Dir int
+function CL:SetRoleHurtNum(_RoleGUID, _AttackValue, _Type, _Dir) end
+
+--- 获取当前运行的定时器ID
+---@return int
+function CL:TaskGetCurrentTaskID() end
+
+--- 删除定时器自定义参数
+---@param _ID uint
+---@param _Key string
+function CL:TaskDelParam(_ID, _Key) end
+
+--- 获取定时器的回调总次数
+---@param _ID int
+---@return uint
+function CL:TaskGetCount(_ID) end
+
+--- 获取定时器回调时间间隔
+---@param _ID int
+---@return uint
+function CL:TaskGetElapse(_ID) end
+
+--- 获取定时器自定义参数
+---@param _ID int
+---@param _Key string
+---@return string
+function CL:TaskGetParam(_ID, _Key) end
+
+--- 修改定时器回调总次数
+---@param _ID uint
+---@param _Count ulong
+---@return bool
+function CL:TaskSetCount(_ID, _Count) end
+
+--- 修改定时器回调时间间隔
+---@param _ID ulong
+---@param _Elapse ulong
+---@return bool
+function CL:TaskSetElapse(_ID, _Elapse) end
+
+--- 添加定时器自定义参数
+---@param _ID ulong
+---@param _Key string
+---@param _Value string
+---@return bool
+function CL:TaskSetParam(_ID, _Key, _Value) end
+
+--- 修改定时器的回调函数
+---@param _ID ulong
+---@param _Script string
+---@return bool
+function CL:TaskSetScript(_ID, _Script) end
+
+---DelDelayTask
+---@param _ID int
+function CL:DelDelayTask(_ID) end
+
+--- 根据实体ID获取特效实体属性
+---@param _MagicObjID int
+---@param _PropType int
+---@return bool
+function CL:GetMagicEntityPropByObjID(_MagicObjID, _PropType) end
+
+--- 删除邮件
+---@param _Guid string #邮件的GUID
+function CL:DeleteMail(_Guid) end
+
+--- 根据地图的索引名获取地图名称
+---@param _MapKeyName string
+---@return string
+function CL:GetMapNameByKeyName(_MapKeyName) end
+
+--- 设置技能栏中指定技能的快捷键
+---@param _Index int #技能栏索引位置
+---@param _KeyStr string # 技能栏快捷键
+function CL:SetSkillHotKeyMap(_Index, _KeyStr) end
+
+--- 获取鼠标在大地图上的逻辑格坐标位置 </br>
+---  获取的坐标位置存储在LuaRet中。
+--- - LuaRet[1]横坐标（X）；
+--- - LuaRet[2]纵坐标（Y）。
+--- - 如果x，y的值为0，表示获取失败。
+function CL:GetCurMouseGridPosInBigMap() end
+
+--- 复活角色
+function CL:DoPlayerRelive() end
+
+--- 获取BUFF剩余持续时间
+---@param _StrRole string
+---@param _BuffID int
+---@return int # BUFF的剩余时间，单位位秒（s
+function CL:GetBuffLeftTime(_StrRole, _BuffID) end
+
+--- 打开或关闭充值窗口
+function CL:OnPaymentWindow() end
+
+--- 打开或关闭VIP窗口
+function CL:OnVIPWindow() end
+
+--- 将玩家角色踢出队伍
+---@param _TargetName string
+---@return bool #
+function CL:KickOutOfTeam(_TargetName) end
+
+---LeaveTeam
+---此接口会向服务器发送离开队伍消息，服务器返回消息后会触发`LUA_EVENT_ONLEAVETEAM`类型的脚本事件。
+---@return bool # 执行结果
+function CL:LeaveTeam() end
+
+--- 获取角色自身装备的句柄列表
+---@return bool
+function CL:GetEquimentItemDataList() end
+
+--- 设置伤害图片和飘字的偏移量
+---@param _HurtType int # 伤害类型
+---@param _PictureOffsetX int # 伤害图片相对于起始位置的X偏移
+--- - 正数: 向右偏移
+--- - 负数: 向左偏移
+---@param _PictureOffsetY int #伤害图片相对于起始位置的Y偏移
+--- - 手游：正数向上偏移 负数向下偏移
+--- - 端游：正数向下偏移 负数向上偏移
+---@param _HurtNumX int # 伤害飘字相对于起始位置的X偏移
+--- - 正数: 向右偏移
+--- - 负数: 向左偏移
+---@param _HurtNumY int # 伤害飘字相对于起始位置的Y偏移
+--- - 手游：正数向上偏移 负数向下偏移
+--- - 端游：正数向下偏移 负数向上偏移
+function CL:SetHurtPictureNumOffset(_HurtType, _PictureOffsetX, _PictureOffsetY, _HurtNumX, _HurtNumY) end
+
+--- 播放声音文件
+---@param _FileName string # 文件名
+---@param _Url string # 声音文件的下载地址
+---@param _Elapse uint # 延迟播放时间
+function CL:PlaySoundEx(_FileName, _Url, _Elapse) end
+
+--- 打开帮助面板
+--- > 此接口功能与外框“帮助”按钮和小地图“?”按钮作用一样。
+function CL:OnShowHelp() end
+
+--- 注册快捷键
+---@param _HotKeyStr string
+---@param _Name string
+---@param _LuaFuncName string
+function CL:HotKeyRegister(_HotKeyStr, _Name, _LuaFuncName) end
+
+--- 删除快捷键
+---@param _HotKeyStr string # 快捷键名称
+function CL:HotKeyDelete(_HotKeyStr) end
+
+--- 获取技能栏指定位置物品的ID
+---@param _Pos int # 技能栏的位置。
+--- - 0代表第一个位置，以此类推。
+---@return uint
+--- - 手游返回规则：
+---     - 指定的位置存在数据且类型是物品，则返回该物品的ID，否则返回0。
+--- - 端游返回规则：
+---     - 指定的位置存在数据，则返回该物品或技能的ID，否则返回0。
+function CL:SkillBarGetItemIdByPos(_Pos) end
+
+--- 清除技能栏中绑定的技能或道具
+---@param _Pos int # 技能栏位置 `0`代表第一个位置，以此类推。
+---@return bool# 清除结果
+function CL:SkillBarClearDataByPos(_Pos) end
+
+--- 创建模型容器
+---@param _ParentHandleID long # 浮空舰的句柄
+---@param _pContainerID string # 模型容器的名称
+---@param _PosX int # 创建位置的横坐标
+---@param _PosY int #创建位置的纵坐标
+---@param _WeapMirror bool #武器是否启用镜像
+---@return long #
+function CL:AvatarContainerCreate(_ParentHandleID, _pContainerID, _PosX, _PosY, _WeapMirror) end
+
+--- 设定模型容器的类型和道具
+---@param _HandleID int
+---@param _AvatarType
+---| `0` #身体
+---| `1` #武器
+---| `2` #翅膀
+---| `3` #头发
+---| `4` #盾牌
+---@param _ItemID int # 道具的模板id
+function CL:AvatarContainerSetData(_HandleID, _AvatarType, _ItemID) end
+
+--- 设置模型的性别和职业
+---@param _HandleID long
+---@param _Gender 1|2
+---@param _Job 1|2|3
+function CL:AvatarContainerSetInfo(_HandleID, _Gender, _Job) end
+
+--- 设置模型整体的缩放比
+---@param _HandleID int
+---@param _Scale int
+function CL:AvatarContainerSetScale(_HandleID, _Scale) end
+
+--- 设置角色外观某个部件的大图标图片
+---@param _HandleID int
+---@param _AvatarType
+---| `0` #身体
+---| `1` #武器
+---| `2` #翅膀
+---| `3` #头发
+---| `4` #盾牌
+---@param _ItemBigIconID int
+function CL:AvatarContainerSetBigIconData(_HandleID, _AvatarType, _ItemBigIconID) end
+
+--- 获取称号模板表信息
+---@return bool
+--- Type:
+function CL:GetTitleList() end
+
+--- 打开角色面板中的指定页面
+---@param _PageIndex
+---| `0` 装备页面
+---| `1` 属性页面
+---| `2` 状态页面 (仅在端游)
+---| `4` 称号页面
+---| `5` 其他页面
+---| `6` 技能页面 (仅在端游)
+function CL:OpenSkillSet(_PageIndex) end
+
+--- 设置小地图高亮图片
+---@param _ImageID int
+---@param _OffX int
+---@param _OffY int
+function CL:SetLittleMapHighlightImage(_ImageID, _OffX, _OffY) end

@@ -111,15 +111,16 @@ end
 function dbginfo(message)
     -- 获取调用者的信息
     local level = 2
+    local info
     while true do
-        local info = debug.getinfo(level, "Slfn")
+        info = debug.getinfo(level, "Slfn")
         if not info then break end
         if info.what ~= "C" and info.what ~= "tail" then
             -- 找到了有效的调用者信息
-            local source = info.source
-            local line = info.currentline
+            local source = info.short_src -- 一个“可打印”版本的 source ，用于错误信息中
+            local line = info.currentline -- 给定函数执行到的行数
             local funcName = info.name or "unknown"
-            dbg(string.format("DBG: %s:%d in function '%s': %s", source, line, funcName, message))
+            dbg(string.format("DBG: %s:%d in function <%s>: %s", source, line, funcName, message))
             return
         end
         level = level + 1
@@ -463,6 +464,8 @@ end
 
 --#endregion
 
+--#region 位置
+
 ---获取玩家自身的位置
 ---@return integer
 ---@return integer
@@ -471,6 +474,15 @@ function GetPlayerSelfPos()
     local posy = CL:GetPlayerSelfPropBase(ROLE_PROP_POSY) and LuaRet or 0 --[[@as int]]
     return posx, posy
 end
+
+--#endregion
+
+--#region 职业
+
+
+--#endregion
+
+--#region 战斗力
 
 local MainPropList_t = {
     { ROLE_PROP32_MAX_PHY_DEF, 1, },
@@ -502,7 +514,7 @@ GetCombatPower = function(GUID)
 end
 
 --#endregion
-
+--#endregion
 --#endregion
 
 --#region 字符串
@@ -645,6 +657,7 @@ end
 ---@field SizeX int?
 ---@field SizeY int?
 ---@field Visible boolean?
+---@field CanRevMsg boolean?
 
 local tSet_t = {
     ---改变窗口位置
@@ -781,6 +794,7 @@ function Wnd:Clear()
         Print_f("Class: " .. self.clsName .. " be call")
         return
     end
+
     GUI:WndDlgClear(self:GetHandle())
 end
 
@@ -873,6 +887,7 @@ function Wnd:SetWnd(arg)
     if arg.Visible ~= nil then GUI:WndSetVisible(WND_H, arg.Visible) end
     if arg.Enable ~= nil then GUI:WndSetEnableM(WND_H, arg.Enable) end
     if arg.CanRevMsg ~= nil then GUI:WndSetCanRevMsg(WND_H, arg.CanRevMsg) end
+    dbg("设置窗口来源于Lazyframe")
     if arg.Param ~= nil then GUI:WndSetParam(WND_H, arg.Param) end
 end
 
@@ -974,10 +989,23 @@ function Wnd:AddReLBClick(_FuncName)
     return Wnd.AddRe(self, RDWndBaseCL_mouse_lbClick, _FuncName)
 end
 
----添加左键点击函数
+---添加左键点击函数Ex
 ---@param _FuncName string
 function Wnd:AddReLBClickEx(_FuncName, cParam)
     return Wnd.AddReEx(self, RDWndBaseCL_mouse_lbClick, _FuncName, cParam)
+end
+
+---添加右键点击函数
+---@param _FuncName string
+function Wnd:AddReRBClick(_FuncName)
+    return Wnd.AddRe(self, RDWndBaseCL_mouse_rbClick, _FuncName)
+end
+
+---添加右键点击函数
+---@param _FuncName string
+---@param cParam string
+function Wnd:AddReRBClickEx(_FuncName, cParam)
+    return Wnd.AddReEx(self, RDWndBaseCL_mouse_rbClick, _FuncName, cParam)
 end
 
 ---增加鼠标进入控件回调函数
@@ -1364,7 +1392,7 @@ end
 ---@class Image : Wnd
 ---@field clsName "Image"
 ---@field Type 1
----@field IsCenter bool?
+---@field IsCenter bool? # 图片是否以坐标点居中显示
 ---@field IsGray bool?
 ---@field ImgID int?
 ---@field FitSize bool?
@@ -1375,6 +1403,7 @@ end
 Image = NewClass("Image", Wnd)
 
 --#region Image Setter, Getter
+
 ---@class ImageSetter: WndSetter
 ---@field IsCenter bool?
 ---@field IsGray bool?
@@ -1469,9 +1498,8 @@ end
 ---改变九宫图片的次序
 ---@param arg int[]
 function Image:ChangeArouImgList(arg)
-    if #arg ~= 9 then
-        return
-    end
+    if #arg ~= 9 then return end
+
     for index, value in ipairs(arg) do
         if type(value) ~= "number" then
             return
@@ -1521,6 +1549,7 @@ function Image:SetAnimateEnable(_Enable, _Speed)
         Print_f("" .. serialize(debug.getinfo(1, "n")))
         return false
     end
+    --- 如果图片是居中设置，则设置设置序列帧图片居中描绘。
     if GUI:ImageGetDrawCenter(IMAGE_H) then
         GUI:WndAddProperty(IMAGE_H, "image_anim_fix_center", "1")
     end
@@ -1610,6 +1639,7 @@ end
 ---@field ImgID int?
 ---@field PostTexture int?
 ---@field ShowDisable boolean?
+---@field CheckPoint (0|1)?
 ---@field new fun(arg:ButtonNewArg) :Button
 ---@field SetProp fun(self: Button, arg: ButtonSetter)
 Button = NewClass("Button", Wnd)
@@ -1629,6 +1659,7 @@ Button = NewClass("Button", Wnd)
 ---@field ImgID int?
 ---@field ShowDisable bool?
 ---@field PostTexture int?
+---@field CheckPoint (0|1)?
 
 local ButtonPropSetList_t = InitSetter_t({
     ---设置按钮是否以中心点为锚点进行绘制
@@ -1671,6 +1702,9 @@ local ButtonPropSetList_t = InitSetter_t({
     end,
     ["PostTexture"] = function(self, _ImageID)
         return GUI:ButtonSetDrawPostTexture(self.Handle, _ImageID)
+    end,
+    ["CheckPoint"] = function(self, _Flag)
+        return GUI:ButtonSetCheckPoint(self.Handle, _Flag)
     end
 })
 
@@ -1880,10 +1914,24 @@ local ItemCtrlPropSetList_t = InitSetter_t({
     end,
     ["ShowItemCount"] = function(self, _Flag)
         return GUI:ItemCtrlSetShowItemCount(self.Handle, _Flag)
+    end,
+    ["ShowQualityBG"] = function(self, _Flag)
+        if CL:GetClientType() == 2 then
+            return UI:Lua_RDItemCtrlShowQualityBG(self.Handle, _Flag)
+        end
     end
 })
 
 local ItemCtrlPropGetList_t = InitGetterFromSetter(ItemCtrlPropSetList_t)
+
+---获取高亮图片
+---@param self ItemCtrl
+---@return integer
+ItemCtrlPropGetList_t.HighlightImgID = function(self)
+    local ImgId = GUI:ItemCtrlGetHighlightImageID(self:GetHandle())
+    self.getset_values.HighlightImgID = ImgId
+    return ImgId
+end
 
 
 ItemCtrl:SetSetter(ItemCtrlPropSetList_t)
@@ -1919,30 +1967,19 @@ function ItemCtrl:SetGUIDataByItemKeyName(_KeyName, _Count, _IsBind)
     if _KeyName == "" then
         return false
     end
+    dbginfo(" 设置物品框信息")
     -- if CL:GetClientType() == 0 then
     --     _flag = RDItemCtrlSetGUIDataPropByKeyName(self.Handle, nil, _KeyName, _Count or 1, _IsBind)
     -- end
     local ehandle = CL:GetItemTemplateHandleByKeyName(_KeyName)
     if ehandle ~= 0 then
-        LuaArg = "0" --[[@as string]]
-        GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_ITEMGUID)
-        if CL:GetItemTemplatePropByHandle(ehandle, ITEM_PROP_TIPSICON) then
-            LuaArg = LuaRet --[[@as int]]
-            GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_IMAGEID)
-        end
         if CL:GetItemTemplatePropByHandle(ehandle, ITEM_PROP_ID) then
-            LuaArg = LuaRet
-            GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_ITEMID)
+            self:SetGUIDataByItemID(LuaRet --[[@as int]])
         end
-        LuaArg = _Count
-        GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_ITEMCOUNT)
-        LuaArg = _IsBind
-        GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_ISSHOWBIND)
     end
     return _flag
 end
 
----根据物品模板ID填充物品框
 ---@param _ItemId int # 模板ID
 ---@param _Count number?
 ---@param _IsBind boolean?
@@ -1950,23 +1987,33 @@ end
 function ItemCtrl:SetGUIDataByItemID(_ItemId, _Count, _IsBind)
     if _Count == nil then
         self.ItemCount = false
+        _Count = 1
     end
+
     if _IsBind == nil then
         _IsBind = false
     end
+
+    local GUIDataHanlde = GUI:ItemCtrlGetGUIData(self.Handle)
+    if GUIDataHanlde == 0 then return false; end
+
+    --- 设置G U I D
     LuaArg = "0" --[[@as string]]
-    GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_ITEMGUID)
+    CL:SetItemGUIDataPropByType(GUIDataHanlde, ITEMGUIDATA_ITEMGUID)
 
     LuaArg = _ItemId --[[@as int]]
-    GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_ITEMID)
+    CL:SetItemGUIDataPropByType(GUIDataHanlde, ITEMGUIDATA_ITEMID)
 
     if not CL:GetItemTemplatePropByID(_ItemId, ITEM_PROP_TIPSICON) then return false end
     LuaArg = LuaRet --[[@as int]]
-    GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_IMAGEID)
+    CL:SetItemGUIDataPropByType(GUIDataHanlde, ITEMGUIDATA_IMAGEID)
     LuaArg = _Count
-    GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_ITEMCOUNT)
+    CL:SetItemGUIDataPropByType(GUIDataHanlde, ITEMGUIDATA_ITEMCOUNT)
     LuaArg = _IsBind
-    GUI:ItemCtrlSetGUIDataPropByType(self.Handle, ITEMGUIDATA_ISSHOWBIND)
+    CL:SetItemGUIDataPropByType(GUIDataHanlde, ITEMGUIDATA_ISSHOWBIND)
+
+    GUI:ItemCtrlSetGUIData(self.Handle, GUIDataHanlde)
+
     return true
 end
 
@@ -2436,4 +2483,17 @@ local CheckBoxPropGetList_t = InitGetterFromSetter(CheckBoxPropSetList_t)
 CheckBox:SetSetter(CheckBoxPropSetList_t)
 CheckBox:SetGetter(CheckBoxPropGetList_t)
 
+--#region  CheckBox Method
+
+---添加复选框状态发生变化事件
+---@param _FuncName string
+function CheckBox:AddReCheckChange(_FuncName)
+    if type(_FuncName) ~= "string" then
+        dbginfo("注册复选框状态发生变化事件出错")
+        return
+    end
+    self:AddRe(RDWnd2DCheckCL_check_change, _FuncName)
+end
+
+--#endregion
 --#endregion
