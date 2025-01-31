@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="gb2312"?>
+<Root>
+    <FontData FontUseName="system" FontName="simsun.ttc" FontType="1" FontWidth="12" FontHeight="12"
+        FontGrow="1" UseMono="1" />
+    <FontData FontUseName="system13" FontName="simsun.ttc" FontType="1" FontWidth="13"
+        FontHeight="13" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system14" FontName="simsun.ttc" FontType="1" FontWidth="14"
+        FontHeight="14" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system15" FontName="simsun.ttc" FontType="1" FontWidth="15"
+        FontHeight="15" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system16" FontName="simsun.ttc" FontType="1" FontWidth="16"
+        FontHeight="16" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system17" FontName="simsun.ttc" FontType="1" FontWidth="17"
+        FontHeight="17" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system18" FontName="simsun.ttc" FontType="1" FontWidth="18"
+        FontHeight="18" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system19" FontName="simsun.ttc" FontType="1" FontWidth="19"
+        FontHeight="19" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system20" FontName="simsun.ttc" FontType="1" FontWidth="20"
+        FontHeight="20" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system21" FontName="simsun.ttc" FontType="1" FontWidth="21"
+        FontHeight="21" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system22" FontName="simsun.ttc" FontType="1" FontWidth="22"
+        FontHeight="22" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="system23" FontName="simsun.ttc" FontType="1" FontWidth="23"
+        FontHeight="23" FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI" FontName="SIMLI.TTF" FontType="1" FontWidth="16" FontHeight="16"
+        FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI18" FontName="SIMLI.TTF" FontType="1" FontWidth="18" FontHeight="18"
+        FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI19" FontName="SIMLI.TTF" FontType="1" FontWidth="19" FontHeight="19"
+        FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI20" FontName="SIMLI.TTF" FontType="1" FontWidth="20" FontHeight="20"
+        FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI21" FontName="SIMLI.TTF" FontType="1" FontWidth="21" FontHeight="21"
+        FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI22" FontName="SIMLI.TTF" FontType="1" FontWidth="22" FontHeight="22"
+        FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI23" FontName="SIMLI.TTF" FontType="1" FontWidth="23" FontHeight="23"
+        FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI24" FontName="SIMLI.TTF" FontType="1" FontWidth="24" FontHeight="24"
+        FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI25" FontName="SIMLI.TTF" FontType="1" FontWidth="25" FontHeight="25"
+        FontGrow="1" UseMono="0" />
+    <FontData FontUseName="SIMLI18NotGrow" FontName="SIMLI.TTF" FontType="1" FontWidth="18"
+        FontHeight="18" FontGrow="0" UseMono="0" />
+    <FontData FontUseName="SIMLI19NotGrow" FontName="SIMLI.TTF" FontType="1" FontWidth="19"
+        FontHeight="19" FontGrow="0" UseMono="0" />
+    <FontData FontUseName="SIMLI20NotGrow" FontName="SIMLI.TTF" FontType="1" FontWidth="20"
+        FontHeight="20" FontGrow="0" UseMono="0" />
+    <FontData FontUseName="SIMLI21NotGrow" FontName="SIMLI.TTF" FontType="1" FontWidth="21"
+        FontHeight="21" FontGrow="0" UseMono="0" />
+    <FontData FontUseName="SIMLI22NotGrow" FontName="SIMLI.TTF" FontType="1" FontWidth="22"
+        FontHeight="22" FontGrow="0" UseMono="0" />
+    <FontData FontUseName="SIMLI23NotGrow" FontName="SIMLI.TTF" FontType="1" FontWidth="23"
+        FontHeight="23" FontGrow="0" UseMono="0" />
+    <FontData FontUseName="SIMLI24NotGrow" FontName="SIMLI.TTF" FontType="1" FontWidth="24"
+        FontHeight="24" FontGrow="0" UseMono="0" />
+    <FontData FontUseName="SIMLI25NotGrow" FontName="SIMLI.TTF" FontType="1" FontWidth="25"
+        FontHeight="25" FontGrow="0" UseMono="0" />
+    <FontData FontUseName="TitleFont1" FontName="simsun.ttc" FontType="1" FontWidth="14"
+        FontHeight="14" FontGrow="1" UseMono="0" />
+</Root>
