@@ -2336,3 +2336,18 @@ function GUI:ScrollWndSetScrollPos(_Handle, _Pos) end
 ---@param _HandleID int  # int
 ---@param _FuncName string # 回调脚本函数的名称
 function GUI:WndSetTipFunction(_HandleID, _FuncName) end
+
+---获取多功能编辑框的最大行数
+---@param _HandleID int
+---@return int # 所允许的最大行数
+function GUI:RichEditGetTotalLine(_HandleID) end
+
+--- 获取按钮上显示的图片
+---@param _HandleID int
+---@return uint # 图片资源ID
+function GUI:ButtonGetDrawPostTexture(_HandleID) end
+
+--- 获取控件的类型
+---@param handle int
+---@return bool # 结果存放到`LuaRet`中
+function GUI:WndGetUIType(handle) end

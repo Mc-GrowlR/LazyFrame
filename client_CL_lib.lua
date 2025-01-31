@@ -335,27 +335,24 @@ end
 ---| `ROLE_PROP64_GOLD`	        金币数
 ---| `ROLE_PROP64_BIND_GOLD`	绑定金币数
 ---| `ROLE_PROP64_GOLD_DEPOSIT`	仓库金币数
----@return bool @返回结果在`LuaRet`中
-function CL:GetPlayerSelfProperty64(_PropertyType)
-end
+---@return bool @返回结果在`LuaRet`类型为`string`中
+function CL:GetPlayerSelfProperty64(_PropertyType) end
 
 ---打开或关闭游戏设置窗口
-function CL:OnGameSettingWindow()
-end
+function CL:OnGameSettingWindow() end
 
 ---打开或关闭活动窗口
-function CL:OnOpenCampaign()
-end
+function CL:OnOpenCampaign() end
 
 ---获取其他玩家角色64位属性
 ---@param _RoleGUID string
 ---@param _PropertyType int
-function CL:GetPlayerProperty64(_RoleGUID, _PropertyType)
-end
+function CL:GetPlayerProperty64(_RoleGUID, _PropertyType) end
 
 ---获取当前角色经验值总数
-function CL:GetSelfUpgradeExp()
-end
+---@return bool
+---如操作成功，则获取的数值存储在全局变量`LuaRet` 类型为`string`中。
+function CL:GetSelfUpgradeExp() end
 
 ---清除逻辑事件
 ---@param EventID int
@@ -415,8 +412,10 @@ function CL:ClearMouseGUIItemData()
 end
 
 ---获取背包中有个物品的位置
-function CL:PlayerGetPakageFreeSiteIdx()
-end
+---@return int
+--- - 获取成功则返回首个无物品的位置的相对索引（从0开始）
+--- - 获取失败则返回-1
+function CL:PlayerGetPakageFreeSiteIdx() end
 
 ---初始化聊天频道文字颜色
 ---@param _Channel int @聊天频道：1当前 2组队 3行会 4世界 5小喇叭 7私聊（暂无效果） 8全服 20系统（暂无效果）
@@ -1812,3 +1811,49 @@ function CL:OpenSkillSet(_PageIndex) end
 ---@param _OffX int
 ---@param _OffY int
 function CL:SetLittleMapHighlightImage(_ImageID, _OffX, _OffY) end
+
+--- 获取Att的属性
+---@param _AttrID int # Attr的模板ID。
+---@param _PropType  # Att的属性类型。
+---| `ATT_PROP_ID` # 属性表ID
+---| `ATT_PROP_NAME` # 属性的英文字段名
+---| `ATT_PROP_CHINANAME` # 属性的中文字段名
+---| `ATT_PROP_KEYNAME` # 索引名称
+---@return bool
+function CL:GetAttrProp(_AttrID, _PropType) end
+
+--- 根据模板ID获取背包中物品的位置
+---@param _ItemId int # 物品的模板ID
+---@return bool #
+---如操作成功，则获取的物品的位置信息存储在全局变量LuaRet中。
+--- - `LuaRet[1]` 物品所在的页（从0开始）。
+--- - `LuaRet[2]` 物品在该页中的位置（从0开始）。
+function CL:PackageFindItemPosById(_ItemId) end
+
+--- 获取角色buff信息
+---@param role_id string # 角色的GUID
+---@param buff_id uint16 # buff的ID
+--- - `LuaRet[1]` BUFF的ID
+--- - `LuaRet[2]` 堆叠数量
+function CL:GetRoleBuffInfo(role_id, buff_id) end
+
+---分隔字符串:  此函数按指定的字体和宽度，将字符串分割为两段。
+---@param _FontName string
+---@param _Text string
+---@param _Width int
+---@return bool
+--- `LuaRet[1]`和`LuaRet[2]`中分别保存分割后的字符串。
+function CL:CutString(_FontName, _Text, _Width) end
+
+--- 添加一个从A点运动到B点的特效
+---@param template_id int
+---@param ax int
+---@param ay int
+---@param bx int
+---@param by int
+---@param anim_speed int
+---@param life int
+---@return int # 特效实体ID
+--- - `0` 特效生成失败。
+--- - `>0` 特效生成成功
+function CL:AddMagicFromPointAToB(template_id, ax, ay, bx, by, anim_speed, life) end

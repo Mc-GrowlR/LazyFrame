@@ -1,5 +1,9 @@
 --#region 基类-原型对象构造定义
 
+local rawset = rawset
+
+local UICls = {}
+
 ---- lua 模拟C#类
 --- [链接](https://blog.csdn.net/YuAnHandSome/article/details/105809559)
 --- 已做修改添加Getter和Setter机制
@@ -32,19 +36,22 @@ local function NewClass(clsName, base)
         local cls_instance_mt = {
             --- Getter 实现
             __index = function(t, k)
-                if BaseCls[k] then
-                    return BaseCls[k]
+                local tmp_v = BaseCls[k]
+                if tmp_v then
+                    return tmp_v
                 end
                 --- 如果有getter ，则执行getter
-                if t.__get__[k] then
-                    t.__get__[k](t) -- 执行
+                tmp_v = t.__get__[k]
+                if tmp_v then
+                    tmp_v(t) -- 执行
                     return t.getset_values[k]
                 end
             end,
             --- Setter 实现
             __newindex = function(t, k, v)
-                if t.__set__[k] then
-                    t.__set__[k](t, v)                -- 执行获取器
+                local setter_f = t.__set__[k]
+                if setter_f then
+                    setter_f(t, v)                    -- 执行获取器
                     cls_instance.getset_values[k] = v --储存值
                     return
                 end
@@ -108,7 +115,15 @@ do
     end
 end
 
-function dbginfo(message)
+function dbginfo(...)
+    local args = { ... }
+    local message_t = {}
+    for i, v in ipairs(args) do
+        table.insert(message_t, serialize(v))
+    end
+
+    local message = table.concat(message_t, "\t")
+
     -- 获取调用者的信息
     local level = 2
     local info
@@ -519,6 +534,10 @@ end
 
 --#region 字符串
 
+---分隔字符串
+---@param inputstr string
+---@param sep string
+---@return table
 function StrSplit(inputstr, sep)
     if sep == nil then
         sep = "%s" -- 默认为任意空白字符
@@ -528,6 +547,13 @@ function StrSplit(inputstr, sep)
         table.insert(t, str)
     end
     return t
+end
+
+function GetVarName(VarName)
+    if CL:GetClientType() == 2 then
+        VarName = CL:UTF82GBK(VarName)
+    end
+    return VarName
 end
 
 --#endregion
@@ -560,6 +586,8 @@ end
 ---@field SizeX int?
 ---@field SizeY int?
 ---@field Hint string?
+---@field CascadeOpacity bool? #  设置拖动窗口是否显示透明度
+---@field PopupMenu bool? #  设置窗口为弹出菜单
 ---@field MagicUI int?  #  `1` 有`MagicUI`特效 </br>  `0` 无`MagicUI`特效
 ---@field new fun(arg:WndCreateArg) : Wnd
 ---@field __set__ table
@@ -658,6 +686,8 @@ end
 ---@field SizeY int?
 ---@field Visible boolean?
 ---@field CanRevMsg boolean?
+---@field CascadeOpacity bool?
+---@field PopupMenu bool?
 
 local tSet_t = {
     ---改变窗口位置
@@ -696,6 +726,7 @@ local tSet_t = {
     ---@param self Wnd
     ---@param Visible bool
     ["Visible"] = function(self, Visible)
+        dbginfo("句柄： " .. GUI:WndGetIDM(self.Handle), self.Handle)
         GUI:WndSetVisible(self.Handle, Visible)
     end,
     --- 设置窗体控件的自定义参数
@@ -751,11 +782,56 @@ local tSet_t = {
     ["MagicUI"] = function(self, _Type)
         if type(_Type) ~= "number" then return end
         return GUI:WndSetMagicUI(self.Handle, _Type == 0 and 0 or 1)
+    end,
+    ["CascadeOpacity"] = function(self, _Flag)
+        if CL:GetClientType() == 2 then
+            return GUI:WndSetCascadeOpacity(self.Handle, _Flag)
+        end
+    end,
+    ["PopupMenu"] = function(self, _Flag)
+        if _Flag then
+            GUI:WndSetPopupMenu(self.Handle)
+        end
     end
 }
 
 local WndPropSetList_t = InitSetter_t(tSet_t)
-local WndPropGetList_t = InitSetter_t(tSet_t)
+local WndPropGetList_t = InitGetterFromSetter(tSet_t)
+
+WndPropGetList_t["Pos"] = function(self)
+    if GUI:WndGetPosM(self:GetHandle()) then
+        return rawset(self.getset_values, "Pos", LuaRet)
+    end
+end
+
+WndPropGetList_t["PosX"] = function(self)
+    if GUI:WndGetPosM(self:GetHandle()) then
+        return rawset(self.getset_values, "PosX", LuaRet[1])
+    end
+end
+
+WndPropGetList_t["PosY"] = function(self)
+    if GUI:WndGetPosM(self:GetHandle()) then
+        return rawset(self.getset_values, "PosY", LuaRet[2])
+    end
+end
+
+WndPropGetList_t["SizeX"] = function(self)
+    if GUI:WndGetSizeM(self:GetHandle()) then
+        return rawset(self.getset_values, "SizeX", LuaRet[1])
+    end
+end
+
+WndPropGetList_t["SizeY"] = function(self)
+    if GUI:WndGetSizeM(self:GetHandle()) then
+        return rawset(self.getset_values, "SizeY", LuaRet[2])
+    end
+end
+
+WndPropGetList_t["Param"] = function(self)
+    local Param = GUI:WndGetParam(self:GetHandle())
+    return rawset(self.getset_values, "Param", Param)
+end
 
 Wnd:SetSetter(WndPropSetList_t)
 Wnd:SetGetter(WndPropGetList_t)
@@ -784,6 +860,8 @@ end
 
 --#endregion
 
+--#region 操作
+
 ---移出窗口所有子控件
 function Wnd:Clear()
     if type(self) ~= "table" then
@@ -794,9 +872,131 @@ function Wnd:Clear()
         Print_f("Class: " .. self.clsName .. " be call")
         return
     end
-
-    GUI:WndDlgClear(self:GetHandle())
+    local WND_H = (type(self) == "number" and self or self:GetHandle())
+    if WND_H == nil or WND_H == 0 then return; end
+    if not GUI:WndIsLive(WND_H) then return; end
+    if GUI:WndGetUIType(WND_H) then
+        local WndType = LuaRet --[[@as int]]
+        if not WndType == 14 then return; end
+        return GUI:WndDlgClear(WND_H)
+    end
 end
+
+function Wnd:CalSize()
+    if type(self) ~= "table" then
+        CL:Log("类型不合")
+        return
+    end
+    if self.clsName ~= "Wnd" then
+        Print_f("Class: " .. self.clsName .. " be call")
+        return
+    end
+    local WND_H = (type(self) == "number" and self or self:GetHandle())
+    if WND_H == nil or WND_H == 0 then return; end
+    if not GUI:WndIsLive(WND_H) then return; end
+    if GUI:WndGetUIType(WND_H) then
+        local WndType = LuaRet --[[@as int]]
+        if not WndType == 14 then return; end
+        return GUI:WndCalSize(WND_H)
+    end
+end
+
+---根据句柄创建对象
+---@param _Handle int
+---@return Wnd?
+function Wnd:CreateFromHandle(_Handle)
+    if _Handle == nil or _Handle == 0 then return nil; end
+    if not GUI:WndIsLive(_Handle) then return nil; end
+
+    if GUI:WndGetUIType(_Handle) then
+        local wnd_type = LuaRet --[[@as int]]
+        --- 原型对象实例
+        local cls_instance = {}
+        cls_instance.Handle = _Handle
+        cls_instance.Type = wnd_type
+        cls_instance.getset_values = {}
+        -- cls_instance.getset_values["Handle"] = _Handle
+        -- cls_instance.getset_values["Type"] = wnd_type
+
+        local num = 0
+
+        ---@type Wnd?
+        local WndCls = UICls[wnd_type]
+        if not WndCls then return nil; end
+
+        local BaseCls = WndCls
+        local cls_instance_mt = {
+            --- Getter 实现
+            __index = function(t, k)
+                num = num + 1
+                dbginfo("::", num, "> 执行__index", k)
+                local tmp_v = BaseCls[k]
+                if tmp_v then
+                    num = num - 1
+                    dbginfo(":::", num, "> BaseCls存在返回其值", k, type(tmp_v))
+
+                    return tmp_v
+                end
+                dbginfo("::", num, "> 查找getter", k)
+                --- 如果有getter ，则执行getter
+                tmp_v = t.__get__[k]
+                if tmp_v then
+                    tmp_v(t) -- 执行
+                    local getter_v = t.getset_values[k]
+
+                    num = num - 1
+                    dbginfo(":::", num, "> getter存在返回其值", k, getter_v, type(getter_v))
+                    return getter_v
+                end
+            end,
+            --- Setter 实现
+            __newindex = function(t, k, v)
+                local tmp_v = t.__set__[k]
+                if tmp_v then
+                    tmp_v(t, v)                       -- 执行获取器
+                    cls_instance.getset_values[k] = v --储存值
+                    return
+                end
+                --没有获取器
+                rawset(t, k, v)
+                -- t[k] = v -- 会一直触发__index 函数
+            end
+        }
+
+        setmetatable(cls_instance, cls_instance_mt)
+        return cls_instance
+    end
+    return nil
+end
+
+---查找子控件
+---@param WndName string
+---@return Wnd?
+function Wnd:FindChild(WndName)
+    if type(WndName) ~= "string" then return nil; end
+    local handle = self:GetHandle()
+    if not GUI:WndIsLive(handle) then return nil; end
+    local child_handle = GUI:WndFindChildM(handle, WndName)
+    if child_handle ~= 0 then
+        return Wnd:CreateFromHandle(child_handle)
+    end
+    return nil;
+end
+
+---查找子控件
+---@param WndName string
+---@return Wnd?
+function Wnd:FindWindow(WndName)
+    if type(WndName) ~= "string" then return nil; end
+    local handle = self:GetHandle()
+    if not GUI:WndIsLive(handle) then return nil; end
+    local child_handle = GUI:WndFindWindow(handle, WndName)
+    if child_handle ~= 0 then
+        return Wnd:CreateFromHandle(child_handle)
+    end
+end
+
+--#endregion
 
 --#region 窗口句柄
 
@@ -1150,10 +1350,25 @@ end
 
 --#region 设置
 
+--- 设置窗体控件的Tip
+---@param _TipInfo string
+---@return nil
 function Wnd:SetTip(_TipInfo)
     local WND_H = (type(self) == "number" and self or self:GetHandle())
     if WND_H ~= 0 then
         return GUI:WndSetTipInfo(WND_H, _TipInfo)
+    end
+    return false
+end
+
+--- 设置窗体控件的Tip面板回调函数
+---@param _FuncName string
+---@return nil
+function Wnd:SetTipFunction(_FuncName)
+    if type(_FuncName) ~= "string" then return; end
+    local WND_H = (type(self) == "number" and self or self:GetHandle())
+    if WND_H ~= 0 then
+        return GUI:WndSetTipFunction(WND_H, _FuncName)
     end
     return false
 end
@@ -1330,9 +1545,14 @@ local EditPropGetList_t = InitGetterFromSetter(EditPropSetList_t)
 
 ---Edit Text属性Getter
 ---@param self Edit
----@return string
 EditPropGetList_t["Text"] = function(self)
-    rawset(self.getset_values, "Text", GUI:EditGetTextM(self:GetHandle()))
+    local _Handle = self:GetHandle()
+    if _Handle == nil or _Handle == 0 then return; end
+    if not GUI:WndIsLive(_Handle) then return; end
+
+    local edit_text_s = GUI:EditGetTextM(_Handle)
+
+    rawset(self.getset_values, "Text", edit_text_s)
 end
 
 Edit:SetSetter(EditPropSetList_t)
@@ -1779,6 +1999,18 @@ function Button:SetImageIndex(_NormalIndex, _MouseOnIndex, _MouseDownIndex, _Dis
     return GUI:ButtonSetImageIndex(self.Handle, _NormalIndex, _MouseOnIndex, _MouseDownIndex, _DisableIndex)
 end
 
+--- 设置按钮在特定状态的文字颜色
+---@param _State
+---| `0` 普通状态
+---| `1` 鼠标悬停
+---| `2` 鼠标按下
+---| `3` 禁用状态
+---@param _Color uint | string
+---@return nil
+function Button:SetStateTextColor(_State, _Color)
+    return GUI:ButtonSetStateTextColor(self.Handle, _State, TransColor(_Color))
+end
+
 --#endregion
 
 --#endregion
@@ -1807,6 +2039,7 @@ end
 ---@field EffectImgID int?
 ---@field HighlightImgID int?
 ---@field ShowItemCount bool?
+---@field ShowQualityBG bool?
 ---@field ImgID int?
 ---@field new fun(arg:ItemCtrlNewArg) :ItemCtrl
 ---@field SetProp fun(self:ItemCtrl, arg: ItemCtrlSetter)
@@ -1880,6 +2113,7 @@ end
 ---@field FrontImgID int?
 ---@field ItemCount int?
 ---@field ShowItemCount bool?
+---@field ShowQualityBG bool?
 
 local ItemCtrlPropSetList_t = InitSetter_t({
     ---设置物品框是否有效
@@ -1963,18 +2197,19 @@ function ItemCtrl:SetGUIDataByItemKeyName(_KeyName, _Count, _IsBind)
     if _IsBind == nil then
         _IsBind = false
     end
-    local _flag = true
     if _KeyName == "" then
         return false
     end
-    dbginfo(" 设置物品框信息")
+    local _flag = true
+    -- dbginfo(" 设置物品框信息")
     -- if CL:GetClientType() == 0 then
     --     _flag = RDItemCtrlSetGUIDataPropByKeyName(self.Handle, nil, _KeyName, _Count or 1, _IsBind)
     -- end
     local ehandle = CL:GetItemTemplateHandleByKeyName(_KeyName)
     if ehandle ~= 0 then
         if CL:GetItemTemplatePropByHandle(ehandle, ITEM_PROP_ID) then
-            self:SetGUIDataByItemID(LuaRet --[[@as int]])
+            dbginfo("ItemID :" .. LuaRet)
+            flag = self:SetGUIDataByItemID(LuaRet --[[@as int]], _Count, _IsBind)
         end
     end
     return _flag
@@ -1983,7 +2218,7 @@ end
 ---@param _ItemId int # 模板ID
 ---@param _Count number?
 ---@param _IsBind boolean?
----@return boolean|nil
+---@return boolean
 function ItemCtrl:SetGUIDataByItemID(_ItemId, _Count, _IsBind)
     if _Count == nil then
         self.ItemCount = false
@@ -1993,6 +2228,7 @@ function ItemCtrl:SetGUIDataByItemID(_ItemId, _Count, _IsBind)
     if _IsBind == nil then
         _IsBind = false
     end
+    dbginfo("设置物品： " .. _ItemId .. "  " .. _Count .. "  ")
 
     local GUIDataHanlde = GUI:ItemCtrlGetGUIData(self.Handle)
     if GUIDataHanlde == 0 then return false; end
@@ -2006,6 +2242,7 @@ function ItemCtrl:SetGUIDataByItemID(_ItemId, _Count, _IsBind)
 
     if not CL:GetItemTemplatePropByID(_ItemId, ITEM_PROP_TIPSICON) then return false end
     LuaArg = LuaRet --[[@as int]]
+    dbginfo("Icon: " .. LuaRet)
     CL:SetItemGUIDataPropByType(GUIDataHanlde, ITEMGUIDATA_IMAGEID)
     LuaArg = _Count
     CL:SetItemGUIDataPropByType(GUIDataHanlde, ITEMGUIDATA_ITEMCOUNT)
@@ -2192,7 +2429,13 @@ RichEdit = NewClass("RichEdit", Wnd)
 
 local RichEditPropSetList_t = InitSetter_t({
     ["FontSize"] = function(self, FontSize)
-        return GUI:RichEditSetCurFont(self.Handle, "system" .. FontSize)
+        local ClientType = CL:GetClientType()
+        if ClientType == 0 then
+            return GUI:RichEditSetCurFont(self.Handle, "system" .. FontSize)
+        elseif ClientType == 2 then
+            FontSize = tonumber(FontSize) or 13
+            return GUI:WndSetFontSize(self.Handle, FontSize)
+        end
     end,
     ["CurFont"] = function(self, _FontName)
         return GUI:RichEditSetCurFont(self.Handle, _FontName)
@@ -2480,6 +2723,17 @@ local CheckBoxPropSetList_t = InitSetter_t({
 })
 local CheckBoxPropGetList_t = InitGetterFromSetter(CheckBoxPropSetList_t)
 
+CheckBoxPropGetList_t["Check"] = function(self)
+    local _Handle = self.Handle
+    if _Handle == nil or _Handle == nil then return false; end
+    if not GUI:WndIsLive(_Handle) then return false; end
+
+    local check_status = GUI:CheckBoxGetCheck(_Handle)
+    dbginfo("check_status: ", serialize(check_status))
+
+    return rawset(self.getset_values, "Check", check_status)
+end
+
 CheckBox:SetSetter(CheckBoxPropSetList_t)
 CheckBox:SetGetter(CheckBoxPropGetList_t)
 
@@ -2497,3 +2751,12 @@ end
 
 --#endregion
 --#endregion
+
+UICls[1]  = Image
+UICls[2]  = Button
+UICls[3]  = CheckBox
+UICls[4]  = Edit
+UICls[5]  = ComboBox
+UICls[12] = RichEdit
+UICls[13] = ItemCtrl
+UICls[14] = Wnd
